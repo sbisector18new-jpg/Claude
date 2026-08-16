@@ -14,79 +14,96 @@ notification is published)
 
 | | Modules | Chapters | Hours | Planning marks |
 |---|---|---:|---:|---:|
-| Complete (reported) | 1, 2, 3 | 34 | 78 | 84.5 |
-| **Remaining** | **4, 5, 6, 7, 8, 9, 10, 11** | **40 + mocks** | **146** | **215.5** |
+| Complete | 1, 2, 3, 5 | 44 | 100 | 109.5 |
+| **Remaining** | **4, 6, 7, 8, 9, 10, 11** | **30 + mocks** | **124** | **190.5** |
 | Total | 11 | 74 | 224 | 300.0 |
 
-**215.5 of 300 planning marks are still unwritten — roughly 72% of the paper.** The completed
-Polity/Labour/Social-Security core is the highest-certainty block, but it is not the highest-marks
-block.
+Arithmetic closes against Blueprint §12 on all three columns (44+30=74 chapters, 100+124=224 hours,
+109.5+190.5=300.0 marks).
+
+**190.5 of 300 planning marks remain — roughly 64% of the paper.**
 
 ---
 
 ## 2. Completed
 
-| M | Item | Status | PDF | Version |
-|---|---|---|---|---|
-| 0 | Master Blueprint (Modules 1–11) | Complete | Yes | v1.0 |
-| 1 | Foundation F1.1 — Constitutional Foundations | Complete | Yes | v1.0 |
-| 1 | Compact Ch 1.1–1.13 | Reported complete | — | — |
-| 1 | Foundation F1.2–F1.13 | **Status unconfirmed** | — | — |
-| 2 | Ch 2.1–2.10 | Reported complete | — | — |
-| 3 | Ch 3.1–3.11 | Reported complete | — | — |
+| M | Module | Chapters | Hours | Marks |
+|---|---|---:|---:|---:|
+| 1 | Indian Polity, Constitution & Governance | 13 | 28 | 32.5 |
+| 2 | Labour Laws & Industrial Relations | 10 | 28 | ~30 |
+| 3 | Social Security & EPFO | 11 | 22 | ~22 |
+| 5 | History, Freedom Movement, Art & Culture | 10 | 22 | 25.0 |
 
-> **Open question blocking a clean register.** Only the Blueprint v1.0 and Foundation F1.1 v1.0 are
-> verifiable (both supplied as PDFs). Modules 1–3 are recorded as complete because they are absent
-> from the remaining-work list, not because I can see them. F1.1 closes by naming F1.2 and F1.3 as
-> "next in the Foundation track", so it is unclear whether the Foundation layer was carried through
-> all of Module 1 or stopped at F1.1. **Confirm before Module 5 begins**, because if the Foundation
-> layer stops at F1.1 then Modules 2 and 3 rest on Compact-only notes — which is the exact failure
-> mode Foundation F1.1 §0 was written to prevent.
+Also complete: **Module 0 Master Blueprint v1.0**, **Foundation F1.1 v1.0** (Constitutional
+Foundations).
 
----
-
-## 3. Remaining — in your stated order
-
-| M | Module | Chapters | Hours | Marks | Priority |
-|---|---|---:|---:|---:|---|
-| 5 | History, Freedom Movement, Art & Culture | 10 | 22 | 25.0 | ★★★★☆ |
-| 6 | Accounting, Auditing & Statistics | 8 combined | 26 | ~30 | ★★★★☆ |
-| 7 | Insurance (compact) | ↑ with M6 | 4 | ~3 | ★★☆☆☆ |
-| 8 | General English, Quant & Reasoning | 8 | 26 | **80.0** | ★★★★★ |
-| 9 | General Science & Computer Applications | 7 | 22 | 42.5 | ★★★★★ |
-| 4 | Indian Economy + Population/Development/Globalisation | 5 | 8 | 15.0 | ★★★☆☆ |
-| 10 | Integrated Current Affairs | 2 | 12 | 20.0 | ★★★★☆ |
-| 11 | PYQ Analysis, 5 Mocks, Final Revision | mocks | 26 | multiplier | ★★★★★ |
+> **One item still unconfirmed.** Whether the **Foundation layer** (the F-prefixed, teach-from-zero
+> track) was carried beyond **F1.1**. F1.1 §12 closes by naming F1.2 and F1.3 as next. If Foundation
+> stopped at F1.1, then Modules 2, 3 and 5 rest on Compact-layer notes only — which is the failure
+> mode F1.1 §0 was written to prevent ("memorise sentences you cannot reconstruct… they collapse
+> under a *which of the following is not correct* question"). This does not block Module 6, so it is
+> not on the critical path, but it should be settled before the final revision passes.
 
 ---
 
-## 4. Two sequencing problems in that order
+## 3. Remaining
 
-**4.1 Module 8 is 80 marks and is last-but-three.** It is the single largest block in the paper —
-larger than Labour Laws. Blueprint §10.2 item 9 is explicit that English, Quant and Reasoning are
-"never a block; distributed daily practice from week 1". Treating M8 as a sitting to be reached
-later contradicts the plan it came from. **Write its drill sets early and consume them daily in the
-evening 30-minute slot**, rather than queuing the module behind History.
+Listed in recommended study order (Blueprint §10.2), not module-number order.
 
-**4.2 History before Accounting and Science inverts the marks-per-hour order.** Blueprint §10.2
-sequences Accounting (4th) and Science/Computers (5th) *ahead of* History (6th), because History has
-the lowest certainty of return per hour in the whole table (1.14 marks/hr, certainty Low, capped at
-22 hours) while Accounting and Science are high-certainty converters.
+| Order | M | Module | Chapters | Hours | Marks | Priority |
+|---:|---|---|---:|---:|---:|---|
+| 1 | 6 + 7 | Accounting, Auditing & Statistics + Insurance | 8 | 30 | ~33 | ★★★★☆ |
+| 2 | 9 | General Science & Computer Applications | 7 | 22 | 42.5 | ★★★★★ |
+| 3 | 4 | Indian Economy + Population/Development/Globalisation | 5 | 8 | 15.0 | ★★★☆☆ |
+| 4 | 10 | Integrated Current Affairs | 2 | 12 | 20.0 | ★★★★☆ |
+| 5 | 11 | PYQ Analysis, 5 Mocks, Final Revision | mocks | 26 | multiplier | ★★★★★ |
+| — | 8 | General English, Quant & Reasoning | 8 | 26 | **80.0** | ★★★★★ |
 
-**Recommended resequence:** 6/7 Accounting → 9 Science & Computers → 5 History → 4 Economy →
-10 Current Affairs → 11 Mocks, with 8 running daily throughout from now.
+**Module 8 is deliberately unnumbered in that sequence.** Blueprint §10.2 item 9: English, Quant and
+Reasoning are *"never a block; distributed daily practice from week 1."* It is written as drill sets
+consumed in the evening 30-minute conversion slot, in parallel with whatever module is running in
+the morning — not reached as a sitting of its own.
 
 ---
 
-## 5. Schedule reality check
+## 4. What the remaining work actually consists of
+
+**Modules 8 and 9 are 122.5 of the 190.5 remaining marks — 64%.** Both are the cheapest blocks on
+the board for you to convert:
+
+- **M8 (80.0 marks)** — the single largest block in the paper, larger than Labour Laws. 2023 shape:
+  10 vocabulary-in-context, 5 para jumbles, 5 comprehension on one passage; Quant is school
+  mensuration, circle geometry, quadratic roots, probability, ratio, mixtures, 3 DI, heights and
+  distances. Only one pure reasoning question.
+- **M9 (42.5 marks)** — physics-dominated: combined lens power, inelastic collision, uniform
+  acceleration, concave mirror at infinity. Per Blueprint §4.4 this is *recall, not new learning*
+  for a Mechanical Engineer. Computer Applications is the exception and needs real budgeted hours
+  (C, HTML, OS items), not zero.
+
+The heavy conceptual lifting — Polity, Labour, Social Security, History — is behind you. What is
+left is dominated by the fast-conversion blocks, which is the right shape for the back half of a
+2-hour-a-day plan.
+
+**Module 6 goes first anyway**, despite lower marks/hour (1.08), because Blueprint §10.1 rates it
+*very high certainty* — accounting answers are definite, not judgement calls — and §10.2 places it
+4th precisely because it needs uninterrupted morning attention.
+
+---
+
+## 5. Schedule check
 
 Blueprint §11.3 assumed a 9 August 2026 start. Today is 16 August 2026 — **week 2 of 16**.
 
-- Remaining content: 146 hours ÷ 2 hours/day ≈ **73 study days ≈ 10.5 weeks**
-- Leaves roughly 3 weeks of buffer before a late-November RT
-- **Module 11's 26 hours are not compressible.** Five full mocks plus PYQ re-solve plus error-log
-  review is the multiplier on everything above it. Protect it first when work eats a week; sacrifice
-  History depth and Economy, per Blueprint §10.1.
+| | Hours | Days at 2 h/day | Calendar |
+|---|---:|---:|---|
+| Content (M6/7, 9, 4, 10) | 98 | 49 | ≈ 7 weeks → early October |
+| Module 11 (PYQ + 5 mocks + revision) | 26 | 13 | October → RT |
+| **Total remaining** | **124** | **62** | ≈ 9 weeks of study time |
+
+Against a late-November RT this leaves genuine buffer. **Do not spend it racing ahead** — Blueprint
+§11.3 is explicit that surplus time goes to mocks and the spaced-revision queue, never to new
+syllabus. Module 11's 26 hours are not compressible; protect them first when work eats a week, and
+sacrifice Module 4 depth first (lowest certainty, 15 marks).
 
 ---
 
@@ -96,21 +113,24 @@ Blueprint §11.3 assumed a 9 August 2026 start. Today is 16 August 2026 — **we
 - Versions: **v1.0** at first issue, **v1.1** on revision. Never silently overwrite.
 - PDFs generated automatically on chapter completion — no approval step.
 - Consolidated module PDF after each module; master book after Module 11.
-- **`src/` markup is the master manuscript and the source of truth. PDFs are always regenerated
-  from it.** ⚠️ `src/` does not currently exist in this repository — see §7.
-- `pyq/` retains the 2015 and 2023 papers for Module 11. ⚠️ Also absent.
+- **`src/` markup is the master manuscript and the source of truth. PDFs are regenerated from it.**
+- `pyq/` retains the 2015 and 2023 papers for Module 11.
 
 ---
 
-## 7. Continuity risk — open
+## 7. Open blocker — output format
 
-Nothing from the earlier sitting is present in this repository: no `src/`, no `pyq/`, no chapter
-markup. The Blueprint and Foundation F1.1 exist only as PDFs supplied in chat. Consequences:
+Nothing from the earlier sittings is present in this repository: no `src/`, no `pyq/`, no chapter
+markup. Modules 1, 2, 3 and 5 exist as completed work, but not *here*.
 
-1. Consolidated module PDFs and the master book **cannot be regenerated** from source.
-2. Revisions (v1.1) would mean re-authoring, not editing.
-3. The convention in §6 that `src/` is the source of truth is currently aspirational.
+**PDF generation is currently not possible in this environment.** Verified this sitting:
 
-**Fix before writing new material:** commit chapter markup to `src/` as each chapter is written, and
-push after every sitting. From this register onward, every deliverable lands in the repo first and is
-rendered to PDF second.
+- No `pandoc`, `weasyprint`, `wkhtmltopdf`, `xelatex`, `pdflatex`, `latexmk`
+- No `reportlab`, `weasyprint` or `markdown` Python packages
+- Network is `INTEGRATIONS_ONLY`; PyPI is blocked (`403 Forbidden` via proxy), so they cannot be
+  installed
+
+**Therefore the deliverable format changes:** chapters land as Markdown in `src/` plus a
+self-contained styled HTML build that reproduces the manual's typography and prints to PDF from any
+browser (Ctrl/Cmd-P → Save as PDF). This keeps the source-of-truth convention in §6 intact and keeps
+the material readable on desktop, mobile and tablet. Revisit if PDF tooling becomes available.
