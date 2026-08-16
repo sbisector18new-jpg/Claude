@@ -154,8 +154,8 @@ recorded in Blueprint §4.4, so every known PYQ maps to a chapter:
 
 | Ch | Topic | 2023 items it answers | Status |
 |---|---|---|---|
-| **F9.1** | Physics I: units, kinematics, motion, energy, fluids | Inelastic collision; uniform acceleration of a train | **Complete v1.0** — 27 pp, 30 Q |
-| **F9.2** | Physics II: optics, heat, sound, electricity, modern physics | Combined lens power; concave mirror at infinity | **Complete v1.0** — 28 pp, 30 Q |
+| **F9.1** | Physics I: units, kinematics, motion, energy, fluids | Inelastic collision; uniform acceleration of a train | **Complete v1.0** — 22 pp, 30 Q |
+| **F9.2** | Physics II: optics, heat, sound, electricity, modern physics | Combined lens power; concave mirror at infinity | **Complete v1.0** — 26 pp, 30 Q |
 | F9.3 | Chemistry | Effluents and pH; soaps; an enthalpy reaction | Next |
 | F9.4 | Biology and environment | Eyeball layers; banyan prop roots; ocean acidification | Planned |
 | F9.5 | Computer fundamentals and number systems | Octal to binary; hexadecimal to decimal; program counter register | Planned |
