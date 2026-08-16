@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algebra, Probability and the Number System</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F8.7 · Algebra, Probability, Numbers
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · MODULE 8 · CHAPTER F8.7</p><h1 class="doc-t">Algebra, Probability and the Number System</h1><p class="doc-s">Chapter F8.7 — Quadratic Roots and Probability Were Both Asked in 2023</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 8 — English, Quantitative Aptitude &amp; Reasoning</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F8.7</td></tr><tr><td class="k">Topic</td><td class="v">Official syllabus head 7 — Elementary Mathematics and Statistics</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal high-yield"><p class="cal-h">HIGH YIELD · TWO NAMED 2023 ITEMS LIVE IN THIS CHAPTER</p><p>Blueprint §4.4 records <strong>quadratic roots</strong> and <strong>probability</strong> among the fifteen 2023 Quant questions. Both are in this chapter, and both are the kind of question where a single remembered relation converts a two-minute problem into a ten-second one.</p><p><strong>The quadratic item is the clearest example in the whole Quant block of a question you should never solve.</strong> If a question asks for the <strong>sum</strong> of the roots, or their <strong>product</strong>, or α² + β², or 1/α + 1/β, you do not need the roots. <strong>−b/a and c/a</strong> answer all four. §2 is the most profitable page in the chapter.</p><p><strong>Probability at this level is counting, not theory.</strong> Every item reduces to <em>favourable outcomes ÷ total outcomes</em>, and the only real skill is counting the denominator correctly — which is why §4.2's four-line table of standard sample spaces is worth more than any formula.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-quadratic-equations"><span class="toc-t">1. Session 1 — Quadratic Equations <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#11-the-three-ways-to-solve-one"><span class="toc-t">1.1 The three ways to solve one</span></a><a class="toc-3" href="#12-the-discriminant-the-whole-of-the-nature-of-the-roots"><span class="toc-t">1.2 The discriminant — the whole of "the nature of the roots"</span></a><a class="toc-2" href="#2-session-2-sum-and-product-of-roots"><span class="toc-t">2. Session 2 — Sum and Product of Roots <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#21-the-two-relations"><span class="toc-t">2.1 The two relations</span></a><a class="toc-3" href="#22-forming-an-equation-from-its-roots"><span class="toc-t">2.2 Forming an equation from its roots</span></a><a class="toc-3" href="#23-the-symmetric-functions-where-the-marks-are"><span class="toc-t">2.3 The symmetric functions — where the marks are</span></a><a class="toc-2" href="#3-session-3-linear-equations-and-identities"><span class="toc-t">3. Session 3 — Linear Equations and Identities <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#31-simultaneous-equations"><span class="toc-t">3.1 Simultaneous equations</span></a><a class="toc-3" href="#32-the-identities-worth-having-by-heart"><span class="toc-t">3.2 The identities worth having by heart</span></a><a class="toc-3" href="#33-word-problems-into-equations"><span class="toc-t">3.3 Word problems into equations</span></a><a class="toc-2" href="#4-session-4-probability"><span class="toc-t">4. Session 4 — Probability <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#41-the-definition-and-its-consequences"><span class="toc-t">4.1 The definition and its consequences</span></a><a class="toc-3" href="#42-the-four-sample-spaces-you-must-know-cold"><span class="toc-t">4.2 The four sample spaces you must know cold</span></a><a class="toc-3" href="#43-with-and-without-replacement"><span class="toc-t">4.3 With and without replacement</span></a><a class="toc-3" href="#44-when-to-use-the-complement"><span class="toc-t">4.4 When to use the complement</span></a><a class="toc-2" href="#5-session-5-counting-as-far-as-needed"><span class="toc-t">5. Session 5 — Counting, As Far As Needed <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></span></a><a class="toc-3" href="#51-the-one-distinction"><span class="toc-t">5.1 The one distinction</span></a><a class="toc-3" href="#52-computing-ncr-quickly"><span class="toc-t">5.2 Computing nCr quickly</span></a><a class="toc-3" href="#53-the-and-rule"><span class="toc-t">5.3 The "and" rule</span></a><a class="toc-2" href="#6-session-6-the-number-system"><span class="toc-t">6. Session 6 — The Number System <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#61-hcf-and-lcm"><span class="toc-t">6.1 HCF and LCM</span></a><a class="toc-3" href="#62-the-two-remainder-patterns-that-are-always-asked"><span class="toc-t">6.2 The two remainder patterns that are always asked</span></a><a class="toc-3" href="#63-divisibility-rules"><span class="toc-t">6.3 Divisibility rules</span></a><a class="toc-3" href="#64-indices-and-remainders-of-powers"><span class="toc-t">6.4 Indices, and remainders of powers</span></a><a class="toc-2" href="#7-graded-practice-30-questions"><span class="toc-t">7. Graded Practice — 30 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#71-level-1-direct-application"><span class="toc-t">7.1 Level 1 — Direct application</span></a><a class="toc-3" href="#72-level-2-two-steps"><span class="toc-t">7.2 Level 2 — Two steps</span></a><a class="toc-3" href="#73-level-3-recruitment-test-standard"><span class="toc-t">7.3 Level 3 — Recruitment Test standard</span></a><a class="toc-2" href="#8-answers-and-explanations"><span class="toc-t">8. Answers and Explanations</span></a><a class="toc-3" href="#81-level-1"><span class="toc-t">8.1 Level 1</span></a><a class="toc-3" href="#82-level-2"><span class="toc-t">8.2 Level 2</span></a><a class="toc-3" href="#83-level-3"><span class="toc-t">8.3 Level 3</span></a><a class="toc-2" href="#9-one-minute-revision"><span class="toc-t">9. One-Minute Revision</span></a><a class="toc-2" href="#10-five-minute-wall-sheet"><span class="toc-t">10. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F8.7</p><ol><li><strong>Session 1</strong> — Quadratic equations and the nature of the roots (§1) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 2</strong> — Sum and product of roots, and forming equations (§2) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 3</strong> — Linear equations and the identities worth knowing (§3) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 4</strong> — Probability (§4) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 5</strong> — Permutations and combinations, only as far as probability needs (§5) <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></li><li><strong>Session 6</strong> — The number system: HCF, LCM, remainders, indices (§6) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li></ol><p>Then 30 graded questions in §7. F8.0's calendar takes §7 Q1–10 on Tuesday of week 3, Q11–20 on Thursday of week 3 and Q21–30 on Friday of week 5, works the errors in week 8, and takes all 30 timed in week 11.</p></aside><aside class="cal note"><p class="cal-h">NOTE · WHY §5 IS DELIBERATELY SHORT</p><p>Permutations and combinations is a topic that can absorb unlimited time — circular arrangements, letters of words with repetitions, distributions into groups. <strong>None of that is in the 2023 evidence.</strong></p><p>What §5 contains is the <strong>irreducible minimum that probability needs</strong>: what nCr means, how to compute it for small numbers, and the one distinction (order matters or it does not) that decides which to use. That is enough for every probability question in §7 and for the 2023 item.</p><p>This is the same depth-to-yield judgement made in F8.4 §6 and in the reasoning section of F8.8. Where the evidence is thin, the chapter is thin.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-quadratic-equations">1. Session 1 — Quadratic Equations <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="11-the-three-ways-to-solve-one">1.1 The three ways to solve one</h3><p>For <strong>ax² + bx + c = 0</strong> with a not zero:</p><div class="tw"><table><thead><tr><th style="text-align:left">Method</th><th style="text-align:left">When to use it</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Factorisation</strong></td><td style="text-align:left">First choice. Split b into two numbers whose <strong>product is ac</strong> and whose <strong>sum is b</strong></td></tr><tr><td style="text-align:left"><strong>The formula</strong></td><td style="text-align:left">x = [−b ± root(b² − 4ac)] / 2a — when factors are not obvious</td></tr><tr><td style="text-align:left">Completing the square</td><td style="text-align:left">Rarely needed in an objective paper</td></tr></tbody></table></div><blockquote><p><strong>Worked.</strong> x² − 5x + 6 = 0. Two numbers with product 6 and sum −5: <strong>−2 and −3</strong>. So (x − 2)(x − 3) = 0 and the roots are <strong>2 and 3</strong> — Q2.</p></blockquote><h3 id="12-the-discriminant-the-whole-of-the-nature-of-the-roots">1.2 The discriminant — the whole of "the nature of the roots"</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · D = b² − 4ac, AND THE FOUR CASES</p><p>The <strong>discriminant D = b² − 4ac</strong> decides the nature of the roots without your finding them.</p><div class="tw"><table><thead><tr><th style="text-align:left">D</th><th style="text-align:left">The roots are</th></tr></thead><tbody><tr><td style="text-align:left"><strong>D &gt; 0</strong>, not a perfect square</td><td style="text-align:left"><strong>Real, distinct and irrational</strong></td></tr><tr><td style="text-align:left"><strong>D &gt; 0</strong> and a perfect square</td><td style="text-align:left"><strong>Real, distinct and rational</strong></td></tr><tr><td style="text-align:left"><strong>D = 0</strong></td><td style="text-align:left"><strong>Real and EQUAL</strong> — a repeated root, −b/2a</td></tr><tr><td style="text-align:left"><strong>D &lt; 0</strong></td><td style="text-align:left"><strong>Imaginary</strong> (no real root)</td></tr></tbody></table></div><p><strong>Two consequences that are asked directly:</strong></p><ol><li><strong>"For what value of k are the roots equal?"</strong> means <strong>set D = 0 and solve for k</strong>. For x² − 6x + k = 0: 36 − 4k = 0, so <strong>k = 9</strong> — Q12</li><li><strong>Imaginary roots always occur in conjugate pairs.</strong> So "one root real and one imaginary" is never a possible answer for an equation with real coefficients — it is offered as an option in Q11 and can be eliminated on sight</li></ol><p>Note the vocabulary trap: <strong>"real and equal" is a single case, D = 0.</strong> Candidates who read "equal" as "two identical answers, so not really two roots" get confused into choosing "imaginary". The equation x² + 4x + 4 = 0 has the root −2 twice, and that is <em>real and equal</em>.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 1</p><ol><li>Solve x² − 7x + 12 = 0 by factorisation</li><li>State the four cases of the discriminant</li><li>For what k does x² − 10x + k = 0 have equal roots?</li><li>Why can an equation with real coefficients never have exactly one imaginary root?</li></ol></aside><div class="pagebreak"></div><h2 id="2-session-2-sum-and-product-of-roots">2. Session 2 — Sum and Product of Roots <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="21-the-two-relations">2.1 The two relations</h3><p>If α and β are the roots of <strong>ax² + bx + c = 0</strong>, then</p><blockquote><p><strong>α + β = −b/a</strong> and <strong>αβ = c/a</strong></p></blockquote><p>That is the whole of it, and it is the highest-return pair of formulas in the Quant block.</p><blockquote><p><strong>Worked.</strong> 3x² − 12x + 7 = 0. Sum = −(−12)/3 = <strong>4</strong>; product = 7/3 — Q3. Note that the roots themselves are irrational and you never needed them.</p><p><strong>Worked.</strong> 2x² + 5x − 8 = 0. Product = c/a = −8/2 = <strong>−4</strong> — Q4. The sign matters: c is negative, so the product is negative, meaning the roots have <strong>opposite signs</strong>.</p></blockquote><h3 id="22-forming-an-equation-from-its-roots">2.2 Forming an equation from its roots</h3><blockquote><p><strong>x² − (sum)x + (product) = 0</strong></p></blockquote><p>Note the <strong>minus</strong> before the sum. For roots 3 and −5: sum = −2, product = −15, so the equation is x² + 2x − 15 = 0 — Q13. The sign error here is the commonest slip in the topic, and both signs are offered as options.</p><h3 id="23-the-symmetric-functions-where-the-marks-are">2.3 The symmetric functions — where the marks are</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · FOUR EXPRESSIONS YOU CAN EVALUATE WITHOUT FINDING THE ROOTS</p><p>Each of these is built from the sum and the product alone. Learn the four rearrangements:</p><div class="tw"><table><thead><tr><th style="text-align:left">Wanted</th><th style="text-align:left">Equals</th><th style="text-align:left">Why</th></tr></thead><tbody><tr><td style="text-align:left"><strong>α² + β²</strong></td><td style="text-align:left"><strong>(α + β)² − 2αβ</strong></td><td style="text-align:left">Expand the square and subtract the cross terms</td></tr><tr><td style="text-align:left"><strong>1/α + 1/β</strong></td><td style="text-align:left"><strong>(α + β) / αβ</strong></td><td style="text-align:left">Add the fractions over a common denominator</td></tr><tr><td style="text-align:left"><strong>α − β</strong></td><td style="text-align:left">root[(α + β)² − 4αβ]</td><td style="text-align:left">The square of the difference is D/a²</td></tr><tr><td style="text-align:left"><strong>α³ + β³</strong></td><td style="text-align:left">(α + β)³ − 3αβ(α + β)</td><td style="text-align:left"></td></tr></tbody></table></div><blockquote><p><strong>Worked.</strong> α and β are the roots of x² − 6x + 8 = 0. Then α + β = 6 and αβ = 8, so <strong>α² + β² = 36 − 16 = 20</strong> — Q29. (The roots happen to be 2 and 4, and 4 + 16 = 20, but finding them was unnecessary.)</p><p><strong>Worked.</strong> For x² − px + q = 0, <strong>1/α + 1/β = p/q</strong> — Q21. One line, no roots.</p></blockquote><p><strong>And the same algebra in disguise.</strong> <em>If x + 1/x = 3, find x² + 1/x².</em> Square both sides: x² + 2 + 1/x² = 9, so the answer is <strong>7</strong> — Q9. Likewise <em>a + b = 7, ab = 12</em> gives a² + b² = 49 − 24 = <strong>25</strong> — Q19.</p><p><strong>Whenever a question gives you a sum and a product and asks for a sum of squares, do not solve for the individual values.</strong> Square the sum and subtract twice the product. It is one line, and it works even when the individual values are irrational.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 2</p><ol><li>Give the sum and product of the roots of 5x² − 3x − 2 = 0</li><li>Form the equation whose roots are −4 and 7</li><li>If α + β = 9 and αβ = 14, find α² + β² and 1/α + 1/β</li><li>If x + 1/x = 4, find x² + 1/x²</li></ol></aside><div class="pagebreak"></div><h2 id="3-session-3-linear-equations-and-identities">3. Session 3 — Linear Equations and Identities <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="31-simultaneous-equations">3.1 Simultaneous equations</h3><p>Two equations, two unknowns. <strong>Substitution</strong> is faster than elimination when one equation already gives a variable cheaply.</p><blockquote><p><strong>Worked.</strong> 2x + 3y = 12 and 3x − y = 7. The second gives y = 3x − 7. Substituting: 2x + 9x − 21 = 12, so 11x = 33 and <strong>x = 3</strong>, whence y = 2 — Q20.</p></blockquote><p><strong>Always substitute your answer back into the equation you did not use.</strong> In an objective paper you can also test the options directly, which is often the fastest route of all when the options are small integers.</p><h3 id="32-the-identities-worth-having-by-heart">3.2 The identities worth having by heart</h3><div class="tw"><table><thead><tr><th style="text-align:left">Identity</th><th style="text-align:left"></th></tr></thead><tbody><tr><td style="text-align:left">(a + b)²</td><td style="text-align:left">a² + 2ab + b²</td></tr><tr><td style="text-align:left">(a − b)²</td><td style="text-align:left">a² − 2ab + b²</td></tr><tr><td style="text-align:left"><strong>a² − b²</strong></td><td style="text-align:left"><strong>(a + b)(a − b)</strong></td></tr><tr><td style="text-align:left"><strong>a² + b²</strong></td><td style="text-align:left"><strong>(a + b)² − 2ab</strong></td></tr><tr><td style="text-align:left">(a + b)³</td><td style="text-align:left">a³ + b³ + 3ab(a + b)</td></tr><tr><td style="text-align:left"><strong>a³ + b³</strong></td><td style="text-align:left"><strong>(a + b)(a² − ab + b²)</strong></td></tr><tr><td style="text-align:left"><strong>a³ − b³</strong></td><td style="text-align:left"><strong>(a − b)(a² + ab + b²)</strong></td></tr><tr><td style="text-align:left">a³ + b³ + c³ − 3abc</td><td style="text-align:left">(a + b + c)(a² + b² + c² − ab − bc − ca)</td></tr></tbody></table></div><aside class="cal know"><p class="cal-h">KNOW · IF a + b + c = 0 THEN a³ + b³ + c³ = 3abc</p><p>This follows from the last identity: when the first bracket is zero, the whole expression is zero, so a³ + b³ + c³ = 3abc.</p><p>It appears in question banks precisely because it looks like it needs work and does not. Whenever three quantities sum to zero, this relation is the intended route.</p></aside><h3 id="33-word-problems-into-equations">3.3 Word problems into equations</h3><p>The translation is mechanical, and three phrases account for most of it:</p><ul><li><em>"is"</em> becomes <strong>=</strong></li><li><em>"of"</em> becomes <strong>×</strong></li><li><em>"a number and its reciprocal"</em> becomes <strong>x + 1/x</strong></li></ul><blockquote><p><strong>Worked.</strong> The sum of a number and its reciprocal is 26/5. Then x + 1/x = 26/5, so 5x² − 26x + 5 = 0, which factorises as (5x − 1)(x − 5) = 0, giving <strong>x = 5</strong> or 1/5 — Q22. Both are valid; the options decide which is wanted.</p></blockquote><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 3</p><ol><li>Solve 3x + 2y = 16, x − y = 2</li><li>Write a² + b² in terms of (a + b) and ab</li><li>Factorise a³ − b³</li><li>If a + b + c = 0, what is a³ + b³ + c³?</li></ol></aside><div class="pagebreak"></div><h2 id="4-session-4-probability">4. Session 4 — Probability <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="41-the-definition-and-its-consequences">4.1 The definition and its consequences</h3><blockquote><p><strong>P(E) = (number of favourable outcomes) ÷ (total number of equally likely outcomes)</strong></p></blockquote><div class="tw"><table><thead><tr><th style="text-align:left">Result</th><th style="text-align:left">Statement</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Range</strong></td><td style="text-align:left">0 &lt;= P(E) &lt;= 1 · impossible event 0 · certain event 1</td></tr><tr><td style="text-align:left"><strong>Complement</strong></td><td style="text-align:left"><strong>P(not E) = 1 − P(E)</strong> — often far easier than E itself</td></tr><tr><td style="text-align:left"><strong>Addition</strong></td><td style="text-align:left">P(A or B) = P(A) + P(B) − P(A and B) · for <strong>mutually exclusive</strong> events the last term is 0</td></tr><tr><td style="text-align:left"><strong>Multiplication</strong></td><td style="text-align:left">For <strong>independent</strong> events, P(A and B) = P(A) × P(B)</td></tr><tr><td style="text-align:left"><strong>Without replacement</strong></td><td style="text-align:left">The second draw's denominator <strong>falls by one</strong> — the events are not independent</td></tr></tbody></table></div><h3 id="42-the-four-sample-spaces-you-must-know-cold">4.2 The four sample spaces you must know cold</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE DENOMINATORS, AND THE PACK OF CARDS</p><p>Almost every probability error at this level is a <strong>wrong denominator</strong>. Memorise these four:</p><div class="tw"><table><thead><tr><th style="text-align:left">Experiment</th><th style="text-align:left">Total outcomes</th></tr></thead><tbody><tr><td style="text-align:left">One coin</td><td style="text-align:left">2 · <strong>n coins: 2ⁿ</strong></td></tr><tr><td style="text-align:left"><strong>One die</strong></td><td style="text-align:left"><strong>6</strong> · <strong>two dice: 36</strong></td></tr><tr><td style="text-align:left">One card from a pack</td><td style="text-align:left"><strong>52</strong></td></tr><tr><td style="text-align:left">Two cards <strong>without</strong> replacement</td><td style="text-align:left">52 × 51 ordered, or <strong>C(52,2) = 1,326</strong> unordered</td></tr></tbody></table></div><p><strong>The pack of 52, which is examined more than anything else in the topic:</strong></p><ul><li><strong>4 suits</strong> of 13 — spades and clubs <strong>black</strong>, hearts and diamonds <strong>red</strong>, so <strong>26 of each colour</strong></li><li><strong>4 cards of each rank</strong>, so P(a king) = 4/52 = <strong>1/13</strong> — Q5</li><li><strong>Face cards are the King, Queen and Jack: 3 per suit, so 12 in all</strong> » P = 12/52 = <strong>3/13</strong> — Q16</li><li><strong>Honours</strong>, if the term is used, add the Ace: 4 per suit, 16 in all</li><li>There is <strong>no</strong> "joker" in the 52</li></ul><p><strong>Two dice — the sums.</strong> The number of ways to make each sum is 1, 2, 3, 4, 5, <strong>6</strong>, 5, 4, 3, 2, 1 for sums 2 through 12. So P(sum 7) = 6/36 = 1/6, the most likely sum, and <strong>P(sum 9) = 4/36 = 1/9</strong> — Q14, the four ways being (3,6), (4,5), (5,4) and (6,3).</p><p><strong>Note that (3,6) and (6,3) are different outcomes.</strong> Treating them as one is the single commonest mistake in two-dice questions, and it produces exactly the halved answer offered as a distractor.</p></aside><h3 id="43-with-and-without-replacement">4.3 With and without replacement</h3><blockquote><p><strong>Worked — without replacement.</strong> Two cards are drawn from a pack, without replacement. P(both aces) = (4/52) × (3/51) = 12/2,652 = <strong>1/221</strong> — Q23. The second fraction has <strong>3</strong> aces out of <strong>51</strong> cards, because one ace has gone.</p><p><strong>With replacement</strong> it would be (4/52)² = 1/169 — which is option (a) in Q23, waiting for the candidate who did not notice.</p><p><strong>Worked — by combinations.</strong> A bag has 4 red and 6 black balls; two are drawn. P(both red) = C(4,2)/C(10,2) = 6/45 = <strong>2/15</strong> — Q24. The sequential route gives the same thing: (4/10) × (3/9) = 2/15.</p></blockquote><p><strong>Either route works, and the combinations route is safer</strong> when the question says "two are drawn together", because it never tempts you into worrying about order.</p><h3 id="44-when-to-use-the-complement">4.4 When to use the complement</h3><p>If a question asks for <em>"at least one"</em>, compute the probability of <strong>none</strong> and subtract. <em>At least one head in three tosses</em> = 1 − P(no heads) = 1 − 1/8 = <strong>7/8</strong>. Counting "at least one" directly means counting three cases; the complement means counting one.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 4</p><ol><li>State the definition, and the range of a probability</li><li>Give the totals for two dice, one pack, and n coins</li><li>How many face cards are in a pack? How many red cards?</li><li>P(sum of 9 with two dice)? P(sum of 7)?</li><li>P(two kings drawn without replacement)? With replacement?</li><li>When should you use the complement?</li></ol></aside><div class="pagebreak"></div><h2 id="5-session-5-counting-as-far-as-needed">5. Session 5 — Counting, As Far As Needed <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></h2><h3 id="51-the-one-distinction">5.1 The one distinction</h3><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left">Meaning</th><th style="text-align:left">Formula</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Permutation</strong> nPr</td><td style="text-align:left">Arrangements — <strong>order matters</strong></td><td style="text-align:left">n! / (n − r)!</td></tr><tr><td style="text-align:left"><strong>Combination</strong> nCr</td><td style="text-align:left">Selections — <strong>order does not matter</strong></td><td style="text-align:left"><strong>n! / [r!(n − r)!]</strong></td></tr></tbody></table></div><p><strong>A committee is a combination; a ranking is a permutation.</strong> That single question — <em>does order matter?</em> — decides every problem at this level.</p><h3 id="52-computing-ncr-quickly">5.2 Computing nCr quickly</h3><p><strong>nCr = (n × (n−1) × … r terms) ÷ r!</strong> Cancel before multiplying.</p><ul><li>C(4,2) = (4 × 3)/2 = <strong>6</strong></li><li>C(10,2) = (10 × 9)/2 = <strong>45</strong></li><li>C(5,2) = (5 × 4)/2 = <strong>10</strong></li><li>C(52,2) = (52 × 51)/2 = <strong>1,326</strong></li></ul><p><strong>Useful facts:</strong> <strong>nC0 = nCn = 1</strong>, <strong>nC1 = n</strong>, and <strong>nCr = nC(n−r)</strong> — so C(10,8) is C(10,2) = 45, which saves a great deal of arithmetic.</p><h3 id="53-the-and-rule">5.3 The "and" rule</h3><p>When a selection has independent parts, <strong>multiply</strong>.</p><blockquote><p><strong>Worked.</strong> From 5 men and 4 women, a committee of 3 with exactly 2 men and 1 woman: C(5,2) × C(4,1) = 10 × 4 = <strong>40</strong> — Q25.</p></blockquote><p>The word <strong>"exactly"</strong> is what makes this one product. Had it said <em>"at least 2 men"</em>, you would add the 2-men case and the 3-men case: 40 + C(5,3) = 40 + 10 = 50. <strong>Read whether the question says <em>exactly</em>, <em>at least</em> or <em>at most</em> — that word, not the arithmetic, is what is being tested.</strong></p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 5</p><ol><li>When do you use a combination rather than a permutation?</li><li>Compute C(6,2), C(8,3), C(9,7)</li><li>From 6 men and 5 women, how many committees of 3 with exactly 1 woman?</li><li>What changes if the question says "at least one woman"?</li></ol></aside><div class="pagebreak"></div><h2 id="6-session-6-the-number-system">6. Session 6 — The Number System <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="61-hcf-and-lcm">6.1 HCF and LCM</h3><div class="tw"><table><thead><tr><th style="text-align:left">Idea</th><th style="text-align:left">Statement</th></tr></thead><tbody><tr><td style="text-align:left"><strong>HCF</strong></td><td style="text-align:left">The largest number dividing all of them — take the <strong>lowest</strong> power of each common prime</td></tr><tr><td style="text-align:left"><strong>LCM</strong></td><td style="text-align:left">The smallest number divisible by all of them — take the <strong>highest</strong> power of every prime</td></tr><tr><td style="text-align:left"><strong>The product rule</strong></td><td style="text-align:left"><strong>HCF × LCM = the product of the two numbers</strong> (two numbers only)</td></tr><tr><td style="text-align:left">Fractions</td><td style="text-align:left">HCF of fractions = HCF of numerators / LCM of denominators</td></tr></tbody></table></div><blockquote><p><strong>Worked.</strong> The HCF of two numbers is 12 and their LCM is 180; one number is 36. Then the other is (12 × 180)/36 = <strong>60</strong> — Q28. The product rule turns this into one division.</p></blockquote><h3 id="62-the-two-remainder-patterns-that-are-always-asked">6.2 The two remainder patterns that are always asked</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · "THE SAME REMAINDER" MEANS TAKE THE HCF OF THE DIFFERENCES</p><p>These two are the standard number-system questions, and each has a one-line method.</p><p><strong>Pattern 1 — the greatest number that divides several numbers leaving the SAME remainder.</strong> The remainder cancels when you subtract, so take the <strong>HCF of the differences</strong>.</p><blockquote><p>43, 91 and 183: the differences are 48, 92 and 140, whose HCF is <strong>4</strong> — Q17. (Check: each of 43, 91 and 183 leaves remainder 3 on division by 4.)</p></blockquote><p><strong>Pattern 2 — the least number that, divided by several numbers, leaves the same remainder r.</strong> Take the <strong>LCM and add r</strong>.</p><blockquote><p>Divided by 6, 7 and 8 leaving 3: LCM = 168, so the number is <strong>171</strong> — Q18.</p></blockquote><p><strong>And the variant:</strong> if the remainders are each <strong>less than the divisor by the same amount</strong> — say remainders 5, 6 and 7 on division by 6, 7 and 8 — then the number is <strong>LCM minus that amount</strong>, here 168 − 1 = 167.</p><p><strong>A last one worth knowing.</strong> If a number leaves remainder 7 on division by 15, then on division by <strong>5</strong> it leaves 7 mod 5 = <strong>2</strong>, because 15 is a multiple of 5 — Q30. Where one divisor divides the other, reduce the remainder.</p></aside><h3 id="63-divisibility-rules">6.3 Divisibility rules</h3><div class="tw"><table><thead><tr><th style="text-align:left">By</th><th style="text-align:left">Test</th></tr></thead><tbody><tr><td style="text-align:left">2, 5, 10</td><td style="text-align:left">Last digit</td></tr><tr><td style="text-align:left"><strong>3, 9</strong></td><td style="text-align:left"><strong>Sum of the digits</strong> divisible by 3 or 9</td></tr><tr><td style="text-align:left">4</td><td style="text-align:left">Last <strong>two</strong> digits</td></tr><tr><td style="text-align:left">8</td><td style="text-align:left">Last <strong>three</strong> digits</td></tr><tr><td style="text-align:left"><strong>6</strong></td><td style="text-align:left">Divisible by <strong>2 and 3</strong></td></tr><tr><td style="text-align:left"><strong>11</strong></td><td style="text-align:left">The difference of the alternating digit sums is 0 or a multiple of 11</td></tr><tr><td style="text-align:left">7</td><td style="text-align:left">Double the last digit, subtract from the rest, repeat</td></tr></tbody></table></div><h3 id="64-indices-and-remainders-of-powers">6.4 Indices, and remainders of powers</h3><p><strong>The laws:</strong> aᵐ × aⁿ = aᵐ⁺ⁿ · aᵐ ÷ aⁿ = aᵐ⁻ⁿ · (aᵐ)ⁿ = aᵐⁿ · a⁰ = 1 · a⁻ⁿ = 1/aⁿ · a^(1/n) is the nth root.</p><blockquote><p><strong>Worked.</strong> (2⁵ × 2³) ÷ 2⁴ = 2⁸⁻⁴ = 2⁴ = <strong>16</strong> — Q10.</p></blockquote><p><strong>Remainders of large powers</strong> are found by spotting a cycle:</p><blockquote><p><strong>Worked.</strong> The remainder when 2²⁰ is divided by 7. Since 2³ = 8 leaves remainder <strong>1</strong> on division by 7, powers of 2 cycle every three. Write 20 = 3 × 6 + 2, so 2²⁰ = (2³)⁶ × 2², which leaves 1⁶ × 4 = <strong>4</strong> — Q27.</p></blockquote><p><strong>The method in general:</strong> find the smallest power of the base that leaves remainder 1, and use it to strip the exponent down. This is the only form in which large powers are asked at this level.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 6</p><ol><li>State the product rule for HCF and LCM</li><li>Greatest number dividing 25, 73 and 97 leaving the same remainder?</li><li>Least number leaving remainder 4 when divided by 5, 6 and 9?</li><li>Remainder when 3¹⁰⁰ is divided by 5? <em>(Hint: 3⁴ = 81 leaves 1)</em></li><li>Give the divisibility tests for 8, 9 and 11</li></ol></aside><div class="pagebreak"></div><h2 id="7-graded-practice-30-questions">7. Graded Practice — 30 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><p><strong>Target: 45 to 75 seconds each.</strong> For any question about the roots of a quadratic, reach for −b/a and c/a <strong>before</strong> you consider solving the equation.</p><h3 id="71-level-1-direct-application">7.1 Level 1 — Direct application</h3><p><strong>Q1.</strong> The discriminant of 2x² − 7x + 3 = 0 is (a) 13 (b) 17 (c) 25 (d) 73</p><p><strong>Q2.</strong> The roots of x² − 5x + 6 = 0 are (a) −2 and −3 (b) 2 and 3 (c) 1 and 6 (d) −1 and −6</p><p><strong>Q3.</strong> The sum of the roots of 3x² − 12x + 7 = 0 is (a) 4 (b) −4 (c) 7/3 (d) 12</p><p><strong>Q4.</strong> The product of the roots of 2x² + 5x − 8 = 0 is (a) 5/2 (b) −5/2 (c) 4 (d) −4</p><p><strong>Q5.</strong> One card is drawn at random from a well-shuffled pack of 52. The probability that it is a king is (a) 1/52 (b) 1/26 (c) 1/13 (d) 4/13</p><p><strong>Q6.</strong> A die is thrown once. The probability of obtaining an even number is (a) 1/3 (b) 1/2 (c) 2/3 (d) 1/6</p><p><strong>Q7.</strong> The HCF of 24 and 36 is (a) 12 (b) 6 (c) 72 (d) 4</p><p><strong>Q8.</strong> The LCM of 12, 15 and 20 is (a) 30 (b) 45 (c) 120 (d) 60</p><p><strong>Q9.</strong> If x + 1/x = 3, then x² + 1/x² is (a) 9 (b) 7 (c) 11 (d) 5</p><p><strong>Q10.</strong> The value of (2⁵ × 2³) ÷ 2⁴ is (a) 4 (b) 8 (c) 16 (d) 32</p><h3 id="72-level-2-two-steps">7.2 Level 2 — Two steps</h3><p><strong>Q11.</strong> The roots of x² + 4x + 4 = 0 are (a) real and equal (b) real and distinct (c) imaginary (d) one real and one imaginary</p><p><strong>Q12.</strong> The value of k for which x² − 6x + k = 0 has equal roots is (a) 3 (b) 6 (c) −9 (d) 9</p><p><strong>Q13.</strong> The quadratic equation whose roots are 3 and −5 is (a) x² − 2x − 15 = 0 (b) x² + 2x − 15 = 0 (c) x² + 2x + 15 = 0 (d) x² − 2x + 15 = 0</p><p><strong>Q14.</strong> Two dice are thrown together. The probability that the sum of the numbers shown is 9 is (a) 1/6 (b) 1/12 (c) 1/9 (d) 5/36</p><p><strong>Q15.</strong> A bag contains 5 red and 4 white balls. One ball is drawn at random. The probability that it is white is (a) 4/9 (b) 5/9 (c) 4/5 (d) 1/2</p><p><strong>Q16.</strong> The probability of drawing a face card from a well-shuffled pack of 52 cards is (a) 1/13 (b) 4/13 (c) 1/4 (d) 3/13</p><p><strong>Q17.</strong> The greatest number which divides 43, 91 and 183 leaving the same remainder in each case is (a) 8 (b) 4 (c) 9 (d) 13</p><p><strong>Q18.</strong> The least number which, when divided by 6, 7 and 8, leaves a remainder 3 in each case is (a) 168 (b) 165 (c) 171 (d) 336</p><p><strong>Q19.</strong> If a + b = 7 and ab = 12, then a² + b² is (a) 25 (b) 37 (c) 13 (d) 49</p><p><strong>Q20.</strong> If 2x + 3y = 12 and 3x − y = 7, then x is (a) 2 (b) 3 (c) 4 (d) 5</p><h3 id="73-level-3-recruitment-test-standard">7.3 Level 3 — Recruitment Test standard</h3><p><strong>Q21.</strong> If α and β are the roots of x² − px + q = 0, then 1/α + 1/β is (a) q/p (b) −p/q (c) p (d) p/q</p><p><strong>Q22.</strong> The sum of a positive number and its reciprocal is 26/5. The number is (a) 4 (b) 6 (c) 5 (d) 13/5</p><p><strong>Q23.</strong> Two cards are drawn at random, without replacement, from a well-shuffled pack of 52. The probability that both are aces is (a) 1/169 (b) 1/221 (c) 2/13 (d) 1/26</p><p><strong>Q24.</strong> A bag contains 4 red and 6 black balls. Two balls are drawn at random together. The probability that both are red is (a) 2/15 (b) 4/25 (c) 1/5 (d) 3/20</p><p><strong>Q25.</strong> From a group of 5 men and 4 women, a committee of three is to be formed. The number of ways in which it can consist of exactly two men and one woman is (a) 20 (b) 30 (c) 40 (d) 60</p><p><strong>Q26.</strong> The equations x² − 5x + 6 = 0 and x² − 3x + 2 = 0 have one root in common. That root is (a) 1 (b) 3 (c) −2 (d) 2</p><p><strong>Q27.</strong> The remainder when 2²⁰ is divided by 7 is (a) 1 (b) 4 (c) 2 (d) 6</p><p><strong>Q28.</strong> The HCF of two numbers is 12 and their LCM is 180. If one of the numbers is 36, the other is (a) 60 (b) 45 (c) 72 (d) 15</p><p><strong>Q29.</strong> If α and β are the roots of x² − 6x + 8 = 0, then α² + β² is (a) 36 (b) 16 (c) 20 (d) 52</p><p><strong>Q30.</strong> A number leaves a remainder of 7 when divided by 15. The remainder when the same number is divided by 5 is (a) 7 (b) 0 (c) 3 (d) 2</p><div class="pagebreak"></div><h2 id="8-answers-and-explanations">8. Answers and Explanations</h2><h3 id="81-level-1">8.1 Level 1</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">c</td><td style="text-align:left">b² − 4ac = 49 − 24 = <strong>25</strong>. Being a perfect square, the roots are rational — here 3 and ½</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">b</td><td style="text-align:left">Product 6, sum −5, so the factors are −2 and −3 and the roots are <strong>2 and 3</strong>. Note the roots have the <strong>opposite</strong> signs to the factors, which is what (a) is testing</td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">a</td><td style="text-align:left">−b/a = 12/3 = <strong>4</strong>. (c) is the product and (d) is −b without the division</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">d</td><td style="text-align:left">c/a = −8/2 = <strong>−4</strong>. The negative product tells you the roots have opposite signs; (c) is the same magnitude with the sign dropped</td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">c</td><td style="text-align:left">4 kings in 52 cards = <strong>1/13</strong>. (d) is the number of kings over the number of ranks — a wrong denominator</td></tr><tr><td style="text-align:left">6</td><td style="text-align:center">b</td><td style="text-align:left">Three even faces of six = <strong>1/2</strong></td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">a</td><td style="text-align:left">24 = 2³ × 3, 36 = 2² × 3², so the HCF takes the <strong>lowest</strong> powers: 2² × 3 = <strong>12</strong>. (c) is the LCM</td></tr><tr><td style="text-align:left">8</td><td style="text-align:center">d</td><td style="text-align:left">Highest powers: 2² × 3 × 5 = <strong>60</strong>. (c) is a common multiple but not the least — the standard distractor</td></tr><tr><td style="text-align:left">9</td><td style="text-align:center">b</td><td style="text-align:left">Square both sides: x² + 2 + 1/x² = 9, so x² + 1/x² = <strong>7</strong>. (a) is the square before subtracting the 2</td></tr><tr><td style="text-align:left">10</td><td style="text-align:center">c</td><td style="text-align:left">2⁵⁺³⁻⁴ = 2⁴ = <strong>16</strong></td></tr></tbody></table></div><h3 id="82-level-2">8.2 Level 2</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">11</td><td style="text-align:center">a</td><td style="text-align:left">D = 16 − 16 = 0, so the roots are <strong>real and equal</strong>, both −2. (d) is impossible for real coefficients — imaginary roots come in conjugate pairs, per §1.2</td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">d</td><td style="text-align:left">Equal roots means D = 0: 36 − 4k = 0, so <strong>k = 9</strong>. (a) is root(9), offered for candidates who stop one step early</td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">b</td><td style="text-align:left">Sum = −2, product = −15, and the equation is x² − (sum)x + product: <strong>x² + 2x − 15 = 0</strong>. (a) is the sign error on the sum — the commonest slip in the topic</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">c</td><td style="text-align:left">Four of the 36 outcomes give 9 — (3,6), (4,5), (5,4), (6,3) — so <strong>1/9</strong>. (b) is what you get by counting (3,6) and (6,3) as one outcome</td></tr><tr><td style="text-align:left">15</td><td style="text-align:center">a</td><td style="text-align:left">4 white in 9 balls = <strong>4/9</strong>. (c) is white over red, a wrong denominator</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">d</td><td style="text-align:left">Face cards are King, Queen and Jack: 3 per suit, <strong>12</strong> in all, so 12/52 = <strong>3/13</strong>. (b) counts 16, which would include the aces</td></tr><tr><td style="text-align:left">17</td><td style="text-align:center">b</td><td style="text-align:left">Same remainder » <strong>HCF of the differences</strong>: 91 − 43 = 48, 183 − 91 = 92, 183 − 43 = 140, and HCF = <strong>4</strong>. Check: each leaves remainder 3</td></tr><tr><td style="text-align:left">18</td><td style="text-align:center">c</td><td style="text-align:left">LCM(6, 7, 8) = 168, plus the remainder 3 = <strong>171</strong>. (a) omits the remainder</td></tr><tr><td style="text-align:left">19</td><td style="text-align:center">a</td><td style="text-align:left">(a + b)² − 2ab = 49 − 24 = <strong>25</strong>. §2.3 — no need to find a and b, which happen to be 3 and 4</td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">b</td><td style="text-align:left">From the second, y = 3x − 7; substituting, 11x = 33 so <strong>x = 3</strong> (and y = 2). Checking the options directly is equally fast here</td></tr></tbody></table></div><h3 id="83-level-3">8.3 Level 3</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">21</td><td style="text-align:center">d</td><td style="text-align:left">1/α + 1/β = (α + β)/αβ = <strong>p/q</strong>, since the sum is p and the product q. One line, no roots — §2.3</td></tr><tr><td style="text-align:left">22</td><td style="text-align:center">c</td><td style="text-align:left">x + 1/x = 26/5 gives 5x² − 26x + 5 = 0, so (5x − 1)(x − 5) = 0 and x = <strong>5</strong> or 1/5. Only 5 is offered. Faster still: test the options — 5 + 1/5 = 26/5 immediately</td></tr><tr><td style="text-align:left">23</td><td style="text-align:center">b</td><td style="text-align:left">(4/52) × (3/51) = <strong>1/221</strong>. <strong>Without replacement</strong>, so the second draw has 3 aces in 51 cards. (a) is the with-replacement answer (4/52)², which is why the phrase matters</td></tr><tr><td style="text-align:left">24</td><td style="text-align:center">a</td><td style="text-align:left">C(4,2)/C(10,2) = 6/45 = <strong>2/15</strong>. Sequentially, (4/10) × (3/9) = 2/15 — the same thing. (b) is (4/10)², the with-replacement version</td></tr><tr><td style="text-align:left">25</td><td style="text-align:center">c</td><td style="text-align:left">C(5,2) × C(4,1) = 10 × 4 = <strong>40</strong>. Multiply, because the two selections are independent parts of one committee. Note the word <strong>exactly</strong> — "at least two men" would give 50</td></tr><tr><td style="text-align:left">26</td><td style="text-align:center">d</td><td style="text-align:left">The first has roots 2 and 3; the second 1 and 2. The common root is <strong>2</strong>. Faster: subtract the equations to get −2x + 4 = 0, so x = 2 directly</td></tr><tr><td style="text-align:left">27</td><td style="text-align:center">b</td><td style="text-align:left">2³ = 8 leaves remainder 1 on division by 7, so the powers cycle every three. 20 = 3 × 6 + 2, so the remainder is that of 2² = <strong>4</strong></td></tr><tr><td style="text-align:left">28</td><td style="text-align:center">a</td><td style="text-align:left">HCF × LCM = the product: (12 × 180)/36 = <strong>60</strong>. Sanity check: HCF(36, 60) = 12 and LCM = 180</td></tr><tr><td style="text-align:left">29</td><td style="text-align:center">c</td><td style="text-align:left">(α + β)² − 2αβ = 36 − 16 = <strong>20</strong>. (a) is (α + β)² without the subtraction, and (b) is 2αβ — both intermediate values, both offered</td></tr><tr><td style="text-align:left">30</td><td style="text-align:center">d</td><td style="text-align:left">The number is 15k + 7. Since 15 is a multiple of 5, only the 7 matters, and 7 leaves <strong>2</strong> on division by 5. (a) is the trap of carrying the remainder across unchanged</td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · THE FIVE SHAPES IN THIS BANK</p><ol><li><strong>The question that does not need the roots.</strong> Q3, Q4, Q9, Q19, Q21, Q29 — <strong>six of thirty</strong> — all answered from −b/a and c/a alone. If you solved any of them by finding the roots, you spent three times the necessary effort. This is the highest-value habit in the chapter</li><li><strong>The intermediate value offered as an answer.</strong> Q9(a) is the square before subtracting 2; Q12(a) is root(k); Q29(a) and (b) are (α+β)² and 2αβ. In each case the wrong option is a <strong>real step in the correct working</strong>, which is why it looks familiar. Finish the calculation before you look at the options</li><li><strong>With or without replacement.</strong> Q23 and Q24 both offer the other version as a distractor. The phrase is the question; underline it</li><li><strong>The wrong denominator.</strong> Q5(d), Q15(c), Q16(b), Q14(b). Probability errors at this level are almost never in the numerator. <strong>Count the sample space first, and write it down</strong></li><li><strong>The sign.</strong> Q2(a), Q4(c), Q13(a). Products, sums and factors each carry signs that the options invert. The product of the roots being negative <em>means</em> the roots have opposite signs — reading the sign as information is faster than checking it as arithmetic</li></ol></aside><div class="pagebreak"></div><h2 id="9-one-minute-revision">9. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F8.7</p><p><strong>WEIGHT</strong> <strong>quadratic roots and probability both appeared in 2023</strong> · target 45–75 seconds</p><p><strong>QUADRATIC</strong> ax² + bx + c = 0 · x = [−b ± root(b² − 4ac)]/2a · factorise by splitting b into two numbers with <strong>product ac and sum b</strong></p><p><strong>DISCRIMINANT D = b² − 4ac</strong> · <strong>D &gt; 0 real distinct</strong> (perfect square » rational) · <strong>D = 0 real and EQUAL</strong> · <strong>D &lt; 0 imaginary</strong> · "equal roots" means <strong>set D = 0 and solve for k</strong> · imaginary roots come in <strong>conjugate pairs</strong>, so "one real one imaginary" is never possible</p><p><strong>SUM AND PRODUCT</strong> <strong>α + β = −b/a · αβ = c/a</strong> · form the equation as <strong>x² − (sum)x + product = 0</strong> — note the <strong>minus</strong></p><p><strong>SYMMETRIC FUNCTIONS</strong> <strong>α² + β² = (α+β)² − 2αβ</strong> · <strong>1/α + 1/β = (α+β)/αβ</strong> · α − β = root[(α+β)² − 4αβ] · α³ + β³ = (α+β)³ − 3αβ(α+β) · <strong>the same trick: x + 1/x = 3 » x² + 1/x² = 7</strong></p><p><strong>IDENTITIES</strong> a² − b² = (a+b)(a−b) · <strong>a³ + b³ = (a+b)(a² − ab + b²)</strong> · <strong>a³ − b³ = (a−b)(a² + ab + b²)</strong> · <strong>if a + b + c = 0 then a³ + b³ + c³ = 3abc</strong></p><p><strong>PROBABILITY</strong> favourable ÷ total · 0 to 1 · <strong>P(not E) = 1 − P(E)</strong>, use it for <strong>"at least one"</strong> · mutually exclusive » add · independent » multiply · <strong>without replacement the denominator falls by one</strong></p><p><strong>SAMPLE SPACES</strong> n coins <strong>2ⁿ</strong> · <strong>two dice 36</strong> · pack <strong>52</strong> · two cards together <strong>C(52,2) = 1,326</strong></p><p><strong>THE PACK</strong> 4 suits of 13 · <strong>26 red, 26 black</strong> · 4 of each rank » <strong>P(king) = 1/13</strong> · <strong>12 face cards (K, Q, J) » 3/13</strong> · 16 honours if aces count</p><p><strong>TWO DICE SUMS</strong> ways = 1,2,3,4,5,<strong>6</strong>,5,4,3,2,1 for 2 to 12 · P(7) = 1/6 · <strong>P(9) = 4/36 = 1/9</strong> · <strong>(3,6) and (6,3) are DIFFERENT outcomes</strong></p><p><strong>COUNTING</strong> order matters » <strong>permutation</strong> · order does not » <strong>combination nCr = n!/[r!(n−r)!]</strong> · C(4,2) = 6 · C(5,2) = 10 · C(10,2) = 45 · <strong>nCr = nC(n−r)</strong> · independent parts » <strong>multiply</strong> · read <strong>exactly / at least / at most</strong></p><p><strong>HCF AND LCM</strong> HCF takes <strong>lowest</strong> powers, LCM the <strong>highest</strong> · <strong>HCF × LCM = the product of the two numbers</strong></p><p><strong>REMAINDERS</strong> same remainder » <strong>HCF of the DIFFERENCES</strong> · least number leaving r » <strong>LCM + r</strong> · short by the same amount » <strong>LCM − that amount</strong> · <strong>if 15 leaves 7, then 5 leaves 2</strong> · large powers: find the power leaving remainder 1, then <strong>cycle</strong> — 2³ = 8 leaves 1 mod 7</p><p><strong>DIVISIBILITY</strong> 3 and 9 » digit sum · 4 » last two digits · 8 » last three · 11 » alternating sums</p><p><strong>INDICES</strong> aᵐaⁿ = aᵐ⁺ⁿ · aᵐ/aⁿ = aᵐ⁻ⁿ · (aᵐ)ⁿ = aᵐⁿ · a⁰ = 1 · a⁻ⁿ = 1/aⁿ</p></aside><h2 id="10-five-minute-wall-sheet">10. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F8.7</p><p><strong>α + β = −b/a · αβ = c/a — NEVER FIND THE ROOTS IF THE QUESTION ONLY WANTS THESE</strong></p><p><strong>α² + β² = (α+β)² − 2αβ · 1/α + 1/β = (α+β)/αβ</strong></p><p><strong>FORM THE EQUATION: x² − (SUM)x + PRODUCT = 0</strong></p><p><strong>D = b² − 4ac · &gt; 0 DISTINCT · = 0 REAL AND EQUAL · &lt; 0 IMAGINARY</strong></p><p><strong>"EQUAL ROOTS" = SET D = 0</strong></p><p><strong>x + 1/x = 3 » SQUARE IT » x² + 1/x² = 7</strong></p><p><strong>IF a + b + c = 0 THEN a³ + b³ + c³ = 3abc</strong></p><p><strong>COUNT THE DENOMINATOR FIRST. TWO DICE = 36, NOT 12</strong></p><p><strong>(3,6) AND (6,3) ARE TWO OUTCOMES. P(SUM 9) = 4/36</strong></p><p><strong>PACK: 12 FACE CARDS » 3/13 · 4 KINGS » 1/13 · 26 RED</strong></p><p><strong>WITHOUT REPLACEMENT: 4/52 × 3/51. WITH: (4/52)². READ THE PHRASE</strong></p><p><strong>"AT LEAST ONE" » 1 − P(NONE)</strong></p><p><strong>C(n,2) = n(n−1)/2 · C(4,2) = 6 · C(10,2) = 45 · nCr = nC(n−r)</strong></p><p><strong>EXACTLY » ONE PRODUCT · AT LEAST » ADD THE CASES</strong></p><p><strong>HCF × LCM = PRODUCT OF THE TWO NUMBERS</strong></p><p><strong>SAME REMAINDER » HCF OF THE DIFFERENCES · LEAVES r » LCM + r</strong></p><p><strong>BIG POWERS: FIND THE POWER THAT LEAVES 1, THEN CYCLE</strong></p><p><strong>FINISH THE CALCULATION — THE INTERMEDIATE VALUE IS ALWAYS AN OPTION</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> The relations between the roots and the coefficients of a quadratic are worth more in an objective paper than the quadratic formula itself, because most questions ask about the roots collectively — their sum, product or squares — and those are read straight off the coefficients.</p></aside><aside class="cal action"><p class="cal-h">ACTION · NEXT</p><p><strong>F8.8 — Data Interpretation, and Reasoning Essentials.</strong> The 2023 paper had <strong>three DI questions</strong> and <strong>exactly one pure reasoning question in 120</strong>, which is why reasoning occupies part of one chapter and not a third of the module. Register §3.3 records that decision and the evidence for it.</p><p>Tonight's drill, per F8.0's week 3 Tuesday cell: <strong>§7 Q1–10, timed at ten minutes.</strong></p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F8.7
+  &middot; v1.0</footer>
+</body>
+</html>

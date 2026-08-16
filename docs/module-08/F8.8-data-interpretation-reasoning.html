@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Interpretation, and Reasoning Essentials</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F8.8 · Data Interpretation and Reasoning
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · MODULE 8 · CHAPTER F8.8</p><h1 class="doc-t">Data Interpretation, and Reasoning Essentials</h1><p class="doc-s">Chapter F8.8 — Three DI Questions Were Asked in 2023, and Exactly One Reasoning Question in 120</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 8 — English, Quantitative Aptitude &amp; Reasoning</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F8.8</td></tr><tr><td class="k">Topic</td><td class="v">Official syllabus head 7 — Elementary Mathematics, Statistics and General Mental Ability</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal important"><p class="cal-h">IMPORTANT · THE REASONING DECISION, RESTATED WHERE YOU WILL SEE IT</p><p>Blueprint §4.4 records that the 2023 paper contained <strong>three data-interpretation questions</strong> and <strong>exactly ONE pure reasoning question out of 120</strong>.</p><p>This chapter is built to that evidence. <strong>Data interpretation gets four sessions and eighteen questions. Reasoning gets one session and seven questions</strong> — despite "General Mental Ability" appearing in the official syllabus, and despite every commercial book for this examination devoting hundreds of pages to syllogisms, blood relations, coding and seating arrangements.</p><p>On one question in 120, that material is a <strong>very poor use of your hours</strong>. Register §3.3 records this decision so that it is not silently reversed in a later sitting: <strong>if a future session is tempted to expand reasoning, this is the reason not to</strong> — unless a new paper provides contrary evidence, in which case the Blueprint should be updated first and this chapter second.</p><p><strong>What §5 does instead</strong> is give you the seven or eight patterns that recover <em>most</em> of the value from a single question, in about forty minutes of reading. That is the correct expenditure on one mark of expected value.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-the-di-format"><span class="toc-t">1. Session 1 — The DI Format <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#11-what-it-is-and-why-it-is-the-best-trade-in-the-quant-block"><span class="toc-t">1.1 What it is, and why it is the best trade in the Quant block</span></a><a class="toc-3" href="#12-the-twenty-seconds-spent-properly"><span class="toc-t">1.2 The twenty seconds, spent properly</span></a><a class="toc-2" href="#2-session-2-tables"><span class="toc-t">2. Session 2 — Tables <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#21-the-five-calculations-that-cover-almost-every-di-question"><span class="toc-t">2.1 The five calculations that cover almost every DI question</span></a><a class="toc-3" href="#22-comparing-growth-without-computing-every-percentage"><span class="toc-t">2.2 Comparing growth without computing every percentage</span></a><a class="toc-3" href="#23-the-approximation-habit"><span class="toc-t">2.3 The approximation habit</span></a><a class="toc-2" href="#3-session-3-charts"><span class="toc-t">3. Session 3 — Charts <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#31-what-each-chart-form-is-for"><span class="toc-t">3.1 What each chart form is for</span></a><a class="toc-3" href="#32-pie-charts-degrees-percentages-and-amounts"><span class="toc-t">3.2 Pie charts — degrees, percentages and amounts</span></a><a class="toc-3" href="#33-reading-a-chart-into-a-table-the-fifteen-second-step"><span class="toc-t">3.3 Reading a chart into a table — the fifteen-second step</span></a><a class="toc-2" href="#4-session-4-the-di-trap-catalogue"><span class="toc-t">4. Session 4 — The DI Trap Catalogue <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#41-percentage-against-percentage-point"><span class="toc-t">4.1 Percentage against percentage point</span></a><a class="toc-3" href="#42-absolute-against-relative"><span class="toc-t">4.2 Absolute against relative</span></a><a class="toc-3" href="#43-the-wrong-base"><span class="toc-t">4.3 The wrong base</span></a><a class="toc-3" href="#44-the-changed-total"><span class="toc-t">4.4 The changed total</span></a><a class="toc-3" href="#45-the-unit"><span class="toc-t">4.5 The unit</span></a><a class="toc-2" href="#5-session-5-reasoning-essentials"><span class="toc-t">5. Session 5 — Reasoning Essentials <span class="rate" role="img" aria-label="priority 2 of 5"><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i><i class="off"></i></span></span></a><a class="toc-3" href="#51-number-and-letter-series"><span class="toc-t">5.1 Number and letter series</span></a><a class="toc-3" href="#52-coding-and-decoding"><span class="toc-t">5.2 Coding and decoding</span></a><a class="toc-3" href="#53-blood-relations"><span class="toc-t">5.3 Blood relations</span></a><a class="toc-3" href="#54-direction-sense"><span class="toc-t">5.4 Direction sense</span></a><a class="toc-3" href="#55-syllogisms"><span class="toc-t">5.5 Syllogisms</span></a><a class="toc-3" href="#56-odd-one-out-and-ranking"><span class="toc-t">5.6 Odd one out, and ranking</span></a><a class="toc-2" href="#6-graded-practice-25-questions"><span class="toc-t">6. Graded Practice — 25 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#61-set-i-table-contributions-received-by-four-regional-offices-crore"><span class="toc-t">6.1 Set I — Table: contributions received by four regional offices (₹ crore)</span></a><a class="toc-3" href="#62-set-ii-bar-chart-read-into-a-table-claims-received-and-settled-thousands"><span class="toc-t">6.2 Set II — Bar chart, read into a table: claims received and settled (thousands)</span></a><a class="toc-3" href="#63-set-iii-pie-chart-an-offices-annual-expenditure-of-72-crore"><span class="toc-t">6.3 Set III — Pie chart: an office's annual expenditure of ₹7.2 crore</span></a><a class="toc-3" href="#64-set-iv-establishments-covered-and-those-in-default-thousands"><span class="toc-t">6.4 Set IV — Establishments covered, and those in default (thousands)</span></a><a class="toc-3" href="#65-reasoning-essentials"><span class="toc-t">6.5 Reasoning essentials</span></a><a class="toc-2" href="#7-answers-and-explanations"><span class="toc-t">7. Answers and Explanations</span></a><a class="toc-3" href="#71-set-i"><span class="toc-t">7.1 Set I</span></a><a class="toc-3" href="#72-set-ii"><span class="toc-t">7.2 Set II</span></a><a class="toc-3" href="#73-set-iii"><span class="toc-t">7.3 Set III</span></a><a class="toc-3" href="#74-set-iv"><span class="toc-t">7.4 Set IV</span></a><a class="toc-3" href="#75-reasoning"><span class="toc-t">7.5 Reasoning</span></a><a class="toc-2" href="#8-one-minute-revision"><span class="toc-t">8. One-Minute Revision</span></a><a class="toc-2" href="#9-five-minute-wall-sheet"><span class="toc-t">9. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F8.8</p><ol><li><strong>Session 1</strong> — The DI format and the three-minute rule (§1) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 2</strong> — Tables, and the arithmetic of a data set (§2) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 3</strong> — Bar charts, line graphs and pie charts (§3) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 4</strong> — The DI trap catalogue (§4) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 5</strong> — Reasoning essentials, compact by design (§5) <span class="rate" role="img" aria-label="priority 2 of 5"><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i><i class="off"></i></span></li></ol><p>Then 25 graded questions in §6 — <strong>Q1 to Q18 data interpretation in four sets, Q19 to Q25 reasoning</strong>.</p><p>F8.0's calendar takes §6 Q1–12 on Friday of week 3 and Q13–25 on Friday of week 4, works the errors in week 7, and takes all 25 timed in week 11.</p></aside><aside class="cal note"><p class="cal-h">NOTE · HOW CHARTS ARE PRESENTED IN A TEXT MANUAL</p><p>This manual is generated from Markdown, so a bar chart or pie chart cannot be drawn on the page. The practice sets in §6 therefore give you the <strong>values as they would be read off the chart</strong>, in a table.</p><p>That is not the compromise it looks like, because <strong>converting a chart into a small table is exactly what you should do in the exam hall anyway</strong> — see §3.2. The reading of the chart is a fifteen-second mechanical step; the marks are in the arithmetic that follows, and that is what §6 drills.</p><p>Where a question depends on a feature only a picture carries — the visual steepness of a line, the relative size of two sectors — §3 tells you what to look for and §6 supplies the numbers that feature would give you.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-the-di-format">1. Session 1 — The DI Format <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="11-what-it-is-and-why-it-is-the-best-trade-in-the-quant-block">1.1 What it is, and why it is the best trade in the Quant block</h3><p>A single data set — a table, a bar chart, a pie chart or a line graph — followed by <strong>three to five questions</strong>. In 2023 it was <strong>three questions on one set</strong> (PYQ-DERIVED, Blueprint §4.4).</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · THREE MINUTES FOR A SET OF THREE, AND WHY THE SET IS CHEAP</p><p>F8.0 §1.1 budgets <strong>3 minutes for a set of three DI questions</strong> — one minute each, which is the paper's average, yet DI feels slower than average. The reason it still fits is that <strong>the cost of reading the data is paid once and serves every question in the set</strong>.</p><p>This makes DI structurally the same trade as reading comprehension (F8.3 §0): a fixed cost amortised over several marks. And it produces the same rule:</p><blockquote><p><strong>Spend twenty seconds understanding the data before you read the first question. Then answer all of them without going back to first principles.</strong></p></blockquote><p><strong>DI is the only place in the Quant paper where no new knowledge is needed.</strong> There is no formula to misremember, no theorem, no trap of a matched pair. Everything you need is printed on the page. The questions are percentage, ratio and average — F8.5's material — applied to numbers you are given.</p><p>For a candidate who is weak in mensuration or algebra, <strong>this is the block to secure first.</strong></p></aside><h3 id="12-the-twenty-seconds-spent-properly">1.2 The twenty seconds, spent properly</h3><p>Before reading any question, establish four things:</p><div class="tw"><table><thead><tr><th style="text-align:left">Check</th><th style="text-align:left">Why it matters</th></tr></thead><tbody><tr><td style="text-align:left"><strong>What exactly does each row and column measure?</strong></td><td style="text-align:left">Confusing <em>claims received</em> with <em>claims settled</em> loses every question in the set</td></tr><tr><td style="text-align:left"><strong>What are the UNITS?</strong></td><td style="text-align:left">Thousands? Lakhs? Crores? Percentages of something?</td></tr><tr><td style="text-align:left"><strong>Is any figure a total or a subtotal?</strong></td><td style="text-align:left">Totals are often given; computing one you were given wastes 30 seconds</td></tr><tr><td style="text-align:left"><strong>Is any column a percentage rather than a quantity?</strong></td><td style="text-align:left">This is the source of the trap in §4.1</td></tr></tbody></table></div><p><strong>Then compute the row and column totals you are likely to need</strong> — usually the grand total, because most questions ask for a share of it. In §6.1 the three annual totals (1,000, 1,100 and 1,320) answer or part-answer four of the five questions in the set.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 1</p><ol><li>What is the time budget for a set of three DI questions, and why does it fit?</li><li>What four things do you check before reading the first question?</li><li>Why is DI the block to secure first if your algebra is weak?</li></ol></aside><div class="pagebreak"></div><h2 id="2-session-2-tables">2. Session 2 — Tables <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><p>The table is the purest form of the format, and every other form reduces to it.</p><h3 id="21-the-five-calculations-that-cover-almost-every-di-question">2.1 The five calculations that cover almost every DI question</h3><div class="tw"><table><thead><tr><th style="text-align:left">Asked</th><th style="text-align:left">Method</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Total, or a share of the total</strong></td><td style="text-align:left">Sum the row or column; share = part ÷ total × 100</td></tr><tr><td style="text-align:left"><strong>Percentage increase or decrease</strong></td><td style="text-align:left">(change ÷ <strong>the earlier value</strong>) × 100</td></tr><tr><td style="text-align:left"><strong>Ratio of two entries</strong></td><td style="text-align:left">Divide, then reduce</td></tr><tr><td style="text-align:left"><strong>Average over a period</strong></td><td style="text-align:left">Sum ÷ the number of periods</td></tr><tr><td style="text-align:left"><strong>Which is highest or lowest</strong></td><td style="text-align:left">Compare <strong>ratios</strong>, not differences, when the question says <em>rate</em> or <em>per cent</em></td></tr></tbody></table></div><h3 id="22-comparing-growth-without-computing-every-percentage">2.2 Comparing growth without computing every percentage</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · YOU RARELY NEED TO CALCULATE ALL FOUR PERCENTAGES</p><p>When a question asks which of several items grew fastest, computing four percentages takes ninety seconds you do not have. Two shortcuts:</p><p><strong>1. Compare the fraction, not the percentage.</strong> Growth from 240 to 300 is 60/240 = <strong>1/4</strong>; from 320 to 352 is 32/320 = <strong>1/10</strong>. You can see 1/4 beats 1/10 without converting either to a percentage.</p><p><strong>2. Eliminate by inspection first.</strong> An item that grew by a small absolute amount <strong>from a large base</strong> cannot be the fastest grower. In §6.1's table, R rose 32 on a base of 320 and S actually <strong>fell</strong> — both are out in five seconds, leaving only P and Q to compute.</p><p><strong>The examiner's counter-trap:</strong> the item with the <strong>largest absolute increase</strong> is often not the item with the largest <strong>percentage</strong> increase, and both are offered. In §6.1, P rose by 60 and R by 32, but the question is about rate, so read the stem for the word <em>percentage</em> or <em>rate</em> and let it choose your arithmetic.</p></aside><h3 id="23-the-approximation-habit">2.3 The approximation habit</h3><p>DI options are usually far apart, so <strong>round aggressively and check the gap</strong>. 443/540 does not need long division: 540 × 0.8 = 432 and 540 × 0.85 = 459, so the answer lies between 80% and 85%, and if the options are 78, 82, 85 and 88, <strong>82% is the only candidate</strong> — Q9.</p><p><strong>Round to the nearest convenient figure, get the range, then look at the options.</strong> If two options fall inside your range, only then compute precisely.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 2</p><ol><li>Name the five calculations that cover most DI questions</li><li>On which value is a percentage change always based?</li><li>Give the two shortcuts for finding the fastest grower</li><li>Estimate 443/540 without dividing</li></ol></aside><div class="pagebreak"></div><h2 id="3-session-3-charts">3. Session 3 — Charts <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="31-what-each-chart-form-is-for">3.1 What each chart form is for</h3><div class="tw"><table><thead><tr><th style="text-align:left">Form</th><th style="text-align:left">Shows</th><th style="text-align:left">Watch for</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Bar chart</strong></td><td style="text-align:left">Comparison of quantities across categories</td><td style="text-align:left">Whether bars are <strong>grouped</strong> (two series) or <strong>stacked</strong> (parts of a whole)</td></tr><tr><td style="text-align:left"><strong>Line graph</strong></td><td style="text-align:left">A trend over time</td><td style="text-align:left"><strong>Steepness is the rate of change</strong>; a falling line can still be above another rising one</td></tr><tr><td style="text-align:left"><strong>Pie chart</strong></td><td style="text-align:left"><strong>Shares of one whole</strong> — never absolute quantities unless the total is stated</td><td style="text-align:left">The total must be given for any rupee answer</td></tr><tr><td style="text-align:left">Stacked bar</td><td style="text-align:left">Both the total and its composition</td><td style="text-align:left">A segment can grow while its <strong>share</strong> falls</td></tr></tbody></table></div><h3 id="32-pie-charts-degrees-percentages-and-amounts">3.2 Pie charts — degrees, percentages and amounts</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · 360° IS THE WHOLE, SO 3.6° IS ONE PER CENT</p><p>Every pie chart question is one of these three conversions:</p><blockquote><p><strong>percentage = (central angle ÷ 360) × 100</strong> · <strong>central angle = percentage × 3.6</strong> · <strong>amount = percentage × total</strong></p></blockquote><div class="tw"><table><thead><tr><th style="text-align:left">Angle</th><th style="text-align:left">Share</th><th style="text-align:left">Angle</th><th style="text-align:left">Share</th></tr></thead><tbody><tr><td style="text-align:left">36°</td><td style="text-align:left">10%</td><td style="text-align:left">120°</td><td style="text-align:left">33⅓%</td></tr><tr><td style="text-align:left"><strong>54°</strong></td><td style="text-align:left"><strong>15%</strong></td><td style="text-align:left"><strong>144°</strong></td><td style="text-align:left"><strong>40%</strong></td></tr><tr><td style="text-align:left">72°</td><td style="text-align:left">20%</td><td style="text-align:left">180°</td><td style="text-align:left">50%</td></tr><tr><td style="text-align:left"><strong>90°</strong></td><td style="text-align:left"><strong>25%</strong></td><td style="text-align:left">240°</td><td style="text-align:left">66⅔%</td></tr></tbody></table></div><p><strong>And the rule that matters most: a pie chart alone can never give you a rupee figure.</strong> It gives shares. If the question wants an amount, the total must be stated somewhere in the stem — and if two pie charts are shown with <strong>different totals</strong>, their sectors cannot be compared directly at all. A 25% sector of ₹8 crore is larger than a 40% sector of ₹4 crore.</p><p>That last point is the single most productive trap in pie-chart questions, and §4.3 is its general form.</p></aside><h3 id="33-reading-a-chart-into-a-table-the-fifteen-second-step">3.3 Reading a chart into a table — the fifteen-second step</h3><p>In the exam hall, <strong>write the numbers down</strong>. Copy the bar heights or sector percentages into a small table in the margin before answering anything. Reasons:</p><ol><li>You will otherwise <strong>re-read the chart</strong> for every question, at ten seconds a time</li><li>Reading a value off a picture is where the error occurs; doing it once, deliberately, halves the risk</li><li>The totals you need are far easier to compute from a written column than from a picture</li></ol><p>This is why §6's sets are given as tables: <strong>the table is the state you should convert every chart into.</strong></p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 3</p><ol><li>What percentage corresponds to 54°? 144°? What angle to 25%?</li><li>Why can a pie chart alone never give an amount?</li><li>When can two pie charts' sectors not be compared?</li><li>What is the first thing to do on meeting a bar chart?</li></ol></aside><div class="pagebreak"></div><h2 id="4-session-4-the-di-trap-catalogue">4. Session 4 — The DI Trap Catalogue <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><p>DI questions are not conceptually hard, so the examiner's marks come almost entirely from these five confusions.</p><h3 id="41-percentage-against-percentage-point">4.1 Percentage against percentage point</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · A RATE THAT MOVES FROM 12% TO 9% HAS FALLEN THREE PERCENTAGE POINTS, NOT THREE PER CENT</p><p>This is the most examined distinction in data interpretation anywhere, and it is worth learning as a sentence you can recite.</p><ul><li>The <strong>percentage-point</strong> change is the simple difference: 12 − 9 = <strong>3 percentage points</strong></li><li>The <strong>percentage</strong> change is relative to the starting rate: 3/12 = <strong>25%</strong></li></ul><p>Both are correct answers to <strong>different</strong> questions, and both will be on the paper — Q16. So read the stem precisely:</p><div class="tw"><table><thead><tr><th style="text-align:left">Stem says</th><th style="text-align:left">Answer</th></tr></thead><tbody><tr><td style="text-align:left"><em>"fell by how many percentage points"</em></td><td style="text-align:left"><strong>3</strong></td></tr><tr><td style="text-align:left"><em>"the rate fell by what per cent"</em></td><td style="text-align:left"><strong>25%</strong></td></tr><tr><td style="text-align:left"><em>"the default rate fell from … to …"</em></td><td style="text-align:left"><strong>3 percentage points</strong> — the units of a rate difference</td></tr></tbody></table></div><p><strong>The general habit: when a quantity is itself a percentage, ask whether the question wants the difference of the percentages or the percentage of the difference.</strong></p></aside><h3 id="42-absolute-against-relative">4.2 Absolute against relative</h3><p>The largest <strong>number</strong> and the largest <strong>share</strong> are different questions, and they frequently have different answers. In §6.4's table, 2023 has the most establishments covered but the <strong>lowest</strong> default rate, while 2020 has the most <strong>defaulters</strong> despite having far fewer establishments than 2023 — Q17.</p><p><strong>Where a question asks "highest" or "most", find the noun.</strong> <em>Most defaulting establishments</em> is a count; <em>highest rate of default</em> is a ratio.</p><h3 id="43-the-wrong-base">4.3 The wrong base</h3><p>The single commonest arithmetic error in DI. A rise from 500 to 800 is <strong>60%</strong> — the base is the earlier figure, 500 — and <strong>not</strong> 37.5%, which is 300/800 and answers no question at all. Q18 offers both.</p><p><strong>Say the base out loud before dividing:</strong> <em>"per cent of what?"</em> This is F8.5 §1.4's rule, and it accounts for more lost DI marks than every other error combined.</p><h3 id="44-the-changed-total">4.4 The changed total</h3><p>A share can fall while the amount rises, if the total is growing. If establishment expenditure is 40% of ₹7.2 crore and remains 40% of ₹9 crore, the <strong>share is unchanged</strong> but the amount has risen from ₹2.88 crore to ₹3.6 crore — Q14.</p><p>So: <strong>when a question changes the total, recompute the amount; when it changes a share, do not assume the total moved.</strong></p><h3 id="45-the-unit">4.5 The unit</h3><p>Thousands, lakhs and crores are mixed deliberately, and a table headed <em>"in thousands"</em> will have a question whose options are in lakhs. <strong>Write the unit next to your answer</strong> before comparing with the options. Q7's answer is 24 <strong>thousand</strong>, and Q13's is ₹36 <strong>lakh</strong> from a table given in crores.</p><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · WHY DI REWARDS SLOWNESS AT ONE POINT AND SPEED EVERYWHERE ELSE</p><p>Notice what all five traps have in common: <strong>none of them is a computational failure.</strong> Every one is a failure to read precisely — the wrong base, the wrong noun, the wrong unit, the wrong kind of change.</p><p>That produces an unusual instruction. In DI you should be <strong>fast at the arithmetic and slow at the stem</strong> — which is the reverse of what candidates naturally do, because the arithmetic feels like the hard part and so absorbs the attention.</p><p><strong>Read the stem twice. Compute once, roughly.</strong> That is the whole discipline of the format, and it is also Blueprint §8's remedy for the <em>"which one is not correct"</em> pattern applied to numbers.</p></aside><div class="pagebreak"></div><h2 id="5-session-5-reasoning-essentials">5. Session 5 — Reasoning Essentials <span class="rate" role="img" aria-label="priority 2 of 5"><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i><i class="off"></i></span></h2><p><strong>One question in 120.</strong> What follows is therefore the complete treatment: the patterns that recur, at one worked line each. Read it once, do Q19 to Q25, and do not return to it until week 11.</p><h3 id="51-number-and-letter-series">5.1 Number and letter series</h3><p>Compute the <strong>differences</strong>. If they are not constant, compute the differences <strong>of the differences</strong>.</p><blockquote><p>3, 6, 11, 18, 27, ? — differences 3, 5, 7, 9, so the next difference is 11 and the answer is <strong>38</strong> — Q19.</p></blockquote><p>Other patterns worth a glance: alternating series (two interleaved sequences), multiply-and-add (×2 then +1), and squares or cubes displaced by one (2, 5, 10, 17 is n² + 1).</p><h3 id="52-coding-and-decoding">5.2 Coding and decoding</h3><p>Compare the coded word letter by letter with the original and find the <strong>shift</strong>.</p><blockquote><p>EPFO » FQGP is <strong>+1</strong> on every letter, so RTI » <strong>SUJ</strong> — Q20.</p></blockquote><p>Shifts may be negative, may alternate (+1, −1, +1), or may reverse the word. <strong>Write the alphabet with its position numbers</strong> in the margin if more than one shift is involved; it takes ten seconds and prevents the only real error in the topic.</p><h3 id="53-blood-relations">5.3 Blood relations</h3><aside class="cal know"><p class="cal-h">KNOW · RESOLVE THE PHRASE FROM THE INSIDE OUT</p><p>Take the longest phrase apart from its innermost term outwards, substituting a plain word at each step.</p><blockquote><p><em>"the daughter of my grandfather's only son"</em> » <strong>grandfather's only son = my father</strong> » <em>"the daughter of my father"</em> = <strong>my sister</strong> — Q21.</p></blockquote><p>Two cautions the examiner relies on: <strong>"only son"</strong> is the key that collapses a generation, and the answer is often a <strong>sister or brother</strong> where candidates expect a cousin. Also note that questions rarely specify gender for in-laws, so a relation like <em>"brother-in-law"</em> may be unresolvable — in which case the option saying <em>cannot be determined</em> is correct.</p></aside><h3 id="54-direction-sense">5.4 Direction sense</h3><p>Draw it. Take north as up, and remember that <strong>a right turn while facing north is east, while facing south is west</strong> — reversing after a turn is where errors happen.</p><blockquote><p>5 km north, right 3 km, right 5 km: the two 5 km legs cancel, leaving <strong>3 km east</strong> — Q22.</p></blockquote><p>Net displacement is found by cancelling opposite legs and, where both a north–south and an east–west remainder survive, by Pythagoras (F8.6 §5.1's triples appear here too).</p><h3 id="55-syllogisms">5.5 Syllogisms</h3><p>Only two rules are needed at this level:</p><ol><li><strong>From two premises, a conclusion follows only if it MUST be true</strong> — the same test as F8.3 §3.2's inference rule</li><li><strong>"Some A are B" always yields "some B are A"</strong> — a universal <em>all A are B</em> likewise yields <em>some B are A</em>. But <strong>"all A are B" and "some B are C" yields nothing</strong> about A and C</li></ol><blockquote><p><em>All auditors are graduates. Some graduates are lawyers.</em> Does <em>some auditors are lawyers</em> follow? <strong>No</strong> — the lawyers among the graduates need not be the auditors. Does <em>some graduates are auditors</em> follow? <strong>Yes</strong>, by rule 2 — Q23.</p></blockquote><p><strong>The commonest error is accepting a conclusion because it is plausible in the world.</strong> Premises are to be taken as given, however false, and nothing outside them may be used.</p><h3 id="56-odd-one-out-and-ranking">5.6 Odd one out, and ranking</h3><p><strong>Odd one out:</strong> test the obvious classes in order — perfect squares, cubes, primes, multiples of a number, even against odd. <em>121, 144, 169, 150</em>: the first three are 11², 12² and 13², so <strong>150</strong> is odd — Q24.</p><p><strong>Ranking and ordering:</strong> write a single line with the seniormost at the left and insert each person as the clues arrive.</p><blockquote><p><em>C is senior to A but junior to B; D is the most junior; E is senior to A but junior to C.</em> Building it: B &gt; C, then C &gt; E &gt; A, then D last, giving <strong>B &gt; C &gt; E &gt; A &gt; D</strong>, so the most senior is <strong>B</strong> — Q25.</p></blockquote><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 5</p><ol><li>Continue: 2, 5, 10, 17, 26, ?</li><li>If DELHI is coded CDKGH, how is PATNA coded?</li><li><em>"My mother's brother's only sister"</em> is who?</li><li>Does <em>some A are B</em> imply <em>some B are A</em>? Does <em>all A are B, some B are C</em> imply anything about A and C?</li><li>Walk 4 km east, turn left, 3 km, turn left, 4 km. Where are you?</li></ol></aside><div class="pagebreak"></div><h2 id="6-graded-practice-25-questions">6. Graded Practice — 25 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><p><strong>Q1 to Q18 are data interpretation, in four sets. Q19 to Q25 are reasoning.</strong> Target <strong>3 minutes per DI set of three to five</strong>, and <strong>40 seconds</strong> per reasoning question.</p><h3 id="61-set-i-table-contributions-received-by-four-regional-offices-crore">6.1 Set I — Table: contributions received by four regional offices (₹ crore)</h3><div class="tw"><table><thead><tr><th style="text-align:left">Office</th><th style="text-align:right">2021</th><th style="text-align:right">2022</th><th style="text-align:right">2023</th></tr></thead><tbody><tr><td style="text-align:left">P</td><td style="text-align:right">240</td><td style="text-align:right">300</td><td style="text-align:right">330</td></tr><tr><td style="text-align:left">Q</td><td style="text-align:right">180</td><td style="text-align:right">198</td><td style="text-align:right">270</td></tr><tr><td style="text-align:left">R</td><td style="text-align:right">320</td><td style="text-align:right">352</td><td style="text-align:right">396</td></tr><tr><td style="text-align:left">S</td><td style="text-align:right">260</td><td style="text-align:right">250</td><td style="text-align:right">324</td></tr></tbody></table></div><p><strong>Q1.</strong> The total contribution received by all four offices in 2022 was (a) ₹1,000 crore (b) ₹1,100 crore (c) ₹1,150 crore (d) ₹1,320 crore</p><p><strong>Q2.</strong> The office recording the highest <strong>percentage</strong> increase in contributions from 2021 to 2022 was (a) Q (b) R (c) S (d) P</p><p><strong>Q3.</strong> The contribution of office R in 2023, as a percentage of the total contribution of that year, was nearest to (a) 30% (b) 33% (c) 27% (d) 36%</p><p><strong>Q4.</strong> The average annual contribution of office Q over the three years was (a) ₹198 crore (b) ₹210 crore (c) ₹216 crore (d) ₹222 crore</p><p><strong>Q5.</strong> The percentage increase in the total contribution of all four offices from 2022 to 2023 was (a) 17% (b) 20% (c) 22% (d) 32%</p><h3 id="62-set-ii-bar-chart-read-into-a-table-claims-received-and-settled-thousands">6.2 Set II — Bar chart, read into a table: claims received and settled (thousands)</h3><div class="tw"><table><thead><tr><th style="text-align:left">Year</th><th style="text-align:right">Claims received</th><th style="text-align:right">Claims settled</th></tr></thead><tbody><tr><td style="text-align:left">2019</td><td style="text-align:right">80</td><td style="text-align:right">64</td></tr><tr><td style="text-align:left">2020</td><td style="text-align:right">90</td><td style="text-align:right">63</td></tr><tr><td style="text-align:left">2021</td><td style="text-align:right">100</td><td style="text-align:right">85</td></tr><tr><td style="text-align:left">2022</td><td style="text-align:right">120</td><td style="text-align:right">96</td></tr><tr><td style="text-align:left">2023</td><td style="text-align:right">150</td><td style="text-align:right">135</td></tr></tbody></table></div><p><strong>Q6.</strong> The year in which claims settled formed the <strong>lowest</strong> percentage of claims received was (a) 2020 (b) 2019 (c) 2022 (d) 2021</p><p><strong>Q7.</strong> The number of claims received but not settled in 2022 was (a) 16 thousand (b) 20 thousand (c) 22 thousand (d) 24 thousand</p><p><strong>Q8.</strong> The percentage of claims settled in 2023 was (a) 80% (b) 85% (c) 90% (d) 95%</p><p><strong>Q9.</strong> Taking the five years together, the percentage of claims received that were settled was nearest to (a) 82% (b) 78% (c) 85% (d) 88%</p><p><strong>Q10.</strong> The percentage increase in claims received from 2019 to 2023 was (a) 70% (b) 87.5% (c) 47% (d) 100%</p><h3 id="63-set-iii-pie-chart-an-offices-annual-expenditure-of-72-crore">6.3 Set III — Pie chart: an office's annual expenditure of ₹7.2 crore</h3><div class="tw"><table><thead><tr><th style="text-align:left">Head of expenditure</th><th style="text-align:right">Central angle</th></tr></thead><tbody><tr><td style="text-align:left">Establishment</td><td style="text-align:right">144°</td></tr><tr><td style="text-align:left">Pension disbursement</td><td style="text-align:right">90°</td></tr><tr><td style="text-align:left">IT and systems</td><td style="text-align:right">54°</td></tr><tr><td style="text-align:left">Rent</td><td style="text-align:right">36°</td></tr><tr><td style="text-align:left">Other charges</td><td style="text-align:right">36°</td></tr></tbody></table></div><p><strong>Q11.</strong> The amount spent on establishment was (a) ₹1.80 crore (b) ₹2.16 crore (c) ₹2.60 crore (d) ₹2.88 crore</p><p><strong>Q12.</strong> The sector representing pension disbursement corresponds to what percentage of total expenditure? (a) 15% (b) 20% (c) 25% (d) 30%</p><p><strong>Q13.</strong> Expenditure on IT and systems exceeded expenditure on rent by (a) ₹36 lakh (b) ₹18 lakh (c) ₹54 lakh (d) ₹72 lakh</p><p><strong>Q14.</strong> If total expenditure in the following year rose by 25% while the <strong>share</strong> of establishment remained unchanged, the amount spent on establishment would be (a) ₹3.24 crore (b) ₹3.60 crore (c) ₹2.88 crore (d) ₹4.50 crore</p><h3 id="64-set-iv-establishments-covered-and-those-in-default-thousands">6.4 Set IV — Establishments covered, and those in default (thousands)</h3><div class="tw"><table><thead><tr><th style="text-align:left">Year</th><th style="text-align:right">Establishments covered</th><th style="text-align:right">Of which in default</th></tr></thead><tbody><tr><td style="text-align:left">2019</td><td style="text-align:right">500</td><td style="text-align:right">60</td></tr><tr><td style="text-align:left">2020</td><td style="text-align:right">550</td><td style="text-align:right">77</td></tr><tr><td style="text-align:left">2021</td><td style="text-align:right">600</td><td style="text-align:right">66</td></tr><tr><td style="text-align:left">2022</td><td style="text-align:right">700</td><td style="text-align:right">70</td></tr><tr><td style="text-align:left">2023</td><td style="text-align:right">800</td><td style="text-align:right">72</td></tr></tbody></table></div><p><strong>Q15.</strong> The rate of default in 2020 was (a) 11% (b) 12% (c) 13% (d) 14%</p><p><strong>Q16.</strong> Between 2019 and 2023 the rate of default fell by (a) 3% (b) 25% (c) 3 percentage points (d) 12 percentage points</p><p><strong>Q17.</strong> The year in which the <strong>number</strong> of establishments in default was highest was (a) 2020 (b) 2023 (c) 2022 (d) 2021</p><p><strong>Q18.</strong> The number of establishments covered in 2023 exceeded that in 2019 by (a) 300% (b) 60% (c) 37.5% (d) 62.5%</p><h3 id="65-reasoning-essentials">6.5 Reasoning essentials</h3><p><strong>Q19.</strong> Complete the series: 3, 6, 11, 18, 27, ? (a) 34 (b) 36 (c) 38 (d) 40</p><p><strong>Q20.</strong> If EPFO is coded as FQGP, then RTI is coded as (a) QSH (b) SVK (c) TUJ (d) SUJ</p><p><strong>Q21.</strong> Pointing to a photograph, a man said, "She is the daughter of my grandfather's only son." How is she related to him? (a) His sister (b) His daughter (c) His cousin (d) His niece</p><p><strong>Q22.</strong> A man walks 5 km towards the north, turns right and walks 3 km, then turns right and walks 5 km. He is now (a) 3 km north of the starting point (b) 3 km east of the starting point (c) 5 km east of the starting point (d) 8 km east of the starting point</p><p><strong>Q23.</strong> <strong>Premises:</strong> All auditors are graduates. Some graduates are lawyers. <strong>Conclusions:</strong> I. Some auditors are lawyers. II. Some graduates are auditors. Which conclusion follows? (a) Only I (b) Both I and II (c) Only II (d) Neither I nor II</p><p><strong>Q24.</strong> Choose the odd one out. (a) 121 (b) 144 (c) 169 (d) 150</p><p><strong>Q25.</strong> Five officers A, B, C, D and E are ranked by seniority. C is senior to A but junior to B. D is the most junior of all. E is senior to A but junior to C. The most senior officer is (a) B (b) C (c) A (d) E</p><div class="pagebreak"></div><h2 id="7-answers-and-explanations">7. Answers and Explanations</h2><h3 id="71-set-i">7.1 Set I</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">b</td><td style="text-align:left">300 + 198 + 352 + 250 = <strong>₹1,100 crore</strong>. Compute all three annual totals at the outset — 1,000, 1,100 and 1,320 — because they serve Q3 and Q5 as well. §1.2</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">d</td><td style="text-align:left"><strong>P</strong>: 60 on 240 = 25%. Q: 18 on 180 = 10%; R: 32 on 320 = 10%; S actually <strong>fell</strong>. Note that R had the second-largest absolute rise but only 10% growth — the absolute-against-relative trap of §4.2</td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">a</td><td style="text-align:left">396/1,320 = <strong>30%</strong>. Estimate rather than divide: 10% of 1,320 is 132, and 3 × 132 = 396 exactly</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">c</td><td style="text-align:left">(180 + 198 + 270)/3 = 648/3 = <strong>₹216 crore</strong>. (a) is the middle year's figure, which is not the mean</td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">b</td><td style="text-align:left">(1,320 − 1,100)/1,100 = 220/1,100 = <strong>20%</strong>. (d) 32% is the increase from <strong>2021</strong>, the wrong base year — §4.3, and the reason to read which two years the stem names</td></tr></tbody></table></div><h3 id="72-set-ii">7.2 Set II</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">6</td><td style="text-align:center">a</td><td style="text-align:left">Rates are 80%, <strong>70%</strong>, 85%, 80%, 90%, so <strong>2020</strong>. The question asks for a <strong>percentage</strong>, so compare ratios; 2020 also has fewer settled claims in absolute terms than later years, but that is not what decides it</td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">d</td><td style="text-align:left">120 − 96 = <strong>24 thousand</strong>. Note the unit: the table is in thousands, so the answer is 24,000 claims — §4.5</td></tr><tr><td style="text-align:left">8</td><td style="text-align:center">c</td><td style="text-align:left">135/150 = <strong>90%</strong></td></tr><tr><td style="text-align:left">9</td><td style="text-align:center">a</td><td style="text-align:left">Received 540, settled 443. Estimate: 80% of 540 = 432 and 85% = 459, so the answer lies between, and only <strong>82%</strong> is offered in that range — §2.3. No long division needed</td></tr><tr><td style="text-align:left">10</td><td style="text-align:center">b</td><td style="text-align:left">(150 − 80)/80 = 70/80 = <strong>87.5%</strong>. (a) 70 is the <strong>absolute</strong> increase in thousands, offered as a percentage — the single most common DI slip</td></tr></tbody></table></div><h3 id="73-set-iii">7.3 Set III</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">11</td><td style="text-align:center">d</td><td style="text-align:left">144/360 = 40%, and 40% of ₹7.2 crore = <strong>₹2.88 crore</strong>. (a) is 25% of the total, the pension figure</td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">c</td><td style="text-align:left">90° is a quarter of 360°, so <strong>25%</strong>. Reading a right angle as a quarter is instant and needs no arithmetic</td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">a</td><td style="text-align:left">54° − 36° = 18°, which is 5% of the total: 5% of ₹7.2 crore = ₹0.36 crore = <strong>₹36 lakh</strong>. The table is in crores and the options in lakhs — §4.5. (b) 18 lakh mistakes the 18° for a percentage</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">b</td><td style="text-align:left">The new total is 7.2 × 1.25 = ₹9 crore, and 40% of 9 = <strong>₹3.60 crore</strong>. The <strong>share</strong> is unchanged, the <strong>amount</strong> is not — §4.4. (c) is the old amount, for the candidate who read "unchanged" as applying to the money</td></tr></tbody></table></div><h3 id="74-set-iv">7.4 Set IV</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">15</td><td style="text-align:center">d</td><td style="text-align:left">77/550 = <strong>14%</strong>. Check by parts: 10% of 550 is 55, and 4% is 22, totalling 77</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">c</td><td style="text-align:left">The rate fell from 12% to 9%, a fall of <strong>3 percentage points</strong>. (b) 25% is the <em>relative</em> fall, 3/12 — a correct answer to <em>"by what per cent did the rate fall"</em>, but the stem asks by how much the rate fell, and a difference of rates is measured in percentage points. §4.1 — the most examined distinction in DI</td></tr><tr><td style="text-align:left">17</td><td style="text-align:center">a</td><td style="text-align:left"><strong>2020, with 77 thousand</strong> — more than 2023's 72 thousand, even though 2023 covers half again as many establishments. The stem says <strong>number</strong>, not rate; the rate in 2020 was the worst too, but the point of the question is that the counts and the rates rank differently. §4.2</td></tr><tr><td style="text-align:left">18</td><td style="text-align:center">b</td><td style="text-align:left">(800 − 500)/500 = <strong>60%</strong>. (c) 37.5% is 300/800, the wrong base; (a) 300% mistakes the absolute difference for a percentage. §4.3</td></tr></tbody></table></div><h3 id="75-reasoning">7.5 Reasoning</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">19</td><td style="text-align:center">c</td><td style="text-align:left">Differences 3, 5, 7, 9 — the odd numbers — so the next is 11 and 27 + 11 = <strong>38</strong>. (b) 36 assumes a constant difference of 9</td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">d</td><td style="text-align:left">Each letter advances by one: E»F, P»Q, F»G, O»P. So R»S, T»U, I»J = <strong>SUJ</strong>. (c) leaves the first letter unchanged, (a) shifts backwards</td></tr><tr><td style="text-align:left">21</td><td style="text-align:center">a</td><td style="text-align:left"><em>Grandfather's only son</em> = <strong>his father</strong>; the daughter of his father is <strong>his sister</strong>. (c) is the answer if you overlook the word <em>only</em>, which is precisely why it is there</td></tr><tr><td style="text-align:left">22</td><td style="text-align:center">b</td><td style="text-align:left">North 5, then east 3, then south 5. The two vertical legs cancel exactly, leaving <strong>3 km east</strong>. Draw it — the second right turn from an easterly heading is southward, not northward</td></tr><tr><td style="text-align:left">23</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Only II.</strong> <em>Some graduates are auditors</em> is the valid converse of <em>all auditors are graduates</em>. Conclusion I does <strong>not</strong> follow: the lawyers among the graduates need not include any auditor. Plausibility is not entailment — §5.5, and the same test as F8.3's inference rule</td></tr><tr><td style="text-align:left">24</td><td style="text-align:center">d</td><td style="text-align:left">121 = 11², 144 = 12², 169 = 13². <strong>150</strong> is not a perfect square</td></tr><tr><td style="text-align:left">25</td><td style="text-align:center">a</td><td style="text-align:left">B &gt; C from "C is junior to B"; C &gt; E &gt; A from the last clue with "C is senior to A"; D is last. The order is <strong>B &gt; C &gt; E &gt; A &gt; D</strong>, so the most senior is <strong>B</strong></td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · WHAT THIS BANK WAS ACTUALLY TESTING</p><ol><li><strong>The base.</strong> Q5, Q10, Q18. <strong>Three of eighteen DI questions</strong>, and in each the wrong option is a real number computed on the wrong denominator. <em>Per cent of what?</em> — asked out loud — is worth more marks in DI than any technique</li><li><strong>Percentage against percentage point.</strong> Q16, where <strong>both</strong> answers are on the paper and only the stem distinguishes them</li><li><strong>Count against rate.</strong> Q2, Q6, Q17. The item with the biggest number is repeatedly not the item with the highest rate, and the question alternates between asking for each</li><li><strong>The unit.</strong> Q7 and Q13 — thousands, and a table in crores with options in lakhs</li><li><strong>Estimation as a method, not a shortcut.</strong> Q3 and Q9 are both solved faster by bracketing than by dividing. In a 120-minute paper, arithmetic you avoid is arithmetic you cannot get wrong</li></ol><p>And note the shape of the reasoning half: <strong>seven questions covering seven distinct patterns</strong>, one each. That is the right coverage for <strong>one question in 120</strong> — enough to recognise whatever appears, not enough to have cost you a week.</p></aside><div class="pagebreak"></div><h2 id="8-one-minute-revision">8. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F8.8</p><p><strong>WEIGHT</strong> <strong>3 DI questions in 2023 · exactly ONE pure reasoning question in 120</strong> · DI budget <strong>3 minutes per set of three</strong> · reasoning 40 seconds each</p><p><strong>WHY DI IS CHEAP</strong> the cost of reading the data is paid <strong>once</strong> and serves the whole set · <strong>no new knowledge is needed</strong> — it is percentage, ratio and average applied to printed numbers. Secure this block first if algebra is weak</p><p><strong>THE TWENTY SECONDS FIRST</strong> what does each row measure · <strong>what are the units</strong> · what is a total · which column is a percentage · <strong>then compute the grand total</strong></p><p><strong>THE FIVE CALCULATIONS</strong> total and share · <strong>percentage change on the EARLIER value</strong> · ratio · average · highest by <strong>ratio</strong> when the stem says <em>rate</em> or <em>per cent</em></p><p><strong>SHORTCUTS</strong> compare <strong>fractions</strong> not percentages (60/240 = 1/4 beats 32/320 = 1/10) · eliminate a small rise on a large base by inspection · <strong>round, bracket, then look at the options</strong> — 443/540 is between 80% and 85%</p><p><strong>PIE CHARTS</strong> <strong>3.6° = 1%</strong> · 36° = 10% · <strong>54° = 15%</strong> · 72° = 20% · <strong>90° = 25%</strong> · 120° = 33⅓% · <strong>144° = 40%</strong> · 180° = 50% · <strong>a pie chart alone gives shares, NEVER amounts</strong> · two pies with different totals <strong>cannot</strong> be compared sector to sector</p><p><strong>CHARTS</strong> grouped bars = two series, stacked = parts of a whole · <strong>line steepness = rate of change</strong> · a segment can grow while its <strong>share</strong> falls · <strong>copy every chart into a table before answering</strong></p><p><strong>THE FIVE TRAPS</strong> <strong>1</strong> percentage vs <strong>percentage point</strong> — 12% to 9% is <strong>3 percentage points</strong>, or a <strong>25%</strong> fall · <strong>2</strong> absolute vs relative — biggest number is not the highest rate · <strong>3</strong> <strong>the wrong base</strong> — 500 to 800 is 60%, not 37.5% · <strong>4</strong> the changed total — share unchanged, amount risen · <strong>5</strong> the unit — thousands, lakhs, crores</p><p><strong>BE SLOW AT THE STEM AND FAST AT THE ARITHMETIC.</strong> Every DI trap is a reading failure, not a computation failure</p><p><strong>REASONING, COMPACTLY</strong> series » take <strong>differences, then differences of differences</strong> · coding » find the <strong>shift</strong>, write the alphabet out · blood relations » resolve <strong>from the inside out</strong>, watch <strong>"only son"</strong> · directions » <strong>draw it</strong>, cancel opposite legs · syllogism » must follow, not plausible; <strong>some A are B gives some B are A</strong>, but <em>all A are B</em> + <em>some B are C</em> gives <strong>nothing</strong> · odd one out » test squares, cubes, primes, multiples · ranking » one line, seniormost on the left</p></aside><h2 id="9-five-minute-wall-sheet">9. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F8.8</p><p><strong>READ THE DATA ONCE, PROPERLY. IT PAYS FOR THREE TO FIVE QUESTIONS</strong></p><p><strong>WRITE THE UNITS DOWN. THOUSANDS? LAKHS? CRORES?</strong></p><p><strong>COMPUTE THE GRAND TOTAL BEFORE THE FIRST QUESTION</strong></p><p><strong>PERCENTAGE CHANGE IS ON THE <em>EARLIER</em> VALUE. 500 » 800 IS 60%, NOT 37.5%</strong></p><p><strong>"PER CENT OF WHAT?" — SAY IT OUT LOUD BEFORE DIVIDING</strong></p><p><strong>12% TO 9% = 3 PERCENTAGE POINTS = A 25% FALL. THE STEM CHOOSES</strong></p><p><strong>BIGGEST NUMBER IS NOT HIGHEST RATE. FIND THE NOUN</strong></p><p><strong>3.6° = 1% · 54° = 15% · 90° = 25% · 144° = 40%</strong></p><p><strong>A PIE GIVES SHARES, NOT RUPEES — UNLESS THE TOTAL IS STATED</strong></p><p><strong>SHARE UNCHANGED + TOTAL UP 25% = AMOUNT UP 25%</strong></p><p><strong>ROUND AND BRACKET. IF ONE OPTION IS IN RANGE, THAT IS THE ANSWER</strong></p><p><strong>COMPARE FRACTIONS, NOT PERCENTAGES</strong></p><p><strong>SLOW ON THE STEM, FAST ON THE SUM</strong></p><p><strong>SERIES » DIFFERENCES, THEN DIFFERENCES OF DIFFERENCES</strong></p><p><strong>CODING » FIND THE SHIFT · RELATIONS » INSIDE OUT · DIRECTIONS » DRAW IT</strong></p><p><strong>SYLLOGISM: MUST FOLLOW, NOT PLAUSIBLE. <em>SOME A ARE B</em> » <em>SOME B ARE A</strong></em></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> Data interpretation is the part of an aptitude paper that most resembles the work itself — the numbers are supplied and the skill being tested is reading them precisely, which is why almost every error in the format is a misread base or a misread unit rather than a failure of arithmetic.</p></aside><aside class="cal action"><p class="cal-h">ACTION · MODULE 8 IS COMPLETE</p><p>Nine chapters, <strong>F8.0 to F8.8</strong>, covering the largest single block in the paper — <strong>80 planning marks</strong> — and every format observed in the 2023 paper: 10 vocabulary, 5 para jumbles, 5 comprehension, 15 Quant across arithmetic, mensuration, algebra, probability and DI, and the single reasoning question.</p><p><strong>But this module is not finished by being read.</strong> It is finished by being <strong>run</strong>, thirty minutes an evening for twelve weeks, on F8.0's calendar. Go to <strong>F8.0 §3, week 1, Monday</strong>, and start tomorrow.</p><p><strong>Next in the manual: Module 4 — Indian Economy, Population, Development and Globalisation.</strong> Five chapters, 8 hours, 15 marks — the leanest content module left, and per Blueprint §11.3 the first place to sacrifice depth if work eats a week.</p><p>Before you leave Module 8, state without looking: the fraction for 16⅔%; the curved and total surface areas of a hemisphere; what α + β and αβ equal; how many face cards are in a pack; and the difference between a percentage and a percentage point.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F8.8
+  &middot; v1.0</footer>
+</body>
+</html>
