@@ -56,7 +56,7 @@ Listed in recommended study order (Blueprint §10.2), not module-number order.
 
 | Order | M | Module | Chapters | Hours | Marks | Priority |
 |---:|---|---|---:|---:|---:|---|
-| 1 | 9 | General Science & Computer Applications | 7 | 22 | 42.5 | ★★★★★ |
+| 1 | 9 | General Science & Computer Applications | **5 of 7** | 22 | 42.5 | ★★★★★ |
 | 2 | 4 | Indian Economy + Population/Development/Globalisation | 5 | 8 | 15.0 | ★★★☆☆ |
 | 3 | 10 | Integrated Current Affairs | 2 | 12 | 20.0 | ★★★★☆ |
 | 4 | 11 | PYQ Analysis, 5 Mocks, Final Revision | mocks | 26 | multiplier | ★★★★★ |
@@ -142,6 +142,35 @@ insurance in the low-yield list at one question in 2023.
 
 F6.7 §2 (scope of audit) is the only section in the module with **direct PYQ evidence** — the 2023 paper
 tested it through a "which one is not correct" item.
+
+### 3.2 Module 9 chapter plan — in progress
+
+This module was **added on the Blueprint's recommendation** (§9.1), which called it the single correction
+worth more marks than any other change available. It is **official syllabus head 6**, appeared in every
+paper analysed, and was worth **50 marks in 2023** — as much as the entire labour block.
+
+The plan is built directly onto the ten 2023 General Science items and ten Computer Applications items
+recorded in Blueprint §4.4, so every known PYQ maps to a chapter:
+
+| Ch | Topic | 2023 items it answers | Status |
+|---|---|---|---|
+| **F9.1** | Physics I: units, kinematics, motion, energy, fluids | Inelastic collision; uniform acceleration of a train | **Complete v1.0** — 27 pp, 30 Q |
+| **F9.2** | Physics II: optics, heat, sound, electricity, modern physics | Combined lens power; concave mirror at infinity | **Complete v1.0** — 28 pp, 30 Q |
+| F9.3 | Chemistry | Effluents and pH; soaps; an enthalpy reaction | Next |
+| F9.4 | Biology and environment | Eyeball layers; banyan prop roots; ocean acidification | Planned |
+| F9.5 | Computer fundamentals and number systems | Octal to binary; hexadecimal to decimal; program counter register | Planned |
+| F9.6 | Operating systems, software and programming | Real-time OS; top-down languages; C structure operator; HDD error-check command | Planned |
+| F9.7 | Networking, internet and HTML | IP address validity; mesh topology links; HTML internal linking | Planned |
+
+**Chapters F9.1 and F9.2 are deliberately written as a RECALL layer, not a teaching layer.** Blueprint
+§9.1 states that the physics half is *"not new learning — it is recall"* for a Mechanical Engineer, so
+teaching it from first principles would spend the hours the Blueprint exists to save. They are dense
+tables, formulas, traps and heavy practice, budgeted at two days each rather than four.
+
+Blueprint §4.4 also warns that **Computer Applications is the exception** — number-system conversions
+are easy, but the C, HTML and operating-system items *"need actual targeted preparation. Budget real
+hours there, not zero."* F9.5 to F9.7 will therefore be written as a genuine Foundation layer, not a
+recall layer.
 
 ---
 

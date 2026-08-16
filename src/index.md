@@ -29,6 +29,22 @@ The HTML is the same content for reading on screen; it reflows for phone and tab
 | **F6.7** | Auditing — concepts, scope, types, audit report | [PDF, 29 pp](../pdf/module-06/F6.7-auditing.pdf) | [HTML](module-06/F6.7-auditing.html) | 30 |
 | **F6.8** | Statistics — central tendency, dispersion, correlation | [PDF, 21 pp](../pdf/module-06/F6.8-statistics.pdf) | [HTML](module-06/F6.8-statistics.html) | 25 |
 
+## Module 9 — General Science & Computer Applications · in progress
+
+| Ch | Topic | PDF | On screen | Q |
+|---|---|---|---|---:|
+| **F9.1** | Physics I — units, kinematics, motion, energy, fluids | [PDF, 22 pp](../pdf/module-09/F9.1-physics-mechanics.pdf) | [HTML](module-09/F9.1-physics-mechanics.html) | 30 |
+| **F9.2** | Physics II — optics, heat, sound, electricity, modern physics | [PDF, 26 pp](../pdf/module-09/F9.2-physics-optics-electricity.pdf) | [HTML](module-09/F9.2-physics-optics-electricity.html) | 30 |
+| F9.3 | Chemistry | — | *next* | — |
+| F9.4 | Biology and environment | — | *planned* | — |
+| F9.5 | Computer fundamentals and number systems | — | *planned* | — |
+| F9.6 | Operating systems, software and programming | — | *planned* | — |
+| F9.7 | Networking, internet and HTML | — | *planned* | — |
+
+F9.1 and F9.2 are a **recall layer**, not a teaching layer — the blueprint is explicit that the physics
+half of this module is recall rather than new learning for a Mechanical Engineer. Read the tables, then
+go to the questions. Budget two days each, not four.
+
 ## Module 7 — Insurance · complete
 
 | Ch | Topic | PDF | On screen | Q |
@@ -61,8 +77,8 @@ you are resuming after a break.
 
 ## What to do next
 
-1. **Module 9** — General Science and Computer Applications, 42.5 marks. The fastest conversion on the
-   board for a Mechanical Engineer
+1. **Module 9** — five chapters remaining: F9.3 Chemistry, F9.4 Biology, then F9.5 to F9.7 on Computer
+   Applications
 2. **Module 4** — Economy, lean, 8 hours
 3. **Module 10** — Integrated Current Affairs
 4. **Module 11** — PYQ analysis, five full mocks, final revision

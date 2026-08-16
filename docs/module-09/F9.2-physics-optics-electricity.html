@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics II — Optics, Heat, Sound, Electricity and Modern Physics</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F9.2 · Physics — Optics &amp; Electricity
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · FOUNDATION LAYER · MODULE 9 · CHAPTER F9.2</p><h1 class="doc-t">Physics II — Optics, Heat, Sound, Electricity and Modern Physics</h1><p class="doc-s">Chapter F9.2 — Containing the Two Optics Items the 2023 Paper Actually Asked</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 9 — General Science &amp; Computer Applications</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F9.2</td></tr><tr><td class="k">Topic</td><td class="v">Official syllabus head 6 — General Science</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal note"><p class="cal-h">NOTE · A RECALL LAYER, LIKE F9.1</p><p>Same shape as F9.1 and for the same reason: this is revision, not instruction. Tables, formulas, traps, practice.</p><p><strong>Section 1 is the section to read properly.</strong> Two of the ten General Science questions in the 2023 paper were optics — the <strong>power of a combination of lenses</strong> and a <strong>concave mirror with the object at infinity</strong> (PYQ-DERIVED, Blueprint §4.4). Both are answered by material in §1.2 and §1.3.</p></aside><aside class="cal high-yield"><p class="cal-h">HIGH YIELD · WHAT THE 2023 SCIENCE BLOCK ACTUALLY CONTAINED</p><p>Worth restating, because it shapes how you should read this chapter. The ten General Science questions in 2023 were:</p><div class="tw"><table><thead><tr><th style="text-align:left">Item</th><th style="text-align:left">Where it is covered</th></tr></thead><tbody><tr><td style="text-align:left">Combined power of lenses</td><td style="text-align:left"><strong>F9.2 §1.3</strong></td></tr><tr><td style="text-align:left">Concave mirror, object at infinity</td><td style="text-align:left"><strong>F9.2 §1.2</strong></td></tr><tr><td style="text-align:left">Inelastic collision</td><td style="text-align:left">F9.1 §3.2</td></tr><tr><td style="text-align:left">Uniform acceleration of a train</td><td style="text-align:left">F9.1 §2.2</td></tr><tr><td style="text-align:left">Effluents and pH</td><td style="text-align:left">F9.3</td></tr><tr><td style="text-align:left">Soaps and detergents</td><td style="text-align:left">F9.3</td></tr><tr><td style="text-align:left">An enthalpy reaction</td><td style="text-align:left">F9.3</td></tr><tr><td style="text-align:left">Layers of the eyeball</td><td style="text-align:left">F9.4</td></tr><tr><td style="text-align:left">Banyan prop roots</td><td style="text-align:left">F9.4</td></tr><tr><td style="text-align:left">Ocean acidification</td><td style="text-align:left">F9.4</td></tr></tbody></table></div><p><strong>Four of ten were mechanics and optics.</strong> That is the single strongest argument for the recall-layer approach: you are not learning this, you are reactivating it.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-optics"><span class="toc-t">1. Session 1 — Optics <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#11-reflection-and-the-two-formulas"><span class="toc-t">1.1 Reflection and the two formulas</span></a><a class="toc-3" href="#12-spherical-mirrors-the-image-table"><span class="toc-t">1.2 Spherical mirrors — the image table</span></a><a class="toc-3" href="#13-lens-power-the-other-2023-item"><span class="toc-t">1.3 Lens power — the other 2023 item</span></a><a class="toc-3" href="#14-the-light-phenomena-that-get-asked"><span class="toc-t">1.4 The light phenomena that get asked</span></a><a class="toc-3" href="#15-defects-of-vision"><span class="toc-t">1.5 Defects of vision</span></a><a class="toc-2" href="#2-session-2-heat"><span class="toc-t">2. Session 2 — Heat <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#21-scales-and-transfer"><span class="toc-t">2.1 Scales and transfer</span></a><a class="toc-3" href="#22-the-numbers-worth-carrying"><span class="toc-t">2.2 The numbers worth carrying</span></a><a class="toc-3" href="#23-the-laws-of-thermodynamics-at-recognition-level"><span class="toc-t">2.3 The laws of thermodynamics, at recognition level</span></a><a class="toc-2" href="#3-session-3-sound"><span class="toc-t">3. Session 3 — Sound <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></span></a><a class="toc-2" href="#4-session-4-electricity-and-magnetism"><span class="toc-t">4. Session 4 — Electricity and Magnetism <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#41-the-core-relations"><span class="toc-t">4.1 The core relations</span></a><a class="toc-3" href="#42-household-electricity"><span class="toc-t">4.2 Household electricity</span></a><a class="toc-3" href="#43-magnetism-and-induction"><span class="toc-t">4.3 Magnetism and induction</span></a><a class="toc-2" href="#5-session-5-modern-physics"><span class="toc-t">5. Session 5 — Modern Physics <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#51-the-electromagnetic-spectrum"><span class="toc-t">5.1 The electromagnetic spectrum</span></a><a class="toc-3" href="#52-the-nucleus"><span class="toc-t">5.2 The nucleus</span></a><a class="toc-2" href="#6-graded-practice-30-questions"><span class="toc-t">6. Graded Practice — 30 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#61-level-1-recognition"><span class="toc-t">6.1 Level 1 — Recognition</span></a><a class="toc-3" href="#62-level-2-understanding"><span class="toc-t">6.2 Level 2 — Understanding</span></a><a class="toc-3" href="#63-level-3-recruitment-test-standard"><span class="toc-t">6.3 Level 3 — Recruitment Test standard</span></a><a class="toc-2" href="#7-answers-and-explanations"><span class="toc-t">7. Answers and Explanations</span></a><a class="toc-3" href="#71-level-1"><span class="toc-t">7.1 Level 1</span></a><a class="toc-3" href="#72-level-2"><span class="toc-t">7.2 Level 2</span></a><a class="toc-3" href="#73-level-3"><span class="toc-t">7.3 Level 3</span></a><a class="toc-2" href="#8-one-minute-revision"><span class="toc-t">8. One-Minute Revision</span></a><a class="toc-2" href="#9-five-minute-wall-sheet"><span class="toc-t">9. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F9.2 — FIVE SHORT SESSIONS</p><ol><li><strong>Session 1</strong> — Optics: mirrors, lenses, power, and light phenomena (§1) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 2</strong> — Heat and thermal behaviour (§2) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 3</strong> — Sound (§3) <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></li><li><strong>Session 4</strong> — Electricity and magnetism (§4) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 5</strong> — Modern physics and the spectrum (§5) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li></ol><p>Then 30 graded questions in §6. Budget <strong>two days</strong>, weighted towards §1 and §4.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-optics">1. Session 1 — Optics <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="11-reflection-and-the-two-formulas">1.1 Reflection and the two formulas</h3><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left"><strong>Mirror</strong></th><th style="text-align:left"><strong>Lens</strong></th></tr></thead><tbody><tr><td style="text-align:left">Formula</td><td style="text-align:left"><strong>1/v + 1/u = 1/f</strong></td><td style="text-align:left"><strong>1/v − 1/u = 1/f</strong></td></tr><tr><td style="text-align:left">Magnification</td><td style="text-align:left">m = <strong>−v/u</strong></td><td style="text-align:left">m = <strong>v/u</strong></td></tr><tr><td style="text-align:left">Converging type</td><td style="text-align:left"><strong>Concave</strong></td><td style="text-align:left"><strong>Convex</strong></td></tr><tr><td style="text-align:left">Diverging type</td><td style="text-align:left"><strong>Convex</strong></td><td style="text-align:left"><strong>Concave</strong></td></tr></tbody></table><p class="cap">Note the sign difference between the two formulas - a plus for mirrors, a minus for lenses</p></div><p>A <strong>plane mirror</strong> gives an image that is <strong>virtual, erect, of the same size</strong>, <strong>laterally inverted</strong>, and <strong>as far behind the mirror as the object is in front</strong>.</p><h3 id="12-spherical-mirrors-the-image-table">1.2 Spherical mirrors — the image table</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · CONCAVE MIRROR, OBJECT AT INFINITY</p><p>This is a 2023 question. For a <strong>concave mirror with the object at infinity</strong>, the image is formed <strong>at the focus</strong>, and it is <strong>real, inverted and highly diminished</strong> — effectively a point.</p><p>The full table, which is worth having complete because any row can be asked:</p><div class="tw"><table><thead><tr><th style="text-align:left">Object position</th><th style="text-align:left">Image position</th><th style="text-align:left">Nature</th></tr></thead><tbody><tr><td style="text-align:left"><strong>At infinity</strong></td><td style="text-align:left"><strong>At the focus F</strong></td><td style="text-align:left">Real, inverted, <strong>highly diminished</strong></td></tr><tr><td style="text-align:left">Beyond C</td><td style="text-align:left">Between F and C</td><td style="text-align:left">Real, inverted, diminished</td></tr><tr><td style="text-align:left">At C</td><td style="text-align:left">At C</td><td style="text-align:left">Real, inverted, <strong>same size</strong></td></tr><tr><td style="text-align:left">Between C and F</td><td style="text-align:left">Beyond C</td><td style="text-align:left">Real, inverted, <strong>enlarged</strong></td></tr><tr><td style="text-align:left"><strong>At F</strong></td><td style="text-align:left"><strong>At infinity</strong></td><td style="text-align:left">Real, inverted, highly enlarged</td></tr><tr><td style="text-align:left">Between F and pole</td><td style="text-align:left"><strong>Behind the mirror</strong></td><td style="text-align:left"><strong>Virtual, erect, enlarged</strong></td></tr></tbody></table></div><p>Note the symmetry: object at infinity gives an image at F, and object at F gives an image at infinity. The two rows are each other's distractors.</p><p>A <strong>convex mirror</strong> is simpler and is asked as a single fact: it <strong>always</strong> forms a <strong>virtual, erect and diminished</strong> image, whatever the object position. That is exactly why it is used as a <strong>rear-view mirror</strong> — a wide field of view.</p></aside><p><strong>Uses:</strong> concave — shaving mirror, dentist's mirror, <strong>headlight reflector</strong>, solar furnace. Convex — <strong>rear-view mirror</strong>, street-light reflector.</p><h3 id="13-lens-power-the-other-2023-item">1.3 Lens power — the other 2023 item</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · POWER, DIOPTRES AND COMBINATION</p><blockquote><p><strong>P = 1/f</strong>, where f is the focal length <strong>in metres</strong>. The unit is the <strong>dioptre (D)</strong>.</p></blockquote><p>Two consequences that between them answer the 2023 question:</p><ol><li><strong>A convex (converging) lens has POSITIVE power; a concave (diverging) lens has NEGATIVE power.</strong> So a lens of power −2 D is concave with a focal length of −0.5 m</li><li><strong>For thin lenses placed in contact, powers ADD: P = P₁ + P₂ + …</strong></li></ol><p>So +2 D combined with +3 D gives <strong>+5 D</strong>. And +5 D combined with −2 D gives +3 D.</p><p>The trap is to add <strong>focal lengths</strong> instead of powers. Focal lengths combine as 1/f = 1/f₁ + 1/f₂, which is why converting to power first is always the faster route.</p></aside><h3 id="14-the-light-phenomena-that-get-asked">1.4 The light phenomena that get asked</h3><div class="tw"><table><thead><tr><th style="text-align:left">Phenomenon</th><th style="text-align:left">Condition</th><th style="text-align:left">Everyday example</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Refraction</strong></td><td style="text-align:left">Light passes between media of different optical density</td><td style="text-align:left">A pencil appearing bent in water</td></tr><tr><td style="text-align:left"><strong>Total internal reflection</strong></td><td style="text-align:left"><strong>Denser to rarer</strong> medium, at <strong>more than the critical angle</strong></td><td style="text-align:left"><strong>Optical fibre</strong>, mirage, sparkle of a diamond</td></tr><tr><td style="text-align:left"><strong>Dispersion</strong></td><td style="text-align:left">White light splits by wavelength through a prism</td><td style="text-align:left">Rainbow</td></tr><tr><td style="text-align:left"><strong>Scattering</strong></td><td style="text-align:left">Light deflected by particles; shorter wavelengths scatter more</td><td style="text-align:left"><strong>Blue sky</strong>, <strong>red sunrise and sunset</strong></td></tr><tr><td style="text-align:left"><strong>Colour of an object</strong></td><td style="text-align:left">The object <strong>reflects</strong> that colour and absorbs the rest</td><td style="text-align:left">A red book reflects red</td></tr></tbody></table></div><aside class="cal trap"><p class="cal-h">COMMON UPSC TRAP · WHY THE SKY IS BLUE AND THE SUNSET RED — ONE CAUSE</p><p>Both are <strong>scattering</strong>, not reflection and not refraction.</p><p>Shorter wavelengths scatter far more strongly, so blue light is scattered across the sky, which is what you see when you look away from the Sun. At sunrise and sunset the light travels a much longer path through the atmosphere, so the blue has been scattered <em>out</em> of the beam by the time it reaches you, leaving the red.</p><p>One cause, two opposite-looking results. Options offering reflection or refraction for either are wrong.</p></aside><h3 id="15-defects-of-vision">1.5 Defects of vision</h3><div class="tw"><table><thead><tr><th style="text-align:left">Defect</th><th style="text-align:left">Problem</th><th style="text-align:left">Corrected by</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Myopia</strong> — short-sightedness</td><td style="text-align:left">Image forms <strong>in front of</strong> the retina</td><td style="text-align:left"><strong>Concave</strong> (diverging) lens</td></tr><tr><td style="text-align:left"><strong>Hypermetropia</strong> — long-sightedness</td><td style="text-align:left">Image forms <strong>behind</strong> the retina</td><td style="text-align:left"><strong>Convex</strong> (converging) lens</td></tr><tr><td style="text-align:left"><strong>Presbyopia</strong></td><td style="text-align:left">Loss of accommodation with age</td><td style="text-align:left"><strong>Bifocal</strong> lens</td></tr><tr><td style="text-align:left"><strong>Astigmatism</strong></td><td style="text-align:left">Unequal curvature of the cornea</td><td style="text-align:left"><strong>Cylindrical</strong> lens</td></tr></tbody></table></div><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 1</p><ol><li>Give the mirror and lens formulas. What differs between them?</li><li>Concave mirror, object at infinity — where is the image and what is its nature?</li><li>What image does a convex mirror always form, and what is it used for?</li><li>Define the power of a lens and its unit. How do powers combine in contact?</li><li>Two lenses of +4 D and −1 D are in contact. What is the combined power and focal length?</li><li>Why is the sky blue and the sunset red? Which single phenomenon explains both?</li><li>Myopia and hypermetropia — which lens corrects each?</li></ol></aside><div class="pagebreak"></div><h2 id="2-session-2-heat">2. Session 2 — Heat <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="21-scales-and-transfer">2.1 Scales and transfer</h3><ul><li><strong>K = °C + 273.15.</strong> °F = (9/5)°C + 32. The two scales read the <strong>same at −40°</strong></li><li>Three modes of transfer: <strong>conduction</strong> (solids, no bulk movement), <strong>convection</strong> (fluids, bulk</li></ul><p>movement), <strong>radiation</strong> (no medium needed — how the Sun's heat reaches us)</p><h3 id="22-the-numbers-worth-carrying">2.2 The numbers worth carrying</h3><div class="tw"><table><thead><tr><th style="text-align:left">Quantity</th><th style="text-align:left">Value</th></tr></thead><tbody><tr><td style="text-align:left">Specific heat capacity of water</td><td style="text-align:left">about <strong>4.2 kJ kg⁻¹ K⁻¹</strong> — unusually high</td></tr><tr><td style="text-align:left"><strong>Latent heat of fusion of ice</strong></td><td style="text-align:left">about <strong>336 kJ kg⁻¹</strong> (80 cal g⁻¹)</td></tr><tr><td style="text-align:left"><strong>Latent heat of vaporisation of water</strong></td><td style="text-align:left">about <strong>2,260 kJ kg⁻¹</strong> (540 cal g⁻¹)</td></tr></tbody></table></div><p>Water's <strong>high specific heat</strong> is why it is used as a coolant, and why coastal climates are moderate.</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE ANOMALOUS EXPANSION OF WATER</p><p><strong>Water has its maximum density at 4 °C.</strong> Below that temperature it <em>expands</em> on cooling, which is anomalous.</p><p>The consequence is the examinable part: <strong>a lake freezes from the surface downwards.</strong> As the surface water cools it becomes denser and sinks — but only until 4 °C. Below that it becomes <em>less</em> dense, so it stays on top, freezes there, and the ice then insulates the water beneath. That is why aquatic life survives a winter.</p><p>Note also that <strong>ice is less dense than water</strong>, which is why it floats — the reason an option saying "ice is denser than water" is wrong.</p></aside><h3 id="23-the-laws-of-thermodynamics-at-recognition-level">2.3 The laws of thermodynamics, at recognition level</h3><div class="tw"><table><thead><tr><th style="text-align:left">Law</th><th style="text-align:left">Content</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Zeroth</strong></td><td style="text-align:left">Bodies in thermal equilibrium with a third are in equilibrium with each other — defines temperature</td></tr><tr><td style="text-align:left"><strong>First</strong></td><td style="text-align:left">Energy is conserved: ΔQ = ΔU + W</td></tr><tr><td style="text-align:left"><strong>Second</strong></td><td style="text-align:left">Heat cannot flow spontaneously from a colder to a hotter body; entropy of an isolated system increases</td></tr><tr><td style="text-align:left"><strong>Third</strong></td><td style="text-align:left">Entropy approaches a constant as temperature approaches absolute zero</td></tr></tbody></table></div><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 2</p><ol><li>Convert 37 °C to kelvin and to fahrenheit</li><li>Name the three modes of heat transfer and which needs no medium</li><li>Give the latent heats of fusion of ice and vaporisation of water</li><li>At what temperature is water densest? Why does a lake freeze from the top?</li><li>Which law of thermodynamics is energy conservation? Which introduces entropy?</li></ol></aside><div class="pagebreak"></div><h2 id="3-session-3-sound">3. Session 3 — Sound <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></h2><div class="tw"><table><thead><tr><th style="text-align:left">Property</th><th style="text-align:left">Fact</th></tr></thead><tbody><tr><td style="text-align:left">Nature</td><td style="text-align:left">A <strong>longitudinal mechanical</strong> wave</td></tr><tr><td style="text-align:left">Medium</td><td style="text-align:left"><strong>Required</strong> — sound <strong>cannot travel through a vacuum</strong></td></tr><tr><td style="text-align:left">Speed in air</td><td style="text-align:left">about <strong>343 m s⁻¹</strong> at 20 °C</td></tr><tr><td style="text-align:left">Speed by medium</td><td style="text-align:left"><strong>Fastest in solids</strong>, slower in liquids, <strong>slowest in gases</strong></td></tr><tr><td style="text-align:left"><strong>Pitch</strong></td><td style="text-align:left">Depends on <strong>frequency</strong></td></tr><tr><td style="text-align:left"><strong>Loudness</strong></td><td style="text-align:left">Depends on <strong>amplitude</strong></td></tr><tr><td style="text-align:left">Quality or timbre</td><td style="text-align:left">Depends on waveform</td></tr></tbody></table></div><p><strong>Frequency ranges:</strong> <strong>infrasonic</strong> below 20 Hz · <strong>audible 20 Hz to 20,000 Hz</strong> · <strong>ultrasonic</strong> above 20 kHz.</p><p><strong>Applications:</strong> echo and <strong>SONAR</strong> (depth sounding), ultrasonography, reverberation control, the <strong>Doppler effect</strong> (apparent change in frequency due to relative motion).</p><aside class="cal trap"><p class="cal-h">COMMON UPSC TRAP · PITCH VERSUS LOUDNESS</p><p><strong>Pitch depends on frequency. Loudness depends on amplitude.</strong> They are routinely swapped in options, and the swap is easy to miss because both words feel like "how the sound seems".</p><p>A shrill sound has a <strong>high frequency</strong>; a booming sound has a <strong>large amplitude</strong>. Sound also travels <strong>fastest in solids</strong> — the intuitive answer is air, because that is where we hear it, and that is exactly why the question works.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 3</p><ol><li>What kind of wave is sound? Can it travel in a vacuum?</li><li>In which medium is sound fastest, and in which slowest?</li><li>Pitch depends on what? Loudness on what?</li><li>Give the three frequency ranges</li></ol></aside><div class="pagebreak"></div><h2 id="4-session-4-electricity-and-magnetism">4. Session 4 — Electricity and Magnetism <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="41-the-core-relations">4.1 The core relations</h3><div class="tw"><table><thead><tr><th style="text-align:left">Relation</th><th style="text-align:left">Formula</th></tr></thead><tbody><tr><td style="text-align:left">Current</td><td style="text-align:left"><strong>I = Q/t</strong>, unit <strong>ampere</strong></td></tr><tr><td style="text-align:left"><strong>Ohm's law</strong></td><td style="text-align:left"><strong>V = IR</strong></td></tr><tr><td style="text-align:left">Resistance of a conductor</td><td style="text-align:left">R = ρL/A — proportional to length, inversely to area</td></tr><tr><td style="text-align:left"><strong>Series</strong> combination</td><td style="text-align:left"><strong>R = R₁ + R₂ + …</strong> — greater than the largest</td></tr><tr><td style="text-align:left"><strong>Parallel</strong> combination</td><td style="text-align:left"><strong>1/R = 1/R₁ + 1/R₂ + …</strong> — <strong>less than the smallest</strong></td></tr><tr><td style="text-align:left"><strong>Power</strong></td><td style="text-align:left"><strong>P = VI = I²R = V²/R</strong></td></tr><tr><td style="text-align:left">Heating effect</td><td style="text-align:left"><strong>H = I²Rt</strong> — Joule's law of heating</td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · SERIES VERSUS PARALLEL, AND THE DIRECTION OF THE INEQUALITY</p><p><strong>In series the equivalent resistance is greater than the largest individual resistance. In parallel it is LESS than the smallest.</strong></p><p>The parallel half is what gets tested, because it is counter-intuitive — adding another path <em>reduces</em> total resistance, since current has more routes available. An option saying parallel resistance exceeds the largest component is wrong.</p><p>Practical corollary: household appliances are wired in <strong>parallel</strong>, so each gets the full supply voltage and can be switched independently.</p></aside><h3 id="42-household-electricity">4.2 Household electricity</h3><ul><li>Three wires: <strong>live</strong> (usually red or brown), <strong>neutral</strong> (black or blue), <strong>earth</strong> (green or</li></ul><p>yellow-green)</p><ul><li><strong>The fuse is connected in the LIVE wire</strong>, so that a fault disconnects the supply from the appliance</li><li>The <strong>earth wire</strong> is connected to the <strong>metallic body</strong> of an appliance, giving a low-resistance path</li></ul><p>to earth and protecting the user from shock</p><ul><li><strong>India's supply: 220–240 V at 50 Hz</strong></li><li>The commercial unit of energy is the <strong>kilowatt-hour</strong> — F9.1 §4.2</li></ul><h3 id="43-magnetism-and-induction">4.3 Magnetism and induction</h3><div class="tw"><table><thead><tr><th style="text-align:left">Rule or device</th><th style="text-align:left">What it does</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Right-hand thumb rule</strong></td><td style="text-align:left">Direction of the magnetic field around a current-carrying conductor</td></tr><tr><td style="text-align:left"><strong>Fleming's LEFT-hand rule</strong></td><td style="text-align:left"><strong>Force</strong> on a current-carrying conductor in a field — the <strong>MOTOR</strong> rule</td></tr><tr><td style="text-align:left"><strong>Fleming's RIGHT-hand rule</strong></td><td style="text-align:left">Direction of <strong>induced current</strong> — the <strong>GENERATOR</strong> rule</td></tr><tr><td style="text-align:left"><strong>Electric motor</strong></td><td style="text-align:left">Converts <strong>electrical to mechanical</strong> energy</td></tr><tr><td style="text-align:left"><strong>Generator or dynamo</strong></td><td style="text-align:left">Converts <strong>mechanical to electrical</strong> energy</td></tr><tr><td style="text-align:left"><strong>Transformer</strong></td><td style="text-align:left">Changes voltage; works on <strong>mutual induction</strong>; <strong>AC only</strong></td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · LEFT FOR MOTOR, RIGHT FOR GENERATOR — AND WHY A TRANSFORMER NEEDS AC</p><p>Two facts that are asked directly.</p><p><strong>Fleming's left hand = motor</strong> (force produced from current). <strong>Fleming's right hand = generator</strong> (current produced from motion). The mnemonic: <strong>left for a moto</strong>r, right for a generato<strong>r</strong> — or simply remember that the alphabet puts <em>generator</em> before <em>motor</em> while the hands go the other way.</p><p><strong>A transformer works only on alternating current</strong>, because it depends on a <strong>changing</strong> magnetic flux to induce an emf in the secondary. Direct current produces a steady flux and therefore no induced emf once the current is established. So "a transformer can be used with DC" is wrong — and it is the reason transmission is done with AC.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 4</p><ol><li>State Ohm's law and the three expressions for electric power</li><li>Series and parallel — which gives a resistance less than the smallest component?</li><li>In which wire is the fuse connected, and why? What does the earth wire protect?</li><li>India's supply voltage and frequency?</li><li>Left-hand rule or right-hand rule — which is the motor rule?</li><li>Why does a transformer not work on direct current?</li></ol></aside><div class="pagebreak"></div><h2 id="5-session-5-modern-physics">5. Session 5 — Modern Physics <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="51-the-electromagnetic-spectrum">5.1 The electromagnetic spectrum</h3><p>In order of <strong>increasing frequency</strong> and therefore <strong>decreasing wavelength</strong>:</p><blockquote><p><strong>Radio waves » Microwaves » Infrared » Visible light » Ultraviolet » X-rays » Gamma rays</strong></p></blockquote><p>Visible light runs from <strong>violet</strong> (highest frequency, shortest wavelength) to <strong>red</strong> (lowest frequency, longest wavelength) — remember VIBGYOR from violet to red.</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE ORDER, AND THE DIRECTION OF THE QUESTION</p><p>The sequence above is the whole of this topic, and the questions differ only in <strong>which direction</strong> they ask for.</p><p><strong>Gamma rays have the highest frequency and the shortest wavelength; radio waves the lowest frequency and longest wavelength.</strong> Read the stem for "increasing" or "decreasing", and for "frequency" or "wavelength" — four combinations, one sequence.</p></aside><h3 id="52-the-nucleus">5.2 The nucleus</h3><div class="tw"><table><thead><tr><th style="text-align:left">Term</th><th style="text-align:left">Content</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Radioactivity</strong></td><td style="text-align:left">Spontaneous emission of <strong>alpha</strong> (helium nucleus), <strong>beta</strong> (electron) and <strong>gamma</strong> (electromagnetic) radiation</td></tr><tr><td style="text-align:left">Penetrating power</td><td style="text-align:left">Gamma &gt; beta &gt; alpha. <strong>Ionising</strong> power is the reverse</td></tr><tr><td style="text-align:left"><strong>Half-life</strong></td><td style="text-align:left">Time for half the nuclei to decay</td></tr><tr><td style="text-align:left"><strong>Fission</strong></td><td style="text-align:left">A heavy nucleus splits. Used in <strong>nuclear reactors</strong> and the <strong>atom bomb</strong></td></tr><tr><td style="text-align:left"><strong>Fusion</strong></td><td style="text-align:left">Light nuclei combine. The energy source of the <strong>Sun</strong> and the <strong>hydrogen bomb</strong></td></tr></tbody></table></div><aside class="cal trap"><p class="cal-h">COMMON UPSC TRAP · FISSION VERSUS FUSION</p><p><strong>Fission = splitting = reactors and the atom bomb. Fusion = joining = the Sun and the hydrogen bomb.</strong></p><p>The words are nearly identical and the applications are routinely swapped. Anchor it on the Sun: the Sun <strong>fuses</strong> hydrogen into helium. Fusion requires enormous temperature and pressure, which is why we can build fission reactors but not yet commercial fusion ones.</p></aside><p>Also at recognition level: the <strong>photoelectric effect</strong> and the <strong>dual nature</strong> of light; <strong>X-rays</strong> (discovered by Roentgen, used in imaging); <strong>LASER</strong>; and <strong>semiconductors</strong> as the basis of electronics.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 5</p><ol><li>Write the electromagnetic spectrum in order of increasing frequency</li><li>Which has the shortest wavelength? Which the longest?</li><li>Name the three radiations and rank their penetrating power</li><li>Fission or fusion — which powers the Sun? Which powers a nuclear reactor?</li></ol></aside><div class="pagebreak"></div><h2 id="6-graded-practice-30-questions">6. Graded Practice — 30 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="61-level-1-recognition">6.1 Level 1 — Recognition</h3><p><strong>Q1.</strong> The SI unit of the power of a lens is the (a) watt (b) metre (c) dioptre (d) joule</p><p><strong>Q2.</strong> A convex lens is (a) converging (b) diverging (c) neither converging nor diverging (d) plane</p><p><strong>Q3.</strong> For a concave mirror with the object at infinity, the image is formed (a) at the pole (b) at the centre of curvature (c) at infinity (d) at the focus</p><p><strong>Q4.</strong> The mirror formula is (a) 1/v − 1/u = 1/f (b) 1/v + 1/u = 1/f (c) v + u = f (d) 1/f = v/u</p><p><strong>Q5.</strong> Which mirror is used as a rear-view mirror in vehicles? (a) Concave (b) Plane (c) Convex (d) Cylindrical</p><p><strong>Q6.</strong> Myopia is corrected by using (a) a convex lens (b) a cylindrical lens (c) a bifocal lens (d) a concave lens</p><p><strong>Q7.</strong> Sound <strong>cannot</strong> travel through (a) a vacuum (b) air (c) water (d) steel</p><p><strong>Q8.</strong> The audible range of frequency for a normal human ear is (a) 2 to 200 Hz (b) 20 to 20,000 Hz (c) 200 to 2,000 Hz (d) above 20 kHz</p><p><strong>Q9.</strong> Ohm's law is expressed as (a) V = I/R (b) I = VR (c) V = IR (d) R = VI</p><p><strong>Q10.</strong> The frequency of the alternating current supply in India is (a) 60 Hz (b) 100 Hz (c) 25 Hz (d) 50 Hz</p><h3 id="62-level-2-understanding">6.2 Level 2 — Understanding</h3><p><strong>Q11.</strong> Two thin lenses of power +2 D and +3 D are placed in contact. The power of the combination is (a) +5 D (b) +1 D (c) +6 D (d) +2.5 D</p><p><strong>Q12.</strong> The focal length of a lens whose power is −2 D is (a) +0.5 m (b) −0.5 m (c) −2 m (d) +2 m</p><p><strong>Q13.</strong> Total internal reflection occurs when light travels (a) from a rarer to a denser medium (b) along the normal (c) from a denser to a rarer medium at an angle greater than the critical angle (d) through a vacuum</p><p><strong>Q14.</strong> The blue colour of the sky is due to (a) reflection of light (b) refraction of light (c) total internal reflection (d) scattering of light</p><p><strong>Q15.</strong> Water has its maximum density at (a) 4 °C (b) 0 °C (c) 100 °C (d) −4 °C</p><p><strong>Q16.</strong> In a series combination of resistors, the equivalent resistance is (a) less than the smallest resistance (b) the sum of the individual resistances (c) the reciprocal of the sum of the resistances (d) the average of the resistances</p><p><strong>Q17.</strong> Electric power is given by (a) I²R only (b) V/I (c) VI (d) V/R</p><p><strong>Q18.</strong> A transformer works on the principle of (a) self-induction only (b) Ohm's law (c) the heating effect of current (d) mutual induction</p><p><strong>Q19.</strong> A transformer can be used with (a) alternating current only (b) direct current only (c) both equally well (d) neither</p><p><strong>Q20.</strong> Which one of the following has the <strong>highest</strong> frequency? (a) Radio waves (b) Gamma rays (c) Infrared radiation (d) Visible light</p><h3 id="63-level-3-recruitment-test-standard">6.3 Level 3 — Recruitment Test standard</h3><p><strong>Q21.</strong> Which one of the following statements is <strong>not</strong> correct? (a) A concave mirror can form both real and virtual images (b) A convex mirror always forms a virtual, erect and diminished image (c) A concave lens can form a real image of a real object (d) The power of a lens is the reciprocal of its focal length expressed in metres</p><p><strong>Q22.</strong> Consider the following statements:</p><ol><li>In a domestic electric circuit the fuse is connected in the live wire.</li><li>The earth wire is a safety measure connected to the metallic body of an appliance.</li><li>In a parallel combination the equivalent resistance is greater than the largest individual resistance.</li></ol><p>Which of the above statements are correct? (a) 1 and 3 only (b) 2 and 3 only (c) 1, 2 and 3 (d) 1 and 2 only</p><p><strong>Q23.</strong> Match List-I with List-II and select the correct answer using the code given below:</p><div class="tw"><table><thead><tr><th style="text-align:left">List-I</th><th style="text-align:left">List-II</th></tr></thead><tbody><tr><td style="text-align:left">A. Concave mirror</td><td style="text-align:left">1. Headlight reflector</td></tr><tr><td style="text-align:left">B. Convex mirror</td><td style="text-align:left">2. Rear-view mirror</td></tr><tr><td style="text-align:left">C. Convex lens</td><td style="text-align:left">3. Correction of hypermetropia</td></tr><tr><td style="text-align:left">D. Concave lens</td><td style="text-align:left">4. Correction of myopia</td></tr></tbody></table></div><p>(a) A-1 B-2 C-3 D-4 (b) A-2 B-1 C-4 D-3 (c) A-1 B-2 C-4 D-3 (d) A-3 B-4 C-1 D-2</p><p><strong>Q24.</strong> The latent heat of fusion of ice is about (a) 2,260 kJ kg⁻¹ (b) 336 kJ kg⁻¹ (c) 4.2 kJ kg⁻¹ (d) 100 kJ kg⁻¹</p><p><strong>Q25.</strong> A lake freezes from the surface downwards because (a) ice is denser than water (b) water is a good conductor of heat (c) water has its maximum density at 4 °C, so colder water remains at the top and freezes there (d) the atmosphere warms the lower layers of the lake</p><p><strong>Q26.</strong> Consider the following statements about sound:</p><ol><li>Sound travels fastest in solids and slowest in gases.</li><li>The pitch of a sound depends on its amplitude.</li><li>Sound is a longitudinal mechanical wave.</li></ol><p>Which of the above statements are correct? (a) 1 and 2 only (b) 2 and 3 only (c) 1, 2 and 3 (d) 1 and 3 only</p><p><strong>Q27.</strong> Nuclear fusion is the source of the energy of (a) the Sun (b) a nuclear reactor (c) an atom bomb (d) a thermal power station</p><p><strong>Q28.</strong> Fleming's left-hand rule gives the direction of the (a) induced current in a generator (b) force on a current-carrying conductor placed in a magnetic field (c) magnetic field around a straight current-carrying conductor (d) induced electromotive force</p><p><strong>Q29.</strong> Arranged in order of <strong>increasing frequency</strong>, the correct sequence is (a) gamma rays, X-rays, ultraviolet, visible light (b) visible light, infrared, microwaves, radio waves (c) radio waves, infrared, visible light, ultraviolet (d) X-rays, visible light, infrared, radio waves</p><p><strong>Q30.</strong> A body appears red in colour because it (a) absorbs red light (b) transmits all colours falling on it (c) emits red light of its own (d) reflects red light and absorbs the rest</p><div class="pagebreak"></div><h2 id="7-answers-and-explanations">7. Answers and Explanations</h2><h3 id="71-level-1">7.1 Level 1</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">c</td><td style="text-align:left">The <strong>dioptre</strong>, the reciprocal of the focal length in metres</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Converging.</strong> For lenses, convex converges; for <em>mirrors</em>, it is <strong>concave</strong> that converges — the reversal is worth fixing</td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">d</td><td style="text-align:left"><strong>At the focus</strong>, and the image is real, inverted and highly diminished. Option (c) is the mirror image of this case — object at F gives an image at infinity</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">b</td><td style="text-align:left"><strong>1/v + 1/u = 1/f</strong> for a mirror. Option (a) is the <strong>lens</strong> formula</td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Convex</strong>, because it always gives a virtual, erect, diminished image and a wide field of view</td></tr><tr><td style="text-align:left">6</td><td style="text-align:center">d</td><td style="text-align:left">A <strong>concave</strong> (diverging) lens. Hypermetropia needs a convex lens</td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">a</td><td style="text-align:left">A <strong>vacuum</strong> — sound is a mechanical wave and needs a material medium</td></tr><tr><td style="text-align:left">8</td><td style="text-align:center">b</td><td style="text-align:left"><strong>20 Hz to 20,000 Hz</strong></td></tr><tr><td style="text-align:left">9</td><td style="text-align:center">c</td><td style="text-align:left"><strong>V = IR</strong></td></tr><tr><td style="text-align:left">10</td><td style="text-align:center">d</td><td style="text-align:left"><strong>50 Hz</strong>, at 220–240 V. 60 Hz is the North American standard</td></tr></tbody></table></div><h3 id="72-level-2">7.2 Level 2</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">11</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Powers add for thin lenses in contact</strong>: +2 + 3 = <strong>+5 D</strong>. Adding focal lengths instead is the standard error</td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">b</td><td style="text-align:left">f = 1/P = 1/(−2) = <strong>−0.5 m</strong>. Negative power means a <strong>concave</strong> lens, and the sign must be carried through</td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Denser to rarer, beyond the critical angle</strong> — both conditions are required, which is why partial statements are wrong</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Scattering.</strong> Shorter wavelengths scatter more strongly, so blue dominates the sky</td></tr><tr><td style="text-align:left">15</td><td style="text-align:center">a</td><td style="text-align:left"><strong>4 °C.</strong> Below this water expands on cooling — the anomalous expansion</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">b</td><td style="text-align:left"><strong>The sum.</strong> In parallel it is <em>less than the smallest</em>, which is the counter-intuitive half</td></tr><tr><td style="text-align:left">17</td><td style="text-align:center">c</td><td style="text-align:left"><strong>VI</strong>, and equivalently I²R and V²/R. Option (a) says "only", which is what makes it wrong</td></tr><tr><td style="text-align:left">18</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Mutual induction</strong> between primary and secondary windings</td></tr><tr><td style="text-align:left">19</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Alternating current only</strong>, because a transformer needs a <strong>changing</strong> flux to induce an emf</td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Gamma rays</strong> — highest frequency and shortest wavelength in the spectrum</td></tr></tbody></table></div><h3 id="73-level-3">7.3 Level 3</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">21</td><td style="text-align:center">c</td><td style="text-align:left">A <strong>concave lens cannot form a real image of a real object</strong> — it is diverging and always gives a virtual, erect, diminished image. A concave <em>mirror</em> can form both real and virtual images, which is what (a) correctly states</td></tr><tr><td style="text-align:left">22</td><td style="text-align:center">d</td><td style="text-align:left"><strong>1 and 2 only.</strong> Statement 3 is false: in <strong>parallel</strong> the equivalent resistance is <strong>less than the smallest</strong> component, because current has additional paths</td></tr><tr><td style="text-align:left">23</td><td style="text-align:center">a</td><td style="text-align:left"><strong>A-1 B-2 C-3 D-4</strong> — concave mirror for a headlight reflector, convex mirror for rear view, convex lens for hypermetropia, concave lens for myopia</td></tr><tr><td style="text-align:left">24</td><td style="text-align:center">b</td><td style="text-align:left">About <strong>336 kJ kg⁻¹</strong>. Option (a) is the latent heat of <strong>vaporisation</strong>, and the two are each other's distractors</td></tr><tr><td style="text-align:left">25</td><td style="text-align:center">c</td><td style="text-align:left">Water is densest at <strong>4 °C</strong>, so water colder than that stays on top and freezes there, and the ice then insulates the water below. Option (a) reverses the density of ice and water</td></tr><tr><td style="text-align:left">26</td><td style="text-align:center">d</td><td style="text-align:left"><strong>1 and 3 only.</strong> Statement 2 is false — <strong>pitch depends on frequency</strong>, not amplitude. Amplitude governs loudness</td></tr><tr><td style="text-align:left">27</td><td style="text-align:center">a</td><td style="text-align:left">The <strong>Sun</strong>, which fuses hydrogen into helium. Reactors and the atom bomb use <strong>fission</strong></td></tr><tr><td style="text-align:left">28</td><td style="text-align:center">b</td><td style="text-align:left">The <strong>force on a conductor</strong> — the <strong>motor</strong> rule. The <strong>right</strong>-hand rule gives induced current, the generator case</td></tr><tr><td style="text-align:left">29</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Radio, infrared, visible, ultraviolet</strong> is the only option in increasing order of frequency. Option (a) is in <em>decreasing</em> order — read the stem's direction</td></tr><tr><td style="text-align:left">30</td><td style="text-align:center">d</td><td style="text-align:left">It <strong>reflects</strong> red and absorbs the other wavelengths. A body does not emit its own colour unless it is a source</td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · THE FOUR SHAPES IN THIS CHAPTER</p><ol><li><strong>The mirror-lens reversal.</strong> Q2, Q4 and Q21 all exploit it. <strong>Concave mirror converges; convex lens converges.</strong> Write that once on your wall sheet and check it every time</li><li><strong>Add powers, not focal lengths.</strong> Q11 and Q12. Convert to dioptres first and the arithmetic becomes addition</li><li><strong>The direction of the stem.</strong> Q29 gives you the right sequence in the wrong direction as a distractor. Underline "increasing" or "decreasing" before looking at the options</li><li><strong>The paired latent heats and paired velocities.</strong> Q24 here, and escape versus orbital velocity in F9.1. Where two numbers belong to a matched pair, the examiner offers the other one</li></ol></aside><div class="pagebreak"></div><h2 id="8-one-minute-revision">8. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F9.2</p><p><strong>FORMULAS</strong> mirror <strong>1/v + 1/u = 1/f</strong> · lens <strong>1/v − 1/u = 1/f</strong> · <strong>P = 1/f (metres), unit dioptre</strong> · <strong>powers ADD in contact: P = P₁ + P₂</strong></p><p><strong>CONVERGING</strong> <strong>concave MIRROR</strong> · <strong>convex LENS</strong> — the reversal that catches people</p><p><strong>CONCAVE MIRROR, OBJECT AT INFINITY » IMAGE AT THE FOCUS</strong>, real, inverted, highly diminished · object at F » image at infinity</p><p><strong>CONVEX MIRROR</strong> always <strong>virtual, erect, diminished</strong> » rear-view mirror</p><p><strong>USES</strong> concave mirror: shaving, dentist, <strong>headlight reflector</strong>, solar furnace · convex mirror: rear view</p><p><strong>SIGN OF POWER</strong> convex <strong>+</strong> · concave <strong>−</strong> · −2 D means f = <strong>−0.5 m</strong></p><p><strong>TOTAL INTERNAL REFLECTION</strong> <strong>denser to rarer, beyond the critical angle</strong> » optical fibre, mirage, diamond</p><p><strong>SCATTERING</strong> explains <strong>both</strong> the blue sky <strong>and</strong> the red sunset · colour of an object = the light it <strong>reflects</strong></p><p><strong>VISION</strong> myopia » <strong>concave</strong> lens · hypermetropia » <strong>convex</strong> · presbyopia » bifocal · astigmatism » cylindrical</p><p><strong>HEAT</strong> K = °C + 273.15 · −40° is the same in C and F · conduction, convection, <strong>radiation needs no medium</strong> · water specific heat <strong>4.2 kJ/kg K</strong> · <strong>latent fusion of ice 336</strong> · <strong>latent vaporisation of water 2,260</strong></p><p><strong>WATER DENSEST AT 4 °C</strong> » lakes freeze from the <strong>top</strong> down · <strong>ice is LESS dense than water</strong></p><p><strong>THERMODYNAMICS</strong> zeroth defines temperature · first is energy conservation · second introduces entropy</p><p><strong>SOUND</strong> longitudinal, mechanical, <strong>cannot travel in a vacuum</strong> · <strong>fastest in solids</strong> · <strong>pitch = frequency, loudness = amplitude</strong> · infrasonic below 20 Hz · audible <strong>20–20,000 Hz</strong> · ultrasonic above 20 kHz · SONAR, Doppler</p><p><strong>ELECTRICITY</strong> I = Q/t · <strong>V = IR</strong> · R = ρL/A · <strong>series = sum, greater than the largest</strong> · <strong>parallel = less than the SMALLEST</strong> · <strong>P = VI = I²R = V²/R</strong> · <strong>H = I²Rt</strong></p><p><strong>HOUSEHOLD</strong> <strong>fuse in the LIVE wire</strong> · <strong>earth to the metallic body</strong> · India <strong>220–240 V, 50 Hz</strong> · appliances wired in <strong>parallel</strong></p><p><strong>MAGNETISM</strong> <strong>Fleming LEFT = MOTOR</strong> (force) · <strong>RIGHT = GENERATOR</strong> (induced current) · motor: electrical to mechanical · generator: mechanical to electrical · <strong>transformer = mutual induction, AC ONLY</strong></p><p><strong>SPECTRUM, INCREASING FREQUENCY</strong> radio » microwave » infrared » visible » ultraviolet » X-ray » <strong>gamma</strong> · gamma shortest wavelength, radio longest · VIBGYOR violet to red</p><p><strong>NUCLEUS</strong> alpha (helium nucleus) · beta (electron) · gamma (EM) · penetrating gamma &gt; beta &gt; alpha, ionising the reverse · <strong>FISSION = splitting = reactors and atom bomb</strong> · <strong>FUSION = joining = the SUN and hydrogen bomb</strong></p></aside><h2 id="9-five-minute-wall-sheet">9. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F9.2</p><p><strong>CONCAVE MIRROR CONVERGES · CONVEX LENS CONVERGES</strong> — the reversal</p><p><strong>MIRROR 1/v + 1/u · LENS 1/v − 1/u</strong></p><p><strong>P = 1/f(m), DIOPTRE · POWERS ADD · CONVEX + , CONCAVE −</strong></p><p><strong>OBJECT AT INFINITY » IMAGE AT FOCUS</strong> (concave mirror) · <strong>CONVEX MIRROR ALWAYS VIRTUAL ERECT DIMINISHED</strong></p><p><strong>MYOPIA » CONCAVE · HYPERMETROPIA » CONVEX</strong></p><p><strong>BLUE SKY AND RED SUNSET = SCATTERING (one cause)</strong></p><p><strong>TIR: DENSER TO RARER, BEYOND CRITICAL ANGLE</strong></p><p><strong>WATER DENSEST AT 4 °C · ICE FLOATS · LAKES FREEZE TOP DOWN</strong></p><p><strong>FUSION 336 · VAPORISATION 2,260 kJ/kg</strong></p><p><strong>SOUND: NO VACUUM · FASTEST IN SOLIDS · PITCH = FREQUENCY</strong></p><p><strong>SERIES = SUM · PARALLEL = LESS THAN THE SMALLEST</strong></p><p><strong>P = VI = I²R = V²/R · FUSE IN LIVE WIRE · 220–240 V, 50 Hz</strong></p><p><strong>LEFT HAND = MOTOR · RIGHT HAND = GENERATOR · TRANSFORMER = AC ONLY</strong></p><p><strong>RADIO » MICROWAVE » INFRARED » VISIBLE » UV » X-RAY » GAMMA</strong> (increasing frequency)</p><p><strong>FISSION = REACTOR · FUSION = SUN</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> A transformer works only on alternating current because induction requires a changing magnetic flux — which is the whole reason electrical power is transmitted as AC rather than DC.</p></aside><aside class="cal action"><p class="cal-h">ACTION · NEXT IN MODULE 9</p><p><strong>Chapter F9.3 — Chemistry</strong>, which covers the remaining three 2023 science items: <strong>effluents and pH</strong>, <strong>soaps and detergents</strong>, and <strong>an enthalpy reaction</strong>. Then F9.4 Biology and Environment, and F9.5 to F9.7 on Computer Applications.</p><p>Before you move on, state without looking: which of concave and convex converges for a mirror and for a lens; where the image forms for a concave mirror with the object at infinity; how lens powers combine; which is less than the smallest, series or parallel; and which hand is the motor rule.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F9.2
+  &middot; v1.0</footer>
+</body>
+</html>
