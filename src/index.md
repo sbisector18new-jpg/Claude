@@ -22,6 +22,10 @@ can still print it from the browser (Ctrl/Cmd-P) if you prefer.
 | Module | Chapter | Topic | PDF | On screen | Version |
 |---|---|---|---|---|---|
 | 6 | F6.1 | Accounting fundamentals — equation, double entry, books, trial balance and error types | [PDF, 39 pp](../pdf/module-06/F6.1-accounting-fundamentals.pdf) | [HTML](module-06/F6.1-accounting-fundamentals.html) | v1.0 |
+| 6 | F6.2 | Concepts, conventions, standards — and capital versus revenue | [PDF, 35 pp](../pdf/module-06/F6.2-concepts-conventions-standards.pdf) | [HTML](module-06/F6.2-concepts-conventions-standards.html) | v1.0 |
+
+Read them in order — F6.2 §5 closes a thread F6.1 §6.2 deliberately left open, and F6.2 §2 assumes the
+accounting equation from F6.1 §2.
 
 ## Project state
 

@@ -35,7 +35,8 @@ Arithmetic closes against Blueprint §12 on all three columns (44+30=74 chapters
 | 5 | History, Freedom Movement, Art & Culture | 10 | 22 | 25.0 |
 
 Also complete: **Module 0 Master Blueprint v1.0**, **Foundation F1.1 v1.0** (Constitutional
-Foundations), **Foundation F6.1 v1.0** (Accounting Fundamentals — in `src/`, see §8).
+Foundations), **Foundation F6.1 v1.0** (Accounting Fundamentals) and **Foundation F6.2 v1.0**
+(Concepts, Conventions, Standards, Capital vs Revenue). F6.1 and F6.2 are in `src/` with PDFs — see §8.
 
 > **One item still unconfirmed.** Whether the **Foundation layer** (the F-prefixed, teach-from-zero
 > track) was carried beyond **F1.1**. F1.1 §12 closes by naming F1.2 and F1.3 as next. If Foundation
@@ -52,7 +53,7 @@ Listed in recommended study order (Blueprint §10.2), not module-number order.
 
 | Order | M | Module | Chapters | Hours | Marks | Priority |
 |---:|---|---|---:|---:|---:|---|
-| 1 | 6 + 7 | Accounting, Auditing & Statistics + Insurance | **7 of 8** | 30 | ~33 | ★★★★☆ |
+| 1 | 6 + 7 | Accounting, Auditing & Statistics + Insurance | **6 of 8** | 30 | ~33 | ★★★★☆ |
 | 2 | 9 | General Science & Computer Applications | 7 | 22 | 42.5 | ★★★★★ |
 | 3 | 4 | Indian Economy + Population/Development/Globalisation | 5 | 8 | 15.0 | ★★★☆☆ |
 | 4 | 10 | Integrated Current Affairs | 2 | 12 | 20.0 | ★★★★☆ |
@@ -122,9 +123,9 @@ sacrifice Module 4 depth first (lowest certainty, 15 marks).
 
 | Ch | Topic | Status |
 |---|---|---|
-| **F6.1** | Accounting fundamentals: equation, double entry, books, trial balance, error types | **Complete v1.0** |
-| F6.2 | Concepts, conventions, accounting standards; capital vs revenue | Next |
-| F6.3 | Final accounts: trading, P&L, balance sheet; provisions and reserves | Planned |
+| **F6.1** | Accounting fundamentals: equation, double entry, books, trial balance, error types | **Complete v1.0** — 39 pp |
+| **F6.2** | Concepts, conventions, accounting standards; capital vs revenue | **Complete v1.0** — 35 pp |
+| F6.3 | Final accounts: trading, P&L, balance sheet; provisions and reserves | Next |
 | F6.4 | Depreciation, goodwill, inventory valuation | Planned |
 | F6.5 | Ratio analysis and cash flow | Planned |
 | F6.6 | Bills of exchange; share capital | Planned |
