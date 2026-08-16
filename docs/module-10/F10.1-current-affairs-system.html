@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Current Affairs System</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F10.1 · The Current Affairs System
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · MODULE 10 · CHAPTER F10.1</p><h1 class="doc-t">The Current Affairs System</h1><p class="doc-s">Chapter F10.1 — A Method and a Watchlist, Because a Printed List of Facts Decays</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 10 — Integrated Current Affairs</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F10.1</td></tr><tr><td class="k">Topic</td><td class="v">Official syllabus head — Current Events and Developmental Issues</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal important"><p class="cal-h">IMPORTANT · THE HONEST POSITION ON THIS MODULE, STATED FIRST</p><p>Module 10 is <strong>20.0 planning marks over 12 hours</strong> — eight questions — and it is the only module in this manual that <strong>cannot be finished</strong>. Every other module is a closed body of material. This one acquires new content every week until the day of the paper.</p><p><strong>So a chapter that is merely a list of facts is the wrong deliverable.</strong> A list compiled in August 2026 for a paper written in November or December 2026 is wrong about everything that happens in between, and worse, it is <strong>confidently</strong> wrong — the failure mode F4.1 §0 introduced the dated-figure convention to prevent.</p><p><strong>What this chapter is instead:</strong> a <strong>collection system</strong> (§3), a <strong>verification protocol</strong> (§4), and a <strong>watchlist of the specific things this examination asks about</strong> (§5). It also contains the part of current affairs that does <strong>not</strong> decay — §2's institutional attributions, which are what "current affairs" questions in this examination overwhelmingly test.</p><p><strong>F10.2 is the dossier</strong>: the facts as they stood on 16 August 2026, dated and sourced, to be re-verified against §4's checklist before the paper.</p><p>That division — the method here, the perishable content there, clearly separated — is the only honest way to put current affairs in a printed manual. It is the same principle as F8.0's calendar declaring that it schedules existing questions rather than pretending to contain new ones.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-what-is-actually-being-tested"><span class="toc-t">1. Session 1 — What Is Actually Being Tested <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></span></a><a class="toc-3" href="#11-the-three-kinds-of-current-affairs-question"><span class="toc-t">1.1 The three kinds of "current affairs" question</span></a><a class="toc-3" href="#12-where-the-marks-actually-sit-for-this-examination"><span class="toc-t">1.2 Where the marks actually sit for this examination</span></a><a class="toc-2" href="#2-session-2-the-attributions-that-do-not-decay"><span class="toc-t">2. Session 2 — The Attributions That Do Not Decay <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#21-why-this-is-the-best-value-section-in-the-module"><span class="toc-t">2.1 Why this is the best-value section in the module</span></a><a class="toc-3" href="#22-reports-and-their-publishers"><span class="toc-t">2.2 Reports and their publishers</span></a><a class="toc-3" href="#23-the-bodies-most-relevant-to-this-post"><span class="toc-t">2.3 The bodies most relevant to this post</span></a><a class="toc-2" href="#3-session-3-the-collection-system"><span class="toc-t">3. Session 3 — The Collection System <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#31-the-sources-in-priority-order"><span class="toc-t">3.1 The sources, in priority order</span></a><a class="toc-3" href="#32-the-daily-habit-fifteen-minutes"><span class="toc-t">3.2 The daily habit — fifteen minutes</span></a><a class="toc-3" href="#33-the-monthly-consolidation-thirty-minutes"><span class="toc-t">3.3 The monthly consolidation — thirty minutes</span></a><a class="toc-2" href="#4-session-4-the-verification-protocol"><span class="toc-t">4. Session 4 — The Verification Protocol <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#41-the-two-sentence-rule-for-anything-you-cannot-verify"><span class="toc-t">4.1 The two-sentence rule for anything you cannot verify</span></a><a class="toc-2" href="#5-session-5-the-epfo-watchlist"><span class="toc-t">5. Session 5 — The EPFO Watchlist <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#51-the-standing-watchlist"><span class="toc-t">5.1 The standing watchlist</span></a><a class="toc-3" href="#52-how-to-read-a-change-like-the-labour-codes"><span class="toc-t">5.2 How to read a change like the labour codes</span></a><a class="toc-2" href="#6-graded-practice-20-questions"><span class="toc-t">6. Graded Practice — 20 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#61-level-1-reports-and-publishers"><span class="toc-t">6.1 Level 1 — Reports and publishers</span></a><a class="toc-3" href="#62-level-2-institutions"><span class="toc-t">6.2 Level 2 — Institutions</span></a><a class="toc-3" href="#63-level-3-recruitment-test-standard"><span class="toc-t">6.3 Level 3 — Recruitment Test standard</span></a><a class="toc-2" href="#7-answers-and-explanations"><span class="toc-t">7. Answers and Explanations</span></a><a class="toc-3" href="#71-level-1"><span class="toc-t">7.1 Level 1</span></a><a class="toc-3" href="#72-level-2"><span class="toc-t">7.2 Level 2</span></a><a class="toc-3" href="#73-level-3"><span class="toc-t">7.3 Level 3</span></a><a class="toc-2" href="#8-one-minute-revision"><span class="toc-t">8. One-Minute Revision</span></a><a class="toc-2" href="#9-five-minute-wall-sheet"><span class="toc-t">9. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F10.1</p><ol><li><strong>Session 1</strong> — What a printed chapter can and cannot do (§1) <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></li><li><strong>Session 2</strong> — What "integrated" means, and the attributions that do not decay (§2) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 3</strong> — The collection system (§3) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 4</strong> — The verification protocol (§4) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 5</strong> — The EPFO-specific watchlist (§5) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li></ol><p>Then 20 graded questions in §6 — deliberately built on the <strong>non-decaying</strong> part of the syllabus, so that this bank is still valid whenever you drill it.</p><p><strong>Do not read this chapter once and file it.</strong> §3 is a daily habit and §4 is a task for the fortnight before the paper.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-what-is-actually-being-tested">1. Session 1 — What Is Actually Being Tested <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></h2><h3 id="11-the-three-kinds-of-current-affairs-question">1.1 The three kinds of "current affairs" question</h3><div class="tw"><table><thead><tr><th style="text-align:left">Kind</th><th style="text-align:left">Example</th><th style="text-align:left">Decays?</th></tr></thead><tbody><tr><td style="text-align:left"><strong>1 Institutional attribution</strong></td><td style="text-align:left">Which body publishes the Human Development Report?</td><td style="text-align:left"><strong>No</strong> — permanent</td></tr><tr><td style="text-align:left"><strong>2 A recent, definite change</strong></td><td style="text-align:left">GST now has how many main slabs? What replaced EPS-95?</td><td style="text-align:left"><strong>Slowly</strong> — stays askable for years</td></tr><tr><td style="text-align:left"><strong>3 A current reading</strong></td><td style="text-align:left">What is the repo rate? The unemployment rate?</td><td style="text-align:left"><strong>Fast</strong> — months</td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · MOST OF THIS MODULE'S MARKS ARE IN KINDS 1 AND 2, NOT KIND 3</p><p>This is the judgement that decides how to spend the twelve hours.</p><p><strong>Kind 3 — the current reading — is what candidates fear and what they spend their time on.</strong> It is also the <strong>least</strong> of the three in yield, because a paper set months before it is sat cannot safely ask for a number that moves weekly, and because the setter knows it.</p><p><strong>Kind 1 is permanently askable and permanently learnable.</strong> Who publishes the World Development Report has been the same answer for forty years and will be the same answer in November. §2.2's table is therefore the highest-value page in this module, and it can be finished in an evening.</p><p><strong>Kind 2 is the sweet spot</strong> — a definite change, recent enough that older material is wrong, stable enough to be a fair question. <strong>The four labour codes coming into force, GST's two slabs, the Income-tax Act 2025, the Employees' Pension Scheme 2026.</strong> These are what F10.2 is built around, and F4.3's opening callout shows the pattern.</p><p><strong>So spend the twelve hours roughly: four on §2's attributions, six on F10.2's kind-2 changes, and two on the §4 sweep in the fortnight before the paper.</strong> Not twelve on chasing the news.</p></aside><h3 id="12-where-the-marks-actually-sit-for-this-examination">1.2 Where the marks actually sit for this examination</h3><p>Blueprint §4.4's record of the 2023 paper shows current affairs appearing <strong>inside other modules</strong> rather than as a labelled block — a question on a labour statute's amendment reads as labour law; a question on the Budget reads as economy.</p><p><strong>That is what "integrated" in the module's name means</strong>, and it has a practical consequence: <strong>a current affairs item is only worth learning if it attaches to something in the static syllabus.</strong> The attachment points, in order of yield for this post, are:</p><ol><li><strong>Labour law and social security</strong> — Modules 2 and 3</li><li><strong>The economy</strong> — Module 4</li><li>Polity and governance — Module 1</li><li>Science and technology — Module 9</li></ol><p>Sport, entertainment, obituaries and general trivia are <strong>not</strong> on that list. They are the bulk of a commercial current affairs magazine and close to zero of this paper.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 1</p><ol><li>Name the three kinds of current affairs question and say which decays fastest</li><li>Which kind carries the most marks, and why is it not the kind candidates fear?</li><li>How should the twelve hours be divided?</li><li>What does "integrated" mean, and which four attachment points matter?</li></ol></aside><div class="pagebreak"></div><h2 id="2-session-2-the-attributions-that-do-not-decay">2. Session 2 — The Attributions That Do Not Decay <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="21-why-this-is-the-best-value-section-in-the-module">2.1 Why this is the best-value section in the module</h3><p>A question asking <strong>who publishes what</strong> has a permanent answer, is easy to set, is unambiguous, and separates prepared candidates from unprepared ones. Every examiner likes all four properties. Learn the table and a predictable share of the eight marks becomes safe.</p><h3 id="22-reports-and-their-publishers">2.2 Reports and their publishers</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE REPORT-TO-PUBLISHER TABLE</p><div class="tw"><table><thead><tr><th style="text-align:left">Report / Index</th><th style="text-align:left">Published by</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Human Development Report</strong>, HDI, IHDI, GII</td><td style="text-align:left"><strong>UNDP</strong></td></tr><tr><td style="text-align:left"><strong>Global Multidimensional Poverty Index</strong></td><td style="text-align:left"><strong>UNDP with OPHI</strong> (Oxford)</td></tr><tr><td style="text-align:left"><strong>National Multidimensional Poverty Index</strong>, SDG India Index</td><td style="text-align:left"><strong>NITI Aayog</strong></td></tr><tr><td style="text-align:left"><strong>World Development Report</strong>, Human Capital Index</td><td style="text-align:left"><strong>World Bank</strong></td></tr><tr><td style="text-align:left"><strong>World Economic Outlook</strong>, Fiscal Monitor</td><td style="text-align:left"><strong>IMF</strong></td></tr><tr><td style="text-align:left"><strong>Global Competitiveness Report</strong>, <strong>Global Gender Gap Report</strong></td><td style="text-align:left"><strong>World Economic Forum</strong></td></tr><tr><td style="text-align:left"><strong>Global Innovation Index</strong></td><td style="text-align:left"><strong>WIPO</strong> — the World Intellectual Property Organization</td></tr><tr><td style="text-align:left"><strong>Corruption Perceptions Index</strong></td><td style="text-align:left"><strong>Transparency International</strong></td></tr><tr><td style="text-align:left"><strong>Global Hunger Index</strong></td><td style="text-align:left"><strong>Concern Worldwide and Welthungerhilfe</strong></td></tr><tr><td style="text-align:left"><strong>World Happiness Report</strong></td><td style="text-align:left"><strong>UN Sustainable Development Solutions Network</strong></td></tr><tr><td style="text-align:left"><strong>Press Freedom Index</strong></td><td style="text-align:left">Reporters Without Borders (RSF)</td></tr><tr><td style="text-align:left"><strong>State of World Population</strong></td><td style="text-align:left"><strong>UNFPA</strong></td></tr><tr><td style="text-align:left">State of Food Security and Nutrition in the World</td><td style="text-align:left"><strong>FAO</strong> (with WFP, WHO, UNICEF, IFAD)</td></tr><tr><td style="text-align:left"><strong>World Employment and Social Outlook</strong>, Global Wage Report</td><td style="text-align:left"><strong>ILO</strong></td></tr><tr><td style="text-align:left"><strong>Economic Survey</strong></td><td style="text-align:left"><strong>Department of Economic Affairs</strong>, under the <strong>Chief Economic Adviser</strong></td></tr><tr><td style="text-align:left"><strong>GDP, CPI, IIP, PLFS</strong></td><td style="text-align:left"><strong>NSO, under MoSPI</strong></td></tr><tr><td style="text-align:left"><strong>Wholesale Price Index</strong></td><td style="text-align:left"><strong>Office of the Economic Adviser, Ministry of Commerce and Industry</strong></td></tr><tr><td style="text-align:left"><strong>CPI-IW</strong></td><td style="text-align:left"><strong>Labour Bureau</strong></td></tr><tr><td style="text-align:left">Annual Status of Education Report (<strong>ASER</strong>)</td><td style="text-align:left"><strong>Pratham Education Foundation</strong> — a private body, not government</td></tr><tr><td style="text-align:left">National Family Health Survey (<strong>NFHS</strong>)</td><td style="text-align:left">Ministry of Health and Family Welfare, through IIPS</td></tr><tr><td style="text-align:left">Sample Registration System (<strong>SRS</strong>)</td><td style="text-align:left"><strong>Registrar General of India</strong></td></tr></tbody></table></div><p><strong>The three traps in that table:</strong></p><ol><li><strong>World Bank against IMF.</strong> <em>Development</em> and <em>Human Capital</em> are World Bank; <em>Outlook</em> and <em>Fiscal Monitor</em> are IMF. The two are both Bretton Woods institutions in Washington, which is why they are offered for each other — F4.5 §4.3</li><li><strong>WEF against UNDP.</strong> The <strong>Gender Gap</strong> report is the <strong>World Economic Forum</strong>; the <strong>Gender Inequality Index</strong> is <strong>UNDP</strong>. Two gender indices, two different bodies, and the names are close enough to swap</li><li><strong>The private publishers.</strong> <strong>ASER is Pratham</strong>, not the government. The <strong>Global Hunger Index</strong> is two European NGOs, not the FAO. Candidates assume an official-sounding index must be official</li></ol><p><strong>And one discontinued report worth knowing:</strong> the World Bank <strong>stopped publishing the Ease of Doing Business rankings</strong> in 2021. A question asserting that it still does is wrong, and it is the sort of stale fact that survives in coaching material for years.</p></aside><h3 id="23-the-bodies-most-relevant-to-this-post">2.3 The bodies most relevant to this post</h3><div class="tw"><table><thead><tr><th style="text-align:left">Body</th><th style="text-align:left">Facts worth holding</th></tr></thead><tbody><tr><td style="text-align:left"><strong>ILO</strong></td><td style="text-align:left">Founded <strong>1919</strong>, under the Treaty of Versailles; the <strong>oldest</strong> UN specialised agency; became a UN agency in 1946; <strong>headquarters Geneva</strong>; <strong>tripartite</strong> — governments, employers and workers; India a <strong>founder member</strong></td></tr><tr><td style="text-align:left"><strong>EPFO</strong></td><td style="text-align:left">Administers the 1952 Act's schemes; apex body the <strong>Central Board of Trustees (CBT)</strong>, <strong>chaired by the Union Minister for Labour and Employment</strong>; also tripartite</td></tr><tr><td style="text-align:left"><strong>ESIC</strong></td><td style="text-align:left">Employees' State Insurance Corporation — medical and cash benefits</td></tr><tr><td style="text-align:left"><strong>e-Shram</strong></td><td style="text-align:left">The national <strong>database of unorganised workers</strong></td></tr><tr><td style="text-align:left"><strong>NPCI</strong></td><td style="text-align:left">Operates UPI — relevant because EPFO 3.0 settlement runs on it</td></tr></tbody></table></div><aside class="cal know"><p class="cal-h">KNOW · THE ILO'S TRIPARTISM IS THE MOST EXAMINABLE THING ABOUT IT</p><p>The ILO is <strong>unique among UN specialised agencies in its tripartite structure</strong>: each member State's delegation comprises <strong>two government delegates, one employers' delegate and one workers' delegate</strong>, and the employer and worker delegates vote <strong>independently of their government</strong>.</p><p>That structure is mirrored in India's own <strong>Central Board of Trustees</strong>, which likewise seats government, employer and employee representatives — and it is the institutional expression of the idea that labour standards are negotiated rather than imposed.</p><p><strong>For the interview:</strong> tripartism explains why labour law reform in India moves slowly and why the four labour codes took from 2019 to 2025 to come into force. It is a better answer than "bureaucratic delay".</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 2</p><ol><li>Name the publisher of each: HDR, World Development Report, World Economic Outlook, Global Innovation Index, Global Hunger Index, Gender Gap Report</li><li>Which two gender indices come from which two bodies?</li><li>Which well-known report did the World Bank discontinue?</li><li>Give the ILO's founding year, headquarters, and the feature that makes it unique</li><li>Who chairs the Central Board of Trustees?</li></ol></aside><div class="pagebreak"></div><h2 id="3-session-3-the-collection-system">3. Session 3 — The Collection System <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="31-the-sources-in-priority-order">3.1 The sources, in priority order</h3><div class="tw"><table><thead><tr><th style="text-align:left">Priority</th><th style="text-align:left">Source</th><th style="text-align:left">Why</th></tr></thead><tbody><tr><td style="text-align:left"><strong>1</strong></td><td style="text-align:left"><strong>PIB (pib.gov.in) press releases</strong></td><td style="text-align:left">The primary source. Every scheme, appointment and Cabinet decision appears here first and in official wording</td></tr><tr><td style="text-align:left"><strong>2</strong></td><td style="text-align:left"><strong>One national newspaper</strong>, read for editorials and the economy pages</td><td style="text-align:left"><em>The Hindu</em> or <em>Indian Express</em>. <strong>One</strong>, daily — not three, weekly</td></tr><tr><td style="text-align:left"><strong>3</strong></td><td style="text-align:left"><strong>Ministry of Labour and EPFO circulars</strong></td><td style="text-align:left">Directly on this examination's subject. Circulars on the EPFO site are the single most targeted source available</td></tr><tr><td style="text-align:left"><strong>4</strong></td><td style="text-align:left"><strong>PRS Legislative Research (prsindia.org)</strong></td><td style="text-align:left">Bill and Act summaries, Budget analysis, committee reports — the fastest way to get a statute's substance</td></tr><tr><td style="text-align:left"><strong>5</strong></td><td style="text-align:left"><strong>RBI and MoSPI press releases</strong></td><td style="text-align:left">For the policy rates and the statistics</td></tr><tr><td style="text-align:left">6</td><td style="text-align:left">Economic Survey and Budget documents</td><td style="text-align:left">Once a year, read the highlights</td></tr></tbody></table></div><p><strong>Not on the list, deliberately:</strong> current affairs YouTube channels, daily quiz apps, and monthly compilation magazines. Blueprint §22 permits coaching material as <em>supplementary</em>; it should not be the primary channel, because it optimises for volume of items rather than for the attachment points §1.2 identifies.</p><h3 id="32-the-daily-habit-fifteen-minutes">3.2 The daily habit — fifteen minutes</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · ONE PAGE A MONTH, IN FOUR COLUMNS</p><p>The failure mode in current affairs is not insufficient reading. It is <strong>reading without recording</strong>, which produces a sense of familiarity and no retrievable knowledge.</p><p><strong>The format — one sheet per month, four columns:</strong></p><div class="tw"><table><thead><tr><th style="text-align:left">Date</th><th style="text-align:left">Item</th><th style="text-align:left"><strong>Which module it attaches to</strong></th><th style="text-align:left">Why it might be asked</th></tr></thead><tbody><tr><td style="text-align:left">21 Nov 2025</td><td style="text-align:left">Four labour codes brought into force</td><td style="text-align:left"><strong>M2, M3</strong></td><td style="text-align:left">Replaces 29 Acts; makes older answers wrong</td></tr><tr><td style="text-align:left">22 Sep 2025</td><td style="text-align:left">GST to two slabs, 5% and 18%</td><td style="text-align:left"><strong>M4</strong></td><td style="text-align:left">Definite, recent, contradicts every textbook</td></tr><tr><td style="text-align:left">29 Jun 2026</td><td style="text-align:left">EPS 2026 replaces EPS-95</td><td style="text-align:left"><strong>M3</strong></td><td style="text-align:left">Directly on this post's subject matter</td></tr></tbody></table></div><p><strong>The third column is the one that does the work.</strong> An item that cannot be attached to a module is an item to <strong>discard</strong> — that is the operational meaning of "integrated", and it is what keeps the register to one page a month instead of ten.</p><p><strong>Fifteen minutes a day:</strong> ten reading PIB and the paper, five recording. Any item you cannot summarise in one line does not go in.</p></aside><h3 id="33-the-monthly-consolidation-thirty-minutes">3.3 The monthly consolidation — thirty minutes</h3><p>At the end of each month:</p><ol><li><strong>Re-read the month's sheet</strong> and strike out anything that has not turned into a durable fact</li><li><strong>Move surviving items</strong> into the relevant module's revision notes — a labour item goes to Module 2's notes, not into a separate current affairs pile</li><li><strong>Write five questions</strong> on the month's items, in the paper's four-option format, and add them to your error log's drill</li></ol><p>Step 2 is what makes the module <em>integrated</em> rather than parallel. <strong>By the end you should not have a current affairs file at all</strong> — you should have Modules 1 to 9, updated.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 3</p><ol><li>List the top four sources in priority order</li><li>What are the four columns of the monthly sheet, and which one decides whether an item is kept?</li><li>How long is the daily habit, and how is it split?</li><li>What happens to items at the monthly consolidation, and why?</li></ol></aside><div class="pagebreak"></div><h2 id="4-session-4-the-verification-protocol">4. Session 4 — The Verification Protocol <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE FORTNIGHT-BEFORE SWEEP, ITEM BY ITEM</p><p>Every figure in this manual marked <strong><code>[AS AT 16 AUG 2026]</code></strong> must be re-checked before you sit the paper. This is the checklist. It takes about <strong>two hours</strong> and it is the highest-return two hours in the module, because it converts a set of possibly-stale facts into a set of certainly-current ones.</p><div class="tw"><table><thead><tr><th style="text-align:left">#</th><th style="text-align:left">Check</th><th style="text-align:left">Where</th><th style="text-align:left">Chapter to update</th></tr></thead><tbody><tr><td style="text-align:left"><strong>1</strong></td><td style="text-align:left"><strong>Repo rate</strong>, SDF, MSF, stance</td><td style="text-align:left">RBI latest MPC statement</td><td style="text-align:left"><strong>F4.2 §2.3</strong></td></tr><tr><td style="text-align:left"><strong>2</strong></td><td style="text-align:left"><strong>CPI inflation</strong>, latest and projected</td><td style="text-align:left">RBI policy statement, MoSPI</td><td style="text-align:left">F4.2 §3.3</td></tr><tr><td style="text-align:left"><strong>3</strong></td><td style="text-align:left"><strong>GDP growth</strong>, latest estimate and which estimate it is</td><td style="text-align:left">MoSPI press release</td><td style="text-align:left"><strong>F4.1 §3.1</strong></td></tr><tr><td style="text-align:left"><strong>4</strong></td><td style="text-align:left"><strong>Fiscal deficit</strong> target, current year</td><td style="text-align:left">Budget at a Glance</td><td style="text-align:left"><strong>F4.3 §2.2</strong></td></tr><tr><td style="text-align:left"><strong>5</strong></td><td style="text-align:left"><strong>EPF interest rate</strong> for the current year, and whether ratified</td><td style="text-align:left">EPFO / PIB</td><td style="text-align:left"><strong>F10.2 §2</strong></td></tr><tr><td style="text-align:left"><strong>6</strong></td><td style="text-align:left"><strong>EPF wage ceiling</strong> — still ₹15,000, or revised?</td><td style="text-align:left">EPFO / PIB</td><td style="text-align:left"><strong>F10.2 §2</strong></td></tr><tr><td style="text-align:left"><strong>7</strong></td><td style="text-align:left"><strong>Any new EPFO scheme or circular</strong></td><td style="text-align:left">EPFO website</td><td style="text-align:left">F10.2 §2</td></tr><tr><td style="text-align:left"><strong>8</strong></td><td style="text-align:left"><strong>Labour code rules</strong> — further notifications</td><td style="text-align:left">Ministry of Labour</td><td style="text-align:left"><strong>F10.2 §1</strong></td></tr><tr><td style="text-align:left"><strong>9</strong></td><td style="text-align:left"><strong>Unemployment rate</strong>, LFPR</td><td style="text-align:left">MoSPI monthly PLFS</td><td style="text-align:left">F4.4 §2.2</td></tr><tr><td style="text-align:left"><strong>10</strong></td><td style="text-align:left"><strong>Census 2027</strong> progress and any date change</td><td style="text-align:left">censusindia.gov.in</td><td style="text-align:left">F4.5 §2.3</td></tr><tr><td style="text-align:left"><strong>11</strong></td><td style="text-align:left"><strong>GST</strong> — any further rate change</td><td style="text-align:left">GST Council press release</td><td style="text-align:left">F4.3 §3.2</td></tr><tr><td style="text-align:left"><strong>12</strong></td><td style="text-align:left">Office-holders: RBI Governor, Labour Minister, CEA</td><td style="text-align:left">PIB</td><td style="text-align:left">F4.2, F10.2</td></tr></tbody></table></div><p><strong>How to record the result.</strong> Do not annotate the PDF. Write the twelve answers on <strong>one sheet</strong>, dated, and keep it with your wall sheets. If a figure has not changed, write <em>"unchanged"</em> — you need the positive confirmation, because "I did not find a change" and "I did not look" feel identical a week later.</p></aside><h3 id="41-the-two-sentence-rule-for-anything-you-cannot-verify">4.1 The two-sentence rule for anything you cannot verify</h3><p>If you cannot confirm a figure from a primary source, <strong>do not carry it into the hall.</strong> An unverified number is worse than no number, because of the marking scheme: F8.0 §6 records that a blind guess has an expected value of exactly zero, while an answer given confidently from a stale fact is a <strong>negative</strong> 0.8333 dressed up as knowledge.</p><p><strong>Where a figure is uncertain, fall back on the structure.</strong> You may not remember whether the repo rate is 5.25% or 5.50%, but you will remember that <strong>the MSF is 25 basis points above it and the SDF 25 below</strong> — and questions about the corridor's <em>structure</em> are more common than questions about its level.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 4</p><ol><li>How long does the sweep take, and when is it done?</li><li>Name six of the twelve items</li><li>Why must you write "unchanged" rather than leave a blank?</li><li>What is the fallback when a figure cannot be verified?</li></ol></aside><div class="pagebreak"></div><h2 id="5-session-5-the-epfo-watchlist">5. Session 5 — The EPFO Watchlist <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><p>This is the section that makes Module 10 worth twelve hours rather than four. <strong>The eight current affairs marks in an EPFO paper are not distributed like a general knowledge quiz</strong> — they weight heavily towards this organisation, its statutes and its schemes.</p><h3 id="51-the-standing-watchlist">5.1 The standing watchlist</h3><div class="tw"><table><thead><tr><th style="text-align:left">Watch</th><th style="text-align:left">Why it matters</th><th style="text-align:left">Status at compilation</th></tr></thead><tbody><tr><td style="text-align:left"><strong>The four labour codes</strong></td><td style="text-align:left">Replace <strong>29</strong> central Acts; make pre-2025 labour material obsolete</td><td style="text-align:left"><strong>In force from 21 Nov 2025</strong>; central rules notified 2026</td></tr><tr><td style="text-align:left"><strong>EPF interest rate</strong></td><td style="text-align:left">Declared annually by the <strong>CBT</strong>, ratified by Government</td><td style="text-align:left"><strong>8.25% for 2025-26</strong></td></tr><tr><td style="text-align:left"><strong>EPF wage ceiling</strong></td><td style="text-align:left">₹15,000 since 2014; a revision is under consideration</td><td style="text-align:left"><strong>Still ₹15,000</strong> — a proposal to raise it is <strong>not yet notified</strong></td></tr><tr><td style="text-align:left"><strong>Employees' Pension Scheme, 2026</strong></td><td style="text-align:left"><strong>Replaced EPS-95</strong></td><td style="text-align:left">In force from <strong>29 June 2026</strong></td></tr><tr><td style="text-align:left"><strong>EPFO 3.0</strong></td><td style="text-align:left">UPI and ATM withdrawal, higher auto-settlement</td><td style="text-align:left">Rolling out through 2026</td></tr><tr><td style="text-align:left"><strong>ELI Scheme</strong></td><td style="text-align:left">EPFO-administered employment incentive</td><td style="text-align:left">Effective from <strong>1 Aug 2025</strong></td></tr><tr><td style="text-align:left"><strong>Gig and platform workers</strong></td><td style="text-align:left">Aggregator contributions under the Code on Social Security</td><td style="text-align:left">Rules notified 2026</td></tr><tr><td style="text-align:left">Higher EPS pension litigation</td><td style="text-align:left">The 2022 Supreme Court option, and pending applications</td><td style="text-align:left">Ongoing</td></tr></tbody></table></div><p>F10.2 carries the detail and the sources for each.</p><aside class="cal important"><p class="cal-h">IMPORTANT · A CURRENCY RISK IN THIS MANUAL'S OWN BACK CATALOGUE</p><p>Two of the items above are not merely new facts. <strong>They invalidate content.</strong></p><ol><li><strong>The four labour codes came into force on 21 November 2025, replacing 29 central labour laws</strong> — including the Industrial Disputes Act 1947, the Payment of Wages Act 1936, the Minimum Wages Act 1948 and the Factories Act 1948</li><li><strong>The Employees' Pension Scheme, 2026 has replaced EPS-95</strong> with effect from 29 June 2026</li></ol><p><strong>Modules 2 and 3 were completed before this manual's build pipeline existed and are not in <code>src/</code></strong> — see register §9. If they were written before late 2025, they teach the repealed Acts and EPS-95 <strong>as live law</strong>, which is a serious defect in the two modules that together carry about <strong>52 planning marks</strong>.</p><p><strong>This cannot be checked from inside the repository, because the sources are not here.</strong> It is now the strongest reason to re-supply them: not merely so the master book can be built, but so that they can be <strong>read against the codes and corrected</strong>. Recorded in register §9 as the top of the queue.</p></aside><h3 id="52-how-to-read-a-change-like-the-labour-codes">5.2 How to read a change like the labour codes</h3><p>When a statute is replaced, the examinable content is rarely the fine print. It is:</p><ol><li><strong>What replaced what, and from when</strong> — four codes, 29 Acts, 21 November 2025</li><li><strong>Which Acts were subsumed into which code</strong> — wages into the Code on Wages; ID Act, Trade Unions Act and Standing Orders Act into the Industrial Relations Code; EPF, ESI, gratuity, maternity benefit into the Code on Social Security; Factories Act and Mines Act into the OSH Code</li><li><strong>The definitions that changed</strong> — notably a <strong>uniform definition of "wages"</strong> across all four codes, and the new statutory categories of <strong>gig worker</strong> and <strong>platform worker</strong></li><li><strong>The new numbers</strong> — thresholds, time limits, contribution rates</li></ol><p><strong>That is four facts per code, not four hundred.</strong> Learn those and the codes are covered to the depth this paper requires.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 5</p><ol><li>Name the eight items on the standing watchlist</li><li>How many central Acts did the codes replace, and from what date?</li><li>Which code subsumed the EPF Act? Which subsumed the Industrial Disputes Act?</li><li>What are the four things to learn when a statute is replaced?</li><li>Why is the back catalogue now a currency risk and not merely an inconvenience?</li></ol></aside><div class="pagebreak"></div><h2 id="6-graded-practice-20-questions">6. Graded Practice — 20 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><p><strong>These questions are deliberately built on the NON-decaying part of the module</strong> — institutional attribution and structural facts — so that the bank remains valid whenever you drill it. F10.2's bank carries the dated material.</p><p><strong>Target: 20 to 30 seconds each.</strong></p><h3 id="61-level-1-reports-and-publishers">6.1 Level 1 — Reports and publishers</h3><p><strong>Q1.</strong> The Human Development Report is published by (a) the World Bank (b) the International Monetary Fund (c) the United Nations Development Programme (d) the World Economic Forum</p><p><strong>Q2.</strong> The World Development Report is published by (a) the World Bank (b) the United Nations Development Programme (c) the World Trade Organization (d) the OECD</p><p><strong>Q3.</strong> The World Economic Outlook is published by (a) the World Economic Forum (b) the World Bank (c) UNCTAD (d) the International Monetary Fund</p><p><strong>Q4.</strong> The Global Innovation Index is published by (a) the World Economic Forum (b) the World Intellectual Property Organization (c) UNESCO (d) the OECD</p><p><strong>Q5.</strong> The Corruption Perceptions Index is published by (a) Transparency International (b) the UN Office on Drugs and Crime (c) the World Bank (d) Amnesty International</p><p><strong>Q6.</strong> The Global Gender Gap Report is published by (a) UN Women (b) the United Nations Development Programme (c) the World Economic Forum (d) the International Labour Organization</p><p><strong>Q7.</strong> The State of World Population report is published by (a) the World Health Organization (b) the United Nations Population Fund (c) UNICEF (d) the United Nations Development Programme</p><p><strong>Q8.</strong> The SDG India Index is published by (a) the Ministry of Statistics and Programme Implementation (b) the Ministry of Environment, Forest and Climate Change (c) the Planning Commission (d) NITI Aayog</p><h3 id="62-level-2-institutions">6.2 Level 2 — Institutions</h3><p><strong>Q9.</strong> The Annual Status of Education Report (ASER) is published by (a) the Pratham Education Foundation (b) the NCERT (c) the Ministry of Education (d) UNESCO</p><p><strong>Q10.</strong> The World Employment and Social Outlook is published by (a) the World Bank (b) the International Labour Organization (c) the OECD (d) UNCTAD</p><p><strong>Q11.</strong> The International Labour Organization was established in (a) 1945 (b) 1948 (c) 1919 (d) 1930</p><p><strong>Q12.</strong> The International Labour Organization is distinctive among United Nations specialised agencies in having (a) universal membership (b) a rotating presidency (c) its headquarters in New York (d) a tripartite structure of governments, employers and workers</p><p><strong>Q13.</strong> The Central Board of Trustees of the Employees' Provident Fund Organisation is chaired by (a) the Central Provident Fund Commissioner (b) the Union Minister for Labour and Employment (c) the Union Finance Minister (d) the Cabinet Secretary</p><p><strong>Q14.</strong> The e-Shram portal is a national database of (a) unorganised workers (b) income-tax assessees (c) registered companies (d) provident fund pensioners</p><p><strong>Q15.</strong> The International Labour Organization has its headquarters at (a) New York (b) Vienna (c) Geneva (d) Rome</p><p><strong>Q16.</strong> Which one of the following statements is <strong>not</strong> correct? (a) The Economic Survey is tabled before the Union Budget is presented (b) The Periodic Labour Force Survey is conducted by the National Statistical Office (c) The Global Multidimensional Poverty Index is published jointly by UNDP and OPHI (d) The World Bank continues to publish the Ease of Doing Business rankings</p><h3 id="63-level-3-recruitment-test-standard">6.3 Level 3 — Recruitment Test standard</h3><p><strong>Q17.</strong> The Global Hunger Index is published by (a) Concern Worldwide and Welthungerhilfe (b) the Food and Agriculture Organization (c) the World Food Programme (d) UNICEF</p><p><strong>Q18.</strong> The World Happiness Report is released under the auspices of (a) the World Health Organization (b) the UN Sustainable Development Solutions Network (c) UNESCO (d) the OECD</p><p><strong>Q19.</strong> The four labour codes were brought into force with effect from (a) 1 April 2021 (b) 1 October 2024 (c) 1 April 2026 (d) 21 November 2025</p><p><strong>Q20.</strong> The number of central labour laws replaced by the four labour codes is (a) 14 (b) 22 (c) 29 (d) 44</p><div class="pagebreak"></div><h2 id="7-answers-and-explanations">7. Answers and Explanations</h2><h3 id="71-level-1">7.1 Level 1</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">c</td><td style="text-align:left"><strong>UNDP</strong>, since 1990 — F4.4 §3.1</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">a</td><td style="text-align:left"><strong>The World Bank.</strong> Note the pattern: <em>Development</em> belongs to the Bank, <em>Outlook</em> to the Fund — Q3 is the pair</td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">d</td><td style="text-align:left"><strong>The IMF.</strong> (b) the World Bank is the standard confusion, both being Bretton Woods institutions in Washington</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">b</td><td style="text-align:left"><strong>WIPO.</strong> (a) the WEF publishes the <em>Global Competitiveness</em> and <em>Gender Gap</em> reports — a body with many indices, offered for one it does not publish</td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Transparency International</strong>, a non-governmental body — the assumption that an official-sounding index must be official is the trap</td></tr><tr><td style="text-align:left">6</td><td style="text-align:center">c</td><td style="text-align:left"><strong>The World Economic Forum.</strong> Contrast the <strong>Gender Inequality Index</strong>, which is <strong>UNDP</strong> — two gender indices from two bodies, §2.2's second trap</td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">b</td><td style="text-align:left"><strong>UNFPA</strong>, the United Nations Population Fund</td></tr><tr><td style="text-align:left">8</td><td style="text-align:center">d</td><td style="text-align:left"><strong>NITI Aayog</strong>, which also publishes the <strong>National</strong> MPI. (c) the Planning Commission ceased to exist in 2015 — F4.1 §4</td></tr></tbody></table></div><h3 id="72-level-2">7.2 Level 2</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">9</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Pratham</strong>, a private foundation. §2.2's third trap: the most cited survey of Indian schooling outcomes is not a government publication</td></tr><tr><td style="text-align:left">10</td><td style="text-align:center">b</td><td style="text-align:left"><strong>The ILO</strong>, which also publishes the <em>Global Wage Report</em></td></tr><tr><td style="text-align:left">11</td><td style="text-align:center">c</td><td style="text-align:left"><strong>1919</strong>, under the Treaty of Versailles — making it the <strong>oldest</strong> of the UN specialised agencies, older than the UN itself, which it joined in 1946. (a) 1945 is the UN's own year, offered for exactly that reason</td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Tripartism</strong> — two government delegates, one employers' and one workers' delegate per member State, the last two voting independently of their government. §2.3</td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">b</td><td style="text-align:left"><strong>The Union Minister for Labour and Employment.</strong> (a) the Central PF Commissioner is the CBT's member-secretary and the organisation's chief executive, not its chairman — a closely related office, wrongly elevated</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Unorganised workers</strong></td></tr><tr><td style="text-align:left">15</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Geneva</strong> — as is the WTO. Washington DC has the IMF and the World Bank; Rome has the FAO and WFP; Vienna has the IAEA and UNODC</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">d</td><td style="text-align:left"><strong>The "not correct" item.</strong> The World Bank <strong>discontinued</strong> the Ease of Doing Business rankings in 2021. (a), (b) and (c) are all correct. This is the stale-fact pattern: a report can be so well known that its discontinuation is not noticed</td></tr></tbody></table></div><h3 id="73-level-3">7.3 Level 3</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">17</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Concern Worldwide and Welthungerhilfe</strong> — two European non-governmental organisations. (b) the FAO publishes the <em>State of Food Security</em>, which is the official counterpart and the natural wrong answer</td></tr><tr><td style="text-align:left">18</td><td style="text-align:center">b</td><td style="text-align:left"><strong>The UN Sustainable Development Solutions Network</strong></td></tr><tr><td style="text-align:left">19</td><td style="text-align:center">d</td><td style="text-align:left"><strong>21 November 2025.</strong> The Codes were enacted in 2019 and 2020 but were not brought into force for years, so the <strong>enactment years and the commencement date are different</strong> — and the commencement is what makes the older material wrong</td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">c</td><td style="text-align:left"><strong>29</strong> central labour laws. §5.1 — and the reason this single fact carries so much weight is that it tells you the scale of what Modules 2 and 3 must be re-read against</td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · THE THREE SHAPES IN THIS BANK</p><ol><li><strong>The plausible institution.</strong> Every wrong option in §6.1 is a real body that publishes real reports. None is absurd. <strong>Learn the report-to-publisher table as pairs</strong>, because recognition of the body is not enough — you must recognise the pairing</li><li><strong>Enactment against commencement.</strong> Q19. A statute has a year of enactment and a date of coming into force, and for the labour codes they are <strong>six years apart</strong>. Where a question gives a date rather than a year, check which one is being asked</li><li><strong>The discontinued or superseded institution.</strong> Q8's Planning Commission, Q16's Ease of Doing Business, and the Employees' Pension Scheme 1995 in F10.2. <strong>A body or report that no longer exists is a reliable distractor</strong>, because familiarity outlives existence</li></ol></aside><div class="pagebreak"></div><h2 id="8-one-minute-revision">8. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F10.1</p><p><strong>WEIGHT</strong> <strong>20.0 marks, 12 hours, 8 questions</strong> · the only module that <strong>cannot be finished</strong> · spend it as <strong>4 hours on attributions, 6 on recent definite changes, 2 on the pre-exam sweep</strong></p><p><strong>THREE KINDS OF QUESTION</strong> <strong>1 attribution</strong> (permanent, highest value) · <strong>2 a recent definite change</strong> (the sweet spot) · <strong>3 a current reading</strong> (decays fastest, least asked). <strong>Do not spend the module chasing kind 3</strong></p><p><strong>"INTEGRATED" MEANS</strong> a current item is worth learning only if it <strong>attaches to the static syllabus</strong> · attachment points in order: <strong>labour and social security » economy » polity » science</strong> · <strong>sport, entertainment and trivia are not on the list</strong></p><p><strong>PUBLISHERS</strong> <strong>HDR, IHDI, GII » UNDP</strong> · <strong>Global MPI » UNDP + OPHI</strong> · <strong>National MPI, SDG India Index » NITI AAYOG</strong> · <strong>World Development Report, Human Capital Index » WORLD BANK</strong> · <strong>World Economic Outlook, Fiscal Monitor » IMF</strong> · <strong>Global Competitiveness, GENDER GAP » WEF</strong> · <strong>Global Innovation Index » WIPO</strong> · <strong>Corruption Perceptions » TRANSPARENCY INTERNATIONAL</strong> · <strong>Global Hunger Index » CONCERN WORLDWIDE + WELTHUNGERHILFE</strong> · <strong>World Happiness » UN SDSN</strong> · Press Freedom » RSF · <strong>State of World Population » UNFPA</strong> · State of Food Security » FAO · <strong>World Employment and Social Outlook, Global Wage Report » ILO</strong> · <strong>ASER » PRATHAM (private)</strong> · NFHS » Health Ministry via IIPS · <strong>SRS » Registrar General</strong></p><p><strong>THE THREE TRAPS</strong> <em>Development</em> and <em>Human Capital</em> = <strong>Bank</strong>; <em>Outlook</em> and <em>Fiscal Monitor</em> = <strong>Fund</strong> · <strong>Gender GAP = WEF, Gender INEQUALITY = UNDP</strong> · <strong>ASER and the Hunger Index are PRIVATE bodies</strong> · <strong>the World Bank DISCONTINUED Ease of Doing Business in 2021</strong></p><p><strong>ILO</strong> <strong>1919</strong>, Treaty of Versailles, <strong>oldest UN specialised agency</strong>, UN agency from 1946 · <strong>HQ GENEVA</strong> · <strong>TRIPARTITE — 2 government + 1 employer + 1 worker per State</strong>, the last two voting <strong>independently</strong> · India a founder member</p><p><strong>EPFO</strong> apex body the <strong>Central Board of Trustees</strong>, <strong>chaired by the Union Minister for Labour and Employment</strong>; the <strong>Central PF Commissioner is the chief executive, not the chairman</strong> · also tripartite</p><p><strong>HEADQUARTERS</strong> Geneva » <strong>ILO, WTO</strong> · Washington DC » <strong>IMF, World Bank</strong> · Rome » FAO, WFP · Vienna » IAEA, UNODC</p><p><strong>SOURCES IN ORDER</strong> <strong>1 PIB</strong> · <strong>2 one newspaper, daily</strong> · <strong>3 Ministry of Labour and EPFO circulars</strong> · <strong>4 PRS Legislative Research</strong> · 5 RBI and MoSPI releases</p><p><strong>THE DAILY HABIT</strong> 15 minutes — 10 reading, 5 recording · <strong>one sheet a month, four columns: date, item, WHICH MODULE IT ATTACHES TO, why it might be asked</strong> · <strong>an item that attaches to nothing is discarded</strong></p><p><strong>MONTHLY</strong> strike out what did not become durable · <strong>move surviving items into the module's own notes</strong> · write five questions · <strong>by the end there should be no current affairs file, only updated Modules 1 to 9</strong></p><p><strong>THE SWEEP</strong> in the <strong>fortnight before</strong> the paper, about <strong>two hours</strong>, <strong>twelve items</strong>: repo rate · inflation · GDP growth · fiscal deficit · <strong>EPF interest rate</strong> · <strong>EPF wage ceiling</strong> · new EPFO circulars · labour code rules · unemployment and LFPR · Census 2027 · GST rates · office-holders. <strong>Write "unchanged" rather than leaving a blank</strong></p><p><strong>IF YOU CANNOT VERIFY IT, DO NOT CARRY IT.</strong> A stale fact answered confidently is <strong>−0.8333</strong>, while a blank is <strong>0</strong> · <strong>fall back on STRUCTURE: MSF is 25 bps above repo, SDF 25 below</strong></p><p><strong>WHEN A STATUTE IS REPLACED, LEARN FOUR THINGS</strong> what replaced what and <strong>from when</strong> · which Acts went into which code · the <strong>definitions that changed</strong> · the new numbers</p><p><strong>THE CODES</strong> <strong>four codes replaced 29 central Acts, in force 21 NOVEMBER 2025</strong> · enacted 2019–2020 — <strong>enactment year and commencement date are different</strong></p></aside><h2 id="9-five-minute-wall-sheet">9. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F10.1</p><p><strong>ATTRIBUTION IS PERMANENT AND CHEAP. LEARN THE TABLE, NOT THE NEWS</strong></p><p><strong>DEVELOPMENT = BANK · OUTLOOK = FUND</strong></p><p><strong>GENDER <em>GAP</em> = WEF · GENDER <em>INEQUALITY</em> = UNDP</strong></p><p><strong>INNOVATION = WIPO · CORRUPTION = TRANSPARENCY INTERNATIONAL</strong></p><p><strong>HUNGER = CONCERN + WELTHUNGERHILFE · HAPPINESS = UN SDSN</strong></p><p><strong>ASER = PRATHAM, NOT GOVERNMENT</strong></p><p><strong>EASE OF DOING BUSINESS WAS DISCONTINUED IN 2021</strong></p><p><strong>NATIONAL MPI + SDG INDEX = NITI AAYOG · GLOBAL MPI = UNDP + OPHI</strong></p><p><strong>ILO 1919 · GENEVA · TRIPARTITE · OLDEST UN AGENCY</strong></p><p><strong>CBT IS CHAIRED BY THE LABOUR MINISTER, NOT THE PF COMMISSIONER</strong></p><p><strong>GENEVA: ILO, WTO · WASHINGTON: IMF, WORLD BANK</strong></p><p><strong>PIB FIRST. ONE PAPER, DAILY. EPFO CIRCULARS. PRS</strong></p><p><strong>ONE SHEET A MONTH. THIRD COLUMN = WHICH MODULE. NO ATTACHMENT, NO ENTRY</strong></p><p><strong>END OF MONTH: MOVE ITEMS INTO THE MODULE'S OWN NOTES</strong></p><p><strong>FORTNIGHT BEFORE: THE TWELVE-ITEM SWEEP. WRITE "UNCHANGED"</strong></p><p><strong>UNVERIFIED FACT = −0.8333. BLANK = 0. STRUCTURE BEATS LEVEL</strong></p><p><strong>LABOUR CODES: 4 CODES, 29 ACTS, 21 NOVEMBER 2025</strong></p><p><strong>ENACTED 2019–20, IN FORCE 2025. THE TWO DATES ARE DIFFERENT</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> Current affairs for this examination is not general knowledge but the updating of the static syllabus — the labour codes replacing twenty-nine Acts and the new pension scheme superseding EPS-95 are not news items, they are corrections to what the law is, and a candidate who memorised the repealed Acts has learnt the wrong subject rather than merely an old one.</p></aside><aside class="cal action"><p class="cal-h">ACTION · NEXT</p><p><strong>F10.2 — Schemes, Institutions and the Current Dossier.</strong> It carries the dated content: the labour codes in detail, the EPFO items, and the economy and demography figures, each with a source and each on §4's sweep list.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F10.1
+  &middot; v1.0</footer>
+</body>
+</html>

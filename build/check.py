@@ -21,6 +21,7 @@ Stdlib only.
 """
 
 import re
+import subprocess
 import sys
 from collections import Counter
 from pathlib import Path
@@ -31,6 +32,13 @@ DOCS = ROOT / "docs"
 
 # Noto Sans is the only installed family; these have no glyph in it and are
 # substituted by build.py on the way out. Any survivor in docs/ is a bug.
+#
+# This fixed set is a FLOOR, not the whole check. discover_unrenderable() below
+# asks fontconfig about every non-ASCII codepoint that actually appears in the
+# built HTML, so a character nobody anticipated - and which is therefore absent
+# from build.py's substitution map - is still caught before it reaches a PDF as
+# a blank box. That failure mode shipped twice before this check existed:
+# U+2213 in F8.7 and U+2713/U+2717 in F6.4.
 UNRENDERABLE = {
     0x2605, 0x2606,          # stars
     0x2192, 0x2190,          # arrows
@@ -40,12 +48,38 @@ UNRENDERABLE = {
     0x221A, 0x221E, 0x2211,  # radical, infinity, n-ary summation
 }
 
+STYLE = re.compile(r"<style>.*?</style>", re.S)
+
+
+def discover_unrenderable():
+    """Ask fontconfig which codepoints in the built HTML have no glyph anywhere.
+
+    Returns the fixed floor set unioned with whatever is actually missing.
+    If fontconfig is unavailable the floor set is returned unchanged, so the
+    gate degrades to its previous behaviour rather than failing.
+    """
+    seen = set()
+    for html in DOCS.rglob("*.html"):
+        text = STYLE.sub("", html.read_text(encoding="utf-8"))
+        seen.update(ord(c) for c in text if ord(c) > 0xA0)
+
+    missing = set(UNRENDERABLE)
+    for cp in sorted(seen):
+        try:
+            out = subprocess.run(["fc-list", f":charset={cp:04X}", "family"],
+                                 capture_output=True, text=True, timeout=10)
+        except (OSError, subprocess.SubprocessError):
+            return missing          # no fontconfig - fall back to the floor
+        if not out.stdout.strip():
+            missing.add(cp)
+    return missing
+
 Q = re.compile(r"\*\*Q(\d+)\.\*\*")
 ANS = re.compile(r"^\|\s*(\d+)\s*\|\s*([a-d])\s*\|", re.M)
 H2 = re.compile(r"^## (\d+)\.", re.M)
 
 
-def check_chapter(path):
+def check_chapter(path, unrenderable=UNRENDERABLE):
     """Returns (list_of_failures, list_of_notes)."""
     fails, notes = [], []
     text = path.read_text(encoding="utf-8")
@@ -87,8 +121,8 @@ def check_chapter(path):
 
     html = DOCS / path.relative_to(SRC).with_suffix(".html")
     if html.exists():
-        bad = Counter(ch for ch in html.read_text(encoding="utf-8")
-                      if ord(ch) in UNRENDERABLE)
+        body = STYLE.sub("", html.read_text(encoding="utf-8"))
+        bad = Counter(ch for ch in body if ord(ch) in unrenderable)
         if bad:
             fails.append(f"{name}: unrenderable glyphs survived into HTML: "
                          f"{ {c: n for c, n in bad.items()} }")
@@ -103,9 +137,15 @@ def main():
         print("no src/ directory", file=sys.stderr)
         return 1
 
+    unrenderable = discover_unrenderable()
+    extra = sorted(unrenderable - UNRENDERABLE)
+    if extra:
+        print("  note font coverage: additionally missing "
+              + ", ".join(f"U+{c:04X} ({chr(c)})" for c in extra))
+
     all_fails, all_notes = [], []
     for path in sorted(SRC.rglob("*.md")):
-        f, n = check_chapter(path)
+        f, n = check_chapter(path, unrenderable)
         all_fails += f
         all_notes += n
 

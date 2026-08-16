@@ -62,6 +62,15 @@ GLYPHS = {
     "\u221a": "sqrt",          # radical
     "\u221e": "infinity",      # infinity
     "\u2211": "\u03a3",        # n-ary summation -> Greek capital sigma, which IS available
+    "\u2713": "yes",           # check mark
+    "\u2717": "no",            # ballot X
+    "\u2213": "-/+",           # minus-or-plus
+    "\u2220": "angle ",        # angle
+    "\u2234": "therefore",     # therefore
+    "\u21d2": "implies",       # rightwards double arrow
+    "\u2261": "=",             # identical to
+    "\u2208": "in",            # element of
+    "\u25b3": "triangle ",     # white up-pointing triangle
 }
 # Verified present in Noto Sans and passed through untouched: Greek sigma, capital
 # sigma, mu and rho; the superscript two; plus-minus; multiplication sign; the

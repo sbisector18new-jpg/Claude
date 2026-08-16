@@ -15,8 +15,26 @@ block. Download those directly — that is the version to read and print.
 
 The HTML is the same content for reading on screen; it reflows for phone and tablet.
 
-**In this repository: 25 chapters, 627 pages, 695 practice questions**, every answer key balanced across
+**In this repository: 35 chapters, 872 pages, 994 practice questions**, every answer key balanced across
 the four options and verified against its intended option text.
+:::
+
+::: high-yield | HIGH YIELD · THE SYLLABUS IS COMPLETE — START WITH THESE THREE
+All eleven modules are written and all **300 planning marks** are covered. There is no longer any reading to
+be finished before you begin. Three documents matter more than the rest:
+
+1. **[F8.0 — The Daily Drill Programme](module-08/F8.0-daily-drill-programme.html)** — the 12-week dated
+   calendar. **Go to its §3, week 1, Monday, and start tomorrow evening.** Module 8 is 80 of the 300 marks
+   and it runs as 30 minutes a day, not as a block
+2. **[F11.2 — Full Mock 1](module-11/F11.2-full-mock-1.html)** — a complete 120-question paper. Sit it at
+   week 8 under examination conditions, then complete its score analysis
+3. **[F11.3 — Mock Protocol and Final Revision](module-11/F11.3-mock-protocol-final-revision.html)** — how
+   to spend the last four weeks, and what to do the morning of the paper
+
+**One warning before you rely on older notes.** The **four labour codes came into force on 21 November
+2025**, replacing 29 central labour laws, and the **Employees' Pension Scheme, 2026 replaced EPS-95** on
+29 June 2026. Material written before late 2025 may teach repealed law. See
+**[F10.2 §1 and §2](module-10/F10.2-schemes-institutions-dossier.html)**.
 :::
 
 ## Module 8 — General English, Quantitative Aptitude & Reasoning · complete
@@ -56,6 +74,61 @@ reasoning question in 120**. Every commercial book for this exam devotes hundred
 blood relations and seating arrangements; on the available evidence that is a very poor use of your hours.
 F8.8 §5 gives you the seven patterns that recover most of the value from a single question in about forty
 minutes of reading, and the Master Content Register records the decision so it is not silently reversed.
+
+## Module 11 — PYQ Analysis, Mocks & Final Revision · complete
+
+**The module that acts on all the others.** It carries no marks of its own and is the highest-value block in
+the manual, because it works on the 300 marks already covered rather than adding to them.
+
+| Ch | Topic | PDF | On screen | Q |
+|---|---|---|---|---:|
+| **F11.1** | Previous question analysis — the 2023 paper, module by module | [PDF, 22 pp](../pdf/module-11/F11.1-pyq-analysis.pdf) | [HTML](module-11/F11.1-pyq-analysis.html) | 25 |
+| **F11.2** | **Full Mock 1 — 120 questions, 120 minutes, 300 marks** | [PDF, 33 pp](../pdf/module-11/F11.2-full-mock-1.pdf) | [HTML](module-11/F11.2-full-mock-1.html) | **120** |
+| **F11.3** | Mock protocol, score analysis and final revision | [PDF, 19 pp](../pdf/module-11/F11.3-mock-protocol-final-revision.pdf) | [HTML](module-11/F11.3-mock-protocol-final-revision.html) | — |
+
+**74 pages, 145 questions.** F11.1's bank is **25 questions set on the specific items the 2023 paper asked**
+— on the available evidence the highest-value 25 questions here. F11.2's key is balanced at exactly
+**30/30/30/30**, so there is no letter to fall back on.
+
+**Mocks 2 to 5 are assembled, not written out.** F11.3 §3 gives the recipe: 76 of each 120 come from this
+manual's banks, and the other 44 from your own Modules 1, 2, 3 and 5 or from the previous papers. Four more
+fully written papers would have meant 480 padded questions, which would be worse than none — you would be
+calibrating against questions that do not resemble the paper.
+
+## Module 10 — Integrated Current Affairs · complete
+
+| Ch | Topic | PDF | On screen | Q |
+|---|---|---|---|---:|
+| **F10.1** | The current affairs system — method, attributions, watchlist, verification sweep | [PDF, 26 pp](../pdf/module-10/F10.1-current-affairs-system.pdf) | [HTML](module-10/F10.1-current-affairs-system.html) | 20 |
+| **F10.2** | Schemes, institutions and the current dossier | [PDF, 26 pp](../pdf/module-10/F10.2-schemes-institutions-dossier.pdf) | [HTML](module-10/F10.2-schemes-institutions-dossier.html) | 30 |
+
+**52 pages, 50 questions.** The module is split between **a method that does not decay and a dossier that
+does**. F10.1 carries the collection system and the report-to-publisher table, which is permanently
+askable; F10.2 carries the perishable content, every figure dated **`[AS AT 16 AUG 2026]`** with a source.
+
+**Run F10.1 §4's twelve-item verification sweep in the fortnight before the paper.** Diarise it now. A stale
+figure carried confidently costs −0.8333; a blank costs nothing.
+
+## Module 4 — Indian Economy, Population & Globalisation · complete
+
+| Ch | Topic | PDF | On screen | Q |
+|---|---|---|---|---:|
+| **F4.1** | National income, growth and planning | [PDF, 22 pp](../pdf/module-04/F4.1-national-income-growth-planning.pdf) | [HTML](module-04/F4.1-national-income-growth-planning.html) | 20 |
+| **F4.2** | Money, banking and inflation | [PDF, 25 pp](../pdf/module-04/F4.2-money-banking-inflation.pdf) | [HTML](module-04/F4.2-money-banking-inflation.html) | 22 |
+| **F4.3** | Public finance, the Budget and taxation | [PDF, 26 pp](../pdf/module-04/F4.3-public-finance-budget-taxation.pdf) | [HTML](module-04/F4.3-public-finance-budget-taxation.html) | 22 |
+| **F4.4** | Poverty, unemployment and human development | [PDF, 23 pp](../pdf/module-04/F4.4-poverty-unemployment-development.pdf) | [HTML](module-04/F4.4-poverty-unemployment-development.html) | 20 |
+| **F4.5** | Population, demography and globalisation | [PDF, 23 pp](../pdf/module-04/F4.5-population-demography-globalisation.pdf) | [HTML](module-04/F4.5-population-demography-globalisation.html) | 20 |
+
+**119 pages, 104 questions**, written **deliberately lean** — 15 marks over 8 hours, and the
+lowest-certainty module in the syllabus. Four teaching sessions a chapter instead of six, definition tables
+instead of derivations, full question banks retained.
+
+**Give F4.2 the largest share of the module's hours.** Money, banking and the index numbers are the part of
+economy with **definite answers**, and definite answers are what an examiner reaches for.
+
+**Three things in this module make older material wrong:** GST now has **two main slabs, 5% and 18%** (F4.3
+§3.2); the **Income-tax Act, 2025** replaced the 1961 Act on 1 April 2026 (F4.3 §3.3); and India's
+**fertility has fallen below replacement level** (F4.5 §1.3).
 
 ## Module 6 — Accounting, Auditing & Statistics · complete
 
@@ -114,11 +187,16 @@ If your time collapses, these are the sections that carry the most marks:
 
 - **F8.0 §4.1** — the fraction, decimal and percentage equivalents. The single highest-value page in the
   Quant half: it converts most percentage questions into one-step multiplications
+- **F11.1 §1.2 and §3.1** — the marking arithmetic, and the fact that **a fifth of the paper is negatively
+  framed**. Two pages that are worth marks in every other module
 - **F8.6 §2.2** — the hemisphere's three surface areas, and which one a question is asking for
 - **F8.7 §2** — the sum and product of the roots of a quadratic. Most questions about roots never require
   you to find them
 - **F8.8 §4.1** — percentage against percentage point, the most examined distinction in data interpretation
 - **F8.1 §5** — the word list, ten a day, every day. Half the English block
+- **F10.1 §2.2** — the report-to-publisher table. Permanent answers, learnable in an evening
+- **F10.2 §1 and §2** — the labour codes and the EPFO dossier, directly on the subject of the post
+- **F4.2 §2 and §3** — the RBI's corridor and the CPI/WPI comparison
 - **F6.1 §6** — trial balance and the four errors it cannot catch
 - **F6.2 §5** — capital versus revenue, and the five one-word pairs
 - **F6.3 §5 and §6** — the year-end adjustments, and provision versus reserve
@@ -130,24 +208,28 @@ If your time collapses, these are the sections that carry the most marks:
 The **[Master Content Register](../MASTER_CONTENT_REGISTER.md)** is the source of truth. Read it first if
 you are resuming after a break.
 
-- **Complete:** Modules 1, 2, 3, 5, 6, 7, 8, 9 — 69 chapters, 178 hours, **265.0 planning marks (88% of
-  the paper)**
-- **Remaining:** Modules 4, 10, 11 — 46 hours, **35.0 planning marks** of new content
-- **In this repository:** Modules 6, 7, 8 and 9 only. **Modules 1, 2, 3 and 5 are complete as study
-  material but are not here** — see register §9
+- **Complete: all eleven modules** — 79 chapters, 224 hours, **300.0 planning marks. The syllabus is
+  closed.**
+- **In this repository:** Modules 4, 6, 7, 8, 9, 10 and 11 — **35 chapters, 872 pages, 994 questions**
+- **Not here:** **Modules 1, 2, 3 and 5** are complete as study material but have never been supplied —
+  44 chapters and **97.5 marks**. See register §9. `pyq/` is also still empty
 
 ## What to do next
 
+**There is nothing left to read before you begin.** The remaining work is execution.
+
 1. **Start F8.0's drill tomorrow evening.** Week 1, Monday: F8.1 §7 Q1–20, timed. The programme's value is
    the daily habit, and it does not begin until the first cell is done
-2. **Re-supply Modules 1, 2, 3 and 5** so they enter `src/`. This is now the highest-value outstanding
-   item: those four modules are **97.5 marks**, they are the coldest material you own, and until they are
-   here neither the master book nor a proper revision pass can be built
-3. **Module 4** — Economy, lean, 8 hours. Lowest certainty of anything left; do not let it grow
-4. **Module 10** — Integrated Current Affairs, best taken close to the paper
-5. **Module 11** — PYQ analysis, five full mocks, final revision. The highest-value block remaining,
-   because it acts on all 265 marks already covered rather than adding to them. It needs the 2015 and 2023
-   papers in `pyq/`, which are not yet here
+2. **Re-supply Modules 1, 2, 3 and 5**, Modules 2 and 3 first. They are **97.5 marks**, the coldest material
+   you own, and — because the labour codes and EPS 2026 have superseded much of what they teach — possibly
+   the least current. Register §10 has the three checks to run against them
+3. **Sit Mock 1** (F11.2) at week 8, under F11.3 §1.1's conditions, and complete the score analysis before
+   anything else
+4. **Diarise F10.1 §4's twelve-item verification sweep** for the fortnight before the paper
+5. **Follow F11.3 §4.2** in the last four weeks — wall sheets, the error log, and no new material
+
+**And supply the 2015 and 2023 papers into `pyq/`** when you can: they are needed for 44 of the 120
+questions in every assembled mock, and for a real repeat-rate analysis.
 
 ## Rebuilding
 

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poverty, Unemployment and Human Development</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F4.4 · Poverty, Unemployment, Development
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · MODULE 4 · CHAPTER F4.4</p><h1 class="doc-t">Poverty, Unemployment and Human Development</h1><p class="doc-s">Chapter F4.4 — Where the Definitions Are More Examinable Than the Numbers</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 4 — Indian Economy, Population, Development and Globalisation</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F4.4</td></tr><tr><td class="k">Topic</td><td class="v">Official syllabus head — Current Events and Developmental Issues; Population, Development</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal must-master"><p class="cal-h">MUST MASTER · IN THIS CHAPTER, LEARN THE DEFINITIONS AND NOT THE NUMBERS</p><p>Poverty and unemployment are the parts of Module 4 where candidates waste the most time, because the statistics are voluminous, they change every survey round, and they are the least likely thing to be asked.</p><p><strong>What is asked is the machinery of measurement.</strong> Which committee used consumption expenditure rather than calories. What the unemployment rate is a percentage <em>of</em>. Which three dimensions the Human Development Index combines and by what kind of average. Whether a rising Gini means more or less inequality.</p><p>Those have permanent answers. <strong>A current unemployment rate does not</strong>, and it is quoted in this chapter only in a dated callout with a source, per the convention set in F4.1 §0.</p><p>So: learn §1's committee sequence, §2's four unemployment concepts and three rate definitions, and §3's index compositions. Read the numbers once and let them go.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-poverty"><span class="toc-t">1. Session 1 — Poverty <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#11-the-two-concepts"><span class="toc-t">1.1 The two concepts</span></a><a class="toc-3" href="#12-the-committees-in-order"><span class="toc-t">1.2 The committees, in order</span></a><a class="toc-3" href="#13-the-measures"><span class="toc-t">1.3 The measures</span></a><a class="toc-3" href="#14-the-multidimensional-poverty-index"><span class="toc-t">1.4 The Multidimensional Poverty Index</span></a><a class="toc-2" href="#2-session-2-unemployment"><span class="toc-t">2. Session 2 — Unemployment <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#21-the-types"><span class="toc-t">2.1 The types</span></a><a class="toc-3" href="#22-how-india-measures-it"><span class="toc-t">2.2 How India measures it</span></a><a class="toc-3" href="#23-mgnrega"><span class="toc-t">2.3 MGNREGA</span></a><a class="toc-2" href="#3-session-3-human-development-and-inequality"><span class="toc-t">3. Session 3 — Human Development and Inequality <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#31-the-human-development-index"><span class="toc-t">3.1 The Human Development Index</span></a><a class="toc-3" href="#32-the-related-indices"><span class="toc-t">3.2 The related indices</span></a><a class="toc-3" href="#33-measuring-inequality"><span class="toc-t">3.3 Measuring inequality</span></a><a class="toc-2" href="#4-session-4-the-welfare-architecture"><span class="toc-t">4. Session 4 — The Welfare Architecture <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-2" href="#5-graded-practice-20-questions"><span class="toc-t">5. Graded Practice — 20 Questions <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#51-level-1-poverty-and-unemployment-concepts"><span class="toc-t">5.1 Level 1 — Poverty and unemployment concepts</span></a><a class="toc-3" href="#52-level-2-measurement"><span class="toc-t">5.2 Level 2 — Measurement</span></a><a class="toc-3" href="#53-level-3-recruitment-test-standard"><span class="toc-t">5.3 Level 3 — Recruitment Test standard</span></a><a class="toc-2" href="#6-answers-and-explanations"><span class="toc-t">6. Answers and Explanations</span></a><a class="toc-3" href="#61-level-1"><span class="toc-t">6.1 Level 1</span></a><a class="toc-3" href="#62-level-2"><span class="toc-t">6.2 Level 2</span></a><a class="toc-3" href="#63-level-3"><span class="toc-t">6.3 Level 3</span></a><a class="toc-2" href="#7-one-minute-revision"><span class="toc-t">7. One-Minute Revision</span></a><a class="toc-2" href="#8-five-minute-wall-sheet"><span class="toc-t">8. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F4.4</p><ol><li><strong>Session 1</strong> — Poverty: concepts, committees and measures (§1) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 2</strong> — Unemployment: the types, and how India measures it (§2) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 3</strong> — Human development and inequality indices (§3) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 4</strong> — The welfare architecture (§4) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li></ol><p>Then 20 graded questions in §5. Budget <strong>one evening</strong>. §4 overlaps Module 3 substantially and can be read as revision.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-poverty">1. Session 1 — Poverty <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="11-the-two-concepts">1.1 The two concepts</h3><div class="tw"><table><thead><tr><th style="text-align:left">Concept</th><th style="text-align:left">Meaning</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Absolute poverty</strong></td><td style="text-align:left">Deprivation measured against a <strong>fixed line</strong> — a specified basket or calorie norm — the same standard regardless of what others have</td></tr><tr><td style="text-align:left"><strong>Relative poverty</strong></td><td style="text-align:left">Deprivation judged against the <strong>standard of living prevailing in that society</strong>. A relatively poor person in a rich country may be absolutely better off than an average person in a poor one</td></tr></tbody></table></div><p><strong>Developing countries generally measure absolute poverty; developed countries generally measure relative poverty</strong>, often as a fraction of median income. The distinction is the commonest conceptual question in the topic.</p><h3 id="12-the-committees-in-order">1.2 The committees, in order</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE SEQUENCE, AND WHAT EACH CHANGED</p><p>The examiner asks either <strong>who used what basis</strong> or <strong>in what order they reported</strong>. Both are answered by this table.</p><div class="tw"><table><thead><tr><th style="text-align:left">Committee / Group</th><th style="text-align:left">Year</th><th style="text-align:left">What it did</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Dandekar and Rath</strong></td><td style="text-align:left">1971</td><td style="text-align:left">Early estimation based on <strong>calorie norms</strong></td></tr><tr><td style="text-align:left"><strong>Alagh Task Force</strong></td><td style="text-align:left"><strong>1979</strong></td><td style="text-align:left">Fixed the poverty line on <strong>calorie intake: 2,400 kcal rural, 2,100 kcal urban</strong></td></tr><tr><td style="text-align:left"><strong>Lakdawala Committee</strong></td><td style="text-align:left"><strong>1993</strong></td><td style="text-align:left">State-specific poverty lines; used <strong>CPI-IW and CPI-AL</strong> to update them</td></tr><tr><td style="text-align:left"><strong>Tendulkar Committee</strong></td><td style="text-align:left"><strong>2009</strong></td><td style="text-align:left">Moved away from calories to <strong>Monthly Per Capita Consumption Expenditure (MPCE)</strong>, a <strong>mixed reference period</strong>, and included <strong>health and education spending</strong></td></tr><tr><td style="text-align:left"><strong>Rangarajan Committee</strong></td><td style="text-align:left"><strong>2014</strong></td><td style="text-align:left">Reverted to separate rural and urban baskets; produced <strong>higher</strong> poverty estimates than Tendulkar</td></tr></tbody></table></div><p><strong>The two facts most often tested:</strong> the <strong>calorie norms are 2,400 rural and 2,100 urban</strong> — note that the <strong>rural</strong> figure is the higher one, because rural work is more physically demanding, which is the counter-intuitive part — and <strong>Tendulkar is the committee that abandoned the calorie basis for consumption expenditure</strong>.</p><p><strong>The order is Alagh (1979) » Lakdawala (1993) » Tendulkar (2009) » Rangarajan (2014).</strong></p></aside><h3 id="13-the-measures">1.3 The measures</h3><div class="tw"><table><thead><tr><th style="text-align:left">Measure</th><th style="text-align:left">What it captures</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Head count ratio</strong></td><td style="text-align:left">The <strong>proportion</strong> of the population below the line. Says nothing about how far below</td></tr><tr><td style="text-align:left"><strong>Poverty gap index</strong></td><td style="text-align:left">The <strong>average shortfall</strong> from the line — the depth of poverty</td></tr><tr><td style="text-align:left"><strong>Squared poverty gap</strong></td><td style="text-align:left">Weights larger shortfalls more heavily — the <strong>severity</strong> of poverty</td></tr></tbody></table></div><p><strong>Why more than one is needed:</strong> if a transfer moves a person from just below the line to just above it, the head count improves markedly while the poorest are untouched. The gap measures are what prevent that from looking like success.</p><h3 id="14-the-multidimensional-poverty-index">1.4 The Multidimensional Poverty Index</h3><div class="tw"><table><thead><tr><th style="text-align:left">Feature</th><th style="text-align:left"></th></tr></thead><tbody><tr><td style="text-align:left"><strong>Global MPI</strong></td><td style="text-align:left">Published by <strong>UNDP and the Oxford Poverty and Human Development Initiative (OPHI)</strong></td></tr><tr><td style="text-align:left"><strong>National MPI</strong></td><td style="text-align:left">Published by <strong>NITI Aayog</strong></td></tr><tr><td style="text-align:left">Method</td><td style="text-align:left">The <strong>Alkire-Foster</strong> method</td></tr><tr><td style="text-align:left"><strong>Three dimensions</strong></td><td style="text-align:left"><strong>Health, education, and standard of living</strong></td></tr><tr><td style="text-align:left">Indicators</td><td style="text-align:left">Twelve in the national index, drawn from the National Family Health Survey</td></tr></tbody></table></div><p><strong>The point of a multidimensional measure</strong> is that income is a means and not the deprivation itself: a household above an income line but without sanitation, schooling or clean fuel is poor in a sense the income line cannot see. <strong>The three dimensions are health, education and standard of living</strong> — note that <strong>income is not one of them</strong>, which is exactly what a question will test.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 1</p><ol><li>Distinguish absolute from relative poverty, and say which kind each type of country measures</li><li>Give the calorie norms and say which is higher, rural or urban, and why</li><li>Which committee replaced calories with consumption expenditure, and in what year?</li><li>Put Alagh, Lakdawala, Tendulkar and Rangarajan in order</li><li>Name the three poverty measures and what each adds</li><li>Give the three dimensions of the MPI and the two bodies that publish the global and national versions</li></ol></aside><div class="pagebreak"></div><h2 id="2-session-2-unemployment">2. Session 2 — Unemployment <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="21-the-types">2.1 The types</h3><div class="tw"><table><thead><tr><th style="text-align:left">Type</th><th style="text-align:left">Meaning</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Open</strong></td><td style="text-align:left">Willing and able to work, no work available at all</td></tr><tr><td style="text-align:left"><strong>Disguised</strong></td><td style="text-align:left"><strong>More people employed than are needed</strong> — removing some would not reduce output. <strong>Characteristic of Indian agriculture</strong></td></tr><tr><td style="text-align:left"><strong>Seasonal</strong></td><td style="text-align:left">Work available only in part of the year — again agriculture, and tourism</td></tr><tr><td style="text-align:left"><strong>Structural</strong></td><td style="text-align:left">A <strong>mismatch</strong> between workers' skills or location and the jobs available. Long-lasting</td></tr><tr><td style="text-align:left"><strong>Cyclical</strong></td><td style="text-align:left">Caused by a <strong>downturn in aggregate demand</strong>; disappears in recovery</td></tr><tr><td style="text-align:left"><strong>Frictional</strong></td><td style="text-align:left">Short-term, while moving between jobs — a search phenomenon, not a shortage</td></tr><tr><td style="text-align:left"><strong>Technological</strong></td><td style="text-align:left">Displacement by mechanisation or automation</td></tr><tr><td style="text-align:left"><strong>Educated / underemployment</strong></td><td style="text-align:left">Qualified persons in work below their qualification, or working fewer hours than they wish</td></tr></tbody></table></div><aside class="cal trap"><p class="cal-h">TRAP · DISGUISED, STRUCTURAL AND CYCLICAL ARE THE THREE THAT GET SWAPPED</p><ul><li><strong>Disguised</strong> — the work is <em>shared</em> among too many. Output would not fall if some left. <strong>Agriculture</strong></li><li><strong>Structural</strong> — the jobs exist but the <strong>skills or location do not match</strong>. A textile worker in a</li></ul><p>district where only software firms are hiring</p><ul><li><strong>Cyclical</strong> — the <strong>jobs have temporarily disappeared</strong> because demand fell. A construction worker in a</li></ul><p>recession</p><p>The distinguishing question is: <strong>is the problem too many people for the work (disguised), the wrong people for the work (structural), or not enough work for now (cyclical)?</strong> Each is offered as a distractor for the others.</p></aside><h3 id="22-how-india-measures-it">2.2 How India measures it</h3><div class="tw"><table><thead><tr><th style="text-align:left">Approach</th><th style="text-align:left">Reference period</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Usual Status (principal + subsidiary)</strong></td><td style="text-align:left">The <strong>preceding 365 days</strong> — the <em>long-term</em> measure, gives the <strong>lowest</strong> unemployment rate</td></tr><tr><td style="text-align:left"><strong>Current Weekly Status</strong></td><td style="text-align:left">The preceding <strong>7 days</strong></td></tr><tr><td style="text-align:left"><strong>Current Daily Status</strong></td><td style="text-align:left">Each <strong>half-day</strong> of the reference week — the most exacting, gives the <strong>highest</strong> rate</td></tr></tbody></table></div><p><strong>The three rates, and what each is a percentage of:</strong></p><blockquote><p><strong>Labour Force Participation Rate (LFPR) = labour force ÷ population</strong> <strong>Worker Population Ratio (WPR) = employed persons ÷ population</strong> <strong>Unemployment Rate (UR) = unemployed persons ÷ LABOUR FORCE</strong></p></blockquote><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE UNEMPLOYMENT RATE IS A SHARE OF THE LABOUR FORCE, NOT OF THE POPULATION</p><p>This is the single most examined definition in the topic, and getting it wrong makes every related calculation wrong.</p><p><strong>The labour force = the employed + the unemployed who are actively seeking work.</strong> Someone who is not looking for work — a student, a homemaker, a retired person — is <strong>outside the labour force entirely</strong> and appears in <strong>neither</strong> the numerator nor the denominator of the unemployment rate.</p><p><strong>Two consequences that are asked:</strong></p><ol><li><strong>The unemployment rate can FALL because people stop looking for work.</strong> They leave the labour force, so the denominator shrinks and the numerator shrinks — an improvement in the rate that reflects discouragement rather than employment. This is why the <strong>LFPR must be read alongside the UR</strong></li><li><strong>India's female LFPR is far below the male figure</strong>, which is the largest single reason overall LFPR is low. A low female LFPR <em>reduces</em> the measured unemployment rate, because women not seeking work are not counted as unemployed</li></ol><p><strong>The survey:</strong> the <strong>Periodic Labour Force Survey (PLFS)</strong>, conducted by the <strong>National Statistical Office under MoSPI</strong>, which began in 2017-18 and is <strong>now released monthly</strong> as well as quarterly and annually — a change from the earlier annual-only design, and worth knowing because older material describes it as an annual survey.</p></aside><aside class="cal know"><p class="cal-h">KNOW · THE LABOUR MARKET READING  <code>[AS AT 16 AUG 2026]</code> · RE-VERIFY BEFORE THE PAPER</p><div class="tw"><table><thead><tr><th style="text-align:left">Indicator (persons aged 15 and above)</th><th style="text-align:left">Reading</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Unemployment rate</strong></td><td style="text-align:left">about <strong>5.1%</strong> (March 2026)</td></tr><tr><td style="text-align:left"><strong>LFPR</strong></td><td style="text-align:left">about <strong>55.4%</strong> (March 2026); <strong>54.4%</strong> in June 2026</td></tr><tr><td style="text-align:left"><strong>Worker Population Ratio</strong></td><td style="text-align:left">about <strong>52.6%</strong> (March 2026)</td></tr><tr><td style="text-align:left"><strong>Female LFPR</strong></td><td style="text-align:left">about <strong>34.4%</strong> (March 2026)</td></tr><tr><td style="text-align:left">Urban unemployment rate</td><td style="text-align:left">about <strong>6.7%</strong> (April–June 2026); rural about <strong>4.2%</strong></td></tr></tbody></table></div><p>Sources: <a href="https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2252224">PIB release on the March 2026 monthly PLFS</a> · <a href="https://www.mospi.gov.in/uploads/latestReleases/latest_release_1784110763693_05e4144f-1428-4be3-817c-cae6072d34a5_Monthly_Press_note_June_2026.pdf">MoSPI monthly press note, June 2026</a> · <a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=2297093">PIB on urban unemployment, April–June 2026</a></p><p><strong>The durable points behind the numbers:</strong> the <strong>urban rate exceeds the rural rate</strong>, which surprises people and is explained by disguised employment absorbing rural labour rather than by rural prosperity; and the <strong>female LFPR is roughly a third</strong>, well under half the male rate. <em>Content rephrased from the sources for compliance with licensing restrictions.</em></p></aside><h3 id="23-mgnrega">2.3 MGNREGA</h3><p><strong>The Mahatma Gandhi National Rural Employment Guarantee Act, 2005</strong> guarantees <strong>at least 100 days of unskilled manual wage employment in a financial year to every rural household</strong> whose adult members volunteer for it.</p><p>Its distinguishing features: it is a <strong>legal guarantee</strong> rather than a scheme, it provides for an <strong>unemployment allowance</strong> if work is not given within 15 days, it requires <strong>one-third participation by women</strong>, and it uses <strong>social audit</strong> by the Gram Sabha. It is demand-driven — the work follows the application, not an allocation.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 2</p><ol><li>Distinguish disguised, structural and cyclical unemployment in one question each</li><li>Which reference period gives the lowest measured unemployment, and which the highest?</li><li>Define LFPR, WPR and UR, naming the denominator of each</li><li>How can the unemployment rate fall without anyone finding work?</li><li>Give MGNREGA's year, the guarantee, and three of its distinguishing features</li></ol></aside><div class="pagebreak"></div><h2 id="3-session-3-human-development-and-inequality">3. Session 3 — Human Development and Inequality <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="31-the-human-development-index">3.1 The Human Development Index</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THREE DIMENSIONS, FOUR INDICATORS, AND A GEOMETRIC MEAN</p><div class="tw"><table><thead><tr><th style="text-align:left">Feature</th><th style="text-align:left"></th></tr></thead><tbody><tr><td style="text-align:left"><strong>Published by</strong></td><td style="text-align:left"><strong>UNDP</strong>, in the <strong>Human Development Report</strong>, <strong>first in 1990</strong></td></tr><tr><td style="text-align:left"><strong>Conceived by</strong></td><td style="text-align:left"><strong>Mahbub ul Haq</strong>, with <strong>Amartya Sen</strong></td></tr><tr><td style="text-align:left"><strong>Dimension 1 — health</strong></td><td style="text-align:left"><strong>Life expectancy at birth</strong></td></tr><tr><td style="text-align:left"><strong>Dimension 2 — education</strong></td><td style="text-align:left"><strong>Mean years of schooling</strong> (adults) and <strong>expected years of schooling</strong> (children)</td></tr><tr><td style="text-align:left"><strong>Dimension 3 — standard of living</strong></td><td style="text-align:left"><strong>Gross national income per capita, at purchasing power parity</strong></td></tr><tr><td style="text-align:left"><strong>Aggregation</strong></td><td style="text-align:left">The <strong>GEOMETRIC mean</strong> of the three dimension indices</td></tr><tr><td style="text-align:left">Range</td><td style="text-align:left"><strong>0 to 1</strong></td></tr></tbody></table></div><p><strong>Three things get asked, and all three are in that table:</strong></p><ol><li><strong>What is NOT in the HDI.</strong> Unemployment, inequality, poverty, gender and environmental quality are all <strong>absent</strong>. The HDI is deliberately austere — three dimensions, nothing else — and separate indices exist for the rest</li><li><strong>The geometric mean, not the arithmetic.</strong> This was a change made in 2010, and it matters substantively: a geometric mean <strong>punishes imbalance</strong>, so a country cannot compensate for very low life expectancy with very high income. An arithmetic mean would let it</li><li><strong>GNI per capita, not GDP</strong> — and <strong>at PPP</strong>, not market exchange rates</li></ol></aside><h3 id="32-the-related-indices">3.2 The related indices</h3><div class="tw"><table><thead><tr><th style="text-align:left">Index</th><th style="text-align:left">What it adds</th></tr></thead><tbody><tr><td style="text-align:left"><strong>IHDI</strong> — Inequality-adjusted HDI</td><td style="text-align:left">Discounts the HDI for <strong>inequality</strong> in each dimension</td></tr><tr><td style="text-align:left"><strong>GDI</strong> — Gender Development Index</td><td style="text-align:left">Ratio of female to male HDI</td></tr><tr><td style="text-align:left"><strong>GII</strong> — Gender Inequality Index</td><td style="text-align:left">Reproductive health, empowerment, labour market</td></tr><tr><td style="text-align:left"><strong>MPI</strong></td><td style="text-align:left">Multidimensional poverty — §1.4</td></tr><tr><td style="text-align:left"><strong>PQLI</strong> — Physical Quality of Life Index</td><td style="text-align:left"><strong>Morris D Morris</strong>: literacy, <strong>infant mortality</strong>, and <strong>life expectancy at age one</strong>. <strong>Excludes income entirely</strong></td></tr></tbody></table></div><aside class="cal trap"><p class="cal-h">TRAP · PQLI EXCLUDES INCOME; HDI INCLUDES IT</p><p>The <strong>Physical Quality of Life Index</strong> was an earlier attempt at a welfare measure and it uses <strong>three indicators with no income component at all</strong> — literacy, infant mortality and life expectancy at age one. The <strong>HDI includes income</strong> as one of its three dimensions.</p><p>So a question asking which composite index <strong>omits income</strong> is asking for the <strong>PQLI</strong>. Note also that PQLI uses life expectancy <strong>at age one</strong>, not at birth, precisely because infant mortality is counted separately and would otherwise be double counted.</p></aside><h3 id="33-measuring-inequality">3.3 Measuring inequality</h3><div class="tw"><table><thead><tr><th style="text-align:left">Tool</th><th style="text-align:left">What it is</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Lorenz curve</strong></td><td style="text-align:left">A graph of the <strong>cumulative share of income against the cumulative share of population</strong>. The <strong>45-degree line is perfect equality</strong>; the further the curve sags below it, the greater the inequality</td></tr><tr><td style="text-align:left"><strong>Gini coefficient</strong></td><td style="text-align:left">The area between the Lorenz curve and the line of equality, as a proportion of the whole triangle. <strong>0 = perfect equality, 1 = perfect inequality</strong></td></tr><tr><td style="text-align:left"><strong>Kuznets curve</strong></td><td style="text-align:left">The hypothesis that inequality <strong>rises then falls</strong> as an economy develops — an inverted U</td></tr></tbody></table></div><blockquote><p><strong>A RISING Gini coefficient means RISING inequality.</strong> The direction is the whole question, and the reversed statement is a standard "not correct" option.</p></blockquote><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 3</p><ol><li>Name the HDI's three dimensions and four indicators, and the body and year of first publication</li><li>What kind of mean is used, and why does the choice matter?</li><li>Name four things the HDI does not measure</li><li>Which index excludes income, and what are its three indicators?</li><li>What does a Gini of 0 mean? Does a rising Gini mean more or less inequality?</li></ol></aside><div class="pagebreak"></div><h2 id="4-session-4-the-welfare-architecture">4. Session 4 — The Welfare Architecture <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><p>This section overlaps Module 3 and can be read as revision. It is included because a <em>"which scheme does what"</em> question is among the most likely six marks in Module 4.</p><div class="tw"><table><thead><tr><th style="text-align:left">Scheme</th><th style="text-align:left">What it provides</th></tr></thead><tbody><tr><td style="text-align:left"><strong>MGNREGA, 2005</strong></td><td style="text-align:left"><strong>100 days</strong> of guaranteed rural wage employment — §2.3</td></tr><tr><td style="text-align:left"><strong>National Food Security Act, 2013</strong></td><td style="text-align:left">Subsidised foodgrain as a <strong>legal entitlement</strong>; priority households and Antyodaya</td></tr><tr><td style="text-align:left"><strong>Ayushman Bharat PM-JAY</strong></td><td style="text-align:left">Health cover of <strong>₹5 lakh per family per year</strong> for secondary and tertiary care</td></tr><tr><td style="text-align:left">PM Awas Yojana</td><td style="text-align:left">Housing, rural and urban</td></tr><tr><td style="text-align:left">PM-KISAN</td><td style="text-align:left">Income support to landholding farmers</td></tr><tr><td style="text-align:left"><strong>Atal Pension Yojana</strong></td><td style="text-align:left">A <strong>guaranteed pension</strong> of ₹1,000 to ₹5,000 a month, for the unorganised sector</td></tr><tr><td style="text-align:left"><strong>PMJJBY / PMSBY</strong></td><td style="text-align:left">Low-premium <strong>life</strong> and <strong>accident</strong> insurance — see F7.1</td></tr><tr><td style="text-align:left"><strong>e-Shram</strong></td><td style="text-align:left">The national <strong>database of unorganised workers</strong></td></tr><tr><td style="text-align:left"><strong>Code on Social Security, 2020</strong></td><td style="text-align:left">Brings <strong>gig and platform workers</strong> within a contributory framework — F8.3's fourth passage</td></tr></tbody></table></div><aside class="cal know"><p class="cal-h">KNOW · WHY THIS TABLE MATTERS TO THIS PARTICULAR POST</p><p>An Assistant Provident Fund Commissioner administers <strong>contributory</strong> social insurance. The schemes above are mostly <strong>non-contributory assistance</strong>, funded from general revenues.</p><p>That distinction — the one F8.3's first passage is built on — is the organising idea of the whole Indian social security system, and it explains the coverage gap the <strong>Code on Social Security, 2020</strong> was written to address: contributory schemes reach those with an identifiable employer, and assistance schemes reach the rest.</p><p><strong>Expect it in the interview as well as the paper.</strong> The strong answer is not a list of schemes but the observation that India runs two parallel systems on different financing principles, and that the growth of platform work sits exactly on the boundary between them.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 4</p><ol><li>Give the year and the core guarantee of MGNREGA and of the NFSA</li><li>What is the PM-JAY cover, per what unit and how often?</li><li>Which schemes provide life and accident insurance, and which a guaranteed pension?</li><li>Distinguish contributory social insurance from social assistance, and place three schemes in each</li></ol></aside><div class="pagebreak"></div><h2 id="5-graded-practice-20-questions">5. Graded Practice — 20 Questions <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><p><strong>Target: 25 to 35 seconds each.</strong></p><h3 id="51-level-1-poverty-and-unemployment-concepts">5.1 Level 1 — Poverty and unemployment concepts</h3><p><strong>Q1.</strong> The Tendulkar Committee measured poverty on the basis of (a) calorie intake alone (b) household income (c) monthly per capita consumption expenditure (d) land ownership</p><p><strong>Q2.</strong> Relative poverty refers to (a) deprivation judged against the standard of living prevailing in the society (b) inability to afford a fixed calorie norm (c) the complete absence of any income (d) poverty compared across different countries</p><p><strong>Q3.</strong> The Human Development Index was first published in (a) 1980 (b) 1985 (c) 1995 (d) 1990</p><p><strong>Q4.</strong> Which one of the following does the Human Development Index <strong>not</strong> include? (a) Life expectancy at birth (b) The rate of unemployment (c) Expected years of schooling (d) Gross national income per capita</p><p><strong>Q5.</strong> The Human Development Index is computed as the (a) geometric mean of the three dimension indices (b) arithmetic mean of the three dimension indices (c) weighted sum in which income carries double weight (d) harmonic mean of the three dimension indices</p><p><strong>Q6.</strong> Disguised unemployment is most characteristic of (a) urban manufacturing (b) the organised services sector (c) Indian agriculture (d) the information technology industry</p><p><strong>Q7.</strong> Unemployment arising from a mismatch between the skills of workers and the requirements of available jobs is described as (a) cyclical (b) structural (c) frictional (d) seasonal</p><p><strong>Q8.</strong> Cyclical unemployment is caused by (a) technological change (b) a mismatch of skills (c) the agricultural calendar (d) a downturn in aggregate demand</p><h3 id="52-level-2-measurement">5.2 Level 2 — Measurement</h3><p><strong>Q9.</strong> The Periodic Labour Force Survey, now released monthly, is conducted by (a) the National Statistical Office (b) the Labour Bureau (c) NITI Aayog (d) the Reserve Bank of India</p><p><strong>Q10.</strong> The labour force participation rate is the ratio of (a) employed persons to the total population (b) persons in the labour force to the population (c) unemployed persons to the labour force (d) employed persons to the labour force</p><p><strong>Q11.</strong> The unemployment rate is the ratio of unemployed persons to (a) the total population (b) the working-age population (c) the labour force (d) employed persons</p><p><strong>Q12.</strong> The Physical Quality of Life Index, unlike the Human Development Index, excludes (a) literacy (b) infant mortality (c) life expectancy (d) income</p><p><strong>Q13.</strong> The Lorenz curve is used to depict (a) the trade-off between inflation and unemployment (b) the distribution of income or wealth (c) diminishing marginal utility (d) the relationship between tax rates and total revenue</p><p><strong>Q14.</strong> A Gini coefficient of zero indicates (a) perfect equality (b) perfect inequality (c) an absence of data (d) that half the income accrues to half the population</p><p><strong>Q15.</strong> India's National Multidimensional Poverty Index is published by (a) the National Statistical Office (b) the Reserve Bank of India (c) NITI Aayog (d) the Ministry of Rural Development</p><p><strong>Q16.</strong> The three dimensions of the Multidimensional Poverty Index are (a) income, employment and education (b) food, shelter and clothing (c) health, income and housing (d) health, education and standard of living</p><h3 id="53-level-3-recruitment-test-standard">5.3 Level 3 — Recruitment Test standard</h3><p><strong>Q17.</strong> The Mahatma Gandhi National Rural Employment Guarantee Act guarantees to every rural household (a) at least 100 days of unskilled manual wage employment in a financial year (b) a monthly cash transfer (c) 200 days of employment in a financial year (d) free foodgrain throughout the year</p><p><strong>Q18.</strong> Under Ayushman Bharat PM-JAY, the health cover available is (a) ₹2 lakh per family per year (b) ₹5 lakh per family per year (c) ₹1 lakh per person per year (d) ₹10 lakh per family per year</p><p><strong>Q19.</strong> Which one of the following statements is <strong>not</strong> correct? (a) Absolute poverty is measured against a fixed line, and relative poverty against prevailing standards (b) The Human Development Index is a composite index taking a value between 0 and 1 (c) Seasonal unemployment is characteristic of agriculture (d) A rise in the Gini coefficient indicates a fall in inequality</p><p><strong>Q20.</strong> Which one of the following gives the correct chronological order in which these committees reported on the measurement of poverty? (a) Tendulkar, Lakdawala, Rangarajan (b) Rangarajan, Tendulkar, Lakdawala (c) Lakdawala, Tendulkar, Rangarajan (d) Tendulkar, Rangarajan, Lakdawala</p><div class="pagebreak"></div><h2 id="6-answers-and-explanations">6. Answers and Explanations</h2><h3 id="61-level-1">6.1 Level 1</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Monthly per capita consumption expenditure</strong>, with a mixed reference period and the inclusion of health and education spending. Tendulkar is precisely the committee that <strong>abandoned the calorie basis</strong>, so (a) describes what it moved away from</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">a</td><td style="text-align:left">Judged against <strong>prevailing standards</strong> in the society concerned. (b) is absolute poverty — the pair is the commonest conceptual item in the topic</td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">d</td><td style="text-align:left"><strong>1990</strong>, in the first Human Development Report, conceived by Mahbub ul Haq with Amartya Sen</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Unemployment is not an HDI component.</strong> The three dimensions are health, education and standard of living, and (a), (c) and (d) are the actual indicators. The HDI is deliberately austere — §3.1</td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">a</td><td style="text-align:left">The <strong>geometric mean</strong>, adopted in 2010. It <strong>punishes imbalance</strong>, so very low life expectancy cannot be offset by very high income — which an arithmetic mean would permit</td></tr><tr><td style="text-align:left">6</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Indian agriculture</strong>, where more people are engaged than the work requires, so output would not fall if some withdrew</td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Structural</strong> — the jobs exist but the skills or the location do not match. Contrast Q8</td></tr><tr><td style="text-align:left">8</td><td style="text-align:center">d</td><td style="text-align:left"><strong>A downturn in aggregate demand.</strong> Cyclical unemployment disappears in recovery, which is what distinguishes it from structural</td></tr></tbody></table></div><h3 id="62-level-2">6.2 Level 2</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">9</td><td style="text-align:center">a</td><td style="text-align:left">The <strong>NSO, under MoSPI</strong>. (b) the Labour Bureau conducts other labour surveys and publishes <strong>CPI-IW</strong> — a real body with a real function, attached to the wrong survey</td></tr><tr><td style="text-align:left">10</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Labour force ÷ population.</strong> Note (d) is a meaningless ratio and (a) is the WPR — the three rates differ only in numerator and denominator, which is why they are set against one another</td></tr><tr><td style="text-align:left">11</td><td style="text-align:center">c</td><td style="text-align:left"><strong>The labour force</strong>, not the population. §2.2 — the most examined definition in the topic, and the reason the rate can fall when people stop looking for work</td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Income.</strong> The PQLI uses literacy, infant mortality and life expectancy at age one, with <strong>no income component</strong>; the HDI includes GNI per capita</td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">b</td><td style="text-align:left">The <strong>distribution of income or wealth</strong>. (a) is the Phillips curve and (d) the Laffer curve — three named curves offered together</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Perfect equality.</strong> The Gini runs from 0 (equality) to 1 (one person has everything)</td></tr><tr><td style="text-align:left">15</td><td style="text-align:center">c</td><td style="text-align:left"><strong>NITI Aayog</strong> publishes the <strong>National</strong> MPI; <strong>UNDP and OPHI</strong> publish the <strong>Global</strong> MPI. Both attributions get asked</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Health, education and standard of living.</strong> Note that <strong>income is not a dimension</strong> — that is the entire point of a multidimensional measure, and (a) and (c) both smuggle income back in</td></tr></tbody></table></div><h3 id="63-level-3">6.3 Level 3</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">17</td><td style="text-align:center">a</td><td style="text-align:left"><strong>At least 100 days of unskilled manual wage employment per rural household per financial year.</strong> Note it is a household entitlement and a <strong>legal guarantee</strong>, not a scheme, with an unemployment allowance if work is not provided within 15 days</td></tr><tr><td style="text-align:left">18</td><td style="text-align:center">b</td><td style="text-align:left"><strong>₹5 lakh per family per year.</strong> Note the unit is the <strong>family</strong>, not the individual, which is what (c) tests</td></tr><tr><td style="text-align:left">19</td><td style="text-align:center">d</td><td style="text-align:left"><strong>The "not correct" item.</strong> A <strong>rising</strong> Gini means <strong>rising</strong> inequality. (a), (b) and (c) are all correct. Directional statements about an index are the most reliable place to hide an error, because they read as fluently backwards as forwards</td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Lakdawala (1993) » Tendulkar (2009) » Rangarajan (2014).</strong> Learn the sequence with Alagh (1979) at its head; chronology questions on this group are common because the four names are easy to confuse</td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · THE FOUR SHAPES IN THIS BANK</p><ol><li><strong>What the index does NOT contain.</strong> Q4, Q12, Q16. <strong>Three of twenty questions</strong> are answered by knowing an omission rather than a content — unemployment is not in the HDI, income is not in the PQLI, income is not a dimension of the MPI. When you learn a composite index, <strong>learn its boundary as deliberately as its contents</strong></li><li><strong>The denominator.</strong> Q10 and Q11. LFPR, WPR and UR share numerators and differ in denominators, and the unemployment rate's denominator is the <strong>labour force</strong>. Every ratio in this chapter should be memorised as a fraction, not as a phrase</li><li><strong>The direction of an index.</strong> Q14 and Q19(d). Gini up means inequality up; a Lorenz curve further from the 45-degree line means more inequality. <strong>Reversed-direction options are the standard trap in any question about an index</strong></li><li><strong>The right body, the wrong product.</strong> Q9 and Q15. The Labour Bureau exists and publishes CPI-IW; NITI Aayog publishes the national MPI while UNDP publishes the global one. Module 4's questions are more often about attribution than about economics</li></ol></aside><div class="pagebreak"></div><h2 id="7-one-minute-revision">7. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F4.4</p><p><strong>LEARN DEFINITIONS, NOT NUMBERS.</strong> The machinery of measurement is permanent; the statistics change every round</p><p><strong>POVERTY</strong> <strong>absolute</strong> = against a <strong>fixed line</strong> (developing countries) · <strong>relative</strong> = against <strong>prevailing standards</strong> (developed countries)</p><p><strong>COMMITTEES IN ORDER</strong> Dandekar and Rath (1971) · <strong>Alagh 1979 — calories, 2,400 rural / 2,100 urban</strong> (the <strong>RURAL</strong> norm is the <strong>higher</strong>) · <strong>Lakdawala 1993 — State-specific lines, CPI-IW and CPI-AL</strong> · <strong>Tendulkar 2009 — MPCE, mixed reference period, health and education included; ABANDONED calories</strong> · <strong>Rangarajan 2014 — separate baskets, HIGHER estimates</strong></p><p><strong>MEASURES</strong> <strong>head count ratio</strong> (proportion below) · <strong>poverty gap</strong> (depth) · <strong>squared gap</strong> (severity)</p><p><strong>MPI</strong> <strong>Global: UNDP + OPHI · National: NITI AAYOG</strong> · <strong>Alkire-Foster</strong> method · <strong>three dimensions: HEALTH, EDUCATION, STANDARD OF LIVING</strong> — <strong>income is NOT one of them</strong> · 12 indicators from NFHS</p><p><strong>UNEMPLOYMENT TYPES</strong> <strong>disguised</strong> = too many people for the work, <strong>agriculture</strong> · <strong>structural</strong> = wrong skills or location, long-lasting · <strong>cyclical</strong> = demand downturn, reverses in recovery · frictional = job search · seasonal · technological · educated / underemployment</p><p><strong>THE THREE QUESTIONS</strong> too many people for the work? <strong>disguised</strong> · wrong people for the work? <strong>structural</strong> · not enough work for now? <strong>cyclical</strong></p><p><strong>REFERENCE PERIODS</strong> <strong>Usual Status = 365 days, LOWEST rate</strong> · Current Weekly = 7 days · <strong>Current Daily = half-days, HIGHEST rate</strong></p><p><strong>THE THREE RATES</strong> <strong>LFPR = labour force ÷ POPULATION</strong> · <strong>WPR = employed ÷ POPULATION</strong> · <strong>UR = unemployed ÷ LABOUR FORCE</strong> · labour force = <strong>employed + those actively seeking</strong> · <strong>the UR can FALL because people stop looking</strong> — always read LFPR beside it</p><p><strong>SURVEY</strong> <strong>PLFS, by the NSO under MoSPI</strong>, from 2017-18, <strong>now MONTHLY</strong> as well as quarterly and annual · CPI-IW comes from the <strong>Labour Bureau</strong></p><p><strong>LABOUR READING</strong> <code>[AS AT 16 AUG 2026]</code> UR about <strong>5.1%</strong> · LFPR about <strong>55.4%</strong> (Mar) and <strong>54.4%</strong> (Jun) · WPR about <strong>52.6%</strong> · <strong>female LFPR about 34.4%</strong> · <strong>urban UR (6.7%) EXCEEDS rural (4.2%)</strong></p><p><strong>MGNREGA 2005</strong> <strong>100 days</strong>, per <strong>rural household</strong>, <strong>legal guarantee</strong> · unemployment allowance if work not given in <strong>15 days</strong> · <strong>one-third women</strong> · <strong>social audit by the Gram Sabha</strong> · demand-driven</p><p><strong>HDI</strong> <strong>UNDP, Human Development Report, first 1990</strong> · <strong>Mahbub ul Haq with Amartya Sen</strong> · health = <strong>life expectancy at birth</strong> · education = <strong>mean + expected years of schooling</strong> · living = <strong>GNI per capita at PPP</strong> · <strong>GEOMETRIC mean</strong> (since 2010, punishes imbalance) · range <strong>0 to 1</strong> · <strong>does NOT include unemployment, inequality, poverty, gender or environment</strong></p><p><strong>RELATED</strong> <strong>IHDI</strong> inequality-adjusted · GDI female-to-male HDI · GII reproductive health, empowerment, labour market · <strong>PQLI — Morris D Morris: literacy, infant mortality, life expectancy at AGE ONE; EXCLUDES INCOME</strong></p><p><strong>INEQUALITY</strong> <strong>Lorenz curve</strong> — cumulative income against cumulative population, <strong>45° line = equality</strong> · <strong>Gini 0 = perfect equality, 1 = perfect inequality; RISING Gini = RISING inequality</strong> · <strong>Kuznets</strong> = inequality rises then falls, an inverted U</p><p><strong>WELFARE</strong> NFSA <strong>2013</strong> legal entitlement to grain · <strong>PM-JAY ₹5 lakh per FAMILY per year</strong> · <strong>Atal Pension ₹1,000–5,000 a month</strong> · PMJJBY life, PMSBY accident · <strong>e-Shram</strong> database of unorganised workers · <strong>Code on Social Security 2020</strong> brings in gig and platform workers</p><p><strong>THE ORGANISING IDEA</strong> contributory <strong>social insurance</strong> reaches those with an employer; non-contributory <strong>social assistance</strong> reaches the rest — and platform work sits on the boundary</p></aside><h2 id="8-five-minute-wall-sheet">8. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F4.4</p><p><strong>ABSOLUTE = FIXED LINE · RELATIVE = PREVAILING STANDARD</strong></p><p><strong>ALAGH 1979 CALORIES (2400 RURAL, 2100 URBAN — RURAL IS HIGHER)</strong></p><p><strong>LAKDAWALA 1993 · TENDULKAR 2009 (MPCE, DROPPED CALORIES) · RANGARAJAN 2014 (HIGHER)</strong></p><p><strong>MPI = HEALTH, EDUCATION, STANDARD OF LIVING. NOT INCOME</strong></p><p><strong>GLOBAL MPI = UNDP + OPHI · NATIONAL MPI = NITI AAYOG</strong></p><p><strong>DISGUISED = TOO MANY PEOPLE · STRUCTURAL = WRONG SKILLS · CYCLICAL = NO DEMAND</strong></p><p><strong>UR = UNEMPLOYED ÷ <em>LABOUR FORCE</strong></em></p><p><strong>LFPR AND WPR ARE ÷ POPULATION</strong></p><p><strong>THE UR FALLS WHEN PEOPLE GIVE UP LOOKING — CHECK THE LFPR</strong></p><p><strong>USUAL STATUS GIVES THE LOWEST RATE, DAILY STATUS THE HIGHEST</strong></p><p><strong>PLFS = NSO/MoSPI, NOW MONTHLY</strong></p><p><strong>URBAN UNEMPLOYMENT EXCEEDS RURAL</strong></p><p><strong>MGNREGA 2005: 100 DAYS, PER HOUSEHOLD, LEGAL GUARANTEE, 15-DAY ALLOWANCE</strong></p><p><strong>HDI: UNDP, 1990, THREE DIMENSIONS, <em>GEOMETRIC</em> MEAN, 0 TO 1</strong></p><p><strong>HDI HAS NO UNEMPLOYMENT, NO INEQUALITY, NO GENDER</strong></p><p><strong>PQLI EXCLUDES INCOME AND USES LIFE EXPECTANCY AT AGE ONE</strong></p><p><strong>GINI 0 = EQUAL · RISING GINI = RISING INEQUALITY</strong></p><p><strong>PM-JAY = ₹5 LAKH PER FAMILY PER YEAR</strong></p><p><strong>LEARN WHAT AN INDEX LEAVES OUT AS CAREFULLY AS WHAT IT PUTS IN</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> The unemployment rate is a weak summary of the Indian labour market because it is a share of the labour force, and the labour force itself is small — a female participation rate near a third means that most non-working women are counted neither as employed nor as unemployed, so the headline rate understates the shortfall of work.</p></aside><aside class="cal action"><p class="cal-h">ACTION · NEXT</p><p><strong>F4.5 — Population, Demography and Globalisation</strong>, the last chapter of Module 4. It carries the demographic transition, the census machinery — including the first digital census, now under way — and the external sector.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F4.4
+  &middot; v1.0</footer>
+</body>
+</html>
