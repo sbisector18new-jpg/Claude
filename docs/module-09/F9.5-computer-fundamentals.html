@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Computer Fundamentals, Memory and Number Systems</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F9.5 · Computer Fundamentals
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · FOUNDATION LAYER · MODULE 9 · CHAPTER F9.5</p><h1 class="doc-t">Computer Fundamentals, Memory and Number Systems</h1><p class="doc-s">Chapter F9.5 — Back to a Real Foundation Layer, Because This Half Is Not Recall</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 9 — General Science &amp; Computer Applications</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F9.5</td></tr><tr><td class="k">Topic</td><td class="v">Official syllabus head 6 — Basic Knowledge of Computer Applications</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal note"><p class="cal-h">NOTE · THE SHAPE CHANGES HERE</p><p>F9.1 to F9.4 were written as a <strong>recall layer</strong>, because physics and chemistry are your undergraduate foundation. <strong>Computer Applications is different</strong>, and Blueprint §4.4 says so directly:</p><blockquote><p>Number-system conversions are easy, but the C, HTML and operating-system items <strong>need actual targeted preparation. Budget real hours there, not zero.</strong></p></blockquote><p>So F9.5 to F9.7 are a <strong>genuine Foundation layer</strong> — built up from first principles, with worked conversions rather than stated results. The number systems in §5 are the part that rewards practice most, because they are <strong>mechanical</strong>: once you can do the grouping trick, you cannot get them wrong.</p></aside><aside class="cal high-yield"><p class="cal-h">HIGH YIELD · THE 2023 COMPUTER BLOCK WAS TEN QUESTIONS</p><p>All ten 2023 Computer Applications items, and where each is covered:</p><div class="tw"><table><thead><tr><th style="text-align:left">Item</th><th style="text-align:left">Chapter</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Octal to binary</strong> conversion</td><td style="text-align:left"><strong>F9.5 §5</strong></td></tr><tr><td style="text-align:left"><strong>Hexadecimal to decimal</strong> conversion</td><td style="text-align:left"><strong>F9.5 §5</strong></td></tr><tr><td style="text-align:left"><strong>Program counter</strong> register</td><td style="text-align:left"><strong>F9.5 §2</strong></td></tr><tr><td style="text-align:left">Real-time operating system</td><td style="text-align:left">F9.6</td></tr><tr><td style="text-align:left">Top-down languages</td><td style="text-align:left">F9.6</td></tr><tr><td style="text-align:left">C structure operator</td><td style="text-align:left">F9.6</td></tr><tr><td style="text-align:left">Hard disk error-check command</td><td style="text-align:left">F9.6</td></tr><tr><td style="text-align:left">IP address validity</td><td style="text-align:left">F9.7</td></tr><tr><td style="text-align:left">Mesh topology links</td><td style="text-align:left">F9.7</td></tr><tr><td style="text-align:left">HTML internal linking</td><td style="text-align:left">F9.7</td></tr></tbody></table></div><p><strong>Three of the ten are in this chapter, and two of those three are pure conversion arithmetic</strong> — the cheapest marks in the entire paper, because the method is deterministic.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-what-a-computer-is"><span class="toc-t">1. Session 1 — What a Computer Is <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></span></a><a class="toc-3" href="#11-the-generations"><span class="toc-t">1.1 The generations</span></a><a class="toc-2" href="#2-session-2-the-cpu-and-its-registers"><span class="toc-t">2. Session 2 — The CPU and Its Registers <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#21-the-three-parts-of-the-cpu"><span class="toc-t">2.1 The three parts of the CPU</span></a><a class="toc-3" href="#22-the-machine-cycle"><span class="toc-t">2.2 The machine cycle</span></a><a class="toc-3" href="#23-the-registers-the-2023-item"><span class="toc-t">2.3 The registers — the 2023 item</span></a><a class="toc-2" href="#3-session-3-the-memory-hierarchy"><span class="toc-t">3. Session 3 — The Memory Hierarchy <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#31-the-hierarchy-fastest-first"><span class="toc-t">3.1 The hierarchy, fastest first</span></a><a class="toc-3" href="#32-ram-and-rom"><span class="toc-t">3.2 RAM and ROM</span></a><a class="toc-3" href="#33-units-of-storage"><span class="toc-t">3.3 Units of storage</span></a><a class="toc-2" href="#4-session-4-input-and-output-devices"><span class="toc-t">4. Session 4 — Input and Output Devices <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></span></a><a class="toc-2" href="#5-session-5-number-systems"><span class="toc-t">5. Session 5 — Number Systems <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#51-the-four-systems"><span class="toc-t">5.1 The four systems</span></a><a class="toc-3" href="#52-the-grouping-rule-the-whole-trick"><span class="toc-t">5.2 The grouping rule — the whole trick</span></a><a class="toc-3" href="#53-worked-conversions"><span class="toc-t">5.3 Worked conversions</span></a><a class="toc-2" href="#6-session-6-codes-and-logic-gates"><span class="toc-t">6. Session 6 — Codes and Logic Gates <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></span></a><a class="toc-3" href="#61-character-codes"><span class="toc-t">6.1 Character codes</span></a><a class="toc-3" href="#62-logic-gates"><span class="toc-t">6.2 Logic gates</span></a><a class="toc-2" href="#7-graded-practice-30-questions"><span class="toc-t">7. Graded Practice — 30 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#71-level-1-recognition"><span class="toc-t">7.1 Level 1 — Recognition</span></a><a class="toc-3" href="#72-level-2-understanding"><span class="toc-t">7.2 Level 2 — Understanding</span></a><a class="toc-3" href="#73-level-3-recruitment-test-standard"><span class="toc-t">7.3 Level 3 — Recruitment Test standard</span></a><a class="toc-2" href="#8-answers-and-explanations"><span class="toc-t">8. Answers and Explanations</span></a><a class="toc-3" href="#81-level-1"><span class="toc-t">8.1 Level 1</span></a><a class="toc-3" href="#82-level-2"><span class="toc-t">8.2 Level 2</span></a><a class="toc-3" href="#83-level-3"><span class="toc-t">8.3 Level 3</span></a><a class="toc-2" href="#9-one-minute-revision"><span class="toc-t">9. One-Minute Revision</span></a><a class="toc-2" href="#10-five-minute-wall-sheet"><span class="toc-t">10. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F9.5 — SIX SESSIONS</p><ol><li><strong>Session 1</strong> — What a computer is, and the generations (§1) <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></li><li><strong>Session 2</strong> — The CPU and its <strong>registers</strong> (§2) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <strong>2023</strong></li><li><strong>Session 3</strong> — The memory hierarchy (§3) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 4</strong> — Input and output devices (§4) <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></li><li><strong>Session 5</strong> — <strong>Number systems and conversions</strong> (§5) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <strong>2023</strong></li><li><strong>Session 6</strong> — Codes and logic gates (§6) <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></li></ol><p>Then 30 graded questions in §7. Budget <strong>three days</strong>, and spend at least a full session doing conversions until they are automatic.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-what-a-computer-is">1. Session 1 — What a Computer Is <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></h2><p>A <strong>computer</strong> is an electronic device that accepts <strong>data</strong> as input, <strong>processes</strong> it according to stored instructions, <strong>stores</strong> it, and produces <strong>information</strong> as output.</p><p><strong>Data</strong> are raw facts; <strong>information</strong> is processed, meaningful data. The distinction is examined.</p><p><strong>Characteristics:</strong> speed, <strong>accuracy</strong>, <strong>diligence</strong> (no fatigue), versatility, storage — and no intelligence of its own, which is the point of <strong>GIGO: garbage in, garbage out</strong>.</p><h3 id="11-the-generations">1.1 The generations</h3><div class="tw"><table><thead><tr><th style="text-align:left">Generation</th><th style="text-align:left">Technology</th><th style="text-align:left">Examples</th></tr></thead><tbody><tr><td style="text-align:left"><strong>First</strong></td><td style="text-align:left"><strong>Vacuum tubes</strong></td><td style="text-align:left">ENIAC, UNIVAC</td></tr><tr><td style="text-align:left"><strong>Second</strong></td><td style="text-align:left"><strong>Transistors</strong></td><td style="text-align:left">—</td></tr><tr><td style="text-align:left"><strong>Third</strong></td><td style="text-align:left"><strong>Integrated circuits (IC)</strong></td><td style="text-align:left">—</td></tr><tr><td style="text-align:left"><strong>Fourth</strong></td><td style="text-align:left"><strong>Microprocessors</strong>, VLSI</td><td style="text-align:left">Personal computers</td></tr><tr><td style="text-align:left"><strong>Fifth</strong></td><td style="text-align:left"><strong>Artificial intelligence</strong>, ULSI</td><td style="text-align:left">—</td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE GENERATION SEQUENCE, AND BABBAGE</p><p><strong>Vacuum tube » transistor » integrated circuit » microprocessor » artificial intelligence.</strong> Five stages, in that order, and any of them can be asked by number.</p><p>The two most-asked: <strong>third generation = integrated circuit</strong>, <strong>fourth generation = microprocessor</strong>.</p><p><strong>Charles Babbage</strong> is called the <strong>father of the computer</strong>, for the Difference Engine and Analytical Engine. <strong>Ada Lovelace</strong> is regarded as the first programmer.</p></aside><p><strong>Types by capacity:</strong> supercomputer (India's include the PARAM series) » mainframe » mini » micro or personal computer. By data handling: analog, digital and hybrid.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 1</p><ol><li>Distinguish data from information</li><li>Name the technology of each of the five generations, in order</li><li>Who is the father of the computer? Who was the first programmer?</li><li>What does GIGO stand for, and what does it imply?</li></ol></aside><div class="pagebreak"></div><h2 id="2-session-2-the-cpu-and-its-registers">2. Session 2 — The CPU and Its Registers <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="21-the-three-parts-of-the-cpu">2.1 The three parts of the CPU</h3><div class="tw"><table><thead><tr><th style="text-align:left">Part</th><th style="text-align:left">Function</th></tr></thead><tbody><tr><td style="text-align:left"><strong>ALU</strong> — Arithmetic and Logic Unit</td><td style="text-align:left">Performs <strong>arithmetic and logical</strong> operations</td></tr><tr><td style="text-align:left"><strong>CU</strong> — Control Unit</td><td style="text-align:left"><strong>Directs and coordinates</strong> all operations; fetches and decodes instructions</td></tr><tr><td style="text-align:left"><strong>Registers</strong></td><td style="text-align:left">Very small, very fast storage <strong>inside</strong> the CPU</td></tr></tbody></table></div><p>The CPU is often called the <strong>brain of the computer</strong>. The ALU and CU together with registers form the processor.</p><h3 id="22-the-machine-cycle">2.2 The machine cycle</h3><blockquote><p><strong>FETCH » DECODE » EXECUTE » STORE</strong></p></blockquote><p>The order is asked, and it is the only sensible one: you cannot decode an instruction before fetching it.</p><h3 id="23-the-registers-the-2023-item">2.3 The registers — the 2023 item</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · WHAT EACH REGISTER HOLDS</p><p>This is a 2023 question, and the registers are only distinguishable by <strong>what they hold</strong>.</p><div class="tw"><table><thead><tr><th style="text-align:left">Register</th><th style="text-align:left">What it holds</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Program Counter (PC)</strong></td><td style="text-align:left">The <strong>address of the NEXT instruction</strong> to be executed</td></tr><tr><td style="text-align:left"><strong>Instruction Register (IR)</strong></td><td style="text-align:left">The instruction <strong>currently being executed</strong></td></tr><tr><td style="text-align:left"><strong>Memory Address Register (MAR)</strong></td><td style="text-align:left">The <strong>address</strong> of the memory location to be accessed</td></tr><tr><td style="text-align:left"><strong>Memory Buffer Register (MBR)</strong></td><td style="text-align:left">The <strong>data</strong> being transferred to or from memory</td></tr><tr><td style="text-align:left"><strong>Accumulator (AC)</strong></td><td style="text-align:left"><strong>Intermediate arithmetic results</strong></td></tr></tbody></table></div><p>The distinction that decides the question: <strong>the Program Counter holds an ADDRESS, and it is the address of the NEXT instruction — not the current one.</strong> The register holding the current instruction is the <strong>Instruction Register</strong>.</p><p>Both halves are traps. An option saying the program counter holds the <em>current</em> instruction is wrong on both counts — wrong register and wrong kind of content.</p></aside><p><strong>Buses</strong> connect the parts: the <strong>data bus</strong> carries data, the <strong>address bus</strong> carries addresses, and the <strong>control bus</strong> carries control signals.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 2</p><ol><li>Name the three parts of the CPU and what each does</li><li>State the four steps of the machine cycle in order</li><li>What does the program counter hold? What does the instruction register hold?</li><li>Which register holds intermediate arithmetic results?</li><li>Name the three buses</li></ol></aside><div class="pagebreak"></div><h2 id="3-session-3-the-memory-hierarchy">3. Session 3 — The Memory Hierarchy <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="31-the-hierarchy-fastest-first">3.1 The hierarchy, fastest first</h3><blockquote><p><strong>Registers » Cache » Main memory (RAM) » Secondary storage (hard disk, SSD, optical)</strong></p></blockquote><p>As you move down: <strong>speed decreases, capacity increases, cost per byte decreases</strong>. All three trends move together, which makes the hierarchy easy to reconstruct.</p><p><strong>Cache</strong> sits <strong>between the CPU and main memory</strong> and is faster than RAM. It comes in levels — L1, L2, L3 — with L1 the smallest and fastest.</p><h3 id="32-ram-and-rom">3.2 RAM and ROM</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · VOLATILE VERSUS NON-VOLATILE</p><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left"><strong>RAM</strong></th><th style="text-align:left"><strong>ROM</strong></th></tr></thead><tbody><tr><td style="text-align:left">Full form</td><td style="text-align:left">Random Access Memory</td><td style="text-align:left">Read Only Memory</td></tr><tr><td style="text-align:left"><strong>Volatility</strong></td><td style="text-align:left"><strong>VOLATILE</strong> — contents lost when power goes</td><td style="text-align:left"><strong>NON-VOLATILE</strong> — contents retained</td></tr><tr><td style="text-align:left">Access</td><td style="text-align:left"><strong>Read and write</strong></td><td style="text-align:left"><strong>Read only</strong></td></tr><tr><td style="text-align:left">Purpose</td><td style="text-align:left">Working memory for running programs</td><td style="text-align:left">Stores the <strong>BIOS or firmware</strong></td></tr></tbody></table></div><p><strong>RAM is volatile; ROM is non-volatile.</strong> That single pair answers a large share of memory questions, and the wrong option is almost always the reversal — "ROM is volatile memory".</p><p><strong>Two types of RAM:</strong></p><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left"><strong>SRAM</strong> (static)</th><th style="text-align:left"><strong>DRAM</strong> (dynamic)</th></tr></thead><tbody><tr><td style="text-align:left">Refreshing</td><td style="text-align:left"><strong>Not needed</strong></td><td style="text-align:left"><strong>Needs periodic refreshing</strong></td></tr><tr><td style="text-align:left">Speed and cost</td><td style="text-align:left"><strong>Faster, costlier</strong></td><td style="text-align:left">Slower, cheaper</td></tr><tr><td style="text-align:left">Used as</td><td style="text-align:left"><strong>Cache</strong></td><td style="text-align:left"><strong>Main memory</strong></td></tr></tbody></table></div><p><strong>Types of ROM:</strong> <strong>PROM</strong> — programmable once. <strong>EPROM</strong> — erasable by <strong>ultraviolet light</strong>. <strong>EEPROM</strong> — <strong>electrically</strong> erasable.</p></aside><h3 id="33-units-of-storage">3.3 Units of storage</h3><div class="tw"><table><thead><tr><th style="text-align:left">Unit</th><th style="text-align:left">Size</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Nibble</strong></td><td style="text-align:left"><strong>4 bits</strong></td></tr><tr><td style="text-align:left"><strong>Byte</strong></td><td style="text-align:left"><strong>8 bits</strong></td></tr><tr><td style="text-align:left"><strong>Kilobyte (KB)</strong></td><td style="text-align:left"><strong>1,024 bytes</strong> — that is 2¹⁰, not 1,000</td></tr><tr><td style="text-align:left">Megabyte, Gigabyte, Terabyte</td><td style="text-align:left">Each 1,024 of the previous</td></tr></tbody></table></div><p>Beyond terabyte: petabyte, exabyte, zettabyte, yottabyte.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 3</p><ol><li>List the memory hierarchy from fastest to slowest. What happens to cost and capacity?</li><li>Which of RAM and ROM is volatile? Which stores the BIOS?</li><li>SRAM or DRAM — which needs refreshing, and which is used as cache?</li><li>How is EPROM erased? How is EEPROM erased?</li><li>How many bits in a nibble? In a byte? How many bytes in a kilobyte?</li></ol></aside><div class="pagebreak"></div><h2 id="4-session-4-input-and-output-devices">4. Session 4 — Input and Output Devices <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></h2><div class="tw"><table><thead><tr><th style="text-align:left">Input devices</th><th style="text-align:left">Output devices</th></tr></thead><tbody><tr><td style="text-align:left">Keyboard, mouse, scanner, joystick, light pen</td><td style="text-align:left">Monitor, printer, plotter, speaker</td></tr><tr><td style="text-align:left"><strong>OMR</strong> — optical mark reader</td><td style="text-align:left">Impact printers: <strong>dot matrix</strong>, line</td></tr><tr><td style="text-align:left"><strong>OCR</strong> — optical character reader</td><td style="text-align:left">Non-impact: <strong>inkjet, laser</strong>, thermal</td></tr><tr><td style="text-align:left"><strong>MICR</strong> — magnetic ink character recognition</td><td style="text-align:left">—</td></tr><tr><td style="text-align:left">Barcode reader, microphone, webcam</td><td style="text-align:left">—</td></tr></tbody></table></div><p><strong>Both input and output:</strong> <strong>touchscreen</strong>, modem, network interface card.</p><aside class="cal world"><p class="cal-h">FROM YOUR OWN WORLD · MICR IS ON EVERY CHEQUE YOU HAVE HANDLED</p><p><strong>MICR — Magnetic Ink Character Recognition</strong> — is the technology used to read the code line printed at the bottom of a <strong>bank cheque</strong>. The characters are printed in magnetic ink so a machine can read them even if the cheque is stamped, signed over or slightly soiled.</p><p>You have handled tens of thousands of these. The exam asks "MICR is used mainly in…" and the answer is <strong>cheque processing</strong> — the one computer-applications question in this chapter you already know from the counter.</p><p>Note the contrast the options exploit: <strong>OMR</strong> reads pencil <strong>marks</strong> (answer sheets — including, probably, your own OMR sheet on RT day), <strong>OCR</strong> reads printed or written <strong>characters</strong> generally, and <strong>MICR</strong> reads <strong>magnetic-ink</strong> characters specifically.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 4</p><ol><li>Classify: scanner, plotter, touchscreen, MICR, laser printer</li><li>Distinguish OMR, OCR and MICR</li><li>Where is MICR used?</li><li>Which printers are impact printers?</li></ol></aside><div class="pagebreak"></div><h2 id="5-session-5-number-systems">5. Session 5 — Number Systems <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><p><strong>Two 2023 questions came from this section</strong>, and it is the most mechanical topic in the entire syllabus. Learn the two grouping rules and the marks are guaranteed.</p><h3 id="51-the-four-systems">5.1 The four systems</h3><div class="tw"><table><thead><tr><th style="text-align:left">System</th><th style="text-align:left">Base</th><th style="text-align:left">Digits used</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Binary</strong></td><td style="text-align:left"><strong>2</strong></td><td style="text-align:left">0, 1</td></tr><tr><td style="text-align:left"><strong>Octal</strong></td><td style="text-align:left"><strong>8</strong></td><td style="text-align:left">0 to 7</td></tr><tr><td style="text-align:left"><strong>Decimal</strong></td><td style="text-align:left"><strong>10</strong></td><td style="text-align:left">0 to 9</td></tr><tr><td style="text-align:left"><strong>Hexadecimal</strong></td><td style="text-align:left"><strong>16</strong></td><td style="text-align:left">0 to 9, then <strong>A B C D E F</strong></td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE HEXADECIMAL LETTERS STOP AT F</p><p><strong>A = 10, B = 11, C = 12, D = 13, E = 14, F = 15.</strong></p><p><strong>F is 15, not 16</strong>, because the digits of base 16 run from 0 to 15 — there are sixteen of them, and the sixteenth is 15. And the letters run <strong>A to F</strong>, not A to G. Both errors are offered as options.</p></aside><h3 id="52-the-grouping-rule-the-whole-trick">5.2 The grouping rule — the whole trick</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THREE FOR OCTAL, FOUR FOR HEXADECIMAL</p><p>Because 8 = 2³ and 16 = 2⁴:</p><ul><li><strong>Each OCTAL digit is exactly THREE binary digits</strong></li><li><strong>Each HEXADECIMAL digit is exactly FOUR binary digits</strong></li></ul><p>So converting between binary and octal or hexadecimal requires <strong>no arithmetic at all</strong> — only grouping, <strong>always from the right</strong>, padding the leftmost group with zeros if needed.</p><div class="tw"><table><thead><tr><th style="text-align:left">Octal</th><th style="text-align:left">Binary</th><th style="text-align:left"></th><th style="text-align:left">Hex</th><th style="text-align:left">Binary</th></tr></thead><tbody><tr><td style="text-align:left">0</td><td style="text-align:left">000</td><td style="text-align:left"></td><td style="text-align:left">0</td><td style="text-align:left">0000</td></tr><tr><td style="text-align:left">1</td><td style="text-align:left">001</td><td style="text-align:left"></td><td style="text-align:left">5</td><td style="text-align:left">0101</td></tr><tr><td style="text-align:left">2</td><td style="text-align:left">010</td><td style="text-align:left"></td><td style="text-align:left">9</td><td style="text-align:left">1001</td></tr><tr><td style="text-align:left">5</td><td style="text-align:left">101</td><td style="text-align:left"></td><td style="text-align:left">A</td><td style="text-align:left">1010</td></tr><tr><td style="text-align:left">7</td><td style="text-align:left">111</td><td style="text-align:left"></td><td style="text-align:left">D</td><td style="text-align:left">1101</td></tr><tr><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left"></td><td style="text-align:left">F</td><td style="text-align:left">1111</td></tr></tbody></table></div><p><strong>This is why octal and hexadecimal exist</strong>: they are compact ways of writing binary that a human can read, and the conversion is free.</p></aside><h3 id="53-worked-conversions">5.3 Worked conversions</h3><p><strong>Octal to binary</strong> — the 2023 item. Replace each digit with its three bits:</p><blockquote><p><strong>725 in octal.</strong> 7 » 111 · 2 » 010 · 5 » 101 Answer: <strong>111 010 101</strong></p></blockquote><p><strong>Binary to octal.</strong> Group in threes from the right:</p><blockquote><p><strong>110110.</strong> » 110 | 110 » 6 | 6 » <strong>66 in octal</strong></p></blockquote><p><strong>Binary to hexadecimal.</strong> Group in fours from the right:</p><blockquote><p><strong>11011010.</strong> » 1101 | 1010 » D | A » <strong>DA in hexadecimal</strong></p></blockquote><p><strong>Hexadecimal to decimal</strong> — the other 2023 item. Multiply each digit by its positional power of 16:</p><blockquote><p><strong>2F.</strong> = (2 × 16) + (15 × 1) = 32 + 15 = <strong>47</strong> <strong>1A.</strong> = (1 × 16) + (10 × 1) = 16 + 10 = <strong>26</strong></p></blockquote><p><strong>Binary to decimal.</strong> Add the positional weights where the bit is 1:</p><blockquote><p><strong>101101.</strong> = 32 + 8 + 4 + 1 = <strong>45</strong> (weights from the right: 1, 2, 4, 8, 16, 32)</p></blockquote><p><strong>Decimal to binary.</strong> Divide repeatedly by 2 and read the remainders <strong>upwards</strong>:</p><blockquote><p><strong>25.</strong> 25÷2 = 12 r <strong>1</strong> · 12÷2 = 6 r <strong>0</strong> · 6÷2 = 3 r <strong>0</strong> · 3÷2 = 1 r <strong>1</strong> · 1÷2 = 0 r <strong>1</strong> Reading upwards: <strong>11001</strong></p></blockquote><aside class="cal memory"><p class="cal-h">MEMORY TECHNIQUE · CHECK EVERY CONVERSION IN FIVE SECONDS</p><p>Two habits that make errors nearly impossible:</p><ol><li><strong>Group from the RIGHT, never the left.</strong> The rightmost bit is the units bit, so grouping must start there. Grouping from the left is the single commonest mistake, and it gives an answer that looks plausible</li><li><strong>Sanity-check the magnitude.</strong> A two-digit hexadecimal number lies between 0 and 255. So hex 2F cannot be 215 — that would need the first digit to be D. If your answer is out of range, you have multiplied by the wrong power</li></ol><p>For decimal-to-binary, the reverse check takes five seconds: 11001 = 16 + 8 + 1 = 25. Always do it.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 5</p><ol><li>Give the base and digit set of all four systems. What decimal value is F?</li><li>How many binary digits per octal digit? Per hexadecimal digit? Why?</li><li>Convert octal 356 to binary</li><li>Convert binary 10110110 to hexadecimal, and to octal</li><li>Convert hexadecimal 3C to decimal</li><li>Convert decimal 43 to binary, then check your answer</li></ol></aside><div class="pagebreak"></div><h2 id="6-session-6-codes-and-logic-gates">6. Session 6 — Codes and Logic Gates <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></h2><h3 id="61-character-codes">6.1 Character codes</h3><div class="tw"><table><thead><tr><th style="text-align:left">Code</th><th style="text-align:left">Bits</th><th style="text-align:left">Characters</th></tr></thead><tbody><tr><td style="text-align:left"><strong>ASCII</strong></td><td style="text-align:left"><strong>7 bits</strong> standard; 8 bits extended</td><td style="text-align:left">128; 256 extended</td></tr><tr><td style="text-align:left"><strong>Unicode</strong></td><td style="text-align:left">16 bits and more</td><td style="text-align:left">Covers most of the world's scripts</td></tr><tr><td style="text-align:left">EBCDIC</td><td style="text-align:left">8 bits</td><td style="text-align:left">An IBM mainframe code</td></tr><tr><td style="text-align:left">BCD</td><td style="text-align:left">4 bits per digit</td><td style="text-align:left">Binary coded decimal</td></tr></tbody></table></div><h3 id="62-logic-gates">6.2 Logic gates</h3><p><strong>Basic gates:</strong> <strong>AND</strong> (output 1 only if all inputs are 1) · <strong>OR</strong> (output 1 if any input is 1) · <strong>NOT</strong> (inverts).</p><p><strong>Derived gates:</strong> <strong>NAND</strong>, <strong>NOR</strong>, <strong>XOR</strong>, XNOR.</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · NAND AND NOR ARE THE UNIVERSAL GATES</p><p><strong>NAND and NOR are called universal gates</strong>, because either one alone can be used to build every other gate — AND, OR and NOT included.</p><p>The question is usually "which of the following is a universal gate", with AND, OR and NOT as distractors. <strong>The basic gates are not universal; the two derived ones are.</strong> That inversion is the whole point of the question.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 6</p><ol><li>How many bits does standard ASCII use, and how many characters does it encode?</li><li>Name the three basic and three derived gates</li><li>Which gates are universal, and what does universal mean?</li></ol></aside><div class="pagebreak"></div><h2 id="7-graded-practice-30-questions">7. Graded Practice — 30 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="71-level-1-recognition">7.1 Level 1 — Recognition</h3><p><strong>Q1.</strong> One byte is equal to (a) 4 bits (b) 8 bits (c) 16 bits (d) 1,024 bits</p><p><strong>Q2.</strong> Which part of the central processing unit performs arithmetic and logical operations? (a) The control unit (b) A register (c) Cache memory (d) The arithmetic and logic unit</p><p><strong>Q3.</strong> The register that holds the address of the <strong>next</strong> instruction to be executed is the (a) program counter (b) accumulator (c) instruction register (d) memory buffer register</p><p><strong>Q4.</strong> RAM is (a) non-volatile and read-only (b) non-volatile and read/write (c) volatile and read/write (d) volatile and read-only</p><p><strong>Q5.</strong> Which one of the following is <strong>non-volatile</strong> memory? (a) RAM (b) ROM (c) Cache (d) Register</p><p><strong>Q6.</strong> The base of the hexadecimal number system is (a) 2 (b) 8 (c) 10 (d) 16</p><p><strong>Q7.</strong> Charles Babbage is regarded as the father of the (a) computer (b) internet (c) transistor (d) integrated circuit</p><p><strong>Q8.</strong> Which generation of computers used integrated circuits? (a) First (b) Second (c) Third (d) Fifth</p><p><strong>Q9.</strong> MICR technology is used mainly in (a) supermarket billing (b) processing bank cheques (c) medical imaging (d) satellite imaging</p><p><strong>Q10.</strong> One kilobyte is equal to (a) 1,000 bytes (b) 8 bytes (c) 512 bytes (d) 1,024 bytes</p><h3 id="72-level-2-understanding">7.2 Level 2 — Understanding</h3><p><strong>Q11.</strong> The fastest of the following storage locations is (a) a register (b) cache memory (c) RAM (d) a hard disk</p><p><strong>Q12.</strong> The octal number 725 expressed in binary is (a) 111 010 100 (b) 110 010 101 (c) 111 010 101 (d) 101 010 111</p><p><strong>Q13.</strong> The hexadecimal number 2F expressed in decimal is (a) 31 (b) 47 (c) 45 (d) 215</p><p><strong>Q14.</strong> To convert a binary number into octal, the bits are grouped from the right in sets of (a) two (b) eight (c) four (d) three</p><p><strong>Q15.</strong> To convert a binary number into hexadecimal, the bits are grouped from the right in sets of (a) four (b) three (c) eight (d) two</p><p><strong>Q16.</strong> The binary number 101101 expressed in decimal is (a) 41 (b) 43 (c) 45 (d) 47</p><p><strong>Q17.</strong> Which one of the following is a <strong>universal</strong> logic gate? (a) AND (b) NAND (c) OR (d) NOT</p><p><strong>Q18.</strong> DRAM differs from SRAM in that DRAM (a) is faster (b) is used as cache memory (c) is non-volatile (d) requires periodic refreshing</p><p><strong>Q19.</strong> Standard ASCII uses (a) 7 bits (b) 4 bits (c) 16 bits (d) 32 bits</p><p><strong>Q20.</strong> Which one of the following is <strong>both</strong> an input and an output device? (a) Scanner (b) Printer (c) Touchscreen (d) Keyboard</p><h3 id="73-level-3-recruitment-test-standard">7.3 Level 3 — Recruitment Test standard</h3><p><strong>Q21.</strong> Which one of the following statements is <strong>not</strong> correct? (a) A register is faster than cache memory (b) ROM is volatile memory (c) The program counter holds the address of the next instruction to be executed (d) DRAM requires periodic refreshing</p><p><strong>Q22.</strong> Consider the following statements:</p><ol><li>Each octal digit corresponds to exactly three binary digits.</li><li>Each hexadecimal digit corresponds to exactly four binary digits.</li><li>The hexadecimal digit F represents decimal 16.</li></ol><p>Which of the above statements are correct? (a) 1 and 3 only (b) 2 and 3 only (c) 1, 2 and 3 (d) 1 and 2 only</p><p><strong>Q23.</strong> Match List-I with List-II and select the correct answer using the code given below:</p><div class="tw"><table><thead><tr><th style="text-align:left">List-I</th><th style="text-align:left">List-II</th></tr></thead><tbody><tr><td style="text-align:left">A. Arithmetic and logic unit</td><td style="text-align:left">1. Arithmetic and logical operations</td></tr><tr><td style="text-align:left">B. Control unit</td><td style="text-align:left">2. Directs and coordinates operations</td></tr><tr><td style="text-align:left">C. Program counter</td><td style="text-align:left">3. Address of the next instruction</td></tr><tr><td style="text-align:left">D. Accumulator</td><td style="text-align:left">4. Intermediate arithmetic results</td></tr></tbody></table></div><p>(a) A-1 B-2 C-3 D-4 (b) A-2 B-1 C-4 D-3 (c) A-1 B-2 C-4 D-3 (d) A-3 B-4 C-1 D-2</p><p><strong>Q24.</strong> The binary number 11011010 expressed in hexadecimal is (a) AD (b) BA (c) DA (d) D6</p><p><strong>Q25.</strong> The decimal number 25 expressed in binary is (a) 10011 (b) 11001 (c) 10101 (d) 11011</p><p><strong>Q26.</strong> Consider the following statements about computer memory:</p><ol><li>Cache memory lies between the CPU and main memory.</li><li>ROM typically stores the BIOS or firmware.</li><li>Registers are located in secondary storage.</li></ol><p>Which of the above statements are correct? (a) 1 and 3 only (b) 2 and 3 only (c) 1, 2 and 3 (d) 1 and 2 only</p><p><strong>Q27.</strong> The correct sequence of the machine cycle is (a) fetch, decode, execute, store (b) decode, fetch, execute, store (c) fetch, execute, decode, store (d) store, fetch, decode, execute</p><p><strong>Q28.</strong> Which one of the following statements is <strong>not</strong> correct? (a) EPROM can be erased using ultraviolet light (b) A nibble consists of four bits (c) The hexadecimal system uses the digits 0 to 9 and the letters A to G (d) SRAM is faster and costlier than DRAM</p><p><strong>Q29.</strong> Which generation of computers is associated with the microprocessor? (a) Second (b) Fourth (c) First (d) Third</p><p><strong>Q30.</strong> The hexadecimal number 1A expressed in decimal is (a) 110 (b) 20 (c) 24 (d) 26</p><div class="pagebreak"></div><h2 id="8-answers-and-explanations">8. Answers and Explanations</h2><h3 id="81-level-1">8.1 Level 1</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">b</td><td style="text-align:left"><strong>8 bits.</strong> A <strong>nibble</strong> is 4 bits — option (a) is the nibble</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">d</td><td style="text-align:left">The <strong>arithmetic and logic unit</strong>. The control unit directs and coordinates but does not compute</td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">a</td><td style="text-align:left">The <strong>program counter</strong> — an <strong>address</strong>, and of the <strong>next</strong> instruction. The <strong>instruction register</strong> holds the <em>current</em> instruction</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Volatile and read/write.</strong> ROM is the non-volatile, read-only one</td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">b</td><td style="text-align:left"><strong>ROM.</strong> RAM, cache and registers are all volatile</td></tr><tr><td style="text-align:left">6</td><td style="text-align:center">d</td><td style="text-align:left"><strong>16</strong></td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">a</td><td style="text-align:left">The <strong>computer</strong></td></tr><tr><td style="text-align:left">8</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Third.</strong> First was vacuum tubes, second transistors, fourth microprocessors</td></tr><tr><td style="text-align:left">9</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Bank cheques</strong> — magnetic ink character recognition reads the code line</td></tr><tr><td style="text-align:left">10</td><td style="text-align:center">d</td><td style="text-align:left"><strong>1,024 bytes</strong>, which is 2¹⁰. Option (a) is the decimal approximation and is the standard distractor</td></tr></tbody></table></div><h3 id="82-level-2">8.2 Level 2</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">11</td><td style="text-align:center">a</td><td style="text-align:left">A <strong>register</strong>, inside the CPU. The hierarchy is register » cache » RAM » disk</td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">c</td><td style="text-align:left">Each octal digit is <strong>three</strong> bits: 7 » 111, 2 » 010, 5 » 101, giving <strong>111010101</strong>. Option (a) mis-converts the 5, and (d) reverses the order</td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">b</td><td style="text-align:left">(2 × 16) + 15 = <strong>47</strong>. Option (a) treats F as 15 but forgets to multiply the 2 by 16; (d) is a magnitude error — a two-digit hex number cannot exceed 255 but 215 would need a leading D</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Three</strong>, because 8 = 2³</td></tr><tr><td style="text-align:left">15</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Four</strong>, because 16 = 2⁴</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">c</td><td style="text-align:left">32 + 8 + 4 + 1 = <strong>45</strong></td></tr><tr><td style="text-align:left">17</td><td style="text-align:center">b</td><td style="text-align:left"><strong>NAND.</strong> NAND and NOR are the universal gates; AND, OR and NOT are the basic ones and are not universal</td></tr><tr><td style="text-align:left">18</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Requires periodic refreshing</strong> — that is what "dynamic" means. SRAM is the faster, costlier one used as cache</td></tr><tr><td style="text-align:left">19</td><td style="text-align:center">a</td><td style="text-align:left"><strong>7 bits</strong>, encoding 128 characters. Extended ASCII uses 8 bits for 256</td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">c</td><td style="text-align:left">A <strong>touchscreen</strong> both displays and accepts input</td></tr></tbody></table></div><h3 id="83-level-3">8.3 Level 3</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">21</td><td style="text-align:center">b</td><td style="text-align:left"><strong>ROM is NON-volatile</strong> — that is its defining property. The other three statements are correct</td></tr><tr><td style="text-align:left">22</td><td style="text-align:center">d</td><td style="text-align:left"><strong>1 and 2 only.</strong> Statement 3 is false: <strong>F is 15</strong>, not 16, because base-16 digits run 0 to 15</td></tr><tr><td style="text-align:left">23</td><td style="text-align:center">a</td><td style="text-align:left"><strong>A-1 B-2 C-3 D-4</strong> — the four straightforward pairings</td></tr><tr><td style="text-align:left">24</td><td style="text-align:center">c</td><td style="text-align:left">Group in fours from the right: 1101 = <strong>D</strong>, 1010 = <strong>A</strong>, giving <strong>DA</strong>. Option (a) reverses the two groups, which is what grouping from the left produces</td></tr><tr><td style="text-align:left">25</td><td style="text-align:center">b</td><td style="text-align:left">25 = 16 + 8 + 1 = <strong>11001</strong>. Check by adding the weights back — option (a) is the same digits reversed</td></tr><tr><td style="text-align:left">26</td><td style="text-align:center">d</td><td style="text-align:left"><strong>1 and 2 only.</strong> Statement 3 is false — registers are <strong>inside the CPU</strong>, the fastest level of the hierarchy, not in secondary storage</td></tr><tr><td style="text-align:left">27</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Fetch, decode, execute, store.</strong> You cannot decode an instruction you have not fetched</td></tr><tr><td style="text-align:left">28</td><td style="text-align:center">c</td><td style="text-align:left">Hexadecimal uses <strong>A to F</strong>, not A to G — there are only six letters, because 10 to 15 is six values</td></tr><tr><td style="text-align:left">29</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Fourth generation</strong></td></tr><tr><td style="text-align:left">30</td><td style="text-align:center">d</td><td style="text-align:left">(1 × 16) + 10 = <strong>26</strong></td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · THE FOUR SHAPES IN THIS CHAPTER</p><ol><li><strong>Group from the RIGHT.</strong> Q24's distractor (a) is exactly what you get by grouping from the left. This single habit protects both conversion questions</li><li><strong>The volatility reversal.</strong> Q4, Q5 and Q21. <strong>RAM volatile, ROM non-volatile</strong> — state it as a pair every time</li><li><strong>The off-by-one in hex.</strong> Q22 and Q28. <strong>F = 15, letters A to F.</strong> Both errors come from forgetting that base-16 digits start at zero</li><li><strong>Next versus current.</strong> Q3 and Q21. The <strong>program counter</strong> holds the address of the <strong>next</strong> instruction; the <strong>instruction register</strong> holds the current one. Two registers, one word of difference</li></ol></aside><div class="pagebreak"></div><h2 id="9-one-minute-revision">9. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F9.5</p><p><strong>COMPUTER</strong> accepts data, processes, stores, outputs <strong>information</strong> · <strong>data are raw, information is processed</strong> · <strong>GIGO</strong> · diligence means no fatigue</p><p><strong>GENERATIONS</strong> 1 <strong>vacuum tube</strong> · 2 <strong>transistor</strong> · 3 <strong>integrated circuit</strong> · 4 <strong>microprocessor</strong> · 5 <strong>artificial intelligence</strong> · <strong>Babbage = father of the computer</strong>, Ada Lovelace first programmer</p><p><strong>CPU</strong> <strong>ALU</strong> arithmetic and logic · <strong>CU</strong> directs and coordinates · <strong>registers</strong> fastest storage · <strong>machine cycle FETCH » DECODE » EXECUTE » STORE</strong> · buses: data, address, control</p><p><strong>REGISTERS</strong> <strong>PROGRAM COUNTER = ADDRESS OF THE NEXT INSTRUCTION</strong> · <strong>instruction register = the CURRENT instruction</strong> · MAR = address to access · MBR = data in transit · <strong>accumulator = intermediate results</strong></p><p><strong>HIERARCHY</strong> <strong>register » cache » RAM » secondary</strong> · going down, speed <strong>falls</strong>, capacity <strong>rises</strong>, cost per byte <strong>falls</strong> · cache sits <strong>between CPU and main memory</strong>, L1 fastest</p><p><strong>RAM vs ROM</strong> <strong>RAM volatile, read/write</strong> · <strong>ROM NON-volatile, read-only, holds the BIOS</strong> · <strong>SRAM</strong> no refresh, faster, costlier, used as <strong>cache</strong> · <strong>DRAM needs refreshing</strong>, main memory · <strong>PROM</strong> once · <strong>EPROM erased by ultraviolet</strong> · <strong>EEPROM electrically</strong> erased</p><p><strong>UNITS</strong> <strong>nibble 4 bits · byte 8 bits · 1 KB = 1,024 bytes</strong> (2¹⁰)</p><p><strong>DEVICES</strong> <strong>OMR reads marks · OCR reads characters · MICR reads magnetic ink on CHEQUES</strong> · <strong>touchscreen is both input and output</strong> · impact printers: dot matrix, line · non-impact: inkjet, laser</p><p><strong>NUMBER SYSTEMS</strong> binary 2 · octal 8 · decimal 10 · <strong>hexadecimal 16, digits 0–9 then A–F</strong> · <strong>A=10 … F=15</strong>, letters stop at <strong>F</strong></p><p><strong>THE GROUPING RULE</strong> <strong>octal = 3 bits per digit</strong> (8 = 2³) · <strong>hexadecimal = 4 bits per digit</strong> (16 = 2⁴) · <strong>ALWAYS GROUP FROM THE RIGHT</strong></p><p><strong>WORKED</strong> octal 725 » <strong>111 010 101</strong> · binary 110110 » octal <strong>66</strong> · binary 11011010 » hex <strong>DA</strong> · hex 2F » <strong>47</strong> · hex 1A » <strong>26</strong> · binary 101101 » <strong>45</strong> · decimal 25 » <strong>11001</strong></p><p><strong>DECIMAL TO BINARY</strong> divide by 2 repeatedly, read remainders <strong>upwards</strong></p><p><strong>CODES</strong> <strong>ASCII 7 bits, 128 characters</strong>; extended 8 bits, 256 · Unicode covers world scripts</p><p><strong>GATES</strong> basic AND, OR, NOT · derived NAND, NOR, XOR · <strong>NAND and NOR are the UNIVERSAL gates</strong></p></aside><h2 id="10-five-minute-wall-sheet">10. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F9.5</p><p><strong>OCTAL = 3 BITS · HEX = 4 BITS · GROUP FROM THE RIGHT</strong></p><p><strong>A=10 B=11 C=12 D=13 E=14 F=15</strong> — letters stop at F</p><p><strong>HEX TO DECIMAL: × 16 THEN ADD</strong> — 2F = 32 + 15 = 47 · 1A = 16 + 10 = 26</p><p><strong>BINARY WEIGHTS FROM THE RIGHT: 1 2 4 8 16 32 64 128</strong></p><p><strong>DECIMAL TO BINARY: DIVIDE BY 2, READ REMAINDERS UPWARD</strong></p><p><strong>RAM VOLATILE · ROM NON-VOLATILE (BIOS)</strong></p><p><strong>SRAM = CACHE, NO REFRESH · DRAM = MAIN MEMORY, NEEDS REFRESH</strong></p><p><strong>REGISTER » CACHE » RAM » DISK</strong></p><p><strong>PROGRAM COUNTER = NEXT INSTRUCTION'S ADDRESS · INSTRUCTION REGISTER = CURRENT INSTRUCTION</strong></p><p><strong>FETCH » DECODE » EXECUTE » STORE</strong></p><p><strong>NIBBLE 4 · BYTE 8 · KB 1,024</strong></p><p><strong>GEN 3 = IC · GEN 4 = MICROPROCESSOR</strong></p><p><strong>MICR = CHEQUES · OMR = MARKS · OCR = CHARACTERS</strong></p><p><strong>ASCII = 7 BITS = 128 CHARACTERS</strong></p><p><strong>NAND AND NOR ARE UNIVERSAL</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> Octal and hexadecimal exist because 8 and 16 are exact powers of two, so each digit maps onto exactly three or four bits — which lets a human read a binary value compactly without any arithmetic at all.</p></aside><aside class="cal action"><p class="cal-h">ACTION · NEXT IN MODULE 9</p><p><strong>Chapter F9.6 — Operating Systems, Software and Programming</strong>, covering four more 2023 items: the <strong>real-time operating system</strong>, <strong>top-down languages</strong>, the <strong>C structure operator</strong> and the <strong>hard disk error-check command</strong>.</p><p>Before you move on: convert octal 461 to binary, binary 10011100 to hexadecimal, and hexadecimal 4D to decimal — then state what the program counter holds and which of RAM and ROM is volatile.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F9.5
+  &middot; v1.0</footer>
+</body>
+</html>

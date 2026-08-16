@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operating Systems, Software and Programming</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F9.6 · OS, Software &amp; Programming
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · FOUNDATION LAYER · MODULE 9 · CHAPTER F9.6</p><h1 class="doc-t">Operating Systems, Software and Programming</h1><p class="doc-s">Chapter F9.6 — Four More 2023 Items, Including the Ones the Blueprint Warned Would Need Real Hours</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 9 — General Science &amp; Computer Applications</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F9.6</td></tr><tr><td class="k">Topic</td><td class="v">Official syllabus head 6 — Basic Knowledge of Computer Applications</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal note"><p class="cal-h">NOTE · THIS IS THE CHAPTER THE BLUEPRINT SINGLED OUT</p><p>Blueprint §4.4 warned that within Computer Applications the <strong>C, HTML and operating-system items</strong> are the ones that <em>"need actual targeted preparation. Budget real hours there, not zero."</em></p><p><strong>Four of the ten 2023 computer questions are in this chapter:</strong> the <strong>real-time operating system</strong> (§2.3), <strong>top-down languages</strong> (§4.3), the <strong>C structure operator</strong> (§5.2) and the <strong>hard disk error-check command</strong> (§3).</p><p>None of them is guessable. All four are single, specific facts. That combination — unguessable but finite — makes this the best-value chapter in Module 9 per hour spent.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-kinds-of-software"><span class="toc-t">1. Session 1 — Kinds of Software <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></span></a><a class="toc-2" href="#2-session-2-the-operating-system"><span class="toc-t">2. Session 2 — The Operating System <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#21-what-it-does"><span class="toc-t">2.1 What it does</span></a><a class="toc-3" href="#22-types-of-operating-system"><span class="toc-t">2.2 Types of operating system</span></a><a class="toc-3" href="#23-real-time-operating-systems-the-2023-item"><span class="toc-t">2.3 Real-time operating systems — the 2023 item</span></a><a class="toc-2" href="#3-session-3-command-line-utilities"><span class="toc-t">3. Session 3 — Command-Line Utilities <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-2" href="#4-session-4-languages-translators-and-design"><span class="toc-t">4. Session 4 — Languages, Translators and Design <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#41-generations-of-language"><span class="toc-t">4.1 Generations of language</span></a><a class="toc-3" href="#42-the-three-translators"><span class="toc-t">4.2 The three translators</span></a><a class="toc-3" href="#43-top-down-and-bottom-up-the-2023-item"><span class="toc-t">4.3 Top-down and bottom-up — the 2023 item</span></a><a class="toc-2" href="#5-session-5-the-c-language"><span class="toc-t">5. Session 5 — The C Language <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#51-background-and-basics"><span class="toc-t">5.1 Background and basics</span></a><a class="toc-3" href="#52-the-operators-and-the-2023-item"><span class="toc-t">5.2 The operators — and the 2023 item</span></a><a class="toc-3" href="#53-control-structures"><span class="toc-t">5.3 Control structures</span></a><a class="toc-2" href="#6-session-6-office-applications"><span class="toc-t">6. Session 6 — Office Applications <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></span></a><a class="toc-2" href="#7-graded-practice-25-questions"><span class="toc-t">7. Graded Practice — 25 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#71-level-1-recognition"><span class="toc-t">7.1 Level 1 — Recognition</span></a><a class="toc-3" href="#72-level-2-understanding"><span class="toc-t">7.2 Level 2 — Understanding</span></a><a class="toc-3" href="#73-level-3-recruitment-test-standard"><span class="toc-t">7.3 Level 3 — Recruitment Test standard</span></a><a class="toc-2" href="#8-answers-and-explanations"><span class="toc-t">8. Answers and Explanations</span></a><a class="toc-3" href="#81-level-1"><span class="toc-t">8.1 Level 1</span></a><a class="toc-3" href="#82-level-2"><span class="toc-t">8.2 Level 2</span></a><a class="toc-3" href="#83-level-3"><span class="toc-t">8.3 Level 3</span></a><a class="toc-2" href="#9-one-minute-revision"><span class="toc-t">9. One-Minute Revision</span></a><a class="toc-2" href="#10-five-minute-wall-sheet"><span class="toc-t">10. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F9.6 — SIX SESSIONS</p><ol><li><strong>Session 1</strong> — Kinds of software (§1) <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></li><li><strong>Session 2</strong> — The operating system, and <strong>real-time systems</strong> (§2) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <strong>2023</strong></li><li><strong>Session 3</strong> — <strong>Command-line utilities</strong> (§3) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span> <strong>2023</strong></li><li><strong>Session 4</strong> — Languages, translators and <strong>top-down design</strong> (§4) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <strong>2023</strong></li><li><strong>Session 5</strong> — <strong>The C language and its operators</strong> (§5) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <strong>2023</strong></li><li><strong>Session 6</strong> — Office applications and shortcuts (§6) <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></li></ol><p>Then 25 graded questions in §7. Budget <strong>two and a half days</strong>.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-kinds-of-software">1. Session 1 — Kinds of Software <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></h2><div class="tw"><table><thead><tr><th style="text-align:left">Category</th><th style="text-align:left">What it is</th><th style="text-align:left">Examples</th></tr></thead><tbody><tr><td style="text-align:left"><strong>System software</strong></td><td style="text-align:left">Runs and manages the computer itself</td><td style="text-align:left"><strong>Operating system</strong>, device drivers, <strong>language translators</strong>, utilities</td></tr><tr><td style="text-align:left"><strong>Application software</strong></td><td style="text-align:left">Performs tasks for the user</td><td style="text-align:left">Word processor, spreadsheet, browser, DBMS</td></tr><tr><td style="text-align:left"><strong>Utility software</strong></td><td style="text-align:left">Maintains and protects the system</td><td style="text-align:left">Antivirus, disk defragmenter, compression, backup</td></tr><tr><td style="text-align:left"><strong>Firmware</strong></td><td style="text-align:left">Software stored permanently in <strong>ROM</strong></td><td style="text-align:left">BIOS</td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · WHICH SIDE OF THE LINE</p><p>The recurring question is simply "which of the following is system software", and the answer is almost always the <strong>operating system</strong>, with a word processor, spreadsheet and browser as distractors.</p><p>The test: does it <strong>serve the machine</strong> (system) or <strong>serve the user's task</strong> (application)? A <strong>language translator</strong> — compiler, interpreter, assembler — is <strong>system</strong> software, which surprises people, because it serves the machine's ability to run programs rather than any user task.</p><p><strong>Licensing terms</strong> occasionally appear: <strong>freeware</strong> is free to use; <strong>shareware</strong> is free to try; <strong>open source</strong> publishes its source code (Linux); <strong>proprietary</strong> does not (Windows).</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 1</p><ol><li>Classify: operating system, spreadsheet, antivirus, compiler, BIOS</li><li>Which is system software — a compiler or a browser?</li><li>Distinguish freeware, shareware and open source</li></ol></aside><div class="pagebreak"></div><h2 id="2-session-2-the-operating-system">2. Session 2 — The Operating System <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="21-what-it-does">2.1 What it does</h3><p>An <strong>operating system</strong> is system software that acts as an <strong>interface between the user and the hardware</strong> and <strong>manages the computer's resources</strong>.</p><p><strong>Functions:</strong> process management · memory management · file management · device management · security · scheduling · providing the user interface.</p><p><strong>Key terms:</strong></p><div class="tw"><table><thead><tr><th style="text-align:left">Term</th><th style="text-align:left">Meaning</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Kernel</strong></td><td style="text-align:left">The <strong>core</strong> of the operating system</td></tr><tr><td style="text-align:left"><strong>Virtual memory</strong></td><td style="text-align:left">Using disk space to extend apparent main memory</td></tr><tr><td style="text-align:left"><strong>Paging</strong></td><td style="text-align:left">Dividing memory into fixed-size blocks</td></tr><tr><td style="text-align:left"><strong>Spooling</strong></td><td style="text-align:left">Queuing jobs — most familiarly <strong>print jobs</strong> — so the CPU need not wait</td></tr><tr><td style="text-align:left"><strong>Deadlock</strong></td><td style="text-align:left">Two or more processes each waiting for a resource the other holds</td></tr><tr><td style="text-align:left"><strong>Booting</strong></td><td style="text-align:left">Starting the computer. <strong>Cold boot</strong> = from power off. <strong>Warm boot</strong> = restart while running</td></tr><tr><td style="text-align:left"><strong>GUI / CLI</strong></td><td style="text-align:left">Graphical user interface versus command-line interface</td></tr></tbody></table></div><h3 id="22-types-of-operating-system">2.2 Types of operating system</h3><div class="tw"><table><thead><tr><th style="text-align:left">Type</th><th style="text-align:left">Defining feature</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Batch</strong></td><td style="text-align:left">Jobs collected and run in batches, with <strong>no user interaction</strong></td></tr><tr><td style="text-align:left"><strong>Time-sharing</strong></td><td style="text-align:left">CPU time <strong>shared</strong> among many users interactively</td></tr><tr><td style="text-align:left"><strong>Multiprogramming</strong></td><td style="text-align:left">Several programs held in memory at once</td></tr><tr><td style="text-align:left"><strong>Multiprocessing</strong></td><td style="text-align:left"><strong>More than one CPU</strong></td></tr><tr><td style="text-align:left"><strong>Distributed</strong></td><td style="text-align:left">Multiple <strong>networked</strong> computers acting as one</td></tr><tr><td style="text-align:left"><strong>Network</strong></td><td style="text-align:left">Manages a network's shared resources</td></tr><tr><td style="text-align:left"><strong>Real-time</strong></td><td style="text-align:left">Responds within a <strong>guaranteed deadline</strong> — see below</td></tr></tbody></table></div><h3 id="23-real-time-operating-systems-the-2023-item">2.3 Real-time operating systems — the 2023 item</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · WHAT MAKES AN OS "REAL-TIME"</p><p>A <strong>real-time operating system (RTOS)</strong> is one that must respond to input <strong>within a strict, guaranteed time constraint — a deadline.</strong> Its defining characteristic is not speed as such, but <strong>predictability</strong>: the response time must be bounded and guaranteed.</p><p><strong>Two kinds:</strong></p><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left"><strong>Hard</strong> real-time</th><th style="text-align:left"><strong>Soft</strong> real-time</th></tr></thead><tbody><tr><td style="text-align:left">Missing a deadline</td><td style="text-align:left"><strong>Unacceptable — a system failure</strong></td><td style="text-align:left">Undesirable but tolerable</td></tr><tr><td style="text-align:left">Examples</td><td style="text-align:left">Missile guidance, air traffic control, medical life support, industrial robots, anti-lock brakes</td><td style="text-align:left">Video streaming, online transaction systems</td></tr></tbody></table></div><p><strong>Typical applications:</strong> <strong>air traffic control</strong>, missile and flight control, medical life-support equipment, industrial process control, embedded systems.</p><p>Two traps to expect:</p><ol><li><strong>"Fast" is not the definition.</strong> An RTOS guarantees a <strong>deadline</strong>; an ordinary OS may be quicker on average but guarantees nothing. Options describing it as simply "very fast" are wrong</li><li><strong>Windows, Linux and macOS are general-purpose, NOT hard real-time.</strong> An option naming a desktop OS as a real-time system is wrong — and it is tempting, because they feel responsive</li></ol></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 2</p><ol><li>Define an operating system. Name five of its functions</li><li>What is the kernel? What is spooling most associated with?</li><li>Distinguish cold boot from warm boot</li><li>What defines a real-time OS — speed, or something else?</li><li>Distinguish hard from soft real-time, with an example of each</li><li>Is Windows a hard real-time operating system?</li></ol></aside><div class="pagebreak"></div><h2 id="3-session-3-command-line-utilities">3. Session 3 — Command-Line Utilities <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><p>The 2023 paper asked which command <strong>checks a hard disk for errors</strong>. Learn the small set below.</p><div class="tw"><table><thead><tr><th style="text-align:left">Command</th><th style="text-align:left">What it does</th></tr></thead><tbody><tr><td style="text-align:left"><strong>CHKDSK</strong></td><td style="text-align:left"><strong>Checks the disk for errors</strong> and displays a status report. <strong>The 2023 answer</strong></td></tr><tr><td style="text-align:left"><code>SCANDISK</code></td><td style="text-align:left">The older equivalent utility</td></tr><tr><td style="text-align:left"><code>DIR</code></td><td style="text-align:left">Lists the contents of a directory</td></tr><tr><td style="text-align:left"><code>COPY</code></td><td style="text-align:left">Copies files</td></tr><tr><td style="text-align:left"><code>DEL</code></td><td style="text-align:left">Deletes files</td></tr><tr><td style="text-align:left"><code>MD</code> or <code>MKDIR</code></td><td style="text-align:left">Makes a directory</td></tr><tr><td style="text-align:left"><code>CD</code></td><td style="text-align:left">Changes the current directory</td></tr><tr><td style="text-align:left"><code>RD</code></td><td style="text-align:left">Removes a directory</td></tr><tr><td style="text-align:left"><code>FORMAT</code></td><td style="text-align:left">Prepares a disk for use, <strong>erasing existing data</strong></td></tr><tr><td style="text-align:left"><code>REN</code></td><td style="text-align:left">Renames a file</td></tr><tr><td style="text-align:left"><code>CLS</code></td><td style="text-align:left">Clears the screen</td></tr><tr><td style="text-align:left"><code>ATTRIB</code></td><td style="text-align:left">Displays or changes file attributes</td></tr><tr><td style="text-align:left"><code>DEFRAG</code></td><td style="text-align:left">Defragments a disk</td></tr></tbody></table><p class="cap">CHKDSK checks; FORMAT erases. Do not confuse the two</p></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · CHKDSK CHECKS, FORMAT DESTROYS</p><p><strong>CHKDSK</strong> — short for "check disk" — scans a disk for <strong>errors</strong> in the file system and bad sectors, and reports on them. It is the answer to any question about checking a disk's integrity.</p><p><strong>FORMAT</strong> prepares a disk for use and in doing so <strong>erases its contents</strong>. It is the destructive one, and it is the distractor offered beside CHKDSK.</p><p>A secondary distinction that sometimes appears: <strong>internal</strong> commands are built into the command interpreter (<code>DIR</code>, <code>COPY</code>, <code>CLS</code>, <code>DEL</code>, <code>CD</code>); <strong>external</strong> commands exist as separate program files (<code>CHKDSK</code>, <code>FORMAT</code>, <code>DEFRAG</code>).</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 3</p><ol><li>Which command checks a disk for errors? Which one erases it?</li><li>What do <code>DIR</code>, <code>REN</code>, <code>CLS</code> and <code>ATTRIB</code> do?</li><li>Distinguish internal from external commands, with two examples of each</li></ol></aside><div class="pagebreak"></div><h2 id="4-session-4-languages-translators-and-design">4. Session 4 — Languages, Translators and Design <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="41-generations-of-language">4.1 Generations of language</h3><div class="tw"><table><thead><tr><th style="text-align:left">Generation</th><th style="text-align:left">Type</th><th style="text-align:left">Examples</th></tr></thead><tbody><tr><td style="text-align:left"><strong>1GL</strong></td><td style="text-align:left"><strong>Machine language</strong> — binary</td><td style="text-align:left">—</td></tr><tr><td style="text-align:left"><strong>2GL</strong></td><td style="text-align:left"><strong>Assembly language</strong> — mnemonics</td><td style="text-align:left">—</td></tr><tr><td style="text-align:left"><strong>3GL</strong></td><td style="text-align:left"><strong>High-level</strong> procedural</td><td style="text-align:left"><strong>C</strong>, FORTRAN, COBOL, BASIC, Pascal</td></tr><tr><td style="text-align:left"><strong>4GL</strong></td><td style="text-align:left">Query and database languages</td><td style="text-align:left"><strong>SQL</strong></td></tr><tr><td style="text-align:left"><strong>5GL</strong></td><td style="text-align:left">Artificial intelligence languages</td><td style="text-align:left">Prolog, LISP</td></tr></tbody></table></div><p><strong>Low-level</strong> means machine and assembly language — close to the hardware. <strong>High-level</strong> means human-readable and portable.</p><h3 id="42-the-three-translators">4.2 The three translators</h3><div class="tw"><table><thead><tr><th style="text-align:left">Translator</th><th style="text-align:left">What it does</th><th style="text-align:left">Consequence</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Compiler</strong></td><td style="text-align:left">Translates the <strong>entire program at once</strong> into object code</td><td style="text-align:left"><strong>Faster execution</strong>; errors reported together. C, C++</td></tr><tr><td style="text-align:left"><strong>Interpreter</strong></td><td style="text-align:left">Translates and executes <strong>line by line</strong></td><td style="text-align:left"><strong>Easier debugging</strong>; slower execution. Python, BASIC</td></tr><tr><td style="text-align:left"><strong>Assembler</strong></td><td style="text-align:left">Converts <strong>assembly language</strong> into machine code</td><td style="text-align:left">—</td></tr></tbody></table></div><p>All three are <strong>system</strong> software (§1).</p><h3 id="43-top-down-and-bottom-up-the-2023-item">4.3 Top-down and bottom-up — the 2023 item</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · WHICH DIRECTION IS WHICH, AND WHICH LANGUAGES</p><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left"><strong>Top-down</strong></th><th style="text-align:left"><strong>Bottom-up</strong></th></tr></thead><tbody><tr><td style="text-align:left">Direction</td><td style="text-align:left">Start with the <strong>whole problem</strong> and <strong>break it into sub-problems</strong></td><td style="text-align:left">Start with the <strong>smallest components</strong> and <strong>combine</strong> them</td></tr><tr><td style="text-align:left">Technique</td><td style="text-align:left"><strong>Stepwise refinement</strong></td><td style="text-align:left">Composition</td></tr><tr><td style="text-align:left">Associated with</td><td style="text-align:left"><strong>Structured / procedural programming</strong></td><td style="text-align:left"><strong>Object-oriented programming</strong></td></tr><tr><td style="text-align:left">Languages</td><td style="text-align:left"><strong>C, Pascal, FORTRAN</strong></td><td style="text-align:left"><strong>C++, Java</strong></td></tr></tbody></table></div><p>So the 2023 item on "top-down languages" points at the <strong>structured procedural languages — C and Pascal.</strong></p><p>The trap is the reversal, and it is easy to fall for because both descriptions sound constructive. Anchor it this way: <strong>top-down starts at the TOP, meaning the whole problem, and decomposes downwards.</strong> Bottom-up starts with the parts. Object-oriented design builds objects first and assembles them, which is why it is bottom-up.</p></aside><p><strong>Errors:</strong> a <strong>syntax</strong> error breaks the rules of the language and is caught by the translator; a <strong>logical</strong> error produces a wrong answer from valid code; a <strong>runtime</strong> error occurs during execution.</p><p>An <strong>algorithm</strong> is a finite sequence of steps; a <strong>flowchart</strong> is its diagrammatic form; <strong>pseudocode</strong> is its plain-language form.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 4</p><ol><li>Name the five generations of language with an example of each</li><li>Compare compiler and interpreter on translation unit, speed and debugging</li><li>Which approach uses stepwise refinement, and which is object-oriented design?</li><li>Which languages are associated with top-down design?</li><li>Distinguish syntax, logical and runtime errors</li></ol></aside><div class="pagebreak"></div><h2 id="5-session-5-the-c-language">5. Session 5 — The C Language <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="51-background-and-basics">5.1 Background and basics</h3><p><strong>C</strong> was developed by <strong>Dennis Ritchie</strong> at Bell Laboratories in <strong>1972</strong>. It is a <strong>procedural, structured</strong> language, often called <strong>middle-level</strong> because it combines high-level constructs with low-level memory access.</p><ul><li><strong>Case-sensitive</strong> — <code>Total</code> and <code>total</code> are different identifiers</li><li>Every statement ends with a <strong>semicolon</strong></li><li>Execution begins at <code>main()</code></li><li>Basic data types: <code>int</code>, <code>char</code>, <code>float</code>, <code>double</code>, <code>void</code></li><li>Input and output through <code>scanf</code> and <code>printf</code></li></ul><h3 id="52-the-operators-and-the-2023-item">5.2 The operators — and the 2023 item</h3><div class="tw"><table><thead><tr><th style="text-align:left">Category</th><th style="text-align:left">Operators</th></tr></thead><tbody><tr><td style="text-align:left">Arithmetic</td><td style="text-align:left"><code>+</code> <code>-</code> <code>*</code> <code>/</code> and <code>%</code> (modulus, giving the remainder)</td></tr><tr><td style="text-align:left">Relational</td><td style="text-align:left"><code>&lt;</code> <code>&gt;</code> <code>&lt;=</code> <code>&gt;=</code> <code>==</code> (equal to) <code>!=</code></td></tr><tr><td style="text-align:left">Logical</td><td style="text-align:left"><code>&amp;&amp;</code> (and) `</td><td style="text-align:left"></td><td style="text-align:left"><code> (or) </code>!` (not)</td></tr><tr><td style="text-align:left">Assignment</td><td style="text-align:left"><code>=</code></td></tr><tr><td style="text-align:left">Increment and decrement</td><td style="text-align:left"><code>++</code> <code>--</code></td></tr><tr><td style="text-align:left"><strong>Member access</strong></td><td style="text-align:left"><strong><code>.</code></strong> (dot) and <strong><code>-&gt;</code></strong> (arrow)</td></tr><tr><td style="text-align:left">Others</td><td style="text-align:left"><code>sizeof</code>, the ternary <code>?:</code></td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE DOT AND THE ARROW — THE STRUCTURE OPERATORS</p><p>A <strong>structure</strong> in C, declared with the keyword <code>struct</code>, groups variables of <strong>different data types</strong> under a single name. Its members are reached with one of two operators, and the distinction is the whole question:</p><div class="tw"><table><thead><tr><th style="text-align:left">Operator</th><th style="text-align:left">Used when you have</th><th style="text-align:left">Example</th></tr></thead><tbody><tr><td style="text-align:left"><strong><code>.</code> — the dot operator</strong></td><td style="text-align:left">A <strong>structure variable</strong> itself</td><td style="text-align:left"><code>employee.salary</code></td></tr><tr><td style="text-align:left"><strong><code>-&gt;</code> — the arrow operator</strong></td><td style="text-align:left">A <strong>POINTER</strong> to a structure</td><td style="text-align:left"><code>ptr-&gt;salary</code></td></tr></tbody></table></div><p><strong>Dot for a variable, arrow for a pointer.</strong> That is the entire rule, and the 2023 question turns on it.</p><p>Note the near-miss distractors: <code>*</code> is multiplication and also pointer dereferencing, <code>&amp;</code> is the address-of operator, and <code>::</code> does not exist in C at all — it belongs to C++.</p><p>One related distinction worth holding: a <strong>structure</strong> gives each member its own memory, while a <strong>union</strong> makes all members <strong>share</strong> the same memory location.</p></aside><h3 id="53-control-structures">5.3 Control structures</h3><p><strong>Decision:</strong> <code>if</code>, <code>if-else</code>, nested <code>if</code>, <code>switch</code>. <strong>Loops:</strong> <code>for</code>, <code>while</code>, and <code>do-while</code> — of which <strong>only <code>do-while</code> is guaranteed to execute at least once</strong>, because its condition is tested at the end. <strong>Jump:</strong> <code>break</code> exits the loop; <code>continue</code> skips to the next iteration.</p><p><strong>Object-oriented concepts</strong>, for recognition: class, object, <strong>encapsulation</strong>, <strong>inheritance</strong>, <strong>polymorphism</strong>, abstraction. C is <strong>not</strong> object-oriented; <strong>C++ and Java</strong> are.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 5</p><ol><li>Who developed C, where and when? Is it case-sensitive?</li><li>What does the <code>%</code> operator return?</li><li>Which operator accesses a structure member through a pointer? Which through the variable itself?</li><li>Distinguish a structure from a union</li><li>Which loop always executes at least once, and why?</li><li>Is C object-oriented?</li></ol></aside><div class="pagebreak"></div><h2 id="6-session-6-office-applications">6. Session 6 — Office Applications <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></h2><div class="tw"><table><thead><tr><th style="text-align:left">Application</th><th style="text-align:left">Default extension</th><th style="text-align:left">Notes</th></tr></thead><tbody><tr><td style="text-align:left">Word processor</td><td style="text-align:left"><code>.docx</code></td><td style="text-align:left">Text documents</td></tr><tr><td style="text-align:left"><strong>Spreadsheet</strong></td><td style="text-align:left"><code>.xlsx</code></td><td style="text-align:left"><strong>A formula begins with <code>=</code></strong></td></tr><tr><td style="text-align:left">Presentation</td><td style="text-align:left"><code>.pptx</code></td><td style="text-align:left">Slides</td></tr></tbody></table></div><p><strong>Spreadsheet essentials:</strong> a <strong>cell</strong> is identified by its column letter and row number, such as B7. Common functions are <code>SUM</code>, <code>AVERAGE</code>, <code>COUNT</code>, <code>MAX</code>, <code>MIN</code> and <code>VLOOKUP</code>. A <strong>relative</strong> reference changes when copied; an <strong>absolute</strong> reference is fixed using the <strong><code>$</code></strong> sign, as in <code>$B$7</code>.</p><p><strong>Shortcuts worth knowing:</strong> Ctrl-C copy · Ctrl-X cut · Ctrl-V paste · Ctrl-Z undo · Ctrl-Y redo · Ctrl-S save · Ctrl-P print · Ctrl-A select all · Ctrl-F find.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 6</p><ol><li>What character begins a spreadsheet formula?</li><li>Distinguish relative from absolute cell references. What symbol makes a reference absolute?</li><li>Give the shortcuts for undo, redo, select all and find</li></ol></aside><div class="pagebreak"></div><h2 id="7-graded-practice-25-questions">7. Graded Practice — 25 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="71-level-1-recognition">7.1 Level 1 — Recognition</h3><p><strong>Q1.</strong> An operating system is (a) application software (b) hardware (c) system software (d) firmware only</p><p><strong>Q2.</strong> Which one of the following is <strong>system</strong> software? (a) An operating system (b) A spreadsheet (c) A web browser (d) A word processor</p><p><strong>Q3.</strong> The core of an operating system is called the (a) shell (b) BIOS (c) device driver (d) kernel</p><p><strong>Q4.</strong> Which one of the following operating systems is open source? (a) Windows (b) Linux (c) macOS (d) MS-DOS</p><p><strong>Q5.</strong> The command used to check a disk for errors and display a status report is (a) <code>DIR</code> (b) <code>FORMAT</code> (c) <code>CHKDSK</code> (d) <code>DEL</code></p><p><strong>Q6.</strong> The C programming language was developed by (a) Dennis Ritchie (b) James Gosling (c) Bjarne Stroustrup (d) Charles Babbage</p><p><strong>Q7.</strong> Which translator converts an entire program at once? (a) An interpreter (b) An assembler (c) A loader (d) A compiler</p><p><strong>Q8.</strong> Machine language is a (a) high-level language (b) first-generation language (c) fourth-generation language (d) query language</p><p><strong>Q9.</strong> In C, a statement is terminated by a (a) colon (b) full stop (c) semicolon (d) comma</p><h3 id="72-level-2-understanding">7.2 Level 2 — Understanding</h3><p><strong>Q10.</strong> A real-time operating system is characterised by (a) responding within a strict, guaranteed time constraint (b) batching jobs together without user interaction (c) sharing processor time among many users without any deadline (d) running across multiple networked computers</p><p><strong>Q11.</strong> Which one of the following is a typical application of a real-time operating system? (a) Word processing (b) Spreadsheet calculation (c) Web browsing (d) Air traffic control</p><p><strong>Q12.</strong> The top-down approach to program design proceeds by (a) combining small modules into progressively larger ones (b) breaking the overall problem into smaller sub-problems (c) writing machine code before designing (d) testing the program before designing it</p><p><strong>Q13.</strong> Top-down, structured programming is characteristically associated with (a) object-oriented languages such as Java (b) query languages such as SQL (c) procedural languages such as C and Pascal (d) assembly language only</p><p><strong>Q14.</strong> In C, the dot operator is used to (a) access a member of a structure variable (b) access a member through a pointer to a structure (c) perform multiplication (d) terminate a statement</p><p><strong>Q15.</strong> In C, a member of a structure is accessed <strong>through a pointer</strong> using the (a) dot operator (b) ampersand (c) asterisk (d) arrow operator</p><p><strong>Q16.</strong> Spooling is associated mainly with (a) allocating memory to processes (b) queuing print jobs (c) extending main memory using disk space (d) detecting deadlock</p><p><strong>Q17.</strong> An interpreter differs from a compiler in that an interpreter (a) always produces faster-executing code (b) produces a separate object file (c) translates and executes the program line by line (d) is used only for machine language</p><p><strong>Q18.</strong> In a spreadsheet, a formula begins with (a) an equals sign (b) a plus sign (c) an apostrophe (d) a hash sign</p><h3 id="73-level-3-recruitment-test-standard">7.3 Level 3 — Recruitment Test standard</h3><p><strong>Q19.</strong> Which one of the following statements is <strong>not</strong> correct? (a) A compiler translates the whole program before execution begins (b) An interpreter generally makes debugging easier (c) The kernel is the core of the operating system (d) In a hard real-time system, missing a deadline is acceptable</p><p><strong>Q20.</strong> Consider the following statements:</p><ol><li>A real-time operating system must respond within a defined deadline.</li><li>In a hard real-time system the deadline must be met absolutely.</li><li>Windows is an example of a hard real-time operating system.</li></ol><p>Which of the above statements are correct? (a) 1 and 3 only (b) 1 and 2 only (c) 2 and 3 only (d) 1, 2 and 3</p><p><strong>Q21.</strong> Match List-I with List-II and select the correct answer using the code given below:</p><div class="tw"><table><thead><tr><th style="text-align:left">List-I</th><th style="text-align:left">List-II</th></tr></thead><tbody><tr><td style="text-align:left">A. Compiler</td><td style="text-align:left">1. Translates the entire program at once</td></tr><tr><td style="text-align:left">B. Interpreter</td><td style="text-align:left">2. Translates and executes line by line</td></tr><tr><td style="text-align:left">C. Assembler</td><td style="text-align:left">3. Converts assembly language into machine code</td></tr><tr><td style="text-align:left">D. Kernel</td><td style="text-align:left">4. The core of the operating system</td></tr></tbody></table></div><p>(a) A-2 B-1 C-3 D-4 (b) A-1 B-2 C-4 D-3 (c) A-1 B-2 C-3 D-4 (d) A-3 B-4 C-1 D-2</p><p><strong>Q22.</strong> Consider the following statements about the C language:</p><ol><li>The dot operator accesses a member of a structure variable.</li><li>The arrow operator accesses a member of a structure through a pointer.</li><li>C is case-insensitive.</li></ol><p>Which of the above statements are correct? (a) 1 and 2 only (b) 2 and 3 only (c) 1 and 3 only (d) 1, 2 and 3</p><p><strong>Q23.</strong> SQL belongs to which generation of programming languages? (a) First (b) Second (c) Third (d) Fourth</p><p><strong>Q24.</strong> Which one of the following statements is <strong>not</strong> correct? (a) The top-down approach is associated with structured programming (b) The bottom-up approach begins by breaking the problem into sub-problems (c) Object-oriented design is generally associated with the bottom-up approach (d) Stepwise refinement is a feature of top-down design</p><p><strong>Q25.</strong> Restarting a computer that is already switched on, without interrupting the power supply, is called (a) a cold boot (b) formatting (c) a warm boot (d) spooling</p><div class="pagebreak"></div><h2 id="8-answers-and-explanations">8. Answers and Explanations</h2><h3 id="81-level-1">8.1 Level 1</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">c</td><td style="text-align:left"><strong>System</strong> software — it manages the machine rather than performing a user task</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">a</td><td style="text-align:left">The <strong>operating system</strong>. The other three are application software</td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">d</td><td style="text-align:left">The <strong>kernel</strong>. The shell is the user-facing interface; the BIOS is firmware</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Linux.</strong> Windows, macOS and MS-DOS are proprietary</td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">c</td><td style="text-align:left"><strong><code>CHKDSK</code></strong> — check disk. <strong><code>FORMAT</code></strong>, option (b), is the destructive distractor</td></tr><tr><td style="text-align:left">6</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Dennis Ritchie</strong>, at Bell Laboratories in 1972. Gosling created Java; Stroustrup created C++</td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">d</td><td style="text-align:left">A <strong>compiler</strong> translates the whole program; an interpreter goes line by line</td></tr><tr><td style="text-align:left">8</td><td style="text-align:center">b</td><td style="text-align:left"><strong>First generation.</strong> Assembly is second, high-level third, query languages fourth</td></tr><tr><td style="text-align:left">9</td><td style="text-align:center">c</td><td style="text-align:left">A <strong>semicolon</strong></td></tr></tbody></table></div><h3 id="82-level-2">8.2 Level 2</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">10</td><td style="text-align:center">a</td><td style="text-align:left"><strong>A strict, guaranteed time constraint.</strong> The defining property is a bounded, predictable deadline — not raw speed. Options (b), (c) and (d) describe batch, time-sharing and distributed systems</td></tr><tr><td style="text-align:left">11</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Air traffic control</strong> — a domain where a late response is a failure. The other three tolerate delay</td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Breaking the overall problem into sub-problems.</strong> Option (a) describes bottom-up</td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Procedural languages such as C and Pascal.</strong> Object-oriented languages go with bottom-up design</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">a</td><td style="text-align:left">The <strong>dot</strong> operator works on a <strong>structure variable</strong></td></tr><tr><td style="text-align:left">15</td><td style="text-align:center">d</td><td style="text-align:left">The <strong>arrow</strong> operator works through a <strong>pointer</strong>. Dot for a variable, arrow for a pointer</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Queuing print jobs</strong>, so the CPU need not wait for a slow printer. Option (c) describes virtual memory</td></tr><tr><td style="text-align:left">17</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Line by line.</strong> That is why debugging is easier but execution slower — so (a) is the reverse</td></tr><tr><td style="text-align:left">18</td><td style="text-align:center">a</td><td style="text-align:left">An <strong>equals sign</strong></td></tr></tbody></table></div><h3 id="83-level-3">8.3 Level 3</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">19</td><td style="text-align:center">d</td><td style="text-align:left">In a <strong>hard</strong> real-time system, missing a deadline is a <strong>system failure</strong> and is <strong>not</strong> acceptable. That is precisely what distinguishes hard from soft. The other three statements are correct</td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">b</td><td style="text-align:left"><strong>1 and 2 only.</strong> Statement 3 is false — Windows is a <strong>general-purpose</strong> operating system, not a hard real-time one, however responsive it feels</td></tr><tr><td style="text-align:left">21</td><td style="text-align:center">c</td><td style="text-align:left"><strong>A-1 B-2 C-3 D-4</strong> — the four straightforward pairings</td></tr><tr><td style="text-align:left">22</td><td style="text-align:center">a</td><td style="text-align:left"><strong>1 and 2 only.</strong> Statement 3 is false — <strong>C is case-sensitive</strong>, so <code>Total</code> and <code>total</code> are different identifiers</td></tr><tr><td style="text-align:left">23</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Fourth generation</strong> — query and database languages</td></tr><tr><td style="text-align:left">24</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Reversed.</strong> Breaking the problem into sub-problems is <strong>top-down</strong>, not bottom-up. Bottom-up combines small components upwards. The other three statements are correct</td></tr><tr><td style="text-align:left">25</td><td style="text-align:center">c</td><td style="text-align:left">A <strong>warm boot</strong> — a restart without cutting power. A <strong>cold boot</strong> starts from power off</td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · THE FOUR SHAPES IN THIS CHAPTER</p><ol><li><strong>The definition substituted for a property.</strong> Q10 and Q19. An RTOS is defined by a <strong>guaranteed deadline</strong>, not by being fast — and "fast" is the option that feels right</li><li><strong>The direction reversal.</strong> Q12 and Q24. <strong>Top-down decomposes; bottom-up composes.</strong> Whenever both appear, check which verb the option uses</li><li><strong>The variable-versus-pointer pair.</strong> Q14 and Q15 are the same question twice. <strong>Dot for a variable, arrow for a pointer</strong> — and the two questions sit adjacent to reward knowing both halves</li><li><strong>The destructive distractor.</strong> Q5 offers <code>FORMAT</code> beside <code>CHKDSK</code>. Where one command inspects and another destroys, the exam pairs them</li></ol></aside><div class="pagebreak"></div><h2 id="9-one-minute-revision">9. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F9.6</p><p><strong>SOFTWARE</strong> <strong>system</strong> = OS, drivers, <strong>translators</strong>, utilities · <strong>application</strong> = word processor, spreadsheet, browser · <strong>firmware</strong> = software in <strong>ROM</strong> (BIOS) · <strong>Linux is open source</strong>, Windows proprietary</p><p><strong>OS FUNCTIONS</strong> process, memory, file, device management · security · scheduling · user interface · <strong>kernel = the core</strong> · <strong>spooling = queuing PRINT jobs</strong> · virtual memory uses disk to extend RAM · <strong>deadlock</strong> = mutual waiting · <strong>cold boot from power off, warm boot = restart</strong></p><p><strong>OS TYPES</strong> batch (no interaction) · time-sharing (CPU shared) · multiprogramming (many programs in memory) · multiprocessing (<strong>many CPUs</strong>) · distributed (networked) · <strong>real-time (guaranteed deadline)</strong></p><p><strong>REAL-TIME OS</strong> defined by a <strong>strict guaranteed DEADLINE</strong>, not by speed · <strong>hard</strong> = missing the deadline is a <strong>failure</strong> · <strong>soft</strong> = tolerable · applications: <strong>air traffic control</strong>, missile guidance, life support, industrial control · <strong>Windows is NOT hard real-time</strong></p><p><strong>COMMANDS</strong> <strong><code>CHKDSK</code> checks a disk for errors</strong> · <strong><code>FORMAT</code> erases</strong> · <code>DIR</code> lists · <code>COPY</code> · <code>DEL</code> · <code>MD</code> · <code>CD</code> · <code>REN</code> · <code>CLS</code> · <code>ATTRIB</code> · <code>DEFRAG</code> · internal = built in (<code>DIR</code>, <code>COPY</code>, <code>CLS</code>); external = separate files (<code>CHKDSK</code>, <code>FORMAT</code>)</p><p><strong>LANGUAGE GENERATIONS</strong> 1 <strong>machine</strong> · 2 <strong>assembly</strong> · 3 <strong>high-level: C, FORTRAN, COBOL, Pascal</strong> · 4 <strong>SQL</strong> · 5 <strong>AI: Prolog, LISP</strong></p><p><strong>TRANSLATORS</strong> <strong>compiler = whole program at once</strong>, faster execution · <strong>interpreter = line by line</strong>, easier debugging · <strong>assembler = assembly to machine code</strong> · all three are <strong>system</strong> software</p><p><strong>TOP-DOWN vs BOTTOM-UP</strong> <strong>top-down = break the whole into sub-problems, STEPWISE REFINEMENT, structured and procedural, C and Pascal</strong> · <strong>bottom-up = combine components, OBJECT-ORIENTED, C++ and Java</strong></p><p><strong>ERRORS</strong> syntax (caught by the translator) · logical (wrong result, valid code) · runtime</p><p><strong>C</strong> <strong>Dennis Ritchie, Bell Labs, 1972</strong> · procedural, structured, <strong>middle-level</strong> · <strong>case-SENSITIVE</strong> · statements end in a <strong>semicolon</strong> · starts at <code>main()</code> · <code>%</code> gives the <strong>remainder</strong></p><p><strong>C STRUCTURE OPERATORS</strong> <strong><code>.</code> dot » a structure VARIABLE</strong> · <strong><code>-&gt;</code> arrow » a POINTER to a structure</strong> · <code>&amp;</code> is address-of, <code>*</code> is dereference, <code>::</code> is <strong>C++ only</strong> · <strong>structure gives each member its own memory; a UNION shares</strong> memory</p><p><strong>LOOPS</strong> <code>for</code>, <code>while</code>, <strong><code>do-while</code> executes at least ONCE</strong> · <code>break</code> exits, <code>continue</code> skips · <strong>C is NOT object-oriented</strong>; C++ and Java are</p><p><strong>OFFICE</strong> <code>.docx</code> <code>.xlsx</code> <code>.pptx</code> · <strong>a formula begins with <code>=</code></strong> · <strong><code>$</code> makes a reference absolute</strong> · Ctrl-Z undo, Ctrl-Y redo, Ctrl-A select all, Ctrl-F find</p></aside><h2 id="10-five-minute-wall-sheet">10. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F9.6</p><p><strong>RTOS = GUARANTEED DEADLINE, NOT SPEED · HARD = MISSING IT IS FAILURE · AIR TRAFFIC CONTROL</strong></p><p><strong>WINDOWS IS NOT REAL-TIME</strong></p><p><strong>CHKDSK CHECKS · FORMAT ERASES</strong></p><p><strong>TOP-DOWN = BREAK DOWN = STEPWISE REFINEMENT = C AND PASCAL</strong> <strong>BOTTOM-UP = BUILD UP = OBJECT-ORIENTED = C++ AND JAVA</strong></p><p><strong>DOT FOR A VARIABLE · ARROW FOR A POINTER</strong></p><p><strong>STRUCTURE = SEPARATE MEMORY · UNION = SHARED MEMORY</strong></p><p><strong>COMPILER WHOLE PROGRAM · INTERPRETER LINE BY LINE (EASIER DEBUGGING)</strong></p><p><strong>1GL MACHINE · 2GL ASSEMBLY · 3GL C · 4GL SQL · 5GL PROLOG</strong></p><p><strong>C: RITCHIE, 1972, CASE-SENSITIVE, SEMICOLON, NOT OBJECT-ORIENTED</strong></p><p><strong>DO-WHILE RUNS AT LEAST ONCE</strong></p><p><strong>KERNEL = CORE · SPOOLING = PRINT QUEUE · WARM BOOT = RESTART</strong></p><p><strong>TRANSLATORS ARE SYSTEM SOFTWARE</strong></p><p><strong>FORMULA STARTS WITH = · $ MAKES IT ABSOLUTE</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> A real-time operating system is not defined by being fast but by being predictable — it guarantees a bounded response time, which is why an anti-lock brake controller needs one and a desktop computer does not.</p></aside><aside class="cal action"><p class="cal-h">ACTION · LAST CHAPTER OF MODULE 9</p><p><strong>Chapter F9.7 — Networking, the Internet and HTML</strong>, covering the final three 2023 items: <strong>IP address validity</strong>, <strong>mesh topology links</strong> and <strong>HTML internal linking</strong>.</p><p>Before you move on, state without looking: what defines a real-time OS; which command checks a disk; which design approach uses stepwise refinement; and which operator accesses a structure member through a pointer.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F9.6
+  &middot; v1.0</footer>
+</body>
+</html>

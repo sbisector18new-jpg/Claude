@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chemistry — Atoms, pH, Soaps, Enthalpy and Everyday Substances</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F9.3 · Chemistry
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · FOUNDATION LAYER · MODULE 9 · CHAPTER F9.3</p><h1 class="doc-t">Chemistry — Atoms, pH, Soaps, Enthalpy and Everyday Substances</h1><p class="doc-s">Chapter F9.3 — Containing Three of the Ten 2023 Science Items</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 9 — General Science &amp; Computer Applications</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F9.3</td></tr><tr><td class="k">Topic</td><td class="v">Official syllabus head 6 — General Science</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal note"><p class="cal-h">NOTE · WHY THREE SECTIONS MATTER MORE THAN THE REST</p><p>The 2023 paper asked three chemistry questions: <strong>effluents and pH</strong>, <strong>soaps</strong>, and <strong>an enthalpy reaction</strong> (PYQ-DERIVED, Blueprint §4.4). They are §3, §4 and §5 of this chapter.</p><p>That is unusually precise guidance for one chapter, so use it. <strong>Read §3, §4 and §5 properly.</strong> Sections 1, 2 and 6 are recognition-level background — skim the tables and rely on the practice questions.</p><p>Chemistry sits between F9.1's pure recall and F9.5's genuine new learning. You will remember the structure; the <em>everyday-substance</em> facts are the part that needs actual attention.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-atomic-structure-and-the-mole"><span class="toc-t">1. Session 1 — Atomic Structure and the Mole <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></span></a><a class="toc-2" href="#2-session-2-periodic-table-and-bonding"><span class="toc-t">2. Session 2 — Periodic Table and Bonding <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></span></a><a class="toc-3" href="#21-the-periodic-table"><span class="toc-t">2.1 The periodic table</span></a><a class="toc-3" href="#22-bonding"><span class="toc-t">2.2 Bonding</span></a><a class="toc-2" href="#3-session-3-acids-bases-salts-and-ph"><span class="toc-t">3. Session 3 — Acids, Bases, Salts and pH <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#31-acids-and-bases"><span class="toc-t">3.1 Acids and bases</span></a><a class="toc-3" href="#32-the-ph-scale"><span class="toc-t">3.2 The pH scale</span></a><a class="toc-3" href="#33-effluents-and-ph-the-2023-item"><span class="toc-t">3.3 Effluents and pH — the 2023 item</span></a><a class="toc-3" href="#34-salts-and-water-hardness"><span class="toc-t">3.4 Salts and water hardness</span></a><a class="toc-2" href="#4-session-4-soaps-detergents-and-everyday-substances"><span class="toc-t">4. Session 4 — Soaps, Detergents and Everyday Substances <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#41-soaps-and-detergents"><span class="toc-t">4.1 Soaps and detergents</span></a><a class="toc-3" href="#42-everyday-substances-worth-recognising"><span class="toc-t">4.2 Everyday substances worth recognising</span></a><a class="toc-2" href="#5-session-5-enthalpy-and-types-of-reaction"><span class="toc-t">5. Session 5 — Enthalpy and Types of Reaction <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#51-exothermic-and-endothermic"><span class="toc-t">5.1 Exothermic and endothermic</span></a><a class="toc-3" href="#52-types-of-reaction"><span class="toc-t">5.2 Types of reaction</span></a><a class="toc-2" href="#6-session-6-metals-non-metals-and-carbon"><span class="toc-t">6. Session 6 — Metals, Non-metals and Carbon <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#61-metals-and-non-metals"><span class="toc-t">6.1 Metals and non-metals</span></a><a class="toc-3" href="#62-carbon"><span class="toc-t">6.2 Carbon</span></a><a class="toc-2" href="#7-graded-practice-30-questions"><span class="toc-t">7. Graded Practice — 30 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#71-level-1-recognition"><span class="toc-t">7.1 Level 1 — Recognition</span></a><a class="toc-3" href="#72-level-2-understanding"><span class="toc-t">7.2 Level 2 — Understanding</span></a><a class="toc-3" href="#73-level-3-recruitment-test-standard"><span class="toc-t">7.3 Level 3 — Recruitment Test standard</span></a><a class="toc-2" href="#8-answers-and-explanations"><span class="toc-t">8. Answers and Explanations</span></a><a class="toc-3" href="#81-level-1"><span class="toc-t">8.1 Level 1</span></a><a class="toc-3" href="#82-level-2"><span class="toc-t">8.2 Level 2</span></a><a class="toc-3" href="#83-level-3"><span class="toc-t">8.3 Level 3</span></a><a class="toc-2" href="#9-one-minute-revision"><span class="toc-t">9. One-Minute Revision</span></a><a class="toc-2" href="#10-five-minute-wall-sheet"><span class="toc-t">10. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F9.3 — SIX SESSIONS</p><ol><li><strong>Session 1</strong> — Atomic structure and the mole (§1) <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></li><li><strong>Session 2</strong> — The periodic table and bonding (§2) <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></li><li><strong>Session 3</strong> — Acids, bases, salts and <strong>pH</strong> (§3) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <strong>2023</strong></li><li><strong>Session 4</strong> — <strong>Soaps and detergents</strong>, and everyday substances (§4) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <strong>2023</strong></li><li><strong>Session 5</strong> — <strong>Enthalpy</strong> and types of reaction (§5) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <strong>2023</strong></li><li><strong>Session 6</strong> — Metals, non-metals and carbon (§6) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li></ol><p>Then 30 graded questions in §7. Budget <strong>two and a half days</strong>.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-atomic-structure-and-the-mole">1. Session 1 — Atomic Structure and the Mole <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></h2><div class="tw"><table><thead><tr><th style="text-align:left">Particle</th><th style="text-align:left">Charge</th><th style="text-align:left">Location</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Proton</strong></td><td style="text-align:left">Positive</td><td style="text-align:left">Nucleus</td></tr><tr><td style="text-align:left"><strong>Neutron</strong></td><td style="text-align:left">Neutral</td><td style="text-align:left">Nucleus</td></tr><tr><td style="text-align:left"><strong>Electron</strong></td><td style="text-align:left">Negative</td><td style="text-align:left">Shells around the nucleus</td></tr></tbody></table></div><ul><li><strong>Atomic number (Z) = number of protons.</strong> It defines the element</li><li><strong>Mass number (A) = protons + neutrons</strong></li><li><strong>Valency</strong> — the combining capacity, determined by the outermost shell and the <strong>octet rule</strong></li></ul><aside class="cal must-master"><p class="cal-h">MUST MASTER · ISOTOPES, ISOBARS AND THE MOLE</p><div class="tw"><table><thead><tr><th style="text-align:left">Term</th><th style="text-align:left">Same</th><th style="text-align:left">Different</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Isotopes</strong></td><td style="text-align:left"><strong>Atomic number</strong> (protons)</td><td style="text-align:left"><strong>Mass number</strong> (neutrons)</td></tr><tr><td style="text-align:left"><strong>Isobars</strong></td><td style="text-align:left"><strong>Mass number</strong></td><td style="text-align:left">Atomic number</td></tr><tr><td style="text-align:left"><strong>Isotones</strong></td><td style="text-align:left">Number of neutrons</td><td style="text-align:left">Both Z and A</td></tr></tbody></table></div><p>Isotopes have the <strong>same chemical</strong> properties (same electron arrangement) but different <strong>physical</strong> properties. Examples: protium, deuterium and tritium; carbon-12 and carbon-14; uranium-235 and uranium-238.</p><p><strong>One mole contains 6.022 × 10²³ particles — Avogadro's number.</strong> That figure is asked directly, and its usual distractors are the speed of light (3 × 10⁸) and the electronic charge (1.6 × 10⁻¹⁹).</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 1</p><ol><li>What does the atomic number count? What does the mass number count?</li><li>Distinguish isotopes from isobars. Which properties do isotopes share?</li><li>State Avogadro's number</li></ol></aside><div class="pagebreak"></div><h2 id="2-session-2-periodic-table-and-bonding">2. Session 2 — Periodic Table and Bonding <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></h2><h3 id="21-the-periodic-table">2.1 The periodic table</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE LAW, AND THE GROUP NAMES</p><p><strong>The modern periodic law: the properties of elements are a periodic function of their ATOMIC NUMBER.</strong> Mendeleev's earlier law used <strong>atomic mass</strong> — that swap is the standard question.</p><p>There are <strong>18 groups and 7 periods</strong>. The group names that get asked:</p><div class="tw"><table><thead><tr><th style="text-align:left">Group</th><th style="text-align:left">Name</th></tr></thead><tbody><tr><td style="text-align:left"><strong>1</strong></td><td style="text-align:left"><strong>Alkali metals</strong></td></tr><tr><td style="text-align:left"><strong>2</strong></td><td style="text-align:left"><strong>Alkaline earth metals</strong></td></tr><tr><td style="text-align:left"><strong>17</strong></td><td style="text-align:left"><strong>Halogens</strong></td></tr><tr><td style="text-align:left"><strong>18</strong></td><td style="text-align:left"><strong>Noble or inert gases</strong></td></tr></tbody></table></div><p>The commonest error is calling group 18 the halogens. <strong>17 halogens, 18 noble gases.</strong></p><p><strong>Trends.</strong> Across a period, left to right: atomic size <strong>decreases</strong>, electronegativity <strong>increases</strong>, metallic character <strong>decreases</strong>. Down a group: atomic size <strong>increases</strong>, metallic character <strong>increases</strong>, electronegativity <strong>decreases</strong>.</p></aside><h3 id="22-bonding">2.2 Bonding</h3><div class="tw"><table><thead><tr><th style="text-align:left">Bond</th><th style="text-align:left">Mechanism</th><th style="text-align:left">Properties</th><th style="text-align:left">Example</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Ionic</strong> (electrovalent)</td><td style="text-align:left"><strong>Transfer</strong> of electrons</td><td style="text-align:left"><strong>High</strong> melting point; conducts when molten or in solution</td><td style="text-align:left">NaCl</td></tr><tr><td style="text-align:left"><strong>Covalent</strong></td><td style="text-align:left"><strong>Sharing</strong> of electrons</td><td style="text-align:left">Low melting point; generally poor conductor</td><td style="text-align:left">H₂O, CH₄</td></tr><tr><td style="text-align:left"><strong>Metallic</strong></td><td style="text-align:left">Delocalised electrons</td><td style="text-align:left">Conducts, malleable, ductile</td><td style="text-align:left">Iron, copper</td></tr><tr><td style="text-align:left"><strong>Hydrogen bond</strong></td><td style="text-align:left">Weak attraction involving H and an electronegative atom</td><td style="text-align:left">Raises boiling point</td><td style="text-align:left">Why <strong>ice floats</strong> and water boils high</td></tr></tbody></table></div><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 2</p><ol><li>State the modern periodic law. What did Mendeleev's law use instead?</li><li>Name groups 1, 2, 17 and 18</li><li>What happens to atomic size across a period and down a group?</li><li>Ionic or covalent — which involves transfer, and which has the higher melting point?</li></ol></aside><div class="pagebreak"></div><h2 id="3-session-3-acids-bases-salts-and-ph">3. Session 3 — Acids, Bases, Salts and pH <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><p><strong>A 2023 topic.</strong> Read this section carefully.</p><h3 id="31-acids-and-bases">3.1 Acids and bases</h3><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left"><strong>Acid</strong></th><th style="text-align:left"><strong>Base</strong></th></tr></thead><tbody><tr><td style="text-align:left">Taste</td><td style="text-align:left">Sour</td><td style="text-align:left">Bitter, and feels soapy</td></tr><tr><td style="text-align:left">Litmus</td><td style="text-align:left">Turns <strong>blue litmus red</strong></td><td style="text-align:left">Turns <strong>red litmus blue</strong></td></tr><tr><td style="text-align:left">In water</td><td style="text-align:left">Releases <strong>H⁺</strong> ions</td><td style="text-align:left">Releases <strong>OH⁻</strong> ions</td></tr><tr><td style="text-align:left">Examples</td><td style="text-align:left">HCl, H₂SO₄, citric, acetic</td><td style="text-align:left">NaOH, KOH, Ca(OH)₂</td></tr></tbody></table></div><p><strong>Neutralisation:</strong> acid + base » <strong>salt + water</strong>, and it is <strong>exothermic</strong>.</p><p><strong>Indicators:</strong> litmus; methyl orange; <strong>phenolphthalein — colourless in acid, PINK in base</strong>; universal indicator for the whole range.</p><h3 id="32-the-ph-scale">3.2 The pH scale</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE SCALE, AND THE FACTOR OF TEN</p><p>The <strong>pH scale runs from 0 to 14</strong>. pH = −log[H⁺].</p><ul><li><strong>pH 7 — neutral</strong> (pure water at 25 °C)</li><li><strong>Below 7 — acidic.</strong> The lower the number, the stronger the acid</li><li><strong>Above 7 — basic or alkaline</strong></li></ul><p><strong>Each unit of pH is a factor of TEN in hydrogen ion concentration.</strong> So a solution of pH 4 has <strong>100 times</strong> the hydrogen ion concentration of one at pH 6 — two units, so 10², not two times. That multiplication is a favourite numerical.</p><p>Values worth carrying:</p><div class="tw"><table><thead><tr><th style="text-align:left">Substance</th><th style="text-align:left">pH</th></tr></thead><tbody><tr><td style="text-align:left">Gastric juice</td><td style="text-align:left">about 1.5 to 3.5</td></tr><tr><td style="text-align:left">Pure water</td><td style="text-align:left"><strong>7</strong></td></tr><tr><td style="text-align:left"><strong>Human blood</strong></td><td style="text-align:left">about <strong>7.4</strong> — slightly <strong>alkaline</strong>, and tightly regulated</td></tr><tr><td style="text-align:left">Milk</td><td style="text-align:left">about 6.6</td></tr></tbody></table></div></aside><h3 id="33-effluents-and-ph-the-2023-item">3.3 Effluents and pH — the 2023 item</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE DISCHARGE STANDARD</p><p>Under the general standards for the <strong>discharge of industrial effluents into inland surface water</strong>, the permissible <strong>pH range is about 5.5 to 9.0</strong>.</p><p>The logic is worth holding rather than the number alone: discharge is permitted across a <strong>band either side of neutral</strong>, not at exactly 7, because requiring precise neutrality would be unattainable — but strongly acidic or strongly alkaline effluent destroys aquatic life and corrodes infrastructure.</p><p>So the wrong options are "exactly 7.0", and any band lying wholly on one side of neutral such as 1 to 5 or 9 to 12. The correct answer <strong>straddles 7</strong>.</p></aside><p>Related environmental chemistry, which connects to F9.4: <strong>acid rain</strong> is caused by oxides of sulphur and nitrogen forming sulphuric and nitric acids; <strong>ocean acidification</strong> is caused by dissolved carbon dioxide forming carbonic acid.</p><h3 id="34-salts-and-water-hardness">3.4 Salts and water hardness</h3><div class="tw"><table><thead><tr><th style="text-align:left">Common name</th><th style="text-align:left">Chemical name</th></tr></thead><tbody><tr><td style="text-align:left">Common salt</td><td style="text-align:left">Sodium chloride, NaCl</td></tr><tr><td style="text-align:left"><strong>Baking soda</strong></td><td style="text-align:left"><strong>Sodium hydrogen carbonate</strong>, NaHCO₃</td></tr><tr><td style="text-align:left">Washing soda</td><td style="text-align:left">Sodium carbonate decahydrate</td></tr><tr><td style="text-align:left">Bleaching powder</td><td style="text-align:left">Calcium oxychloride</td></tr><tr><td style="text-align:left"><strong>Quicklime</strong></td><td style="text-align:left">Calcium oxide, CaO</td></tr><tr><td style="text-align:left"><strong>Slaked lime</strong></td><td style="text-align:left">Calcium hydroxide, Ca(OH)₂</td></tr><tr><td style="text-align:left">Plaster of Paris</td><td style="text-align:left">Calcium sulphate hemihydrate</td></tr><tr><td style="text-align:left">Caustic soda</td><td style="text-align:left">Sodium hydroxide, NaOH</td></tr></tbody></table></div><p><strong>Hardness of water:</strong></p><div class="tw"><table><thead><tr><th style="text-align:left">Type</th><th style="text-align:left">Caused by</th><th style="text-align:left">Removed by</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Temporary</strong></td><td style="text-align:left"><strong>Bicarbonates</strong> of calcium and magnesium</td><td style="text-align:left"><strong>Boiling</strong></td></tr><tr><td style="text-align:left"><strong>Permanent</strong></td><td style="text-align:left"><strong>Sulphates and chlorides</strong> of calcium and magnesium</td><td style="text-align:left">Washing soda, ion exchange</td></tr></tbody></table></div><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 3</p><ol><li>Which way does each litmus paper turn for an acid and for a base?</li><li>Give the pH range, the neutral value, and the pH of blood</li><li>A solution of pH 3 versus one of pH 5 — how many times the hydrogen ion concentration?</li><li>What is the permissible pH band for effluent discharge into inland surface water?</li><li>Phenolphthalein — what colour in acid, and in base?</li><li>Temporary and permanent hardness — cause and cure of each</li></ol></aside><div class="pagebreak"></div><h2 id="4-session-4-soaps-detergents-and-everyday-substances">4. Session 4 — Soaps, Detergents and Everyday Substances <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><p><strong>A 2023 topic.</strong></p><h3 id="41-soaps-and-detergents">4.1 Soaps and detergents</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE DEFINITIONS, AND THE HARD-WATER DIFFERENCE</p><p><strong>Soap is the sodium or potassium salt of a long-chain fatty acid.</strong> It is made by <strong>saponification</strong> — the hydrolysis of fats or oils with an alkali such as sodium hydroxide.</p><p><strong>A detergent is the sodium salt of a long-chain benzene sulphonic acid or sulphate.</strong></p><p>Now the difference that generates the question:</p><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left"><strong>Soap</strong></th><th style="text-align:left"><strong>Detergent</strong></th></tr></thead><tbody><tr><td style="text-align:left">Works in <strong>hard water</strong>?</td><td style="text-align:left"><strong>No</strong> — forms an insoluble <strong>scum</strong></td><td style="text-align:left"><strong>Yes</strong></td></tr><tr><td style="text-align:left">Why</td><td style="text-align:left">Its calcium and magnesium salts are <strong>insoluble</strong></td><td style="text-align:left">Its calcium and magnesium salts are <strong>soluble</strong></td></tr><tr><td style="text-align:left">Biodegradability</td><td style="text-align:left"><strong>Biodegradable</strong></td><td style="text-align:left">Often <strong>less</strong> biodegradable — branched chains cause foaming in rivers</td></tr></tbody></table></div><p>Note the direction carefully, because reversing it is the standard wrong option: <strong>it is SOAP that fails in hard water</strong>, not the detergent. Detergents were developed precisely to solve that problem — and the environmental cost was reduced biodegradability.</p></aside><p><strong>How soap cleans — the micelle.</strong> A soap molecule has a <strong>hydrophilic (water-loving) ionic head</strong> and a <strong>hydrophobic (water-repelling) hydrocarbon tail</strong>. In water the molecules cluster into a <strong>micelle</strong> with the tails pointing inwards, trapping oil and grease in the centre while the heads face the water — so the dirt is carried away in suspension.</p><h3 id="42-everyday-substances-worth-recognising">4.2 Everyday substances worth recognising</h3><div class="tw"><table><thead><tr><th style="text-align:left">Name</th><th style="text-align:left">What it is</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Dry ice</strong></td><td style="text-align:left"><strong>Solid carbon dioxide</strong></td></tr><tr><td style="text-align:left"><strong>Laughing gas</strong></td><td style="text-align:left"><strong>Nitrous oxide</strong>, N₂O</td></tr><tr><td style="text-align:left"><strong>Marsh gas</strong></td><td style="text-align:left"><strong>Methane</strong>, CH₄</td></tr><tr><td style="text-align:left">Vinegar</td><td style="text-align:left">Dilute <strong>ethanoic (acetic) acid</strong>, about 5 to 8%</td></tr><tr><td style="text-align:left"><strong>Aqua regia</strong></td><td style="text-align:left">A mixture of <strong>concentrated HCl and concentrated HNO₃</strong>, which dissolves gold</td></tr><tr><td style="text-align:left">Producer gas, water gas</td><td style="text-align:left">Fuel gas mixtures</td></tr><tr><td style="text-align:left">Urea</td><td style="text-align:left">A <strong>nitrogenous</strong> fertiliser</td></tr></tbody></table></div><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 4</p><ol><li>Define soap and detergent chemically. What is the soap-making process called?</li><li>Which of the two fails in hard water, and why?</li><li>Which is less biodegradable, and what is the environmental consequence?</li><li>Describe a micelle</li><li>Name: dry ice, laughing gas, marsh gas, aqua regia</li></ol></aside><div class="pagebreak"></div><h2 id="5-session-5-enthalpy-and-types-of-reaction">5. Session 5 — Enthalpy and Types of Reaction <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><p><strong>A 2023 topic.</strong></p><h3 id="51-exothermic-and-endothermic">5.1 Exothermic and endothermic</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE SIGN OF ΔH, AND THE TWO LISTS</p><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left"><strong>Exothermic</strong></th><th style="text-align:left"><strong>Endothermic</strong></th></tr></thead><tbody><tr><td style="text-align:left">Heat</td><td style="text-align:left"><strong>Released</strong></td><td style="text-align:left"><strong>Absorbed</strong></td></tr><tr><td style="text-align:left"><strong>ΔH</strong></td><td style="text-align:left"><strong>Negative</strong></td><td style="text-align:left"><strong>Positive</strong></td></tr><tr><td style="text-align:left">Surroundings</td><td style="text-align:left">Warm up</td><td style="text-align:left">Cool down</td></tr></tbody></table></div><p><strong>The sign is the trap.</strong> Heat coming <em>out</em> of the system makes the enthalpy change <strong>negative</strong>, which feels backwards to beginners — you are measuring the system's enthalpy, not the room's. An option saying an endothermic reaction has a negative ΔH is wrong.</p><p><strong>Exothermic:</strong> combustion of fuels · <strong>respiration</strong> · <strong>neutralisation</strong> of an acid by a base · quicklime added to water · rusting (slow).</p><p><strong>Endothermic:</strong> <strong>photosynthesis</strong> · <strong>thermal decomposition</strong>, such as calcium carbonate to calcium oxide and carbon dioxide · dissolving ammonium chloride in water · electrolysis.</p><p>The clean pair to remember: <strong>respiration is exothermic, photosynthesis is endothermic.</strong> They are the reverse of one another, which is why they carry opposite signs.</p></aside><h3 id="52-types-of-reaction">5.2 Types of reaction</h3><div class="tw"><table><thead><tr><th style="text-align:left">Type</th><th style="text-align:left">Description</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Combination</strong></td><td style="text-align:left">Two or more reactants form one product</td></tr><tr><td style="text-align:left"><strong>Decomposition</strong></td><td style="text-align:left">One reactant splits — thermal, electrolytic or photochemical</td></tr><tr><td style="text-align:left"><strong>Displacement</strong></td><td style="text-align:left">A more reactive element displaces a less reactive one</td></tr><tr><td style="text-align:left"><strong>Double displacement</strong></td><td style="text-align:left">Ions are exchanged; includes precipitation and neutralisation</td></tr><tr><td style="text-align:left"><strong>Redox</strong></td><td style="text-align:left">Oxidation and reduction occur together</td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · OIL RIG</p><p><strong>Oxidation Is Loss, Reduction Is Gain — of ELECTRONS.</strong></p><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left">Oxidation</th><th style="text-align:left">Reduction</th></tr></thead><tbody><tr><td style="text-align:left">Electrons</td><td style="text-align:left"><strong>Lost</strong></td><td style="text-align:left"><strong>Gained</strong></td></tr><tr><td style="text-align:left">Oxygen</td><td style="text-align:left">Gained</td><td style="text-align:left">Lost</td></tr><tr><td style="text-align:left">Hydrogen</td><td style="text-align:left">Lost</td><td style="text-align:left">Gained</td></tr></tbody></table></div><p>The modern definition is in terms of <strong>electrons</strong>, which is what "best defined as" questions are testing. The oxygen definition is older and narrower.</p><p><strong>Corrosion:</strong> rusting of iron requires <strong>both oxygen AND moisture</strong> — either alone will not do, which is why an option naming only one is wrong. Prevented by painting, oiling, <strong>galvanisation</strong> (zinc coating) and alloying.</p><p><strong>Rancidity:</strong> oxidation of fats and oils, retarded by <strong>antioxidants</strong> and by flushing packaging with <strong>nitrogen</strong>.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 5</p><ol><li>Which sign does ΔH take for an exothermic reaction?</li><li>Give three exothermic and three endothermic examples</li><li>Which of respiration and photosynthesis is endothermic?</li><li>Define oxidation in terms of electrons. What does OIL RIG stand for?</li><li>What two things does rusting require? Name three preventive methods</li></ol></aside><div class="pagebreak"></div><h2 id="6-session-6-metals-non-metals-and-carbon">6. Session 6 — Metals, Non-metals and Carbon <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="61-metals-and-non-metals">6.1 Metals and non-metals</h3><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left"><strong>Metals</strong></th><th style="text-align:left"><strong>Non-metals</strong></th></tr></thead><tbody><tr><td style="text-align:left">Appearance</td><td style="text-align:left">Lustrous</td><td style="text-align:left">Dull, brittle</td></tr><tr><td style="text-align:left">Conductivity</td><td style="text-align:left"><strong>Good</strong></td><td style="text-align:left"><strong>Poor</strong> — except <strong>graphite</strong></td></tr><tr><td style="text-align:left">Oxides formed</td><td style="text-align:left"><strong>Basic</strong></td><td style="text-align:left"><strong>Acidic</strong></td></tr><tr><td style="text-align:left">Exceptions</td><td style="text-align:left"><strong>Mercury</strong> is liquid; sodium and potassium are soft</td><td style="text-align:left"><strong>Bromine</strong> is liquid; <strong>graphite</strong> conducts; <strong>diamond</strong> is hardest</td></tr></tbody></table></div><p><strong>Reactivity series</strong>, most reactive first:</p><blockquote><p><strong>K &gt; Na &gt; Ca &gt; Mg &gt; Al &gt; Zn &gt; Fe &gt; Pb &gt; (H) &gt; Cu &gt; Hg &gt; Ag &gt; Au</strong></p></blockquote><p><strong>Alloys</strong> worth knowing:</p><div class="tw"><table><thead><tr><th style="text-align:left">Alloy</th><th style="text-align:left">Composition</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Brass</strong></td><td style="text-align:left">Copper + <strong>zinc</strong></td></tr><tr><td style="text-align:left"><strong>Bronze</strong></td><td style="text-align:left">Copper + <strong>tin</strong></td></tr><tr><td style="text-align:left">Steel</td><td style="text-align:left">Iron + carbon</td></tr><tr><td style="text-align:left"><strong>Stainless steel</strong></td><td style="text-align:left">Iron + <strong>chromium + nickel</strong></td></tr><tr><td style="text-align:left"><strong>Solder</strong></td><td style="text-align:left">Lead + tin</td></tr><tr><td style="text-align:left">Duralumin</td><td style="text-align:left">Aluminium + copper + magnesium + manganese</td></tr><tr><td style="text-align:left">Amalgam</td><td style="text-align:left">Any alloy containing <strong>mercury</strong></td></tr></tbody></table></div><h3 id="62-carbon">6.2 Carbon</h3><p><strong>Carbon shows tetravalency and catenation</strong> — it forms four bonds and long chains, which is why organic chemistry exists.</p><div class="tw"><table><thead><tr><th style="text-align:left">Allotrope</th><th style="text-align:left">Property</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Diamond</strong></td><td style="text-align:left"><strong>Hardest</strong> natural substance; does <strong>not</strong> conduct electricity</td></tr><tr><td style="text-align:left"><strong>Graphite</strong></td><td style="text-align:left"><strong>Conducts</strong> electricity; soft; used as a lubricant and in pencils</td></tr><tr><td style="text-align:left"><strong>Fullerene</strong></td><td style="text-align:left">Cage-like molecules, such as C-60</td></tr></tbody></table></div><p><strong>Hydrocarbons:</strong> alkanes CₙH₂ₙ₊₂ (saturated) · alkenes CₙH₂ₙ · alkynes CₙH₂ₙ₋₂.</p><p><strong>Functional groups:</strong> alcohol −OH · aldehyde −CHO · carboxylic acid −COOH.</p><aside class="cal trap"><p class="cal-h">COMMON UPSC TRAP · DIAMOND AND GRAPHITE</p><p>Both are pure carbon, and the exam relies on you knowing which property belongs to which.</p><p><strong>Graphite conducts electricity; diamond does not.</strong> Graphite has delocalised electrons between its layers; diamond's electrons are all locked into covalent bonds. And <strong>diamond is the hardest</strong> natural substance while graphite is soft enough to write with.</p><p>Same element, opposite properties — because the difference is structure, not composition.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 6</p><ol><li>Do metals form basic or acidic oxides? And non-metals?</li><li>Name the liquid metal and the liquid non-metal</li><li>Recite the reactivity series from potassium to gold</li><li>Give the composition of brass, bronze, stainless steel and solder</li><li>Which allotrope of carbon conducts electricity, and which is hardest?</li></ol></aside><div class="pagebreak"></div><h2 id="7-graded-practice-30-questions">7. Graded Practice — 30 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="71-level-1-recognition">7.1 Level 1 — Recognition</h3><p><strong>Q1.</strong> The pH of a neutral solution at 25 °C is (a) 7 (b) 0 (c) 14 (d) 1</p><p><strong>Q2.</strong> Which one of the following turns red litmus blue? (a) An acid (b) A neutral solution (c) A base (d) A solution of common salt</p><p><strong>Q3.</strong> The atomic number of an element is equal to the number of (a) neutrons (b) protons (c) protons and neutrons together (d) electrons in the outermost shell</p><p><strong>Q4.</strong> Isotopes of an element have (a) the same mass number but different atomic numbers (b) the same number of neutrons (c) different chemical properties (d) the same atomic number but different mass numbers</p><p><strong>Q5.</strong> Avogadro's number is approximately (a) 6.022 × 10²³ (b) 3.0 × 10⁸ (c) 1.6 × 10⁻¹⁹ (d) 9.1 × 10⁻³¹</p><p><strong>Q6.</strong> Soap is chemically (a) a long-chain hydrocarbon (b) sodium benzene sulphonate (c) the sodium or potassium salt of a long-chain fatty acid (d) sodium carbonate</p><p><strong>Q7.</strong> In an exothermic reaction the change in enthalpy is (a) positive (b) negative (c) zero (d) undefined</p><p><strong>Q8.</strong> Which one of the following is an <strong>endothermic</strong> process? (a) Combustion of coal (b) Respiration (c) Neutralisation of an acid by a base (d) Photosynthesis</p><p><strong>Q9.</strong> The chemical name of baking soda is (a) sodium hydrogen carbonate (b) sodium carbonate (c) calcium carbonate (d) sodium chloride</p><p><strong>Q10.</strong> The hardest naturally occurring form of carbon is (a) graphite (b) fullerene (c) diamond (d) coke</p><h3 id="72-level-2-understanding">7.2 Level 2 — Understanding</h3><p><strong>Q11.</strong> Soaps are ineffective in hard water because they (a) decompose in hard water (b) form an insoluble scum with calcium and magnesium ions (c) become acidic (d) evaporate rapidly</p><p><strong>Q12.</strong> The process of making soap by hydrolysing fats or oils with an alkali is called (a) esterification (b) hydrogenation (c) polymerisation (d) saponification</p><p><strong>Q13.</strong> Under the general standards for the discharge of industrial effluents into inland surface water, the permissible pH range is about (a) 5.5 to 9.0 (b) 1.0 to 5.0 (c) 9.0 to 12.0 (d) exactly 7.0</p><p><strong>Q14.</strong> The pH of human blood is normally about (a) 5.5 (b) 7.0 (c) 7.4 (d) 2.0</p><p><strong>Q15.</strong> Phenolphthalein in a basic solution is (a) colourless (b) pink (c) yellow (d) blue</p><p><strong>Q16.</strong> In an ionic bond, electrons are (a) shared equally (b) shared unequally (c) delocalised over the whole lattice (d) transferred from one atom to another</p><p><strong>Q17.</strong> The modern periodic law states that the properties of elements are a periodic function of their (a) atomic number (b) atomic mass (c) valency (d) density</p><p><strong>Q18.</strong> Which gas is known as laughing gas? (a) Carbon dioxide (b) Methane (c) Nitrous oxide (d) Ammonia</p><p><strong>Q19.</strong> The rusting of iron requires (a) oxygen only (b) both oxygen and moisture (c) moisture only (d) carbon dioxide only</p><p><strong>Q20.</strong> Aqua regia is a mixture of (a) dilute hydrochloric and dilute nitric acid (b) concentrated sulphuric and concentrated nitric acid (c) hydrochloric and sulphuric acid (d) concentrated hydrochloric and concentrated nitric acid</p><h3 id="73-level-3-recruitment-test-standard">7.3 Level 3 — Recruitment Test standard</h3><p><strong>Q21.</strong> Which one of the following statements is <strong>not</strong> correct? (a) Detergents, unlike soaps, form an insoluble scum with hard water (b) A soap molecule has a hydrophilic head and a hydrophobic tail (c) Detergents are generally less biodegradable than soaps (d) Soap is manufactured by the process of saponification</p><p><strong>Q22.</strong> Consider the following statements:</p><ol><li>Combustion is an exothermic reaction.</li><li>The thermal decomposition of calcium carbonate is endothermic.</li><li>In an endothermic reaction the enthalpy change is negative.</li></ol><p>Which of the above statements are correct? (a) 1 and 3 only (b) 2 and 3 only (c) 1 and 2 only (d) 1, 2 and 3</p><p><strong>Q23.</strong> Match List-I with List-II and select the correct answer using the code given below:</p><div class="tw"><table><thead><tr><th style="text-align:left">List-I (Alloy)</th><th style="text-align:left">List-II (Composition)</th></tr></thead><tbody><tr><td style="text-align:left">A. Brass</td><td style="text-align:left">1. Copper and zinc</td></tr><tr><td style="text-align:left">B. Bronze</td><td style="text-align:left">2. Copper and tin</td></tr><tr><td style="text-align:left">C. Stainless steel</td><td style="text-align:left">3. Iron, chromium and nickel</td></tr><tr><td style="text-align:left">D. Solder</td><td style="text-align:left">4. Lead and tin</td></tr></tbody></table></div><p>(a) A-2 B-1 C-3 D-4 (b) A-1 B-2 C-3 D-4 (c) A-1 B-2 C-4 D-3 (d) A-3 B-4 C-1 D-2</p><p><strong>Q24.</strong> A solution of pH 4, compared with a solution of pH 6, has a hydrogen ion concentration that is (a) 2 times greater (b) 2 times smaller (c) 100 times smaller (d) 100 times greater</p><p><strong>Q25.</strong> Consider the following statements about the periodic table:</p><ol><li>On moving from left to right across a period, atomic size generally decreases.</li><li>On moving down a group, metallic character generally increases.</li><li>The elements of group 18 are called the halogens.</li></ol><p>Which of the above statements are correct? (a) 1 and 2 only (b) 2 and 3 only (c) 1 and 3 only (d) 1, 2 and 3</p><p><strong>Q26.</strong> In the reactivity series, which metal is more reactive than iron but less reactive than magnesium? (a) Copper (b) Gold (c) Zinc (d) Silver</p><p><strong>Q27.</strong> Temporary hardness of water is caused by, and removed by, respectively (a) sulphates; boiling (b) bicarbonates of calcium and magnesium; boiling (c) chlorides; filtration (d) nitrates; distillation</p><p><strong>Q28.</strong> Which one of the following statements is <strong>not</strong> correct? (a) Graphite conducts electricity while diamond does not (b) Carbon exhibits tetravalency and catenation (c) Ionic compounds generally have high melting points (d) Non-metals generally form basic oxides</p><p><strong>Q29.</strong> Oxidation is best defined as the (a) loss of electrons (b) gain of electrons (c) loss of oxygen (d) gain of hydrogen</p><p><strong>Q30.</strong> Dry ice is (a) ice maintained at −10 °C (b) frozen water free of impurities (c) solid carbon dioxide (d) solid nitrogen</p><div class="pagebreak"></div><h2 id="8-answers-and-explanations">8. Answers and Explanations</h2><h3 id="81-level-1">8.1 Level 1</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">a</td><td style="text-align:left"><strong>7.</strong> The scale runs 0 to 14, so 0 and 14 are the extremes, not neutral</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">c</td><td style="text-align:left">A <strong>base</strong> turns red litmus blue. An acid turns <strong>blue</strong> litmus red — learn the pair together</td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">b</td><td style="text-align:left">The number of <strong>protons</strong>, which is what defines the element</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Same atomic number, different mass numbers.</strong> Option (a) describes <strong>isobars</strong>, and (c) is false — isotopes share chemical properties</td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">a</td><td style="text-align:left"><strong>6.022 × 10²³.</strong> The distractors are the speed of light and the electronic charge</td></tr><tr><td style="text-align:left">6</td><td style="text-align:center">c</td><td style="text-align:left">The <strong>sodium or potassium salt of a long-chain fatty acid</strong>. Option (b) describes a <strong>detergent</strong></td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Negative</strong> — heat leaves the system, so its enthalpy falls</td></tr><tr><td style="text-align:left">8</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Photosynthesis</strong> absorbs energy. Combustion, respiration and neutralisation are all exothermic</td></tr><tr><td style="text-align:left">9</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Sodium hydrogen carbonate</strong>. Sodium <em>carbonate</em> is washing soda</td></tr><tr><td style="text-align:left">10</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Diamond</strong></td></tr></tbody></table></div><h3 id="82-level-2">8.2 Level 2</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">11</td><td style="text-align:center">b</td><td style="text-align:left">They form an <strong>insoluble scum</strong> with the calcium and magnesium ions in hard water. Detergents do not, because their corresponding salts are soluble</td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Saponification</strong> — alkaline hydrolysis of fats and oils</td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">a</td><td style="text-align:left"><strong>5.5 to 9.0</strong> — a band <strong>straddling</strong> neutral. "Exactly 7.0" is unattainable in practice, and bands lying wholly on one side are wrong</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">c</td><td style="text-align:left">About <strong>7.4</strong>, so blood is slightly <strong>alkaline</strong> and is tightly regulated</td></tr><tr><td style="text-align:left">15</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Pink</strong> in base, <strong>colourless</strong> in acid</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Transferred.</strong> Sharing is covalent; delocalisation is metallic</td></tr><tr><td style="text-align:left">17</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Atomic number.</strong> Mendeleev's earlier law used atomic <strong>mass</strong>, which is option (b) and the standard distractor</td></tr><tr><td style="text-align:left">18</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Nitrous oxide.</strong> Marsh gas is methane</td></tr><tr><td style="text-align:left">19</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Both oxygen and moisture.</strong> Either alone is insufficient, which is why the single-factor options are wrong</td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Concentrated</strong> HCl and <strong>concentrated</strong> HNO₃ — the concentration matters, so (a) is wrong even though the acids are right</td></tr></tbody></table></div><h3 id="83-level-3">8.3 Level 3</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">21</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Reversed.</strong> It is <strong>soap</strong> that forms scum in hard water; detergents do not. The other three statements are correct</td></tr><tr><td style="text-align:left">22</td><td style="text-align:center">c</td><td style="text-align:left"><strong>1 and 2 only.</strong> Statement 3 inverts the sign — an <strong>endothermic</strong> reaction has a <strong>positive</strong> ΔH</td></tr><tr><td style="text-align:left">23</td><td style="text-align:center">b</td><td style="text-align:left"><strong>A-1 B-2 C-3 D-4.</strong> Brass is copper and zinc; bronze copper and tin. These two are the pair most often swapped</td></tr><tr><td style="text-align:left">24</td><td style="text-align:center">d</td><td style="text-align:left">Each pH unit is a factor of <strong>ten</strong>, so two units is <strong>10² = 100 times greater</strong>. Lower pH means more acidic, hence more hydrogen ions. Option (a) treats the difference as arithmetic rather than logarithmic</td></tr><tr><td style="text-align:left">25</td><td style="text-align:center">a</td><td style="text-align:left"><strong>1 and 2 only.</strong> Statement 3 is false — group <strong>17</strong> are the halogens; group <strong>18</strong> are the noble gases</td></tr><tr><td style="text-align:left">26</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Zinc.</strong> The series runs K &gt; Na &gt; Ca &gt; Mg &gt; Al &gt; <strong>Zn</strong> &gt; Fe, so zinc sits between magnesium and iron</td></tr><tr><td style="text-align:left">27</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Bicarbonates</strong>, removed by <strong>boiling</strong>. Permanent hardness comes from sulphates and chlorides and needs washing soda or ion exchange</td></tr><tr><td style="text-align:left">28</td><td style="text-align:center">d</td><td style="text-align:left">Non-metals form <strong>acidic</strong> oxides, not basic. Metals form basic oxides. The other three statements are correct</td></tr><tr><td style="text-align:left">29</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Loss of electrons</strong> — the modern definition, and what "best defined" is asking for. The oxygen-based definition is older and narrower</td></tr><tr><td style="text-align:left">30</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Solid carbon dioxide</strong>, which sublimes without melting</td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · THE FOUR SHAPES IN THIS CHAPTER</p><ol><li><strong>The reversal.</strong> Q21 and Q28 both work by swapping which of a pair has a property — soap versus detergent, metal versus non-metal. Whenever two things are contrasted, check the direction</li><li><strong>The logarithm.</strong> Q24. pH differences are <strong>powers of ten</strong>, never arithmetic. Two units means 100 times</li><li><strong>The sign of ΔH.</strong> Q7 and Q22. Exothermic is <strong>negative</strong>, which feels backwards until you remember you are measuring the system, not the room</li><li><strong>The concentration qualifier.</strong> Q20 offers the right acids at the wrong concentration. Read the adjectives in chemistry options, not just the formulas</li></ol></aside><div class="pagebreak"></div><h2 id="9-one-minute-revision">9. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F9.3</p><p><strong>ATOM</strong> protons + neutrons in the nucleus, electrons outside · <strong>Z = protons</strong> · <strong>A = protons + neutrons</strong> · <strong>isotopes: same Z, different A</strong>, same chemical properties · <strong>isobars: same A</strong> · <strong>Avogadro 6.022 × 10²³</strong></p><p><strong>PERIODIC LAW</strong> properties are a periodic function of <strong>ATOMIC NUMBER</strong> (Mendeleev used <strong>mass</strong>) · <strong>18 groups, 7 periods</strong> · <strong>1 alkali · 2 alkaline earth · 17 HALOGENS · 18 NOBLE GASES</strong> · across a period size <strong>decreases</strong> · down a group metallic character <strong>increases</strong></p><p><strong>BONDS</strong> ionic = <strong>transfer</strong>, high melting point, conducts when molten · covalent = <strong>sharing</strong> · metallic = delocalised · hydrogen bond explains why <strong>ice floats</strong></p><p><strong>ACIDS AND BASES</strong> acid turns <strong>blue litmus RED</strong>, releases <strong>H⁺</strong> · base turns <strong>red litmus BLUE</strong>, releases <strong>OH⁻</strong> · <strong>phenolphthalein: colourless in acid, PINK in base</strong> · neutralisation is <strong>exothermic</strong></p><p><strong>pH</strong> scale <strong>0 to 14</strong> · <strong>7 neutral</strong> · each unit is a factor of <strong>TEN</strong> · pH 4 versus pH 6 = <strong>100 times</strong> more H⁺ · <strong>blood about 7.4, slightly alkaline</strong> · gastric juice 1.5–3.5</p><p><strong>EFFLUENT DISCHARGE pH 5.5 TO 9.0</strong> — a band <strong>straddling</strong> neutral · acid rain from oxides of sulphur and nitrogen · ocean acidification from dissolved <strong>CO₂</strong></p><p><strong>HARDNESS</strong> temporary = <strong>bicarbonates</strong>, removed by <strong>boiling</strong> · permanent = <strong>sulphates and chlorides</strong>, removed by washing soda or ion exchange</p><p><strong>SOAP</strong> = sodium or potassium salt of a <strong>long-chain fatty acid</strong> · made by <strong>SAPONIFICATION</strong> · <strong>FAILS in hard water</strong>, forms insoluble <strong>scum</strong> · <strong>biodegradable</strong> <strong>DETERGENT</strong> = sodium salt of a long-chain <strong>benzene sulphonic acid</strong> · <strong>works in hard water</strong> · <strong>less biodegradable</strong>, causes foaming <strong>MICELLE</strong> hydrophilic <strong>head</strong> out, hydrophobic <strong>tail</strong> in, trapping oil</p><p><strong>ENTHALPY</strong> exothermic = heat <strong>released</strong>, <strong>ΔH NEGATIVE</strong> — combustion, <strong>respiration</strong>, neutralisation, quicklime in water · endothermic = heat <strong>absorbed</strong>, <strong>ΔH POSITIVE</strong> — <strong>photosynthesis</strong>, thermal decomposition, electrolysis</p><p><strong>OIL RIG</strong> <strong>O</strong>xidation <strong>I</strong>s <strong>L</strong>oss, <strong>R</strong>eduction <strong>I</strong>s <strong>G</strong>ain — of <strong>electrons</strong></p><p><strong>RUSTING NEEDS OXYGEN AND MOISTURE, BOTH</strong> · prevented by painting, oiling, <strong>galvanisation</strong> (zinc), alloying · <strong>rancidity</strong> retarded by antioxidants and nitrogen flushing</p><p><strong>METALS</strong> basic oxides, good conductors, <strong>mercury liquid</strong> <strong>NON-METALS</strong> <strong>acidic</strong> oxides, poor conductors <strong>except graphite</strong>, <strong>bromine</strong> liquid</p><p><strong>REACTIVITY</strong> K &gt; Na &gt; Ca &gt; Mg &gt; Al &gt; <strong>Zn</strong> &gt; Fe &gt; Pb &gt; (H) &gt; Cu &gt; Hg &gt; Ag &gt; Au</p><p><strong>ALLOYS</strong> brass = Cu + <strong>Zn</strong> · bronze = Cu + <strong>Sn</strong> · stainless steel = Fe + <strong>Cr + Ni</strong> · solder = Pb + Sn · amalgam contains <strong>mercury</strong></p><p><strong>CARBON</strong> tetravalency and catenation · <strong>diamond hardest, non-conductor</strong> · <strong>graphite conducts</strong>, soft, lubricant · fullerene C-60</p><p><strong>NAMES</strong> dry ice = <strong>solid CO₂</strong> · laughing gas = <strong>N₂O</strong> · marsh gas = <strong>CH₄</strong> · aqua regia = <strong>concentrated HCl + concentrated HNO₃</strong> · vinegar = dilute ethanoic acid</p></aside><h2 id="10-five-minute-wall-sheet">10. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F9.3</p><p><strong>pH 0–14 · 7 NEUTRAL · EACH UNIT = ×10 · BLOOD 7.4 ALKALINE</strong></p><p><strong>EFFLUENT pH 5.5–9.0</strong> — straddles neutral</p><p><strong>ACID » BLUE TO RED · BASE » RED TO BLUE · PHENOLPHTHALEIN PINK IN BASE</strong></p><p><strong>SOAP FAILS IN HARD WATER (SCUM) · DETERGENT WORKS BUT IS LESS BIODEGRADABLE</strong></p><p><strong>SAPONIFICATION MAKES SOAP · MICELLE: TAIL IN, HEAD OUT</strong></p><p><strong>EXOTHERMIC = ΔH NEGATIVE · ENDOTHERMIC = ΔH POSITIVE</strong></p><p><strong>RESPIRATION EXOTHERMIC · PHOTOSYNTHESIS ENDOTHERMIC</strong></p><p><strong>OIL RIG — LOSS AND GAIN OF ELECTRONS</strong></p><p><strong>RUSTING = OXYGEN + MOISTURE, BOTH</strong></p><p><strong>GROUP 17 HALOGENS · GROUP 18 NOBLE GASES</strong></p><p><strong>PERIODIC LAW USES ATOMIC NUMBER</strong> (Mendeleev used mass)</p><p><strong>IONIC = TRANSFER · COVALENT = SHARING</strong></p><p><strong>METALS BASIC OXIDES · NON-METALS ACIDIC OXIDES</strong></p><p><strong>BRASS = Cu + Zn · BRONZE = Cu + Sn</strong></p><p><strong>GRAPHITE CONDUCTS · DIAMOND HARDEST</strong></p><p><strong>TEMPORARY HARDNESS » BOIL IT</strong></p><p><strong>DRY ICE = SOLID CO₂ · LAUGHING GAS = N₂O · MARSH GAS = CH₄</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> Detergents were invented to solve a real problem — soap forms an insoluble scum in hard water — and created a new one, because their branched chains resist biodegradation and foam in rivers, which is a good small illustration of why environmental regulation follows technology rather than preceding it.</p></aside><aside class="cal action"><p class="cal-h">ACTION · NEXT IN MODULE 9</p><p><strong>Chapter F9.4 — Biology and Environment</strong>, which covers the last three 2023 science items: the <strong>layers of the eyeball</strong>, <strong>banyan prop roots</strong>, and <strong>ocean acidification</strong>.</p><p>Before you move on, state without looking: the pH band for effluent discharge; which of soap and detergent fails in hard water; the sign of ΔH for an exothermic reaction; what OIL RIG stands for; and the compositions of brass and bronze.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F9.3
+  &middot; v1.0</footer>
+</body>
+</html>

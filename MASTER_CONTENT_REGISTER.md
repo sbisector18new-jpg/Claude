@@ -14,15 +14,16 @@ notification is published)
 
 | | Modules | Chapters | Hours | Planning marks |
 |---|---|---:|---:|---:|
-| Complete | **1, 2, 3, 5, 6, 7** | 53 | 130 | 142.5 |
-| **Remaining** | **4, 8, 9, 10, 11** | **22 + mocks** | **94** | **157.5** |
+| Complete | **1, 2, 3, 5, 6, 7, 9** | 60 | 152 | 185.0 |
+| **Remaining** | **4, 8, 10, 11** | **15 + mocks** | **72** | **115.0** |
 | Total | 11 | 75 | 224 | 300.0 |
 
-Arithmetic closes on all three columns (53+22=75 chapters, 130+94=224 hours, 142.5+157.5=300.0 marks).
+Arithmetic closes on all three columns (60+15=75 chapters, 152+72=224 hours, 185.0+115.0=300.0 marks).
 The chapter total is 75 rather than the Blueprint's 74 because Modules 6 and 7 were delivered as **9**
 chapters (F6.1–F6.8 plus F7.1) rather than the 8 originally planned — finer granularity, same content.
 
-**157.5 of 300 planning marks remain — roughly 53% of the paper.** The halfway point is passed.
+**185.0 of 300 planning marks are now covered — about 62% of the paper.** Only 115.0 marks remain, and
+**80 of those 115 are Module 8**, which is meant to run as daily practice rather than as a block.
 
 ---
 
@@ -36,6 +37,7 @@ chapters (F6.1–F6.8 plus F7.1) rather than the 8 originally planned — finer 
 | 5 | History, Freedom Movement, Art & Culture | 10 | 22 | 25.0 |
 | **6** | **Accounting, Auditing & Statistics** | **8** | **26** | **~30** |
 | **7** | **Insurance** | **1** | **4** | **~3** |
+| **9** | **General Science & Computer Applications** | **7** | **22** | **42.5** |
 
 Also complete: **Module 0 Master Blueprint v1.0**, **Foundation F1.1 v1.0** (Constitutional
 Foundations), **Foundation F6.1 v1.0** (Accounting Fundamentals) and **Foundation F6.2 v1.0**
@@ -56,7 +58,7 @@ Listed in recommended study order (Blueprint §10.2), not module-number order.
 
 | Order | M | Module | Chapters | Hours | Marks | Priority |
 |---:|---|---|---:|---:|---:|---|
-| 1 | 9 | General Science & Computer Applications | **5 of 7** | 22 | 42.5 | ★★★★★ |
+| 1 | 8 | General English, Quantitative Aptitude & Reasoning | 8 | 26 | **80.0** | ★★★★★ |
 | 2 | 4 | Indian Economy + Population/Development/Globalisation | 5 | 8 | 15.0 | ★★★☆☆ |
 | 3 | 10 | Integrated Current Affairs | 2 | 12 | 20.0 | ★★★★☆ |
 | 4 | 11 | PYQ Analysis, 5 Mocks, Final Revision | mocks | 26 | multiplier | ★★★★★ |
@@ -156,11 +158,15 @@ recorded in Blueprint §4.4, so every known PYQ maps to a chapter:
 |---|---|---|---|
 | **F9.1** | Physics I: units, kinematics, motion, energy, fluids | Inelastic collision; uniform acceleration of a train | **Complete v1.0** — 22 pp, 30 Q |
 | **F9.2** | Physics II: optics, heat, sound, electricity, modern physics | Combined lens power; concave mirror at infinity | **Complete v1.0** — 26 pp, 30 Q |
-| F9.3 | Chemistry | Effluents and pH; soaps; an enthalpy reaction | Next |
-| F9.4 | Biology and environment | Eyeball layers; banyan prop roots; ocean acidification | Planned |
-| F9.5 | Computer fundamentals and number systems | Octal to binary; hexadecimal to decimal; program counter register | Planned |
-| F9.6 | Operating systems, software and programming | Real-time OS; top-down languages; C structure operator; HDD error-check command | Planned |
-| F9.7 | Networking, internet and HTML | IP address validity; mesh topology links; HTML internal linking | Planned |
+| **F9.3** | Chemistry | Effluents and pH; soaps; an enthalpy reaction | **Complete v1.0** — 26 pp, 30 Q |
+| **F9.4** | Biology and environment | Eyeball layers; banyan prop roots; ocean acidification | **Complete v1.0** — 25 pp, 30 Q |
+| **F9.5** | Computer fundamentals and number systems | Octal to binary; hexadecimal to decimal; program counter register | **Complete v1.0** — 23 pp, 30 Q |
+| **F9.6** | Operating systems, software and programming | Real-time OS; top-down languages; C structure operator; HDD error-check command | **Complete v1.0** — 22 pp, 25 Q |
+| **F9.7** | Networking, internet and HTML | IP address validity; mesh topology links; HTML internal linking | **Complete v1.0** — 24 pp, 25 Q |
+
+**Module 9 complete: 168 pages, 200 questions, and all twenty of the 2023 items in Blueprint §4.4
+covered.** Every known PYQ from this block now maps to a section, which is the strongest
+evidence-to-content alignment anywhere in the manual.
 
 **Chapters F9.1 and F9.2 are deliberately written as a RECALL layer, not a teaching layer.** Blueprint
 §9.1 states that the physics half is *"not new learning — it is recall"* for a Mechanical Engineer, so

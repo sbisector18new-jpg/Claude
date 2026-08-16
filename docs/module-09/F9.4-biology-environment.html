@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biology and Environment</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F9.4 · Biology &amp; Environment
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · FOUNDATION LAYER · MODULE 9 · CHAPTER F9.4</p><h1 class="doc-t">Biology and Environment</h1><p class="doc-s">Chapter F9.4 — Completing the Ten 2023 Science Items: the Eyeball, the Banyan and Ocean Acidification</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 9 — General Science &amp; Computer Applications</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F9.4</td></tr><tr><td class="k">Topic</td><td class="v">Official syllabus head 6 — General Science</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal note"><p class="cal-h">NOTE · THIS CHAPTER CLOSES THE 2023 SCIENCE LIST</p><p>The last three of the ten 2023 General Science items are here: the <strong>layers of the eyeball</strong> (§2.4), <strong>banyan prop roots</strong> (§4.2) and <strong>ocean acidification</strong> (§5.3).</p><p>Unlike physics, biology is <strong>not recall</strong> for a Mechanical Engineer — it is closer to genuine new learning, and it is fact-dense rather than formula-based. So this chapter is built as <strong>tables of facts organised by system</strong>, with the three PYQ-evidenced sections given the fullest treatment.</p><p>Note also what the 2023 selection reveals: two of the three biology items were <strong>plant morphology</strong> and <strong>environmental chemistry</strong>, not human physiology. Candidates who study only the human body are aiming at the wrong third of the subject.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-the-cell"><span class="toc-t">1. Session 1 — The Cell <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#11-the-organelles-and-their-functions"><span class="toc-t">1.1 The organelles and their functions</span></a><a class="toc-2" href="#2-session-2-human-body-systems"><span class="toc-t">2. Session 2 — Human Body Systems <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#21-digestion-and-circulation"><span class="toc-t">2.1 Digestion and circulation</span></a><a class="toc-3" href="#22-excretion-nerves-and-hormones"><span class="toc-t">2.2 Excretion, nerves and hormones</span></a><a class="toc-3" href="#23-the-ear"><span class="toc-t">2.3 The ear</span></a><a class="toc-3" href="#24-the-eye-the-2023-item"><span class="toc-t">2.4 The eye — the 2023 item</span></a><a class="toc-2" href="#3-session-3-nutrition-and-disease"><span class="toc-t">3. Session 3 — Nutrition and Disease <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#31-vitamins-and-deficiency-diseases"><span class="toc-t">3.1 Vitamins and deficiency diseases</span></a><a class="toc-3" href="#32-diseases-by-causative-organism"><span class="toc-t">3.2 Diseases by causative organism</span></a><a class="toc-2" href="#4-session-4-plants"><span class="toc-t">4. Session 4 — Plants <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#41-photosynthesis-and-transport"><span class="toc-t">4.1 Photosynthesis and transport</span></a><a class="toc-3" href="#42-modified-roots-the-2023-item"><span class="toc-t">4.2 Modified roots — the 2023 item</span></a><a class="toc-3" href="#43-plant-hormones-and-tropisms"><span class="toc-t">4.3 Plant hormones and tropisms</span></a><a class="toc-2" href="#5-session-5-ecology-and-environment"><span class="toc-t">5. Session 5 — Ecology and Environment <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#51-ecosystem-structure"><span class="toc-t">5.1 Ecosystem structure</span></a><a class="toc-3" href="#52-pollution"><span class="toc-t">5.2 Pollution</span></a><a class="toc-3" href="#53-ocean-acidification-the-2023-item"><span class="toc-t">5.3 Ocean acidification — the 2023 item</span></a><a class="toc-3" href="#54-climate-ozone-and-the-conventions"><span class="toc-t">5.4 Climate, ozone and the conventions</span></a><a class="toc-2" href="#6-graded-practice-30-questions"><span class="toc-t">6. Graded Practice — 30 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#61-level-1-recognition"><span class="toc-t">6.1 Level 1 — Recognition</span></a><a class="toc-3" href="#62-level-2-understanding"><span class="toc-t">6.2 Level 2 — Understanding</span></a><a class="toc-3" href="#63-level-3-recruitment-test-standard"><span class="toc-t">6.3 Level 3 — Recruitment Test standard</span></a><a class="toc-2" href="#7-answers-and-explanations"><span class="toc-t">7. Answers and Explanations</span></a><a class="toc-3" href="#71-level-1"><span class="toc-t">7.1 Level 1</span></a><a class="toc-3" href="#72-level-2"><span class="toc-t">7.2 Level 2</span></a><a class="toc-3" href="#73-level-3"><span class="toc-t">7.3 Level 3</span></a><a class="toc-2" href="#8-one-minute-revision"><span class="toc-t">8. One-Minute Revision</span></a><a class="toc-2" href="#9-five-minute-wall-sheet"><span class="toc-t">9. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F9.4 — FIVE SESSIONS</p><ol><li><strong>Session 1</strong> — The cell and cell division (§1) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 2</strong> — Human body systems, including <strong>the eye</strong> (§2) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <strong>2023</strong></li><li><strong>Session 3</strong> — Nutrition, vitamins and disease (§3) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 4</strong> — Plants, including <strong>modified roots</strong> (§4) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <strong>2023</strong></li><li><strong>Session 5</strong> — Ecology and environment, including <strong>ocean acidification</strong> (§5) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <strong>2023</strong></li></ol><p>Then 30 graded questions in §6. Budget <strong>two and a half days</strong>.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-the-cell">1. Session 1 — The Cell <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><p>The <strong>cell</strong> is the structural and functional unit of life. It was discovered by <strong>Robert Hooke</strong> in 1665, observing cork.</p><p><strong>Prokaryotic</strong> cells have no true nucleus and no membrane-bound organelles — bacteria. <strong>Eukaryotic</strong> cells have both — plants, animals, fungi.</p><h3 id="11-the-organelles-and-their-functions">1.1 The organelles and their functions</h3><div class="tw"><table><thead><tr><th style="text-align:left">Organelle</th><th style="text-align:left">Function</th><th style="text-align:left">Nickname</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Nucleus</strong></td><td style="text-align:left">Controls the cell; contains DNA</td><td style="text-align:left">—</td></tr><tr><td style="text-align:left"><strong>Mitochondrion</strong></td><td style="text-align:left">Releases energy as ATP</td><td style="text-align:left"><strong>Powerhouse of the cell</strong></td></tr><tr><td style="text-align:left"><strong>Ribosome</strong></td><td style="text-align:left"><strong>Protein synthesis</strong></td><td style="text-align:left">—</td></tr><tr><td style="text-align:left"><strong>Chloroplast</strong></td><td style="text-align:left"><strong>Photosynthesis</strong> — plants only</td><td style="text-align:left">—</td></tr><tr><td style="text-align:left"><strong>Lysosome</strong></td><td style="text-align:left">Contains digestive enzymes</td><td style="text-align:left"><strong>Suicidal bag</strong></td></tr><tr><td style="text-align:left"><strong>Golgi apparatus</strong></td><td style="text-align:left">Packaging and secretion</td><td style="text-align:left">—</td></tr><tr><td style="text-align:left">Endoplasmic reticulum</td><td style="text-align:left">Transport within the cell</td><td style="text-align:left">—</td></tr><tr><td style="text-align:left"><strong>Vacuole</strong></td><td style="text-align:left">Storage; <strong>large and central in plant cells</strong></td><td style="text-align:left">—</td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · PLANT VERSUS ANIMAL CELL, AND THE TWO DIVISIONS</p><p><strong>A plant cell HAS a cell wall of cellulose, chloroplasts, and a large central vacuole. An animal cell has none of these</strong> but does have a centrosome.</p><p>The reliable wrong option reverses the cell wall — "a plant cell lacks a cell wall" is false, and it is offered because the <em>animal</em> cell is the one that lacks it.</p><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left"><strong>Mitosis</strong></th><th style="text-align:left"><strong>Meiosis</strong></th></tr></thead><tbody><tr><td style="text-align:left">Occurs in</td><td style="text-align:left">Somatic (body) cells</td><td style="text-align:left"><strong>Reproductive</strong> cells</td></tr><tr><td style="text-align:left">Daughter cells</td><td style="text-align:left"><strong>Two</strong>, genetically <strong>identical</strong></td><td style="text-align:left"><strong>Four</strong></td></tr><tr><td style="text-align:left">Chromosome number</td><td style="text-align:left"><strong>Unchanged</strong></td><td style="text-align:left"><strong>Halved</strong> — reduction division</td></tr><tr><td style="text-align:left">Purpose</td><td style="text-align:left">Growth and repair</td><td style="text-align:left">Formation of <strong>gametes</strong></td></tr></tbody></table></div><p>A normal human somatic cell has <strong>46 chromosomes — 23 pairs</strong>. Sex chromosomes: <strong>XX female, XY male</strong>. DNA's double-helix structure was described by <strong>Watson and Crick</strong>.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 1</p><ol><li>Who discovered the cell, and in what material?</li><li>Which organelle is the powerhouse? Which synthesises protein? Which is the suicidal bag?</li><li>Name three things a plant cell has that an animal cell does not</li><li>Give four differences between mitosis and meiosis</li><li>How many chromosomes in a human somatic cell?</li></ol></aside><div class="pagebreak"></div><h2 id="2-session-2-human-body-systems">2. Session 2 — Human Body Systems <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="21-digestion-and-circulation">2.1 Digestion and circulation</h3><div class="tw"><table><thead><tr><th style="text-align:left">Organ</th><th style="text-align:left">Function</th></tr></thead><tbody><tr><td style="text-align:left">Mouth</td><td style="text-align:left"><strong>Salivary amylase</strong> begins starch digestion</td></tr><tr><td style="text-align:left">Stomach</td><td style="text-align:left"><strong>HCl</strong> and <strong>pepsin</strong> — protein digestion</td></tr><tr><td style="text-align:left"><strong>Small intestine</strong></td><td style="text-align:left"><strong>Main site of absorption</strong></td></tr><tr><td style="text-align:left">Large intestine</td><td style="text-align:left">Absorption of <strong>water</strong></td></tr><tr><td style="text-align:left"><strong>Liver</strong></td><td style="text-align:left">The <strong>largest gland</strong>; secretes <strong>bile</strong></td></tr><tr><td style="text-align:left"><strong>Pancreas</strong></td><td style="text-align:left">Both exocrine (enzymes) and endocrine (<strong>insulin</strong>)</td></tr></tbody></table></div><p><strong>Circulation.</strong> The heart has <strong>four chambers</strong> — two atria and two ventricles.</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · ARTERIES, VEINS AND THE TWO EXCEPTIONS</p><p><strong>Arteries carry blood AWAY from the heart; veins carry blood TO the heart.</strong> That is the definition — direction, not oxygen content.</p><p>Oxygen content follows as a general rule with <strong>two exceptions</strong>:</p><ul><li>The <strong>pulmonary artery</strong> carries <strong>deoxygenated</strong> blood, from the heart to the lungs</li><li>The <strong>pulmonary vein</strong> carries <strong>oxygenated</strong> blood, from the lungs to the heart</li></ul><p>So a question asking which artery carries deoxygenated blood is answered by the <strong>pulmonary artery</strong>, and a statement that "all arteries carry oxygenated blood" is wrong.</p><p><strong>Blood:</strong> <strong>RBC</strong> contain <strong>haemoglobin</strong> and live about 120 days; <strong>WBC</strong> provide immunity; <strong>platelets</strong> enable clotting. <strong>O negative is the universal donor; AB positive the universal recipient.</strong></p></aside><h3 id="22-excretion-nerves-and-hormones">2.2 Excretion, nerves and hormones</h3><ul><li><strong>Kidney</strong> — the functional unit is the <strong>nephron</strong>; the nitrogenous waste is <strong>urea</strong></li><li><strong>Brain</strong> — the <strong>cerebrum</strong> is the largest part and governs thinking; the <strong>cerebellum</strong> governs</li></ul><p><strong>balance and coordination</strong>; the <strong>medulla oblongata</strong> controls involuntary functions such as heartbeat and breathing. <strong>Reflex action</strong> is mediated by the <strong>spinal cord</strong>, not the brain</p><div class="tw"><table><thead><tr><th style="text-align:left">Gland</th><th style="text-align:left">Hormone</th><th style="text-align:left">Deficiency or excess</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Pituitary</strong></td><td style="text-align:left">Growth hormone</td><td style="text-align:left">The <strong>master gland</strong></td></tr><tr><td style="text-align:left"><strong>Thyroid</strong></td><td style="text-align:left"><strong>Thyroxine</strong> — requires <strong>iodine</strong></td><td style="text-align:left">Iodine deficiency causes <strong>goitre</strong></td></tr><tr><td style="text-align:left"><strong>Pancreas</strong></td><td style="text-align:left"><strong>Insulin</strong></td><td style="text-align:left">Deficiency causes <strong>diabetes mellitus</strong></td></tr><tr><td style="text-align:left"><strong>Adrenal</strong></td><td style="text-align:left"><strong>Adrenaline</strong></td><td style="text-align:left">The <strong>emergency hormone</strong></td></tr></tbody></table></div><p>An adult human has <strong>206 bones</strong>. The <strong>femur</strong> is the largest; the <strong>stapes</strong>, in the ear, the smallest.</p><h3 id="23-the-ear">2.3 The ear</h3><p>Outer, middle and inner. The middle ear contains <strong>three bones — malleus, incus and stapes</strong>. In the inner ear the <strong>cochlea</strong> serves <strong>hearing</strong> and the <strong>semicircular canals</strong> serve <strong>balance</strong>.</p><h3 id="24-the-eye-the-2023-item">2.4 The eye — the 2023 item</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE THREE LAYERS OF THE EYEBALL, OUTSIDE INWARDS</p><p>This is a 2023 question. The wall of the eyeball has <strong>three coats</strong>, and the order matters:</p><div class="tw"><table><thead><tr><th style="text-align:left">Order</th><th style="text-align:left">Layer</th><th style="text-align:left">Nature</th></tr></thead><tbody><tr><td style="text-align:left"><strong>1 — outermost</strong></td><td style="text-align:left"><strong>Sclera</strong></td><td style="text-align:left">Tough, white, protective. Its transparent front part is the <strong>cornea</strong></td></tr><tr><td style="text-align:left"><strong>2 — middle</strong></td><td style="text-align:left"><strong>Choroid</strong></td><td style="text-align:left"><strong>Vascular</strong> and pigmented; supplies blood and prevents internal reflection</td></tr><tr><td style="text-align:left"><strong>3 — innermost</strong></td><td style="text-align:left"><strong>Retina</strong></td><td style="text-align:left"><strong>Light-sensitive</strong>, carrying the <strong>rods and cones</strong></td></tr></tbody></table></div><p>Mnemonic for the order: <strong>S-C-R</strong>, outside in — <strong>S</strong>clera, <strong>C</strong>horoid, <strong>R</strong>etina. Alphabetical, which makes it unusually easy.</p><p>The trap is any option placing the <strong>choroid innermost</strong> or the <strong>retina outermost</strong>.</p><p><strong>Inside the retina:</strong> <strong>rods</strong> give vision in <strong>dim light</strong>, in black and white; <strong>cones</strong> give <strong>colour</strong> vision in bright light. The <strong>blind spot</strong> is where the optic nerve leaves and has neither.</p><p><strong>Other parts:</strong> the <strong>iris</strong> controls the size of the <strong>pupil</strong> and hence the light admitted; the <strong>lens</strong> focuses; the aqueous and vitreous humours fill the chambers. Defects of vision and their corrections are in <strong>F9.2 §1.5</strong>.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 2</p><ol><li>Which is the largest gland? Which organ is the main site of absorption?</li><li>State the artery-vein rule and name the two exceptions</li><li>Universal donor and universal recipient blood groups?</li><li>Which part of the brain controls balance? Which controls heartbeat? What mediates reflex action?</li><li>Name the three layers of the eyeball from outside inwards</li><li>Rods and cones — which does what?</li></ol></aside><div class="pagebreak"></div><h2 id="3-session-3-nutrition-and-disease">3. Session 3 — Nutrition and Disease <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="31-vitamins-and-deficiency-diseases">3.1 Vitamins and deficiency diseases</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · FAT-SOLUBLE VERSUS WATER-SOLUBLE, AND THE DEFICIENCY LIST</p><p><strong>Fat-soluble vitamins: A, D, E and K.</strong> Everything else — the <strong>B group and C</strong> — is <strong>water-soluble</strong>. That four-letter list is asked directly.</p><div class="tw"><table><thead><tr><th style="text-align:left">Vitamin</th><th style="text-align:left">Chemical name</th><th style="text-align:left">Deficiency disease</th></tr></thead><tbody><tr><td style="text-align:left"><strong>A</strong></td><td style="text-align:left">Retinol</td><td style="text-align:left"><strong>Night blindness</strong>, xerophthalmia</td></tr><tr><td style="text-align:left"><strong>B1</strong></td><td style="text-align:left">Thiamine</td><td style="text-align:left"><strong>Beri-beri</strong></td></tr><tr><td style="text-align:left"><strong>B3</strong></td><td style="text-align:left">Niacin</td><td style="text-align:left"><strong>Pellagra</strong></td></tr><tr><td style="text-align:left"><strong>B12</strong></td><td style="text-align:left">Cobalamin</td><td style="text-align:left">Pernicious anaemia</td></tr><tr><td style="text-align:left"><strong>C</strong></td><td style="text-align:left">Ascorbic acid</td><td style="text-align:left"><strong>Scurvy</strong></td></tr><tr><td style="text-align:left"><strong>D</strong></td><td style="text-align:left">Calciferol</td><td style="text-align:left"><strong>Rickets</strong> in children, osteomalacia in adults</td></tr><tr><td style="text-align:left"><strong>E</strong></td><td style="text-align:left">Tocopherol</td><td style="text-align:left">Sterility</td></tr><tr><td style="text-align:left"><strong>K</strong></td><td style="text-align:left">—</td><td style="text-align:left">Defective <strong>blood clotting</strong></td></tr></tbody></table></div><p><strong>Mineral deficiencies:</strong> <strong>iron » anaemia</strong> · <strong>iodine » goitre</strong> · calcium and vitamin D » rickets. <strong>Protein deficiency</strong> causes <strong>kwashiorkor</strong> and <strong>marasmus</strong>.</p></aside><h3 id="32-diseases-by-causative-organism">3.2 Diseases by causative organism</h3><div class="tw"><table><thead><tr><th style="text-align:left">Cause</th><th style="text-align:left">Diseases</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Bacteria</strong></td><td style="text-align:left"><strong>Tuberculosis</strong>, cholera, typhoid, tetanus, leprosy, plague, diphtheria</td></tr><tr><td style="text-align:left"><strong>Virus</strong></td><td style="text-align:left">Influenza, <strong>AIDS</strong>, polio, measles, mumps, rabies, <strong>dengue</strong>, chikungunya, hepatitis</td></tr><tr><td style="text-align:left"><strong>Protozoa</strong></td><td style="text-align:left"><strong>Malaria</strong> (<em>Plasmodium</em>), amoebic dysentery, kala-azar</td></tr><tr><td style="text-align:left"><strong>Fungus</strong></td><td style="text-align:left">Ringworm, athlete's foot</td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE MOSQUITO VECTORS</p><div class="tw"><table><thead><tr><th style="text-align:left">Mosquito</th><th style="text-align:left">Transmits</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Anopheles</strong></td><td style="text-align:left"><strong>Malaria</strong></td></tr><tr><td style="text-align:left"><strong>Aedes aegypti</strong></td><td style="text-align:left"><strong>Dengue</strong>, chikungunya, yellow fever, Zika</td></tr><tr><td style="text-align:left"><strong>Culex</strong></td><td style="text-align:left"><strong>Filariasis</strong></td></tr></tbody></table></div><p>And the classification trap: <strong>malaria is protozoan, not bacterial or viral</strong>, while <strong>dengue is viral, not protozoan</strong>. Both are mosquito-borne, which is exactly why the causative organisms get swapped.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 3</p><ol><li>Which four vitamins are fat-soluble?</li><li>Name the deficiency diseases of vitamins A, B1, C and D</li><li>Iron deficiency causes what? Iodine deficiency?</li><li>Is malaria bacterial, viral or protozoan? And dengue?</li><li>Match Anopheles, Aedes and Culex to their diseases</li></ol></aside><div class="pagebreak"></div><h2 id="4-session-4-plants">4. Session 4 — Plants <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="41-photosynthesis-and-transport">4.1 Photosynthesis and transport</h3><p><strong>Photosynthesis</strong> occurs in the <strong>chloroplast</strong> using <strong>chlorophyll</strong> and sunlight: carbon dioxide and water become glucose and oxygen. It is <strong>endothermic</strong> — it absorbs energy, which is F9.3 §5.1.</p><p><strong>Transport:</strong> <strong>xylem</strong> carries <strong>water and minerals upwards</strong>; <strong>phloem</strong> carries <strong>food</strong>, and it moves in <strong>both directions</strong>.</p><h3 id="42-modified-roots-the-2023-item">4.2 Modified roots — the 2023 item</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE FOUR MODIFIED ROOTS, WITH THEIR PLANTS</p><p>This is a 2023 question, and the four are constantly interchanged.</p><div class="tw"><table><thead><tr><th style="text-align:left">Modification</th><th style="text-align:left">Purpose</th><th style="text-align:left">Plant</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Prop roots</strong></td><td style="text-align:left">Aerial roots growing <strong>downwards from branches</strong> to support heavy spreading branches</td><td style="text-align:left"><strong>BANYAN</strong></td></tr><tr><td style="text-align:left"><strong>Stilt roots</strong></td><td style="text-align:left">Growing <strong>obliquely from the lower stem</strong> into the soil for support</td><td style="text-align:left"><strong>Maize, sugarcane, screwpine</strong></td></tr><tr><td style="text-align:left"><strong>Pneumatophores</strong> (respiratory roots)</td><td style="text-align:left">Growing <strong>upwards out of waterlogged soil</strong> for gas exchange</td><td style="text-align:left"><strong>MANGROVES</strong></td></tr><tr><td style="text-align:left"><strong>Storage roots</strong></td><td style="text-align:left">Storing food</td><td style="text-align:left"><strong>Carrot</strong>, sweet potato, radish</td></tr></tbody></table></div><p>The distinction that decides the question is <strong>direction</strong>:</p><ul><li><strong>Prop roots grow DOWN, from the branches</strong> — banyan</li><li><strong>Stilt roots grow DOWN and outward, from the lower stem</strong> — sugarcane</li><li><strong>Pneumatophores grow UP, out of the mud</strong> — mangrove</li></ul><p>So "aerial roots hanging from the branches of a large tree" is unambiguously the <strong>banyan</strong>, and "roots growing vertically upward from waterlogged soil" is the <strong>mangrove</strong>.</p></aside><p><strong>Modified stems</strong>, for contrast, since they are offered as distractors: <strong>potato</strong> is a <em>tuber</em>, <strong>ginger</strong> a <em>rhizome</em>, <strong>onion</strong> a <em>bulb</em>.</p><p><strong>Nitrogen fixation:</strong> leguminous plants carry <strong>root nodules</strong> containing <strong><em>Rhizobium</em></strong>.</p><h3 id="43-plant-hormones-and-tropisms">4.3 Plant hormones and tropisms</h3><div class="tw"><table><thead><tr><th style="text-align:left">Hormone</th><th style="text-align:left">Effect</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Auxin</strong></td><td style="text-align:left">Cell elongation; responsible for <strong>phototropism</strong></td></tr><tr><td style="text-align:left">Gibberellin</td><td style="text-align:left">Stem elongation</td></tr><tr><td style="text-align:left">Cytokinin</td><td style="text-align:left">Cell division</td></tr><tr><td style="text-align:left"><strong>Abscisic acid</strong></td><td style="text-align:left">Stress response, closing stomata; growth <strong>inhibitor</strong></td></tr><tr><td style="text-align:left"><strong>Ethylene</strong></td><td style="text-align:left"><strong>Ripening</strong> of fruit</td></tr></tbody></table></div><p><strong>Tropisms:</strong> photo (light), geo (gravity), hydro (water), thigmo (touch), chemo (chemicals).</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 4</p><ol><li>Where does photosynthesis occur, and is it exothermic or endothermic?</li><li>Xylem and phloem — what does each carry, and in which direction?</li><li>Name the plant for prop roots, stilt roots, pneumatophores and storage roots</li><li>Which direction do prop roots grow? Which way do pneumatophores grow?</li><li>Which hormone ripens fruit? Which causes phototropism?</li></ol></aside><div class="pagebreak"></div><h2 id="5-session-5-ecology-and-environment">5. Session 5 — Ecology and Environment <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="51-ecosystem-structure">5.1 Ecosystem structure</h3><p>An <strong>ecosystem</strong> has <strong>biotic</strong> components — <strong>producers</strong>, <strong>consumers</strong> and <strong>decomposers</strong> — and <strong>abiotic</strong> components.</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE TEN PER CENT LAW AND UNIDIRECTIONAL FLOW</p><p><strong>Only about 10% of the energy at one trophic level passes to the next</strong> — Lindeman's ten per cent law. The rest is lost as heat and in metabolism.</p><p>Two consequences that are examined:</p><ol><li><strong>Energy flow through an ecosystem is UNIDIRECTIONAL</strong>, not cyclic. Nutrients cycle; <strong>energy does not</strong>. An option saying energy flow is bidirectional or cyclic is wrong</li><li>Food chains are therefore <strong>short</strong> — usually four or five links — because so little energy survives</li></ol><p><strong>Biomagnification</strong> is the increasing concentration of <strong>non-biodegradable</strong> substances such as DDT and mercury at successively higher trophic levels. The word to check in the option is <strong>non-biodegradable</strong> — biodegradable substances do not biomagnify.</p></aside><h3 id="52-pollution">5.2 Pollution</h3><div class="tw"><table><thead><tr><th style="text-align:left">Type</th><th style="text-align:left">Key indicators and facts</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Air</strong></td><td style="text-align:left">PM2.5 and PM10, sulphur dioxide, oxides of nitrogen, carbon monoxide</td></tr><tr><td style="text-align:left"><strong>Water</strong></td><td style="text-align:left"><strong>BOD</strong> — biochemical oxygen demand. <strong>Higher BOD means more organic pollution</strong></td></tr><tr><td style="text-align:left"><strong>Eutrophication</strong></td><td style="text-align:left">Nutrient enrichment by <strong>nitrates and phosphates</strong> » <strong>algal bloom</strong> » oxygen depletion » fish die</td></tr></tbody></table></div><p>Note the link back to F9.3 §4.1: <strong>phosphates from detergents</strong> are a classic contributor to eutrophication, which is part of why detergent biodegradability matters.</p><p><strong>Acid rain</strong> comes from oxides of <strong>sulphur and nitrogen</strong> forming sulphuric and nitric acids.</p><h3 id="53-ocean-acidification-the-2023-item">5.3 Ocean acidification — the 2023 item</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · WHAT ACIDIFICATION MEANS, AND WHAT IT DOES NOT</p><p>The ocean absorbs a large share of the carbon dioxide humans emit. Dissolved <strong>carbon dioxide forms carbonic acid</strong>, which releases hydrogen ions and <strong>lowers the pH of seawater</strong>.</p><p><strong>Consequence:</strong> less carbonate is available for shell and skeleton formation, so the organisms harmed are the <strong>calcifying</strong> ones — <strong>corals</strong>, molluscs and shelled plankton. Coral bleaching and reef weakening follow.</p><p><strong>And now the point the exam is most likely to test.</strong> Ocean pH has fallen from roughly <strong>8.2 to about 8.1</strong> since pre-industrial times. So:</p><p><strong>Seawater is still ALKALINE. "Acidification" means moving TOWARDS acidic, not having become acidic.</strong></p><p>Any statement that the ocean has become acidic, or that its pH is below 7, is <strong>wrong</strong> — and it is the intuitive reading of the word. The cause is <strong>carbon dioxide</strong>, not sulphur dioxide, which is the agent of acid <em>rain</em>.</p></aside><h3 id="54-climate-ozone-and-the-conventions">5.4 Climate, ozone and the conventions</h3><p><strong>Greenhouse gases:</strong> carbon dioxide, <strong>methane</strong>, nitrous oxide, water vapour, CFCs. Methane has a higher global warming potential per molecule than carbon dioxide.</p><p><strong>Ozone.</strong> Stratospheric ozone absorbs <strong>ultraviolet</strong> radiation and is beneficial; tropospheric ozone is a <strong>pollutant</strong>. Depletion is caused by <strong>CFCs</strong>, and the ozone hole appears over <strong>Antarctica</strong>.</p><div class="tw"><table><thead><tr><th style="text-align:left">Agreement</th><th style="text-align:left">Year</th><th style="text-align:left">Subject</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Ramsar</strong> Convention</td><td style="text-align:left"><strong>1971</strong></td><td style="text-align:left"><strong>Wetlands</strong></td></tr><tr><td style="text-align:left"><strong>CITES</strong></td><td style="text-align:left">1973</td><td style="text-align:left">Trade in endangered species</td></tr><tr><td style="text-align:left"><strong>Montreal</strong> Protocol</td><td style="text-align:left"><strong>1987</strong></td><td style="text-align:left"><strong>Ozone-depleting substances</strong></td></tr><tr><td style="text-align:left"><strong>UNFCCC</strong> and <strong>CBD</strong></td><td style="text-align:left">1992</td><td style="text-align:left">Climate change; biological diversity</td></tr><tr><td style="text-align:left"><strong>Kyoto</strong> Protocol</td><td style="text-align:left">1997</td><td style="text-align:left">Emission reduction commitments</td></tr><tr><td style="text-align:left"><strong>Paris</strong> Agreement</td><td style="text-align:left"><strong>2015</strong></td><td style="text-align:left">Climate change</td></tr></tbody></table></div><aside class="cal trap"><p class="cal-h">COMMON UPSC TRAP · MONTREAL VERSUS KYOTO VERSUS PARIS</p><p>Three protocols, three different subjects, routinely swapped:</p><ul><li><strong>Montreal 1987 » OZONE</strong></li><li><strong>Kyoto 1997 » climate, binding emission targets</strong></li><li><strong>Paris 2015 » climate, nationally determined contributions</strong></li></ul><p><strong>Montreal is the ozone one.</strong> If the stem mentions the ozone layer or CFCs and the options include Kyoto or Paris, they are there to catch you. And <strong>Ramsar is wetlands</strong>, not forests.</p></aside><p><strong>India:</strong> <strong>Project Tiger</strong> began in <strong>1973</strong>, <strong>Project Elephant</strong> in 1992. Protected areas comprise national parks, wildlife sanctuaries and biosphere reserves.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 5</p><ol><li>State the ten per cent law. Is energy flow cyclic or unidirectional?</li><li>What kind of substances biomagnify?</li><li>What does a high BOD indicate?</li><li>Explain eutrophication in sequence, and name two nutrients responsible</li><li>What causes ocean acidification, which organisms suffer, and is seawater now acidic?</li><li>Match Ramsar, Montreal, Kyoto and Paris to their subjects</li></ol></aside><div class="pagebreak"></div><h2 id="6-graded-practice-30-questions">6. Graded Practice — 30 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="61-level-1-recognition">6.1 Level 1 — Recognition</h3><p><strong>Q1.</strong> The structural and functional unit of life is the (a) tissue (b) organ (c) organelle (d) cell</p><p><strong>Q2.</strong> The powerhouse of the cell is the (a) ribosome (b) mitochondrion (c) nucleus (d) lysosome</p><p><strong>Q3.</strong> The outermost layer of the human eyeball is the (a) retina (b) choroid (c) sclera (d) vitreous humour</p><p><strong>Q4.</strong> Protein synthesis within a cell takes place in the (a) ribosome (b) lysosome (c) vacuole (d) Golgi apparatus</p><p><strong>Q5.</strong> The number of chromosomes in a normal human somatic cell is (a) 23 (b) 48 (c) 44 (d) 46</p><p><strong>Q6.</strong> Deficiency of vitamin C causes (a) rickets (b) scurvy (c) beri-beri (d) night blindness</p><p><strong>Q7.</strong> Malaria is caused by a (a) bacterium (b) virus (c) protozoan (d) fungus</p><p><strong>Q8.</strong> Prop roots are characteristically seen in the (a) banyan (b) maize (c) carrot (d) mangrove</p><p><strong>Q9.</strong> The functional unit of the kidney is the (a) neuron (b) alveolus (c) villus (d) nephron</p><p><strong>Q10.</strong> The universal donor blood group is (a) AB positive (b) O negative (c) A positive (d) B negative</p><h3 id="62-level-2-understanding">6.2 Level 2 — Understanding</h3><p><strong>Q11.</strong> The three layers of the human eyeball, from outside inwards, are (a) retina, choroid, sclera (b) choroid, sclera, retina (c) sclera, choroid, retina (d) cornea, retina, choroid</p><p><strong>Q12.</strong> Rods in the retina are responsible for (a) vision in dim light (b) colour vision (c) focusing the image (d) controlling the size of the pupil</p><p><strong>Q13.</strong> Which part of the brain controls balance and coordination? (a) Cerebrum (b) Medulla oblongata (c) Hypothalamus (d) Cerebellum</p><p><strong>Q14.</strong> The master gland of the human body is the (a) thyroid (b) pituitary (c) adrenal (d) pancreas</p><p><strong>Q15.</strong> Deficiency of iodine causes (a) diabetes (b) anaemia (c) goitre (d) rickets</p><p><strong>Q16.</strong> Pneumatophores, or respiratory roots, are found in (a) mangroves (b) the banyan (c) sugarcane (d) the money plant</p><p><strong>Q17.</strong> According to the ten per cent law, the proportion of energy transferred to the next trophic level is about (a) 90% (b) 50% (c) 1% (d) 10%</p><p><strong>Q18.</strong> Ocean acidification is caused mainly by the absorption of (a) sulphur dioxide (b) carbon dioxide (c) methane (d) nitrogen</p><p><strong>Q19.</strong> Eutrophication of a water body results in (a) an increase in dissolved oxygen (b) reduced algal growth (c) an algal bloom followed by oxygen depletion (d) a rise in pH to 12</p><p><strong>Q20.</strong> A high biochemical oxygen demand in a sample of water indicates (a) a high level of organic pollution (b) unusually clean water (c) high dissolved oxygen (d) low bacterial activity</p><h3 id="63-level-3-recruitment-test-standard">6.3 Level 3 — Recruitment Test standard</h3><p><strong>Q21.</strong> Which one of the following statements is <strong>not</strong> correct? (a) Arteries generally carry oxygenated blood, the pulmonary artery being an exception (b) Rods are responsible for vision in dim light and cones for colour vision (c) The retina is the innermost layer of the eyeball (d) The choroid is the innermost layer of the eyeball</p><p><strong>Q22.</strong> Consider the following statements about ocean acidification:</p><ol><li>It is caused by the dissolution of atmospheric carbon dioxide, forming carbonic acid.</li><li>It harms calcifying organisms such as corals and molluscs.</li><li>Seawater has already become acidic, its pH having fallen below 7.</li></ol><p>Which of the above statements are correct? (a) 1 and 3 only (b) 1 and 2 only (c) 2 and 3 only (d) 1, 2 and 3</p><p><strong>Q23.</strong> Match List-I with List-II and select the correct answer using the code given below:</p><div class="tw"><table><thead><tr><th style="text-align:left">List-I</th><th style="text-align:left">List-II</th></tr></thead><tbody><tr><td style="text-align:left">A. Prop roots</td><td style="text-align:left">1. Banyan</td></tr><tr><td style="text-align:left">B. Stilt roots</td><td style="text-align:left">2. Sugarcane</td></tr><tr><td style="text-align:left">C. Pneumatophores</td><td style="text-align:left">3. Mangrove</td></tr><tr><td style="text-align:left">D. Storage root</td><td style="text-align:left">4. Carrot</td></tr></tbody></table></div><p>(a) A-4 B-3 C-2 D-1 (b) A-1 B-3 C-2 D-4 (c) A-1 B-2 C-3 D-4 (d) A-2 B-1 C-4 D-3</p><p><strong>Q24.</strong> Which of the following vitamins are fat-soluble? (a) A, D, E and K (b) B and C only (c) C and D only (d) All vitamins are fat-soluble</p><p><strong>Q25.</strong> Consider the following statements:</p><ol><li>Mitosis produces two genetically identical daughter cells.</li><li>Meiosis halves the chromosome number and produces gametes.</li><li>A plant cell lacks a cell wall but possesses chloroplasts.</li></ol><p>Which of the above statements are correct? (a) 1 and 3 only (b) 2 and 3 only (c) 1, 2 and 3 (d) 1 and 2 only</p><p><strong>Q26.</strong> Dengue is transmitted by the (a) Anopheles mosquito (b) Aedes aegypti mosquito (c) Culex mosquito (d) common housefly</p><p><strong>Q27.</strong> The Montreal Protocol relates to (a) climate change (b) biological diversity (c) substances that deplete the ozone layer (d) wetlands</p><p><strong>Q28.</strong> Which one of the following statements is <strong>not</strong> correct? (a) Energy flow in an ecosystem is bidirectional (b) Biomagnification concerns non-biodegradable substances (c) Decomposers return nutrients to the soil (d) Only about ten per cent of the energy at one trophic level passes to the next</p><p><strong>Q29.</strong> The largest gland in the human body is the (a) pancreas (b) thyroid (c) pituitary (d) liver</p><p><strong>Q30.</strong> Insulin is secreted by the (a) liver (b) pancreas (c) adrenal gland (d) thyroid gland</p><div class="pagebreak"></div><h2 id="7-answers-and-explanations">7. Answers and Explanations</h2><h3 id="71-level-1">7.1 Level 1</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">d</td><td style="text-align:left">The <strong>cell</strong>, discovered by Robert Hooke in 1665</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">b</td><td style="text-align:left">The <strong>mitochondrion</strong>, which releases energy as ATP</td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">c</td><td style="text-align:left">The <strong>sclera</strong>. Remember <strong>S-C-R</strong> outside in — sclera, choroid, retina. The cornea is the transparent front of the sclera</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">a</td><td style="text-align:left">The <strong>ribosome</strong></td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">d</td><td style="text-align:left"><strong>46</strong>, that is 23 pairs. Option (a) gives the number of pairs, not chromosomes</td></tr><tr><td style="text-align:left">6</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Scurvy.</strong> Rickets is vitamin D, beri-beri is B1, night blindness is A</td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">c</td><td style="text-align:left">A <strong>protozoan</strong>, <em>Plasmodium</em>. <strong>Dengue</strong>, by contrast, is <strong>viral</strong> — the two are swapped because both are mosquito-borne</td></tr><tr><td style="text-align:left">8</td><td style="text-align:center">a</td><td style="text-align:left">The <strong>banyan</strong>. Sugarcane has stilt roots, mangroves pneumatophores, carrot a storage root</td></tr><tr><td style="text-align:left">9</td><td style="text-align:center">d</td><td style="text-align:left">The <strong>nephron</strong>. The neuron belongs to the nervous system, the alveolus to the lungs, the villus to the intestine</td></tr><tr><td style="text-align:left">10</td><td style="text-align:center">b</td><td style="text-align:left"><strong>O negative</strong> is the universal donor; <strong>AB positive</strong> the universal recipient</td></tr></tbody></table></div><h3 id="72-level-2">7.2 Level 2</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">11</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Sclera, choroid, retina</strong> — S-C-R, and conveniently alphabetical outside in</td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Dim light</strong>, in black and white. <strong>Cones</strong> handle colour in bright light</td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">d</td><td style="text-align:left">The <strong>cerebellum</strong>. The cerebrum governs thinking; the medulla controls heartbeat and breathing</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">b</td><td style="text-align:left">The <strong>pituitary</strong></td></tr><tr><td style="text-align:left">15</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Goitre</strong>, because iodine is required to make thyroxine</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Mangroves</strong> — these roots grow <strong>upwards</strong> out of waterlogged soil for gas exchange</td></tr><tr><td style="text-align:left">17</td><td style="text-align:center">d</td><td style="text-align:left">About <strong>10%</strong>, Lindeman's law. It is why food chains are short</td></tr><tr><td style="text-align:left">18</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Carbon dioxide</strong>, which forms carbonic acid. <strong>Sulphur dioxide</strong> causes acid <em>rain</em> — a different phenomenon</td></tr><tr><td style="text-align:left">19</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Algal bloom followed by oxygen depletion</strong>, which kills fish. Note that dissolved oxygen <em>falls</em>, so (a) is the reverse</td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">a</td><td style="text-align:left"><strong>High organic pollution</strong> — more organic matter means more oxygen consumed by decomposers</td></tr></tbody></table></div><h3 id="73-level-3">7.3 Level 3</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">21</td><td style="text-align:center">d</td><td style="text-align:left">The <strong>choroid is the MIDDLE layer</strong>, not the innermost. The retina is innermost, which (c) correctly states — so (d) is the contradiction</td></tr><tr><td style="text-align:left">22</td><td style="text-align:center">b</td><td style="text-align:left"><strong>1 and 2 only.</strong> Statement 3 is false and is the central trap: ocean pH has fallen from about 8.2 to 8.1, so seawater remains <strong>alkaline</strong>. "Acidification" means moving <em>towards</em> acidic</td></tr><tr><td style="text-align:left">23</td><td style="text-align:center">c</td><td style="text-align:left"><strong>A-1 B-2 C-3 D-4</strong> — banyan, sugarcane, mangrove, carrot. Direction is the discriminator: prop roots down from branches, pneumatophores up from mud</td></tr><tr><td style="text-align:left">24</td><td style="text-align:center">a</td><td style="text-align:left"><strong>A, D, E and K.</strong> The B group and C are water-soluble</td></tr><tr><td style="text-align:left">25</td><td style="text-align:center">d</td><td style="text-align:left"><strong>1 and 2 only.</strong> Statement 3 is false — a plant cell <strong>has</strong> a cell wall. It is the <em>animal</em> cell that lacks one</td></tr><tr><td style="text-align:left">26</td><td style="text-align:center">b</td><td style="text-align:left"><strong><em>Aedes aegypti</em></strong>, which also carries chikungunya, yellow fever and Zika. <em>Anopheles</em> carries malaria</td></tr><tr><td style="text-align:left">27</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Ozone-depleting substances.</strong> Kyoto and Paris are climate; Ramsar is wetlands</td></tr><tr><td style="text-align:left">28</td><td style="text-align:center">a</td><td style="text-align:left">Energy flow is <strong>unidirectional</strong>, not bidirectional. Nutrients cycle; energy does not. The other three are correct</td></tr><tr><td style="text-align:left">29</td><td style="text-align:center">d</td><td style="text-align:left">The <strong>liver</strong></td></tr><tr><td style="text-align:left">30</td><td style="text-align:center">b</td><td style="text-align:left">The <strong>pancreas</strong></td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · THE FOUR SHAPES IN THIS CHAPTER</p><ol><li><strong>The ordered list.</strong> Q11 and Q21 both test the sclera–choroid–retina order. Any three-layer structure invites a scrambled-order question, so learn the sequence with its direction</li><li><strong>The word taken literally.</strong> Q22. "Acidification" sounds like "has become acidic". It means <em>moving towards</em> acidic. Where a term implies a state, check whether it actually describes a trend</li><li><strong>The vector-versus-organism swap.</strong> Q7 and Q26. Malaria and dengue share mosquito transmission but differ completely in causative organism — protozoan versus virus</li><li><strong>The reversed possession.</strong> Q25's statement 3 and Q28's option (a). The examiner takes a true fact about one thing and attaches it to its opposite. Cell wall belongs to the <em>plant</em>; unidirectional flow to <em>energy</em></li></ol></aside><div class="pagebreak"></div><h2 id="8-one-minute-revision">8. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F9.4</p><p><strong>CELL</strong> unit of life · <strong>Robert Hooke 1665, cork</strong> · prokaryote has no true nucleus · <strong>mitochondrion = powerhouse</strong> · <strong>ribosome = protein synthesis</strong> · <strong>lysosome = suicidal bag</strong> · chloroplast = photosynthesis · <strong>plant cell HAS cell wall, chloroplast, large vacuole</strong></p><p><strong>DIVISION</strong> <strong>mitosis</strong> = somatic, <strong>2 identical</strong>, number unchanged · <strong>meiosis</strong> = gametes, <strong>4 cells, number halved</strong> · human somatic cell <strong>46 chromosomes</strong>, XX female, XY male</p><p><strong>DIGESTION</strong> salivary amylase · stomach HCl and pepsin · <strong>small intestine = main absorption</strong> · large intestine absorbs <strong>water</strong> · <strong>liver = largest gland</strong>, secretes bile · pancreas secretes <strong>insulin</strong></p><p><strong>CIRCULATION</strong> <strong>arteries carry blood AWAY, veins TOWARDS the heart</strong> · exceptions <strong>pulmonary artery carries deoxygenated</strong>, <strong>pulmonary vein oxygenated</strong> · <strong>O negative universal donor, AB positive universal recipient</strong> · heart has <strong>4 chambers</strong></p><p><strong>BRAIN</strong> cerebrum = thinking, largest · <strong>cerebellum = balance and coordination</strong> · <strong>medulla = heartbeat and breathing</strong> · <strong>reflex action via the SPINAL CORD</strong></p><p><strong>GLANDS</strong> <strong>pituitary = master</strong> · thyroid = thyroxine, needs <strong>iodine</strong>, deficiency <strong>goitre</strong> · pancreas = <strong>insulin</strong>, deficiency <strong>diabetes</strong> · adrenal = adrenaline, emergency hormone</p><p><strong>EYE — THREE LAYERS, OUTSIDE IN: SCLERA » CHOROID » RETINA (S-C-R)</strong> · cornea = transparent front of sclera · <strong>rods = dim light, cones = colour</strong> · iris controls the pupil · blind spot has neither rods nor cones</p><p><strong>EAR</strong> middle ear bones <strong>malleus, incus, stapes</strong> · <strong>cochlea hearing, semicircular canals balance</strong> · <strong>stapes = smallest bone</strong>, femur largest · <strong>206 bones</strong></p><p><strong>FAT-SOLUBLE VITAMINS A, D, E, K</strong> — the rest are water-soluble · <strong>A night blindness · B1 beri-beri · B3 pellagra · C scurvy · D rickets · K clotting</strong> · <strong>iron » anaemia · iodine » goitre</strong> · protein » kwashiorkor, marasmus</p><p><strong>DISEASES</strong> bacterial: TB, cholera, typhoid, tetanus, leprosy · viral: <strong>dengue</strong>, AIDS, polio, rabies · protozoan: <strong>malaria</strong>, kala-azar · <strong>Anopheles » malaria · Aedes » dengue, chikungunya, Zika · Culex » filariasis</strong></p><p><strong>PLANTS</strong> photosynthesis in the <strong>chloroplast</strong>, <strong>endothermic</strong> · <strong>xylem water UP</strong> · <strong>phloem food BOTH ways</strong> · <strong>Rhizobium</strong> in root nodules</p><p><strong>MODIFIED ROOTS</strong> <strong>prop » BANYAN</strong>, down from branches · <strong>stilt » sugarcane, maize</strong>, from lower stem · <strong>pneumatophores » MANGROVE</strong>, growing <strong>UP</strong> out of mud · <strong>storage » carrot</strong> <strong>MODIFIED STEMS</strong> potato tuber · ginger rhizome · onion bulb</p><p><strong>HORMONES</strong> auxin » phototropism · <strong>ethylene » ripening</strong> · abscisic acid » stress and inhibition</p><p><strong>ECOLOGY</strong> <strong>10% law</strong> · <strong>energy flow UNIDIRECTIONAL</strong>, nutrients cycle · <strong>biomagnification of NON-biodegradable</strong> substances, DDT and mercury</p><p><strong>POLLUTION</strong> <strong>high BOD = high organic pollution</strong> · <strong>eutrophication</strong>: nitrates and phosphates » algal bloom » <strong>oxygen depletion</strong> » fish die · acid rain from <strong>sulphur and nitrogen</strong> oxides</p><p><strong>OCEAN ACIDIFICATION</strong> dissolved <strong>CO₂</strong> » carbonic acid » pH falls from about <strong>8.2 to 8.1</strong> · <strong>seawater is STILL ALKALINE</strong> — acidification means moving <strong>towards</strong> acidic · harms <strong>calcifying</strong> organisms: corals, molluscs, shelled plankton</p><p><strong>OZONE</strong> stratospheric ozone absorbs <strong>UV</strong> and is good; tropospheric is a pollutant · depleted by <strong>CFCs</strong> · hole over <strong>Antarctica</strong></p><p><strong>AGREEMENTS</strong> <strong>Ramsar 1971 wetlands</strong> · CITES 1973 species trade · <strong>Montreal 1987 OZONE</strong> · UNFCCC and CBD 1992 · Kyoto 1997 · <strong>Paris 2015 climate</strong> · <strong>Project Tiger 1973</strong></p></aside><h2 id="9-five-minute-wall-sheet">9. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F9.4</p><p><strong>EYE: S-C-R OUTSIDE IN — SCLERA, CHOROID, RETINA</strong> · rods dim, cones colour</p><p><strong>ARTERIES AWAY, VEINS TOWARDS</strong> · pulmonary artery is the deoxygenated exception</p><p><strong>O NEGATIVE DONOR · AB POSITIVE RECIPIENT</strong></p><p><strong>CEREBELLUM = BALANCE · MEDULLA = HEARTBEAT · REFLEX = SPINAL CORD</strong></p><p><strong>PITUITARY = MASTER · IODINE » GOITRE · INSULIN FROM PANCREAS · LIVER LARGEST GLAND</strong></p><p><strong>A D E K ARE FAT-SOLUBLE</strong></p><p><strong>MALARIA IS PROTOZOAN · DENGUE IS VIRAL</strong> · Anopheles malaria, Aedes dengue, Culex filariasis</p><p><strong>PROP = BANYAN (down from branches) · PNEUMATOPHORE = MANGROVE (up from mud) · STILT = SUGARCANE</strong></p><p><strong>MITOSIS 2 IDENTICAL · MEIOSIS 4 HALVED · PLANT CELL HAS A CELL WALL</strong></p><p><strong>10% LAW · ENERGY UNIDIRECTIONAL, NUTRIENTS CYCLE</strong></p><p><strong>HIGH BOD = DIRTY WATER · EUTROPHICATION KILLS BY OXYGEN DEPLETION</strong></p><p><strong>OCEAN ACIDIFICATION = CO₂ » CARBONIC ACID » pH 8.2 TO 8.1 · STILL ALKALINE · HARMS CALCIFIERS</strong></p><p><strong>MONTREAL 1987 = OZONE · KYOTO 1997 &amp; PARIS 2015 = CLIMATE · RAMSAR 1971 = WETLANDS</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> Ocean acidification is a good example of a term that misleads by sounding absolute: seawater is still alkaline at about pH 8.1, but the shift of roughly 0.1 units since pre-industrial times represents about a thirty per cent rise in hydrogen ion concentration, which is already enough to impair shell formation in calcifying organisms.</p></aside><aside class="cal action"><p class="cal-h">ACTION · THE SCIENCE HALF OF MODULE 9 IS COMPLETE</p><p>All <strong>ten</strong> of the 2023 General Science items are now covered across F9.1 to F9.4.</p><p><strong>Next: F9.5 to F9.7 on Computer Applications</strong> — and these switch back to a genuine <strong>Foundation layer</strong>, not a recall layer. Blueprint §4.4 is explicit that number-system conversions are easy but the C, HTML and operating-system items <em>"need actual targeted preparation. Budget real hours there, not zero."</em></p><p>Before you move on, state without looking: the three layers of the eyeball in order; which mosquito carries dengue; where prop roots grow from and in which plant; what causes ocean acidification and whether seawater is now acidic; and which protocol concerns ozone.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F9.4
+  &middot; v1.0</footer>
+</body>
+</html>

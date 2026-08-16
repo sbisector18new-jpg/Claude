@@ -29,21 +29,28 @@ The HTML is the same content for reading on screen; it reflows for phone and tab
 | **F6.7** | Auditing — concepts, scope, types, audit report | [PDF, 29 pp](../pdf/module-06/F6.7-auditing.pdf) | [HTML](module-06/F6.7-auditing.html) | 30 |
 | **F6.8** | Statistics — central tendency, dispersion, correlation | [PDF, 21 pp](../pdf/module-06/F6.8-statistics.pdf) | [HTML](module-06/F6.8-statistics.html) | 25 |
 
-## Module 9 — General Science & Computer Applications · in progress
+## Module 9 — General Science & Computer Applications · complete
 
 | Ch | Topic | PDF | On screen | Q |
 |---|---|---|---|---:|
 | **F9.1** | Physics I — units, kinematics, motion, energy, fluids | [PDF, 22 pp](../pdf/module-09/F9.1-physics-mechanics.pdf) | [HTML](module-09/F9.1-physics-mechanics.html) | 30 |
 | **F9.2** | Physics II — optics, heat, sound, electricity, modern physics | [PDF, 26 pp](../pdf/module-09/F9.2-physics-optics-electricity.pdf) | [HTML](module-09/F9.2-physics-optics-electricity.html) | 30 |
-| F9.3 | Chemistry | — | *next* | — |
-| F9.4 | Biology and environment | — | *planned* | — |
-| F9.5 | Computer fundamentals and number systems | — | *planned* | — |
-| F9.6 | Operating systems, software and programming | — | *planned* | — |
-| F9.7 | Networking, internet and HTML | — | *planned* | — |
+| **F9.3** | Chemistry — atoms, pH, soaps, enthalpy, everyday substances | [PDF, 26 pp](../pdf/module-09/F9.3-chemistry.pdf) | [HTML](module-09/F9.3-chemistry.html) | 30 |
+| **F9.4** | Biology and environment | [PDF, 25 pp](../pdf/module-09/F9.4-biology-environment.pdf) | [HTML](module-09/F9.4-biology-environment.html) | 30 |
+| **F9.5** | Computer fundamentals, memory and number systems | [PDF, 23 pp](../pdf/module-09/F9.5-computer-fundamentals.pdf) | [HTML](module-09/F9.5-computer-fundamentals.html) | 30 |
+| **F9.6** | Operating systems, software and programming | [PDF, 22 pp](../pdf/module-09/F9.6-os-software-programming.pdf) | [HTML](module-09/F9.6-os-software-programming.html) | 25 |
+| **F9.7** | Networking, the internet and HTML | [PDF, 24 pp](../pdf/module-09/F9.7-networking-internet-html.pdf) | [HTML](module-09/F9.7-networking-internet-html.html) | 25 |
 
-F9.1 and F9.2 are a **recall layer**, not a teaching layer — the blueprint is explicit that the physics
-half of this module is recall rather than new learning for a Mechanical Engineer. Read the tables, then
-go to the questions. Budget two days each, not four.
+**168 pages, 200 questions — and all twenty of the 2023 science and computer items are covered.** Every
+known previous question from this block maps to a section.
+
+**Two different layers inside one module.** F9.1 to F9.4 are a **recall layer** — physics and chemistry
+are your undergraduate foundation, so they are tables and practice rather than instruction. F9.5 to F9.7
+are a genuine **Foundation layer**, because the blueprint warns that the C, HTML and operating-system
+items need real preparation.
+
+The cheapest marks in the module: **number-system conversions** (F9.5 §5) and the **mesh-link formula**
+(F9.7 §2.2). Both are deterministic — once the rule is known they cannot be got wrong.
 
 ## Module 7 — Insurance · complete
 
@@ -72,20 +79,20 @@ If your time collapses, these are the sections that carry the most marks:
 The **[Master Content Register](../MASTER_CONTENT_REGISTER.md)** is the source of truth. Read it first if
 you are resuming after a break.
 
-- **Complete:** Modules 1, 2, 3, 5, 6, 7 — 53 chapters, 130 hours, 142.5 planning marks
-- **Remaining:** Modules 4, 8, 9, 10, 11 — 94 hours, 157.5 planning marks
+- **Complete:** Modules 1, 2, 3, 5, 6, 7, 9 — 60 chapters, 152 hours, **185.0 planning marks**
+- **Remaining:** Modules 4, 8, 10, 11 — 72 hours, 115.0 planning marks
 
 ## What to do next
 
-1. **Module 9** — five chapters remaining: F9.3 Chemistry, F9.4 Biology, then F9.5 to F9.7 on Computer
-   Applications
+1. **Module 8 — General English, Quantitative Aptitude and Reasoning.** **80 of the 115 remaining marks
+   are here** — the largest single block in the paper. It runs as **daily practice**, not as a block
+   reached in sequence
 2. **Module 4** — Economy, lean, 8 hours
 3. **Module 10** — Integrated Current Affairs
 4. **Module 11** — PYQ analysis, five full mocks, final revision
 
-**Module 8** (English, Quant and Reasoning) is **80 planning marks — the largest single block in the
-paper** — and runs *daily* in the evening slot rather than as a block of its own. If it is not already
-running, start it now.
+Note that Module 8 already overlaps what you have done: the **statistics** in F6.8 and the
+**mensuration and arithmetic** behind F9.1's numericals are part of the same block.
 
 ## Rebuilding
 
