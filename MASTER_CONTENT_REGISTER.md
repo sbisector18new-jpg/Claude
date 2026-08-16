@@ -35,7 +35,7 @@ Arithmetic closes against Blueprint §12 on all three columns (44+30=74 chapters
 | 5 | History, Freedom Movement, Art & Culture | 10 | 22 | 25.0 |
 
 Also complete: **Module 0 Master Blueprint v1.0**, **Foundation F1.1 v1.0** (Constitutional
-Foundations).
+Foundations), **Foundation F6.1 v1.0** (Accounting Fundamentals — in `src/`, see §8).
 
 > **One item still unconfirmed.** Whether the **Foundation layer** (the F-prefixed, teach-from-zero
 > track) was carried beyond **F1.1**. F1.1 §12 closes by naming F1.2 and F1.3 as next. If Foundation
@@ -52,7 +52,7 @@ Listed in recommended study order (Blueprint §10.2), not module-number order.
 
 | Order | M | Module | Chapters | Hours | Marks | Priority |
 |---:|---|---|---:|---:|---:|---|
-| 1 | 6 + 7 | Accounting, Auditing & Statistics + Insurance | 8 | 30 | ~33 | ★★★★☆ |
+| 1 | 6 + 7 | Accounting, Auditing & Statistics + Insurance | **7 of 8** | 30 | ~33 | ★★★★☆ |
 | 2 | 9 | General Science & Computer Applications | 7 | 22 | 42.5 | ★★★★★ |
 | 3 | 4 | Indian Economy + Population/Development/Globalisation | 5 | 8 | 15.0 | ★★★☆☆ |
 | 4 | 10 | Integrated Current Affairs | 2 | 12 | 20.0 | ★★★★☆ |
@@ -118,12 +118,61 @@ sacrifice Module 4 depth first (lowest certainty, 15 marks).
 
 ---
 
-## 7. Open blocker — output format
+### 3.1 Module 6 chapter plan
 
-Nothing from the earlier sittings is present in this repository: no `src/`, no `pyq/`, no chapter
-markup. Modules 1, 2, 3 and 5 exist as completed work, but not *here*.
+| Ch | Topic | Status |
+|---|---|---|
+| **F6.1** | Accounting fundamentals: equation, double entry, books, trial balance, error types | **Complete v1.0** |
+| F6.2 | Concepts, conventions, accounting standards; capital vs revenue | Next |
+| F6.3 | Final accounts: trading, P&L, balance sheet; provisions and reserves | Planned |
+| F6.4 | Depreciation, goodwill, inventory valuation | Planned |
+| F6.5 | Ratio analysis and cash flow | Planned |
+| F6.6 | Bills of exchange; share capital | Planned |
+| F6.7 | Auditing concepts, scope, types, audit report | Planned |
+| F6.8 | Statistics: mean, median, mode, dispersion, standard deviation | Planned |
+| F7.1 | Insurance (compact): principles, indemnity, subrogation, types, role in social security | Planned |
 
-**PDF generation is currently not possible in this environment.** Verified this sitting:
+F6.1 deliberately carries the heaviest load because everything after it depends on the equation and
+the debit/credit rules. Trial balance and error types sit in F6.1 rather than later because Blueprint
+§7.1 names them in the top high-yield list.
+
+---
+
+## 8. Build pipeline
+
+Established this sitting. `src/` is now real, and the source-of-truth convention in §6 is live.
+
+| Path | Role |
+|---|---|
+| `src/**/*.md` | **Master manuscript.** Markdown with front matter and `:::` callout blocks |
+| `build/build.py` | Converter. **Python 3 stdlib only** — no third-party packages |
+| `build/style.css` | Typography, callout variants, A4 print rules |
+| `docs/**/*.html` | **Generated. Never edit by hand.** |
+| `docs/index.html` | Index of built chapters, with print-to-PDF instructions |
+
+Rebuild everything with `python3 build/build.py`, or one file with
+`python3 build/build.py src/module-06/F6.1-accounting-fundamentals.md`.
+
+**Getting a PDF:** open the HTML and print to PDF from the browser (Ctrl/Cmd-P → Save as PDF). Page
+numbers come from the browser's own print footer. Callouts, tables and question blocks are set
+`break-inside: avoid` so teaching units do not split across pages.
+
+---
+
+## 9. Open blocker — output format
+
+**Partly resolved.** `src/` now exists and F6.1 is in it, so new work is safe. What remains
+outstanding is the **back catalogue**: Modules 1, 2, 3 and 5 are complete as study material but are
+not in this repository, and neither is `pyq/`. Consequences that still stand:
+
+1. A consolidated Module 1/2/3/5 PDF, or the final master book, **cannot be built** — the sources
+   are missing, not merely unformatted.
+2. A v1.1 revision of any of those chapters would mean re-authoring rather than editing.
+3. Module 11 needs the 2015 and 2023 papers in `pyq/`; they are not here.
+
+To close this, re-supply those chapters and I will bring them into `src/` in the same format.
+
+**PDF generation is not possible in this environment.** Verified this sitting:
 
 - No `pandoc`, `weasyprint`, `wkhtmltopdf`, `xelatex`, `pdflatex`, `latexmk`
 - No `reportlab`, `weasyprint` or `markdown` Python packages
