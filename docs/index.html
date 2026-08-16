@@ -173,6 +173,32 @@ li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
 .toc-2 { font-weight: 700; }
 .toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
 
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
 /* ---------------------------------------------------------- tables */
 
 .tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
@@ -263,18 +289,10 @@ tbody tr:nth-child(even) { background: #f7f9fc; }
   body { font-size: 10.2pt; line-height: 1.48; }
   main { max-width: none; padding: 0; }
 
-  .running {
-    position: fixed; top: 0; left: 0; right: 0;
-    border-bottom: .5pt solid var(--line);
-    padding: 2mm 0 1mm;
-    font-size: 7.4pt;
-  }
-  .foot {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    max-width: none; padding: 1mm 0 0;
-    border-top: .5pt solid var(--line);
-    font-size: 7.4pt;
-  }
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
 
   .doc-t { font-size: 26pt; }
   h2 { font-size: 15pt; margin-top: 16pt; }
@@ -307,7 +325,7 @@ tbody tr:nth-child(even) { background: #f7f9fc; }
   <span class="ver">v1.0</span></div>
 <main>
 <header class="title"><p class="eyebrow">UPSC EPFO · ASSISTANT PROVIDENT FUND COMMISSIONER · RECRUITMENT TEST</p><h1 class="doc-t">APFC RT Manual</h1><p class="doc-s">Built documents — open any chapter, then print to PDF from your browser</p><div class="rule"></div><table class="meta"><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
-<aside class="cal action"><p class="cal-h">ACTION · HOW TO GET A PDF</p><p>Open a chapter below, then press <strong>Ctrl-P</strong> (Windows) or <strong>Cmd-P</strong> (Mac) and choose <strong>Save as PDF</strong>. The stylesheet is built for A4 and keeps callout boxes, tables and question blocks from splitting across pages.</p><p>On a phone or tablet, use the browser's <strong>Share → Print → Save as PDF</strong>. The layout reflows for narrow screens, so it stays readable without pinch-zooming.</p></aside><h2 id="available-now">Available now</h2><div class="tw"><table><thead><tr><th style="text-align:left">Module</th><th style="text-align:left">Chapter</th><th style="text-align:left">Topic</th><th style="text-align:left">Version</th></tr></thead><tbody><tr><td style="text-align:left">6</td><td style="text-align:left"><a href="module-06/F6.1-accounting-fundamentals.html">F6.1</a></td><td style="text-align:left">Accounting fundamentals — equation, double entry, books, trial balance and error types</td><td style="text-align:left">v1.0</td></tr></tbody></table></div><h2 id="project-state">Project state</h2><p>The <strong><a href="../MASTER_CONTENT_REGISTER.md">Master Content Register</a></strong> is the source of truth for what is complete and what remains. Read it first if you are resuming after a break.</p><ul><li><strong>Complete:</strong> Modules 1, 2, 3, 5 — 44 chapters, 100 hours, 109.5 planning marks</li><li><strong>Remaining:</strong> Modules 4, 6, 7, 8, 9, 10, 11 — 124 hours, 190.5 planning marks</li></ul><h2 id="study-order-for-what-remains">Study order for what remains</h2><ol><li><strong>Module 6 + 7</strong> — Accounting, Auditing, Statistics, Insurance ← in progress</li><li><strong>Module 9</strong> — General Science &amp; Computer Applications</li><li><strong>Module 4</strong> — Indian Economy, Population, Development, Globalisation</li><li><strong>Module 10</strong> — Integrated Current Affairs</li><li><strong>Module 11</strong> — PYQ analysis, five full mocks, final revision</li></ol><p><strong>Module 8</strong> (General English, Quantitative Aptitude and Reasoning) runs <em>daily</em> alongside all of the above, in the evening 30-minute slot — never as a block of its own. It is 80 planning marks, the largest single block in the paper.</p><h2 id="rebuilding">Rebuilding</h2><p>``<code> python3 build/build.py </code>``</p><p>Sources live in <code>src/</code> as Markdown and are the master manuscript. Everything in <code>docs/</code> is generated — never edit it by hand. The build needs only Python 3 and no third-party packages.</p>
+<aside class="cal action"><p class="cal-h">ACTION · PDFs ARE BUILT AND READY</p><p>Every chapter is generated as a <strong>print-quality A4 PDF</strong> in the <code>pdf/</code> folder, with a running header, page numbering and no page breaks through the middle of a callout, table or question block. Download those directly — that is the version to read and print.</p><p>The HTML below is the same content for reading on screen; it reflows for phone and tablet, and you can still print it from the browser (Ctrl/Cmd-P) if you prefer.</p></aside><h2 id="available-now">Available now</h2><div class="tw"><table><thead><tr><th style="text-align:left">Module</th><th style="text-align:left">Chapter</th><th style="text-align:left">Topic</th><th style="text-align:left">PDF</th><th style="text-align:left">On screen</th><th style="text-align:left">Version</th></tr></thead><tbody><tr><td style="text-align:left">6</td><td style="text-align:left">F6.1</td><td style="text-align:left">Accounting fundamentals — equation, double entry, books, trial balance and error types</td><td style="text-align:left"><a href="../pdf/module-06/F6.1-accounting-fundamentals.pdf">PDF, 39 pp</a></td><td style="text-align:left"><a href="module-06/F6.1-accounting-fundamentals.html">HTML</a></td><td style="text-align:left">v1.0</td></tr></tbody></table></div><h2 id="project-state">Project state</h2><p>The <strong><a href="../MASTER_CONTENT_REGISTER.md">Master Content Register</a></strong> is the source of truth for what is complete and what remains. Read it first if you are resuming after a break.</p><ul><li><strong>Complete:</strong> Modules 1, 2, 3, 5 — 44 chapters, 100 hours, 109.5 planning marks</li><li><strong>Remaining:</strong> Modules 4, 6, 7, 8, 9, 10, 11 — 124 hours, 190.5 planning marks</li></ul><h2 id="study-order-for-what-remains">Study order for what remains</h2><ol><li><strong>Module 6 + 7</strong> — Accounting, Auditing, Statistics, Insurance &#171; in progress</li><li><strong>Module 9</strong> — General Science &amp; Computer Applications</li><li><strong>Module 4</strong> — Indian Economy, Population, Development, Globalisation</li><li><strong>Module 10</strong> — Integrated Current Affairs</li><li><strong>Module 11</strong> — PYQ analysis, five full mocks, final revision</li></ol><p><strong>Module 8</strong> (General English, Quantitative Aptitude and Reasoning) runs <em>daily</em> alongside all of the above, in the evening 30-minute slot — never as a block of its own. It is 80 planning marks, the largest single block in the paper.</p><h2 id="rebuilding">Rebuilding</h2><p>``<code> python3 build/build.py                        # src/*.md  -&gt;  docs/*.html env -u NODE_OPTIONS node build/pdf.mjs        # docs/*.html -&gt; pdf/*.pdf </code>``</p><p>Sources live in <code>src/</code> as Markdown and are the master manuscript. Everything in <code>docs/</code> and <code>pdf/</code> is generated — never edit it by hand.</p>
 </main>
 <footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
   &middot; 

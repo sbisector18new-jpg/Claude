@@ -166,6 +166,32 @@ li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
 .toc-2 { font-weight: 700; }
 .toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
 
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
 /* ---------------------------------------------------------- tables */
 
 .tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
@@ -256,18 +282,10 @@ tbody tr:nth-child(even) { background: #f7f9fc; }
   body { font-size: 10.2pt; line-height: 1.48; }
   main { max-width: none; padding: 0; }
 
-  .running {
-    position: fixed; top: 0; left: 0; right: 0;
-    border-bottom: .5pt solid var(--line);
-    padding: 2mm 0 1mm;
-    font-size: 7.4pt;
-  }
-  .foot {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    max-width: none; padding: 1mm 0 0;
-    border-top: .5pt solid var(--line);
-    font-size: 7.4pt;
-  }
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
 
   .doc-t { font-size: 26pt; }
   h2 { font-size: 15pt; margin-top: 16pt; }

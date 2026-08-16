@@ -45,6 +45,37 @@ def _slug(text):
     return re.sub(r"-{2,}", "-", s) or "section"
 
 
+# The only font family installed in this environment is Noto Sans, which has no
+# glyph for these codepoints - they would print as blank boxes. The Markdown
+# sources keep the proper characters (they read correctly everywhere else); the
+# substitution happens only on the way out to HTML/PDF.
+GLYPHS = {
+    "\u2192": "&#187;",        # -> becomes a right guillemet
+    "\u2190": "&#171;",        # <- becomes a left guillemet
+    "\u2191": "(+)",           # up arrow
+    "\u2193": "(&#8722;)",     # down arrow, using the available minus sign
+    "\u2282": "part of",       # subset
+    "\u2248": "about",         # approximately
+    "\u2260": "is not",        # not equal
+}
+
+# Star ratings are drawn as CSS shapes rather than substituted, because the
+# priority system is load-bearing and needs to stay visually scannable.
+STAR_RUN = re.compile(r"[\u2605\u2606]{2,5}")
+
+
+def _stars(text):
+    def rep(m):
+        run = m.group(0)
+        on = run.count("\u2605")
+        cells = "".join(
+            f'<i class="{"on" if i < on else "off"}"></i>' for i in range(len(run))
+        )
+        return (f'<span class="rate" role="img" '
+                f'aria-label="priority {on} of {len(run)}">{cells}</span>')
+    return STAR_RUN.sub(rep, text)
+
+
 def inline(text):
     """Inline formatting. Code spans are protected before other rules run."""
     stash = []
@@ -66,6 +97,11 @@ def inline(text):
     text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
     text = re.sub(r"(?<![\w*])\*([^*\n]+?)\*(?![\w*])", r"<em>\1</em>", text)
     text = text.replace(" -- ", " &mdash; ")
+
+    # glyph fallbacks last, so code spans (already stashed) keep their originals
+    text = _stars(text)
+    for ch, repl in GLYPHS.items():
+        text = text.replace(ch, repl)
 
     for i, frag in enumerate(stash):
         text = text.replace(f"\x00{i}\x00", frag)

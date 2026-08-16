@@ -147,19 +147,63 @@ Established this sitting. `src/` is now real, and the source-of-truth convention
 | `src/**/*.md` | **Master manuscript.** Markdown with front matter and `:::` callout blocks |
 | `build/build.py` | Converter. **Python 3 stdlib only** — no third-party packages |
 | `build/style.css` | Typography, callout variants, A4 print rules |
+| `build/pdf.mjs` | **PDF renderer.** Drives the bundled Chrome over the DevTools Protocol. No npm packages |
+| `build/shot.mjs` | Screenshot helper, for verifying layout and glyph rendering |
 | `docs/**/*.html` | **Generated. Never edit by hand.** |
-| `docs/index.html` | Index of built chapters, with print-to-PDF instructions |
+| `pdf/**/*.pdf` | **Generated.** A4, running header, "Page X of Y" footer |
 
-Rebuild everything with `python3 build/build.py`, or one file with
-`python3 build/build.py src/module-06/F6.1-accounting-fundamentals.md`.
+```sh
+python3 build/build.py                     # src/*.md   -> docs/*.html
+env -u NODE_OPTIONS node build/pdf.mjs     # docs/*.html -> pdf/*.pdf
+```
 
-**Getting a PDF:** open the HTML and print to PDF from the browser (Ctrl/Cmd-P → Save as PDF). Page
-numbers come from the browser's own print footer. Callouts, tables and question blocks are set
-`break-inside: avoid` so teaching units do not split across pages.
+`env -u NODE_OPTIONS` is required: the environment sets
+`NODE_OPTIONS=--require /opt/amazon/kiro-agent/proxy-bootstrap.js`, and that file does not exist, so
+every plain `node` invocation dies with `MODULE_NOT_FOUND`.
+
+### 8.1 How PDF generation works, and why it took a detour
+
+There is **no** PDF toolchain here — no `pandoc`, `weasyprint`, `wkhtmltopdf` or LaTeX — and PyPI is
+blocked (`403` through the proxy), so `reportlab` and `weasyprint` cannot be installed. My first
+answer was that PDFs were impossible and the user should print from a browser. That was wrong.
+
+**Chrome for Testing 151 is installed** at `/usr/local/bin/chrome`, and Node 22 ships a global
+`WebSocket`. So `build/pdf.mjs` launches Chrome headless with a debugging port and calls
+`Page.printToPDF` over CDP. This renders the real stylesheet and, unlike `chrome --print-to-pdf`,
+supports `headerTemplate`/`footerTemplate` — which is where the page numbering comes from.
+
+`@playwright/mcp` is installed but the Playwright **library** is not, so the CDP route is necessary
+rather than merely preferred.
+
+### 8.2 The font problem, and the fix
+
+The only font family installed is **Noto Sans** (every weight and width, no other family). It has no
+glyph for several characters the manuscript uses, so they printed as blank boxes:
+
+| Character | Count in sources | Handling |
+|---|---:|---|
+| ★ ☆ priority ratings | 85 | **Drawn in CSS** with `clip-path`, so they stay real stars |
+| → ← | 35 | Substituted with `»` `«` |
+| ↑ ↓ | 29 | Substituted with `(+)` `(−)` |
+| ⊂ ≈ ≠ | 5 | Substituted with words |
+
+Substitution happens in `build.py` on the way out to HTML, so **the Markdown sources keep the proper
+characters**. Verified: zero unrenderable codepoints remain in `docs/`.
+
+`₹`, `—`, `·`, `§`, `−`, `…`, `÷` are all covered by Noto Sans and pass through untouched.
+
+There is **no serif font** on the system, so headings fall back to Noto Sans rather than the serif in
+the original PDFs. Cosmetic only, and it corrects itself on any machine with a serif font installed.
+
+### 8.3 Known limitation
+
+The table of contents has no printed page numbers — Chrome does not support CSS paged-media counters.
+The TOC entries remain **clickable internal links** inside the PDF, and every page carries
+"Page X of Y" in the footer.
 
 ---
 
-## 9. Open blocker — output format
+## 9. Open blocker — the back catalogue
 
 **Partly resolved.** `src/` now exists and F6.1 is in it, so new work is safe. What remains
 outstanding is the **back catalogue**: Modules 1, 2, 3 and 5 are complete as study material but are
@@ -172,14 +216,4 @@ not in this repository, and neither is `pyq/`. Consequences that still stand:
 
 To close this, re-supply those chapters and I will bring them into `src/` in the same format.
 
-**PDF generation is not possible in this environment.** Verified this sitting:
-
-- No `pandoc`, `weasyprint`, `wkhtmltopdf`, `xelatex`, `pdflatex`, `latexmk`
-- No `reportlab`, `weasyprint` or `markdown` Python packages
-- Network is `INTEGRATIONS_ONLY`; PyPI is blocked (`403 Forbidden` via proxy), so they cannot be
-  installed
-
-**Therefore the deliverable format changes:** chapters land as Markdown in `src/` plus a
-self-contained styled HTML build that reproduces the manual's typography and prints to PDF from any
-browser (Ctrl/Cmd-P → Save as PDF). This keeps the source-of-truth convention in §6 intact and keeps
-the material readable on desktop, mobile and tablet. Revisit if PDF tooling becomes available.
+**Output format is no longer a blocker** — see §8.1. PDFs are generated automatically from `src/`.

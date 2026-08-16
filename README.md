@@ -12,8 +12,9 @@ coverage.
 
 | | |
 |---|---|
+| **Read the manual** | [`pdf/`](pdf/) — print-quality A4 PDFs, page-numbered. This is the version to study from |
 | **Project state** | [`MASTER_CONTENT_REGISTER.md`](MASTER_CONTENT_REGISTER.md) — what is complete, what remains, study order, schedule |
-| **Built chapters** | [`docs/index.html`](docs/index.html) — open in a browser, then print to PDF |
+| **On screen** | [`docs/index.html`](docs/index.html) — same content, reflows for phone and tablet |
 | **Manuscript** | [`src/`](src/) — Markdown sources, the source of truth |
 
 ## Where the project stands
@@ -37,16 +38,23 @@ note is only compressible because it assumes a foundation.
 ## Building
 
 ```sh
-python3 build/build.py                                          # everything
-python3 build/build.py src/module-06/F6.1-accounting-fundamentals.md   # one file
+python3 build/build.py                     # src/*.md    ->  docs/*.html
+env -u NODE_OPTIONS node build/pdf.mjs     # docs/*.html ->  pdf/*.pdf
 ```
 
-Python 3 stdlib only, no third-party packages. `docs/` is generated output — never edit it by hand.
+Both stages need no third-party packages: the HTML build is Python 3 stdlib only, and the PDF build
+drives the bundled Chrome over the DevTools Protocol using Node 22's built-in WebSocket. `docs/` and
+`pdf/` are generated — never edit them by hand.
 
-**To get a PDF:** open a built HTML file and print to PDF from the browser (Ctrl/Cmd-P → Save as
-PDF). This sandbox has no PDF toolchain and cannot reach PyPI, so browser printing is the delivery
-route; the stylesheet is built for A4 and keeps callouts, tables and question blocks from splitting
-across pages.
+`env -u NODE_OPTIONS` is required because the environment presets a `--require` hook that does not
+exist on disk, which otherwise kills every `node` invocation.
+
+PDFs are A4 with a running header, a **"Page X of Y"** footer, and `break-inside: avoid` on callouts,
+tables and question blocks so no teaching unit splits across a page boundary.
+
+> **Font note.** The only font installed here is Noto Sans, which lacks ★ → ↑ ↓ ⊂ ≈ ≠. The build
+> substitutes those on the way out to HTML, and draws the star ratings as CSS shapes, so the Markdown
+> sources keep the proper characters. See the register §8.2.
 
 ## Evidence labels
 

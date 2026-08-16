@@ -8,20 +8,20 @@ stage: Recruitment Test (RT)
 running: APFC RT Manual · Index
 ---
 
-::: action | ACTION · HOW TO GET A PDF
-Open a chapter below, then press **Ctrl-P** (Windows) or **Cmd-P** (Mac) and choose **Save as PDF**.
-The stylesheet is built for A4 and keeps callout boxes, tables and question blocks from splitting
-across pages.
+::: action | ACTION · PDFs ARE BUILT AND READY
+Every chapter is generated as a **print-quality A4 PDF** in the `pdf/` folder, with a running header,
+page numbering and no page breaks through the middle of a callout, table or question block. Download
+those directly — that is the version to read and print.
 
-On a phone or tablet, use the browser's **Share → Print → Save as PDF**. The layout reflows for
-narrow screens, so it stays readable without pinch-zooming.
+The HTML below is the same content for reading on screen; it reflows for phone and tablet, and you
+can still print it from the browser (Ctrl/Cmd-P) if you prefer.
 :::
 
 ## Available now
 
-| Module | Chapter | Topic | Version |
-|---|---|---|---|
-| 6 | [F6.1](module-06/F6.1-accounting-fundamentals.html) | Accounting fundamentals — equation, double entry, books, trial balance and error types | v1.0 |
+| Module | Chapter | Topic | PDF | On screen | Version |
+|---|---|---|---|---|---|
+| 6 | F6.1 | Accounting fundamentals — equation, double entry, books, trial balance and error types | [PDF, 39 pp](../pdf/module-06/F6.1-accounting-fundamentals.pdf) | [HTML](module-06/F6.1-accounting-fundamentals.html) | v1.0 |
 
 ## Project state
 
@@ -46,8 +46,9 @@ largest single block in the paper.
 ## Rebuilding
 
 ```
-python3 build/build.py
+python3 build/build.py                        # src/*.md  ->  docs/*.html
+env -u NODE_OPTIONS node build/pdf.mjs        # docs/*.html -> pdf/*.pdf
 ```
 
-Sources live in `src/` as Markdown and are the master manuscript. Everything in `docs/` is generated —
-never edit it by hand. The build needs only Python 3 and no third-party packages.
+Sources live in `src/` as Markdown and are the master manuscript. Everything in `docs/` and `pdf/` is
+generated — never edit it by hand.
