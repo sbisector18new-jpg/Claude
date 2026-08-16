@@ -178,6 +178,45 @@ are easy, but the C, HTML and operating-system items *"need actual targeted prep
 hours there, not zero."* F9.5 to F9.7 will therefore be written as a genuine Foundation layer, not a
 recall layer.
 
+### 3.3 Module 8 chapter plan — in progress
+
+**80 planning marks — the largest single block in the paper.** Blueprint §10.2 item 9 requires it to run
+as **daily practice from week 1**, never as a block. It is therefore packaged as a **scheduler plus
+chapters**, not chapters alone: a module with no obvious moment to start is a module that gets postponed.
+
+Weighting follows the observed 2023 shape (PYQ-DERIVED, Blueprint §4.4): **English 20 questions = 10
+vocabulary + 5 para jumbles + 5 comprehension on one passage**; **Quant 15 questions** with only **ONE
+pure reasoning question** in the whole paper.
+
+| Ch | Topic | 2023 mapping | Status |
+|---|---|---|---|
+| **F8.0** | **The Daily Drill Programme** — the 12-week dated calendar | The scheduler, not a chapter | **Complete v1.0** — 15 pp |
+| **F8.1** | Vocabulary in context | **10 of 20 English questions** | **Complete v1.0** — 29 pp, 40 Q |
+| **F8.2** | Para jumbles and sentence rearrangement | 5 of 20 | **Complete v1.0** — 17 pp, 20 Q |
+| F8.3 | Reading comprehension | 5 of 20, all on one passage | **Next** — target 20 Q, 4 passages |
+| F8.4 | Grammar essentials and error spotting | Supporting format | Planned — target 30 Q |
+| F8.5 | Arithmetic: ratio, percentage, average, ages, mixtures, time and work | Ratio and ages; mixtures; mean of weights | Planned — target 35 Q |
+| F8.6 | Mensuration and geometry | Hemisphere; melted disc; circle geometry; heights and distances | Planned — target 30 Q |
+| F8.7 | Algebra, probability and the number system | Quadratic roots; probability | Planned — target 30 Q |
+| F8.8 | Data interpretation, and reasoning essentials | 3 DI questions; the single reasoning question | Planned — target 25 Q |
+
+::: important | IMPORTANT · THE REASONING DECISION, RECORDED SO IT IS NOT REVERSED
+Blueprint §4.4 records that the 2023 paper contained **only ONE pure reasoning question** out of 120.
+
+Reasoning is therefore deliberately confined to **part of one chapter (F8.8)**, not given a third of the
+module, despite "General Mental Ability" appearing in the official syllabus and despite every commercial
+book for this exam devoting hundreds of pages to syllogisms, blood relations and seating arrangements.
+
+On the available evidence that material is a very poor use of hours. **If a future session is tempted to
+expand reasoning, this is the reason not to** — unless a new paper provides contrary evidence, in which
+case update the Blueprint first.
+:::
+
+**F8.0's calendar is the deliverable that makes the rest work.** It assigns specific question ranges to
+each of 72 study days, drawing on the banks in Modules 6, 7, 8 and 9. Its §0 states plainly that it
+schedules existing questions rather than containing 72 days of fresh ones — weeks 1–6 use the chapter
+banks, weeks 7–12 use second-pass and error-log re-drilling.
+
 ---
 
 ## 8. Build pipeline
