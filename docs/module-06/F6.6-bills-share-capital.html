@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bills of Exchange and Share Capital</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F6.6 · Bills &amp; Share Capital
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · FOUNDATION LAYER · MODULE 6 · CHAPTER F6.6</p><h1 class="doc-t">Bills of Exchange and Share Capital</h1><p class="doc-s">Chapter F6.6 — Two Sets of Instruments, Two Comparison Tables, and the Statutory Numbers That Get Asked</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 6 — Accounting, Auditing &amp; Statistics</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F6.6</td></tr><tr><td class="k">Topic</td><td class="v">Official syllabus head 5 — Accounting and Auditing</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal note"><p class="cal-h">NOTE · HOW TO USE THIS DOCUMENT</p><p>This chapter is <strong><span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></strong> and is built as <strong>definitions plus two comparison tables</strong>, because that is what the paper asks. Bills of exchange and share capital are <em>instruments</em>, not concepts — there is no underlying idea to derive them from, so the honest approach is to learn the distinctions cleanly and not pretend otherwise.</p><p>Two comparison tables carry most of the marks: <strong>bill versus promissory note</strong> (§2.2) and <strong>share versus debenture</strong> (§5.4). If your time collapses, learn those two tables, the days of grace, and the statutory prohibitions in §4.2.</p><p>You know bills professionally — SBI discounts them. §3.2 uses that, and it also closes a loop back to F6.3's contingent liabilities.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-the-three-definitions"><span class="toc-t">1. Session 1 — The Three Definitions <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#11-bill-of-exchange-section-5"><span class="toc-t">1.1 Bill of exchange — section 5</span></a><a class="toc-3" href="#12-promissory-note-section-4"><span class="toc-t">1.2 Promissory note — section 4</span></a><a class="toc-3" href="#13-cheque-section-6"><span class="toc-t">1.3 Cheque — section 6</span></a><a class="toc-2" href="#2-session-2-parties-and-the-central-comparison"><span class="toc-t">2. Session 2 — Parties, and the Central Comparison <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#21-the-parties"><span class="toc-t">2.1 The parties</span></a><a class="toc-3" href="#22-bill-of-exchange-versus-promissory-note"><span class="toc-t">2.2 Bill of exchange versus promissory note</span></a><a class="toc-2" href="#3-session-3-the-life-of-a-bill"><span class="toc-t">3. Session 3 — The Life of a Bill <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#31-maturity-and-days-of-grace"><span class="toc-t">3.1 Maturity and days of grace</span></a><a class="toc-3" href="#32-what-the-holder-can-do-with-a-bill"><span class="toc-t">3.2 What the holder can do with a bill</span></a><a class="toc-3" href="#33-dishonour-and-the-vocabulary-around-it"><span class="toc-t">3.3 Dishonour, and the vocabulary around it</span></a><a class="toc-2" href="#4-session-4-share-capital"><span class="toc-t">4. Session 4 — Share Capital <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#41-the-ladder"><span class="toc-t">4.1 The ladder</span></a><a class="toc-3" href="#42-the-statutory-rules-that-get-asked"><span class="toc-t">4.2 The statutory rules that get asked</span></a><a class="toc-2" href="#5-session-5-preference-shares-forfeiture-debentures"><span class="toc-t">5. Session 5 — Preference Shares, Forfeiture, Debentures <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#51-the-two-classes-of-share"><span class="toc-t">5.1 The two classes of share</span></a><a class="toc-3" href="#52-forfeiture-and-reissue"><span class="toc-t">5.2 Forfeiture and reissue</span></a><a class="toc-3" href="#53-other-ways-shares-are-issued-at-recognition-level"><span class="toc-t">5.3 Other ways shares are issued, at recognition level</span></a><a class="toc-3" href="#54-share-versus-debenture"><span class="toc-t">5.4 Share versus debenture</span></a><a class="toc-2" href="#6-graded-practice-25-questions"><span class="toc-t">6. Graded Practice — 25 Questions <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#61-level-1-recognition"><span class="toc-t">6.1 Level 1 — Recognition</span></a><a class="toc-3" href="#62-level-2-understanding"><span class="toc-t">6.2 Level 2 — Understanding</span></a><a class="toc-3" href="#63-level-3-recruitment-test-standard"><span class="toc-t">6.3 Level 3 — Recruitment Test standard</span></a><a class="toc-2" href="#7-answers-and-explanations"><span class="toc-t">7. Answers and Explanations</span></a><a class="toc-3" href="#71-level-1"><span class="toc-t">7.1 Level 1</span></a><a class="toc-3" href="#72-level-2"><span class="toc-t">7.2 Level 2</span></a><a class="toc-3" href="#73-level-3"><span class="toc-t">7.3 Level 3</span></a><a class="toc-2" href="#8-one-minute-revision"><span class="toc-t">8. One-Minute Revision</span></a><a class="toc-2" href="#9-five-minute-wall-sheet"><span class="toc-t">9. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F6.6 — THE FIVE SESSIONS</p><ol><li><strong>Session 1</strong> — Negotiable instruments: the three definitions (§1) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 2</strong> — Parties, and bill versus promissory note (§2) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 3</strong> — The life of a bill: maturity, discounting, dishonour (§3) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 4</strong> — Share capital: the ladder and the statutory rules (§4) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 5</strong> — Preference shares, forfeiture, and share versus debenture (§5) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li></ol><p>Then 25 graded questions in §6. About <strong>two and a half days</strong> at two hours.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-the-three-definitions">1. Session 1 — The Three Definitions <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><p>All three instruments are governed by the <strong>Negotiable Instruments Act, 1881</strong>. Under <strong>section 13</strong>, a negotiable instrument means a <strong>promissory note, bill of exchange or cheque</strong> payable either to order or to bearer.</p><p>Learn the three definitions almost verbatim, because the questions are built from single words in them.</p><h3 id="11-bill-of-exchange-section-5">1.1 Bill of exchange — section 5</h3><blockquote><p>An instrument in writing containing an <strong>unconditional ORDER</strong>, signed by the maker, <strong>directing</strong> a certain person to pay a certain sum of money only to, or to the order of, a certain person, or to the bearer of the instrument.</p></blockquote><h3 id="12-promissory-note-section-4">1.2 Promissory note — section 4</h3><blockquote><p>An instrument in writing (not being a bank-note or a currency-note) containing an <strong>unconditional UNDERTAKING</strong>, signed by the maker, <strong>to pay</strong> a certain sum of money only to, or to the order of, a certain person.</p></blockquote><h3 id="13-cheque-section-6">1.3 Cheque — section 6</h3><blockquote><p>A <strong>bill of exchange drawn on a specified banker</strong> and <strong>payable on demand</strong>.</p></blockquote><aside class="cal must-master"><p class="cal-h">MUST MASTER · ORDER VERSUS UNDERTAKING, AND WHAT A CHEQUE ACTUALLY IS</p><p>Two points that between them answer a surprising number of questions.</p><ol><li><strong>A bill of exchange contains an ORDER; a promissory note contains an UNDERTAKING or promise.</strong> That single word is the root of every other difference in §2.2 — who draws it, how many parties there are, and whether acceptance is needed</li><li><strong>A cheque is a species of bill of exchange</strong> — one drawn on a banker and payable on demand. So every cheque is a bill of exchange, but not every bill is a cheque. An option saying a cheque is a promissory note, or that it is not a negotiable instrument, is wrong</li></ol><p>Both definitions require the order or undertaking to be <strong>unconditional</strong> and the sum to be <strong>certain</strong>. A conditional instrument is not negotiable at all.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 1</p><ol><li>Which Act governs these instruments, and which section defines a negotiable instrument?</li><li>State the section 5 and section 4 definitions, noting the one word that differs</li><li>Define a cheque. Is every cheque a bill of exchange? Is every bill a cheque?</li></ol></aside><div class="pagebreak"></div><h2 id="2-session-2-parties-and-the-central-comparison">2. Session 2 — Parties, and the Central Comparison <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="21-the-parties">2.1 The parties</h3><p><strong>Bill of exchange — three parties:</strong></p><ul><li><strong>Drawer</strong> — the maker, who gives the order. Normally the <strong>creditor</strong> or seller</li><li><strong>Drawee</strong> — the person directed to pay. Normally the <strong>debtor</strong> or buyer. Once he signs his assent,</li></ul><p>he becomes the <strong>Acceptor</strong></p><ul><li><strong>Payee</strong> — the person to be paid. Very often the <strong>drawer himself</strong></li></ul><p><strong>Promissory note — two parties:</strong></p><ul><li><strong>Maker</strong> — the person who promises to pay. The <strong>debtor</strong></li><li><strong>Payee</strong> — the person to be paid. The <strong>creditor</strong></li></ul><h3 id="22-bill-of-exchange-versus-promissory-note">2.2 Bill of exchange versus promissory note</h3><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left"><strong>Bill of exchange</strong></th><th style="text-align:left"><strong>Promissory note</strong></th></tr></thead><tbody><tr><td style="text-align:left">Nature</td><td style="text-align:left">An <strong>order</strong> to pay</td><td style="text-align:left">A <strong>promise</strong> to pay</td></tr><tr><td style="text-align:left">Drawn or made by</td><td style="text-align:left">The <strong>creditor</strong></td><td style="text-align:left">The <strong>debtor</strong></td></tr><tr><td style="text-align:left">Number of parties</td><td style="text-align:left"><strong>Three</strong></td><td style="text-align:left"><strong>Two</strong></td></tr><tr><td style="text-align:left"><strong>Acceptance</strong></td><td style="text-align:left"><strong>Required</strong></td><td style="text-align:left"><strong>Not required</strong></td></tr><tr><td style="text-align:left">Can drawer and payee be the same?</td><td style="text-align:left"><strong>Yes</strong></td><td style="text-align:left"><strong>No</strong> — the maker cannot be his own payee</td></tr><tr><td style="text-align:left">Notice of dishonour</td><td style="text-align:left"><strong>Necessary</strong></td><td style="text-align:left"><strong>Not necessary</strong></td></tr><tr><td style="text-align:left">Liability of the maker</td><td style="text-align:left"><strong>Secondary and conditional</strong></td><td style="text-align:left"><strong>Primary and absolute</strong></td></tr><tr><td style="text-align:left">Payable to bearer on demand</td><td style="text-align:left">Not permitted</td><td style="text-align:left">A promissory note cannot be made payable to bearer</td></tr></tbody></table><p class="cap">Every row follows from the order-versus-promise distinction</p></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE THREE ROWS THAT ARE ACTUALLY TESTED</p><ol><li><strong>Acceptance is needed for a bill, not for a promissory note.</strong> A bill is an order to <em>someone else</em>, so that person must assent. A promissory note is the maker's own promise — there is nobody else to accept</li><li><strong>Notice of dishonour is necessary for a bill but not for a promissory note.</strong> Because the maker of a note is <strong>primarily</strong> liable, he needs no notice of his own default. The drawer of a bill is only <strong>secondarily</strong> liable, so he must be told the acceptor failed to pay</li><li><strong>In a promissory note the maker cannot be the payee; in a bill the drawer often IS the payee.</strong> You cannot promise to pay yourself, but you can order your debtor to pay you</li></ol><p>If you can reconstruct these three from "order versus promise", you do not need to memorise the table.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 2</p><ol><li>Name the three parties to a bill and the two to a promissory note</li><li>Which instrument requires acceptance, and why does the other not?</li><li>Why is notice of dishonour unnecessary for a promissory note?</li><li>Can the drawer of a bill be the payee? Can the maker of a note be the payee?</li></ol></aside><div class="pagebreak"></div><h2 id="3-session-3-the-life-of-a-bill">3. Session 3 — The Life of a Bill <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="31-maturity-and-days-of-grace">3.1 Maturity and days of grace</h3><ul><li>A <strong>term</strong> or <strong>usance</strong> bill is payable after a specified period</li><li>A bill <strong>at sight</strong> or <strong>on demand</strong> is payable on presentation</li><li><strong>Days of grace: three days</strong> are added to the period of a <strong>time</strong> bill to arrive at the **date of</li></ul><p>maturity<strong>. Demand bills get </strong>no** days of grace</p><ul><li>If the date of maturity falls on a <strong>public holiday</strong>, the bill falls due on the <strong>preceding</strong></li></ul><p>business day</p><blockquote><p>A bill dated <strong>1 June</strong> drawn for <strong>2 months</strong> matures on 1 August <strong>plus 3 days of grace</strong> = <strong>4 August</strong></p></blockquote><aside class="cal must-master"><p class="cal-h">MUST MASTER · THREE DAYS, AND ONLY FOR TIME BILLS</p><p><strong>Days of grace = 3.</strong> Options offer 5, 7, 15 and 30.</p><p>Two riders that turn this into a Level 3 question: grace applies <strong>only to time bills</strong>, never to demand bills; and where maturity lands on a holiday the due date moves <strong>backwards</strong> to the preceding business day, not forwards. Moving it forward is the intuitive wrong answer.</p></aside><h3 id="32-what-the-holder-can-do-with-a-bill">3.2 What the holder can do with a bill</h3><div class="tw"><table><thead><tr><th style="text-align:left">Action</th><th style="text-align:left">What it means</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Retain</strong> it till maturity</td><td style="text-align:left">Hold and present for payment on the due date</td></tr><tr><td style="text-align:left"><strong>Discount</strong> it with a bank</td><td style="text-align:left">Encash before maturity for less than face value; the deduction is <strong>discounting charges</strong>, an expense to the holder</td></tr><tr><td style="text-align:left"><strong>Endorse</strong> it</td><td style="text-align:left">Transfer it to a third party by signing the back. Parties: <strong>endorser</strong> and <strong>endorsee</strong></td></tr><tr><td style="text-align:left"><strong>Send it for collection</strong></td><td style="text-align:left">Deposit with a bank to collect on the due date</td></tr></tbody></table></div><aside class="cal world"><p class="cal-h">FROM YOUR OWN WORLD · BILL DISCOUNTING, AND THE LOOP BACK TO F6.3</p><p>Bill discounting is an SBI product you will have handled: the bank pays the holder now, less a charge, and collects from the acceptor at maturity.</p><p>Now recall F6.3 §6.3. <strong>"Bills discounted but not yet matured"</strong> was one of the standard examples of a <strong>contingent liability</strong>. This is why: if the acceptor dishonours the bill at maturity, the bank can recover from the customer who discounted it. So the customer carries a <strong>possible</strong> obligation depending on an uncertain future event — not a liability yet, disclosed by note.</p><p>One product, two syllabus topics. Where the exam gives you a banking instrument, check whether the real question is about the accounting consequence.</p></aside><h3 id="33-dishonour-and-the-vocabulary-around-it">3.3 Dishonour, and the vocabulary around it</h3><ul><li><strong>Dishonour</strong> — the acceptor fails to pay on maturity</li><li><strong>Noting</strong> — recording the fact of dishonour with a <strong>notary public</strong>. The <strong>noting charges</strong> are</li></ul><p>ultimately borne by the <strong>drawee or acceptor</strong>, since the default was his</p><ul><li><strong>Protest</strong> — a formal certificate issued by the notary attesting the dishonour</li><li><strong>Renewal</strong> — the old bill is cancelled and a fresh bill drawn, usually with interest for the</li></ul><p>extended period</p><ul><li><strong>Retirement</strong> — the acceptor pays <strong>before</strong> maturity, and the holder allows a <strong>rebate</strong> as the</li></ul><p>price of early money</p><aside class="cal trap"><p class="cal-h">COMMON UPSC TRAP · REBATE, DISCOUNT AND NOTING CHARGES</p><p>Three deductions that are easily confused:</p><div class="tw"><table><thead><tr><th style="text-align:left">Term</th><th style="text-align:left">When</th><th style="text-align:left">Who bears it</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Discounting charges</strong></td><td style="text-align:left">Holder encashes early <strong>with a bank</strong></td><td style="text-align:left">The <strong>holder</strong> who discounted</td></tr><tr><td style="text-align:left"><strong>Rebate</strong></td><td style="text-align:left"><strong>Acceptor</strong> pays early, to the holder</td><td style="text-align:left">The <strong>holder</strong> allows it; it is the acceptor's gain</td></tr><tr><td style="text-align:left"><strong>Noting charges</strong></td><td style="text-align:left">On <strong>dishonour</strong></td><td style="text-align:left">Ultimately the <strong>drawee or acceptor</strong></td></tr></tbody></table></div><p>And one distinction of substance: a <strong>trade bill</strong> arises from a genuine sale of goods. An <strong>accommodation bill</strong> is drawn and accepted with <strong>no trade transaction at all</strong>, purely to raise finance for one or both parties. "Accommodation" means there is no consideration behind it — which is the defining fact, and the answer to any question describing a bill drawn "merely to raise funds".</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 3</p><ol><li>How many days of grace, and to which bills do they apply?</li><li>A bill dated 15 July drawn for 3 months — when does it mature?</li><li>If maturity falls on a public holiday, which way does the due date move?</li><li>Distinguish discounting charges, rebate and noting charges, and say who bears each</li><li>What is an accommodation bill, and how does it differ from a trade bill?</li></ol></aside><div class="pagebreak"></div><h2 id="4-session-4-share-capital">4. Session 4 — Share Capital <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="41-the-ladder">4.1 The ladder</h3><p>Six terms in a strict sequence, each a subset of the one above. Questions ask you to place one of them.</p><div class="tw"><table><thead><tr><th style="text-align:left">Term</th><th style="text-align:left">Meaning</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Authorised / Nominal / Registered</strong></td><td style="text-align:left">The <strong>maximum</strong> the company may issue, as stated in its <strong>memorandum</strong></td></tr><tr><td style="text-align:left"><strong>Issued</strong></td><td style="text-align:left">The part actually <strong>offered</strong> to the public</td></tr><tr><td style="text-align:left"><strong>Subscribed</strong></td><td style="text-align:left">The part of issued capital <strong>taken up</strong> by investors</td></tr><tr><td style="text-align:left"><strong>Called-up</strong></td><td style="text-align:left">The part of subscribed capital the company has <strong>demanded</strong></td></tr><tr><td style="text-align:left"><strong>Paid-up</strong></td><td style="text-align:left">The part of called-up capital actually <strong>received</strong></td></tr><tr><td style="text-align:left"><strong>Uncalled</strong></td><td style="text-align:left">Subscribed but <strong>not yet demanded</strong></td></tr></tbody></table><p class="cap">Authorised is the ceiling; paid-up is what has actually arrived</p></div><p>Two related items:</p><ul><li><strong>Calls in arrears</strong> — called but not received. <strong>Deducted</strong> from called-up capital</li><li><strong>Calls in advance</strong> — received before being called. A <strong>liability</strong>; it **cannot be used to pay</li></ul><p>dividend**</p><p>And the trap pair you already met in F6.3 §6.2:</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · RESERVE CAPITAL, ONE MORE TIME</p><p><strong>Reserve capital</strong> is that part of <strong>uncalled</strong> capital which a company resolves, by <strong>special resolution</strong>, to call up <strong>only in the event of winding up</strong>.</p><p>Contrast <strong>capital reserve</strong>, which is a reserve created out of <strong>capital profits</strong> and appears under Reserves and Surplus.</p><p>This pair appeared in F6.3 and reappears here because it sits in two syllabus areas at once. The memory hook stands: <strong>capital reserve is money you have; reserve capital is money you have deliberately not asked for yet.</strong></p></aside><h3 id="42-the-statutory-rules-that-get-asked">4.2 The statutory rules that get asked</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE THREE COMPANIES ACT, 2013 RULES</p><ol><li><strong>Issue at a discount is PROHIBITED — section 53.</strong> Any share issued at a discount is <strong>void</strong>. The exceptions are <strong>sweat equity shares</strong> (section 54) and shares issued to creditors under an approved scheme of arrangement. This reverses the older position under which a discount was permitted subject to conditions, so an option saying "permitted up to 10%" is a deliberate echo of the repealed rule</li><li><strong>Securities premium — section 52.</strong> Permitted uses are: issuing <strong>fully paid bonus shares</strong>; writing off <strong>preliminary expenses</strong>; writing off expenses, commission or discount on the issue of shares or debentures; providing for the <strong>premium on redemption</strong> of preference shares or debentures; and <strong>buy-back</strong> of securities. It is <strong>not available for paying dividend</strong></li><li><strong>Irredeemable preference shares cannot be issued — section 55.</strong> Redeemable preference shares must ordinarily be redeemed within <strong>20 years</strong>, extended to <strong>30 years</strong> for specified infrastructure projects</li></ol><p>The recurring shape here is a "which of the following is <strong>not</strong> a permitted use of the securities premium account" question, where the answer is <strong>payment of dividend</strong>.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 4</p><ol><li>State the six rungs of the capital ladder in order</li><li>Calls in arrears and calls in advance — how is each treated?</li><li>Restate reserve capital versus capital reserve</li><li>Is a share issue at a discount permitted? Under which section, and what are the exceptions?</li><li>Name four permitted uses of the securities premium account, and one that is not permitted</li></ol></aside><div class="pagebreak"></div><h2 id="5-session-5-preference-shares-forfeiture-debentures">5. Session 5 — Preference Shares, Forfeiture, Debentures <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="51-the-two-classes-of-share">5.1 The two classes of share</h3><p>Under <strong>section 43</strong> of the Companies Act, 2013 a company's share capital is of two kinds: <strong>equity</strong> and <strong>preference</strong>.</p><p><strong>Preference shares</strong> carry two preferential rights: a <strong>dividend at a fixed rate</strong>, and <strong>repayment of capital</strong> on winding up, both ahead of equity.</p><div class="tw"><table><thead><tr><th style="text-align:left">Type</th><th style="text-align:left">Meaning</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Cumulative</strong></td><td style="text-align:left">Unpaid dividend <strong>accumulates</strong> as arrears. Non-cumulative dividends lapse</td></tr><tr><td style="text-align:left"><strong>Participating</strong></td><td style="text-align:left">Shares in <strong>surplus</strong> profits beyond the fixed rate, as well</td></tr><tr><td style="text-align:left"><strong>Convertible</strong></td><td style="text-align:left">Convertible into equity shares</td></tr><tr><td style="text-align:left"><strong>Redeemable</strong></td><td style="text-align:left">Repayable within a period — and under the 2013 Act <strong>all</strong> preference shares must be redeemable</td></tr></tbody></table></div><p>Note the link to F6.3 §6.3: <strong>arrears of dividend on cumulative preference shares</strong> is a standard <strong>contingent liability</strong>, disclosed by note.</p><h3 id="52-forfeiture-and-reissue">5.2 Forfeiture and reissue</h3><p>If a shareholder fails to pay a call, the company may <strong>forfeit</strong> the shares. The share capital is cancelled and the amount already received is credited to a <strong>Forfeited Shares Account</strong>.</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · WHERE THE FORFEITURE SURPLUS GOES</p><p>On <strong>reissue</strong> of forfeited shares, any balance left in the Forfeited Shares Account after adjusting any discount allowed on reissue is transferred to <strong>CAPITAL RESERVE</strong>.</p><p>The reason is F6.2 §5.2 exactly: it is a <strong>capital profit</strong>, not a trading profit, so it cannot go to the Profit and Loss Account and cannot be distributed as dividend. Options offering the P&amp;L Account or General Reserve are wrong.</p></aside><h3 id="53-other-ways-shares-are-issued-at-recognition-level">5.3 Other ways shares are issued, at recognition level</h3><ul><li><strong>Rights issue</strong> (s.62) — offered first to existing shareholders in proportion</li><li><strong>Bonus issue</strong> (s.63) — fully paid shares issued free out of free reserves, securities premium or</li></ul><p>the capital redemption reserve. It <strong>cannot</strong> be made out of a revaluation reserve</p><ul><li><strong>Private placement</strong> (s.42) — to a selected group</li><li><strong>Sweat equity</strong> (s.54) and <strong>ESOP</strong> — to directors or employees</li></ul><h3 id="54-share-versus-debenture">5.4 Share versus debenture</h3><p>A <strong>debenture</strong> is an acknowledgement of debt. This table is the second of the chapter's two load-bearing comparisons.</p><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left"><strong>Share</strong></th><th style="text-align:left"><strong>Debenture</strong></th></tr></thead><tbody><tr><td style="text-align:left">Holder is</td><td style="text-align:left">An <strong>owner</strong></td><td style="text-align:left">A <strong>creditor</strong></td></tr><tr><td style="text-align:left">Return</td><td style="text-align:left"><strong>Dividend</strong>, out of profits</td><td style="text-align:left"><strong>Interest</strong></td></tr><tr><td style="text-align:left">Nature of the return</td><td style="text-align:left">An <strong>appropriation</strong> of profit</td><td style="text-align:left">A <strong>charge</strong> against profit</td></tr><tr><td style="text-align:left">Payable if there is no profit?</td><td style="text-align:left"><strong>No</strong> dividend</td><td style="text-align:left"><strong>Interest still payable</strong></td></tr><tr><td style="text-align:left">Voting rights</td><td style="text-align:left">Yes, for equity</td><td style="text-align:left"><strong>None</strong></td></tr><tr><td style="text-align:left">Security</td><td style="text-align:left">Unsecured</td><td style="text-align:left">Usually <strong>secured</strong></td></tr><tr><td style="text-align:left">Repayment</td><td style="text-align:left">Not normally repaid during the company's life</td><td style="text-align:left"><strong>Repaid on maturity</strong></td></tr></tbody></table><p class="cap">Owner versus creditor is the distinction everything else follows from</p></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · CHARGE VERSUS APPROPRIATION, AGAIN</p><p>Notice that the share-versus-debenture table is the <strong>charge versus appropriation</strong> distinction from F6.3 §6.1 in a new setting.</p><p><strong>Interest on debentures is a charge</strong> — payable whether or not there is a profit, because it is a contractual obligation to a creditor. <strong>Dividend is an appropriation</strong> — payable only out of profits, because it is a distribution to owners.</p><p>So the reliable wrong option is <em>"dividend on equity shares must be paid even if there is no profit"</em>. It is the same error as saying a reserve can be created in a loss year.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 5</p><ol><li>Under which section are the two classes of share capital specified? Name them</li><li>What two preferential rights do preference shares carry?</li><li>Which type of preference share cannot be issued under the 2013 Act, and within what period must redemption occur?</li><li>Where does the surplus on reissue of forfeited shares go, and why?</li><li>Give five differences between a share and a debenture</li><li>Which of interest and dividend is a charge, and which an appropriation?</li></ol></aside><div class="pagebreak"></div><h2 id="6-graded-practice-25-questions">6. Graded Practice — 25 Questions <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="61-level-1-recognition">6.1 Level 1 — Recognition</h3><p><strong>Q1.</strong> A bill of exchange contains (a) an unconditional promise to pay (b) a conditional order to pay (c) an unconditional order to pay (d) a request to deliver goods</p><p><strong>Q2.</strong> Bills of exchange in India are governed by (a) the Negotiable Instruments Act, 1881 (b) the Indian Contract Act, 1872 (c) the Companies Act, 2013 (d) the Sale of Goods Act, 1930</p><p><strong>Q3.</strong> The number of parties to a promissory note is (a) four (b) three (c) one (d) two</p><p><strong>Q4.</strong> Acceptance is required in the case of (a) a promissory note (b) a bill of exchange (c) both of them (d) neither of them</p><p><strong>Q5.</strong> The days of grace allowed in computing the date of maturity of a time bill are (a) five (b) seven (c) three (d) thirty</p><p><strong>Q6.</strong> A cheque is (a) a bill of exchange drawn on a specified banker and payable on demand (b) a promissory note (c) not a negotiable instrument (d) always payable after ninety days</p><p><strong>Q7.</strong> The maximum amount of capital a company may issue, as stated in its memorandum, is called (a) paid-up capital (b) authorised capital (c) subscribed capital (d) reserve capital</p><p><strong>Q8.</strong> Under the Companies Act, 2013 the issue of shares at a discount is (a) permitted freely (b) permitted with the approval of the Registrar (c) permitted up to 10% of the face value (d) prohibited, and any such issue is void</p><p><strong>Q9.</strong> Debenture holders are (a) owners of the company (b) preference shareholders (c) creditors of the company (d) promoters of the company</p><h3 id="62-level-2-understanding">6.2 Level 2 — Understanding</h3><p><strong>Q10.</strong> A bill drawn and accepted without any trade transaction, merely to raise finance, is called (a) an accommodation bill (b) a trade bill (c) a demand bill (d) a documentary bill</p><p><strong>Q11.</strong> Recording the fact of the dishonour of a bill by a notary public is called (a) protesting (b) noting (c) endorsing (d) discounting</p><p><strong>Q12.</strong> Where a bill is paid before its due date and the holder allows a deduction, that deduction is called (a) discount (b) noting charges (c) commission (d) rebate</p><p><strong>Q13.</strong> Interest on debentures is (a) an appropriation of profit (b) payable only if there is a profit (c) a charge against profit, payable whether or not there is a profit (d) not recorded in the accounts</p><p><strong>Q14.</strong> That part of uncalled capital which a company resolves by special resolution to call up only in the event of winding up is called (a) reserve capital (b) capital reserve (c) called-up capital (d) securities premium</p><p><strong>Q15.</strong> Under the Companies Act, 2013 a company cannot issue (a) redeemable preference shares (b) cumulative preference shares (c) sweat equity shares (d) irredeemable preference shares</p><p><strong>Q16.</strong> On the reissue of forfeited shares, any balance remaining in the Forfeited Shares Account is transferred to (a) the Profit and Loss Account (b) Capital Reserve (c) General Reserve (d) the Securities Premium Account</p><p><strong>Q17.</strong> Calls in advance received from shareholders are (a) added to called-up capital (b) treated as income of the year (c) shown as a liability and cannot be used to pay dividend (d) ignored until the call is made</p><h3 id="63-level-3-recruitment-test-standard">6.3 Level 3 — Recruitment Test standard</h3><p><strong>Q18.</strong> Which one of the following statements is <strong>not</strong> correct? (a) In a promissory note the maker and the payee may be the same person (b) In a bill of exchange the drawer and the payee may be the same person (c) A promissory note requires no acceptance (d) The liability of the maker of a promissory note is primary and absolute</p><p><strong>Q19.</strong> Consider the following statements:</p><ol><li>A bill of exchange is drawn by the creditor.</li><li>A promissory note is made by the debtor.</li><li>Notice of dishonour is necessary in the case of a promissory note.</li></ol><p>Which of the above statements are correct? (a) 1 and 3 only (b) 2 and 3 only (c) 1, 2 and 3 (d) 1 and 2 only</p><p><strong>Q20.</strong> Match List-I with List-II and select the correct answer using the code given below:</p><div class="tw"><table><thead><tr><th style="text-align:left">List-I</th><th style="text-align:left">List-II</th></tr></thead><tbody><tr><td style="text-align:left">A. Authorised capital</td><td style="text-align:left">1. The portion of subscribed capital that has been demanded</td></tr><tr><td style="text-align:left">B. Subscribed capital</td><td style="text-align:left">2. The maximum stated in the memorandum</td></tr><tr><td style="text-align:left">C. Called-up capital</td><td style="text-align:left">3. The portion of issued capital taken up by investors</td></tr><tr><td style="text-align:left">D. Reserve capital</td><td style="text-align:left">4. Callable only in the event of winding up</td></tr></tbody></table></div><p>(a) A-2 B-1 C-3 D-4 (b) A-2 B-3 C-1 D-4 (c) A-1 B-3 C-2 D-4 (d) A-4 B-3 C-1 D-2</p><p><strong>Q21.</strong> The securities premium account may be used for all of the following <strong>except</strong> (a) issuing fully paid bonus shares (b) writing off preliminary expenses (c) paying dividend to equity shareholders (d) providing for the premium payable on the redemption of debentures</p><p><strong>Q22.</strong> A bill dated 1 June 2026 is drawn for two months. Its date of maturity is (a) 4 August 2026 (b) 1 August 2026 (c) 3 August 2026 (d) 31 July 2026</p><p><strong>Q23.</strong> Consider the following statements about preference shares under the Companies Act, 2013:</p><ol><li>They carry a preferential right to dividend at a fixed rate.</li><li>Irredeemable preference shares may be issued.</li><li>Redeemable preference shares must ordinarily be redeemed within twenty years of issue.</li></ol><p>Which of the above statements are correct? (a) 1, 2 and 3 (b) 2 and 3 only (c) 1 and 2 only (d) 1 and 3 only</p><p><strong>Q24.</strong> Which one of the following statements is <strong>not</strong> correct? (a) Debenture holders have no voting rights (b) Dividend on equity shares must be paid even if there is no profit (c) Interest on debentures is payable even if there is no profit (d) Debentures are usually secured</p><p><strong>Q25.</strong> The noting charges on a dishonoured bill are ultimately borne by (a) the notary public (b) the drawer (c) the drawee or acceptor (d) the collecting bank</p><div class="pagebreak"></div><h2 id="7-answers-and-explanations">7. Answers and Explanations</h2><h3 id="71-level-1">7.1 Level 1</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">c</td><td style="text-align:left">An <strong>unconditional order</strong>. A promissory note contains an unconditional <em>undertaking</em> — that one word generates the whole comparison table</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">a</td><td style="text-align:left">The <strong>Negotiable Instruments Act, 1881</strong></td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Two</strong> — maker and payee. A bill has three, because the order is directed at a third person</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">b</td><td style="text-align:left">Only a <strong>bill of exchange</strong>. A promissory note is the maker's own promise, so there is nobody else to accept it</td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Three</strong> days, and only for <strong>time</strong> bills</td></tr><tr><td style="text-align:left">6</td><td style="text-align:center">a</td><td style="text-align:left">A <strong>bill of exchange drawn on a specified banker and payable on demand</strong> — section 6. Every cheque is a bill; not every bill is a cheque</td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Authorised</strong>, also called nominal or registered capital. It is the ceiling, not what has been received</td></tr><tr><td style="text-align:left">8</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Prohibited and void</strong> under section 53. Option (c) echoes the repealed position under the 1956 Act</td></tr><tr><td style="text-align:left">9</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Creditors.</strong> They lend; they do not own, and they have no voting rights</td></tr></tbody></table></div><h3 id="72-level-2">7.2 Level 2</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">10</td><td style="text-align:center">a</td><td style="text-align:left">An <strong>accommodation bill</strong> — no trade transaction and no consideration behind it, drawn purely to raise finance</td></tr><tr><td style="text-align:left">11</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Noting</strong> is the recording by a notary. <strong>Protest</strong> is the formal certificate that may follow</td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Rebate</strong>, allowed by the holder when the acceptor <strong>retires</strong> the bill early. <em>Discount</em> is what a bank deducts when the holder encashes early</td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">c</td><td style="text-align:left">A <strong>charge against profit</strong>, payable regardless of profit, because debenture holders are creditors. Dividend is the appropriation</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Reserve capital.</strong> Option (b) is the trap pair — capital reserve is created from capital profits</td></tr><tr><td style="text-align:left">15</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Irredeemable preference shares</strong> cannot be issued under section 55. All the others may be</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Capital Reserve</strong>, because it is a <strong>capital profit</strong> and so cannot go to the P&amp;L or be distributed</td></tr><tr><td style="text-align:left">17</td><td style="text-align:center">c</td><td style="text-align:left">A <strong>liability</strong>, and expressly not available for paying dividend</td></tr></tbody></table></div><h3 id="73-level-3">7.3 Level 3</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">18</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Not correct</strong> — the maker of a promissory note <strong>cannot</strong> be his own payee: you cannot promise to pay yourself. But the <strong>drawer of a bill often IS the payee</strong>, which is why (b) is correct</td></tr><tr><td style="text-align:left">19</td><td style="text-align:center">d</td><td style="text-align:left"><strong>1 and 2 only.</strong> Statement 3 is false: notice of dishonour is <strong>not</strong> necessary for a promissory note, because the maker is <strong>primarily</strong> liable and needs no notice of his own default</td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">b</td><td style="text-align:left"><strong>A-2 B-3 C-1 D-4</strong> — the ladder in order: authorised is the ceiling, subscribed is what was taken up, called-up is what has been demanded, reserve capital is callable only on winding up</td></tr><tr><td style="text-align:left">21</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Paying dividend</strong> is not a permitted use of the securities premium account. The other three are expressly permitted under section 52</td></tr><tr><td style="text-align:left">22</td><td style="text-align:center">a</td><td style="text-align:left">1 June + 2 months = 1 August, <strong>plus 3 days of grace = 4 August 2026</strong>. Option (b) forgets the grace days</td></tr><tr><td style="text-align:left">23</td><td style="text-align:center">d</td><td style="text-align:left"><strong>1 and 3 only.</strong> Statement 2 is false — irredeemable preference shares cannot be issued, and redemption must ordinarily occur within twenty years</td></tr><tr><td style="text-align:left">24</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Not correct</strong> — dividend is an <strong>appropriation</strong> and can only be paid out of profits. Interest on debentures, by contrast, is a charge and is payable regardless. The same charge-versus-appropriation logic as provisions and reserves</td></tr><tr><td style="text-align:left">25</td><td style="text-align:center">c</td><td style="text-align:left">The <strong>drawee or acceptor</strong>, since the dishonour was his default. The drawer may pay them initially but recovers them</td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · THE THREE SHAPES IN THIS CHAPTER</p><ol><li><strong>The one-word definition.</strong> Q1 turns entirely on <em>order</em> versus <em>undertaking</em>. Nearly every bill question can be reasoned from that word rather than recalled</li><li><strong>The near-identical pair.</strong> Q14 and the reserve-capital box. Whenever "reserve capital" appears in a stem, "capital reserve" is sitting in the options, and vice versa</li><li><strong>The charge-versus-appropriation family.</strong> Q13 and Q24 are the same idea as F6.3's provision versus reserve. Creditors get paid regardless; owners get paid only out of profit. One principle, three chapters</li></ol></aside><div class="pagebreak"></div><h2 id="8-one-minute-revision">8. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F6.6</p><p><strong>GOVERNING ACT</strong> Negotiable Instruments Act, <strong>1881</strong> · s.13 negotiable instrument · <strong>s.5 bill</strong> · <strong>s.4 promissory note</strong> · <strong>s.6 cheque</strong></p><p><strong>THE ONE WORD</strong> bill = unconditional <strong>ORDER</strong> · promissory note = unconditional <strong>UNDERTAKING</strong> · cheque = a <strong>bill drawn on a banker, payable on demand</strong></p><p><strong>PARTIES</strong> bill = <strong>three</strong> (drawer, drawee/acceptor, payee) · note = <strong>two</strong> (maker, payee) · drawer is the <strong>creditor</strong>, maker is the <strong>debtor</strong></p><p><strong>BILL vs NOTE</strong> acceptance <strong>required</strong> for a bill only · notice of dishonour <strong>necessary</strong> for a bill only · maker's liability <strong>primary and absolute</strong>, drawer's <strong>secondary</strong> · drawer <strong>may</strong> be payee, maker <strong>may not</strong></p><p><strong>DAYS OF GRACE = 3</strong> · <strong>time bills only</strong>, never demand bills · maturity on a holiday moves <strong>BACKWARD</strong> to the preceding business day</p><p><strong>MATURITY EXAMPLE</strong> 1 June + 2 months + 3 days = <strong>4 August</strong></p><p><strong>THREE DEDUCTIONS</strong> <strong>discounting charges</strong> — holder encashes early with a bank, holder bears · <strong>rebate</strong> — acceptor retires early, holder allows · <strong>noting charges</strong> — on dishonour, borne by the <strong>drawee/acceptor</strong></p><p><strong>NOTING vs PROTEST</strong> noting = recording by a <strong>notary</strong> · protest = the formal <strong>certificate</strong></p><p><strong>ACCOMMODATION BILL</strong> no trade transaction, no consideration, drawn only to raise finance</p><p><strong>BILLS DISCOUNTED NOT YET MATURED = CONTINGENT LIABILITY</strong> (F6.3 §6.3)</p><p><strong>CAPITAL LADDER</strong> authorised (ceiling, in the <strong>memorandum</strong>) » issued » subscribed » called-up » paid-up · <strong>uncalled</strong> = not yet demanded</p><p><strong>CALLS IN ARREARS</strong> deducted from called-up capital · <strong>CALLS IN ADVANCE</strong> a liability, <strong>not</strong> usable for dividend</p><p><strong>RESERVE CAPITAL</strong> uncalled capital callable <strong>only on winding up</strong>, by <strong>special resolution</strong> · contrast <strong>capital reserve</strong>, from <strong>capital profits</strong></p><p><strong>s.53 DISCOUNT PROHIBITED AND VOID</strong> · exceptions: <strong>sweat equity</strong> (s.54), scheme of arrangement</p><p><strong>s.52 SECURITIES PREMIUM</strong> may be used for bonus shares · preliminary expenses · issue expenses · premium on redemption · buy-back. <strong>NOT for dividend</strong></p><p><strong>s.55</strong> <strong>irredeemable preference shares cannot be issued</strong> · redeem within <strong>20 years</strong> (30 for infrastructure)</p><p><strong>s.43</strong> two classes: <strong>equity and preference</strong> · preference = fixed dividend + prior repayment · cumulative arrears = <strong>contingent liability</strong></p><p><strong>FORFEITURE SURPLUS ON REISSUE » CAPITAL RESERVE</strong> (a capital profit)</p><p><strong>BONUS ISSUE</strong> s.63, from free reserves, securities premium, capital redemption reserve · <strong>not</strong> from a revaluation reserve</p><p><strong>SHARE vs DEBENTURE</strong> owner vs <strong>creditor</strong> · dividend (<strong>appropriation</strong>, only from profit) vs interest (<strong>charge</strong>, payable regardless) · voting vs none · unsecured vs usually <strong>secured</strong></p></aside><h2 id="9-five-minute-wall-sheet">9. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F6.6</p><p><strong>ORDER = BILL · PROMISE = NOTE</strong> — everything else follows</p><p><strong>THREE PARTIES vs TWO</strong> · acceptance and notice of dishonour: <strong>bill only</strong></p><p><strong>MAKER CANNOT BE HIS OWN PAYEE · DRAWER OFTEN IS</strong></p><p><strong>3 DAYS OF GRACE · TIME BILLS ONLY · HOLIDAY MOVES BACKWARD</strong></p><p><strong>CHEQUE = BILL ON A BANKER, ON DEMAND</strong> (NI Act s.6)</p><p><strong>DISCOUNT (bank) · REBATE (early retirement) · NOTING (dishonour, acceptor bears)</strong></p><p><strong>ACCOMMODATION BILL = NO CONSIDERATION</strong></p><p><strong>BILLS DISCOUNTED = CONTINGENT LIABILITY</strong></p><p><strong>AUTHORISED » ISSUED » SUBSCRIBED » CALLED-UP » PAID-UP</strong></p><p><strong>RESERVE CAPITAL = UNCALLED, WINDING UP ONLY, SPECIAL RESOLUTION</strong> <strong>CAPITAL RESERVE = CAPITAL PROFITS</strong></p><p><strong>s.53 NO DISCOUNT (void) · s.52 PREMIUM NOT FOR DIVIDEND · s.55 NO IRREDEEMABLE PREFERENCE, 20 YEARS</strong></p><p><strong>FORFEITURE SURPLUS » CAPITAL RESERVE</strong></p><p><strong>INTEREST = CHARGE (always payable) · DIVIDEND = APPROPRIATION (profit only)</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> A bill of exchange and a debenture are both promises to pay, but the law treats them differently because one is a self-liquidating trade instrument and the other is long-term borrowing — which is why a bill can be discounted and a debenture must be serviced whether the company profits or not.</p></aside><aside class="cal action"><p class="cal-h">ACTION · NEXT IN THE FOUNDATION TRACK</p><p><strong>Chapter F6.7 — Auditing: Concepts, Scope, Types and the Audit Report.</strong> It is the second half of the official syllabus head "Accounting and Auditing", and the 2023 paper tested it through a <em>"which one is not correct"</em> item on the <strong>scope of audit</strong> — so that section gets particular attention.</p><p>Before you move on, state without looking: the one word separating a bill from a promissory note; the days of grace and which bills they apply to; who bears noting charges; the capital ladder in order; and the three Companies Act rules in §4.2.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F6.6
+  &middot; v1.0</footer>
+</body>
+</html>
