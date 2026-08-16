@@ -57,7 +57,15 @@ GLYPHS = {
     "\u2282": "part of",       # subset
     "\u2248": "about",         # approximately
     "\u2260": "is not",        # not equal
+    "\u2265": "&gt;=",         # greater than or equal
+    "\u2264": "&lt;=",         # less than or equal
+    "\u221a": "sqrt",          # radical
+    "\u221e": "infinity",      # infinity
+    "\u2211": "\u03a3",        # n-ary summation -> Greek capital sigma, which IS available
 }
+# Verified present in Noto Sans and passed through untouched: Greek sigma, capital
+# sigma, mu and rho; the superscript two; plus-minus; multiplication sign; the
+# rupee sign; em and en dashes; middle dot; section sign; minus sign; ellipsis.
 
 # Star ratings are drawn as CSS shapes rather than substituted, because the
 # priority system is load-bearing and needs to stay visually scannable.

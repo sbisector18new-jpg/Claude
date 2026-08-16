@@ -14,14 +14,15 @@ notification is published)
 
 | | Modules | Chapters | Hours | Planning marks |
 |---|---|---:|---:|---:|
-| Complete | 1, 2, 3, 5 | 44 | 100 | 109.5 |
-| **Remaining** | **4, 6, 7, 8, 9, 10, 11** | **30 + mocks** | **124** | **190.5** |
-| Total | 11 | 74 | 224 | 300.0 |
+| Complete | **1, 2, 3, 5, 6, 7** | 53 | 130 | 142.5 |
+| **Remaining** | **4, 8, 9, 10, 11** | **22 + mocks** | **94** | **157.5** |
+| Total | 11 | 75 | 224 | 300.0 |
 
-Arithmetic closes against Blueprint §12 on all three columns (44+30=74 chapters, 100+124=224 hours,
-109.5+190.5=300.0 marks).
+Arithmetic closes on all three columns (53+22=75 chapters, 130+94=224 hours, 142.5+157.5=300.0 marks).
+The chapter total is 75 rather than the Blueprint's 74 because Modules 6 and 7 were delivered as **9**
+chapters (F6.1–F6.8 plus F7.1) rather than the 8 originally planned — finer granularity, same content.
 
-**190.5 of 300 planning marks remain — roughly 64% of the paper.**
+**157.5 of 300 planning marks remain — roughly 53% of the paper.** The halfway point is passed.
 
 ---
 
@@ -33,6 +34,8 @@ Arithmetic closes against Blueprint §12 on all three columns (44+30=74 chapters
 | 2 | Labour Laws & Industrial Relations | 10 | 28 | ~30 |
 | 3 | Social Security & EPFO | 11 | 22 | ~22 |
 | 5 | History, Freedom Movement, Art & Culture | 10 | 22 | 25.0 |
+| **6** | **Accounting, Auditing & Statistics** | **8** | **26** | **~30** |
+| **7** | **Insurance** | **1** | **4** | **~3** |
 
 Also complete: **Module 0 Master Blueprint v1.0**, **Foundation F1.1 v1.0** (Constitutional
 Foundations), **Foundation F6.1 v1.0** (Accounting Fundamentals) and **Foundation F6.2 v1.0**
@@ -53,11 +56,10 @@ Listed in recommended study order (Blueprint §10.2), not module-number order.
 
 | Order | M | Module | Chapters | Hours | Marks | Priority |
 |---:|---|---|---:|---:|---:|---|
-| 1 | 6 + 7 | Accounting, Auditing & Statistics + Insurance | **6 of 8** | 30 | ~33 | ★★★★☆ |
-| 2 | 9 | General Science & Computer Applications | 7 | 22 | 42.5 | ★★★★★ |
-| 3 | 4 | Indian Economy + Population/Development/Globalisation | 5 | 8 | 15.0 | ★★★☆☆ |
-| 4 | 10 | Integrated Current Affairs | 2 | 12 | 20.0 | ★★★★☆ |
-| 5 | 11 | PYQ Analysis, 5 Mocks, Final Revision | mocks | 26 | multiplier | ★★★★★ |
+| 1 | 9 | General Science & Computer Applications | 7 | 22 | 42.5 | ★★★★★ |
+| 2 | 4 | Indian Economy + Population/Development/Globalisation | 5 | 8 | 15.0 | ★★★☆☆ |
+| 3 | 10 | Integrated Current Affairs | 2 | 12 | 20.0 | ★★★★☆ |
+| 4 | 11 | PYQ Analysis, 5 Mocks, Final Revision | mocks | 26 | multiplier | ★★★★★ |
 | — | 8 | General English, Quant & Reasoning | 8 | 26 | **80.0** | ★★★★★ |
 
 **Module 8 is deliberately unnumbered in that sequence.** Blueprint §10.2 item 9: English, Quant and
@@ -123,19 +125,23 @@ sacrifice Module 4 depth first (lowest certainty, 15 marks).
 
 | Ch | Topic | Status |
 |---|---|---|
-| **F6.1** | Accounting fundamentals: equation, double entry, books, trial balance, error types | **Complete v1.0** — 39 pp |
-| **F6.2** | Concepts, conventions, accounting standards; capital vs revenue | **Complete v1.0** — 35 pp |
-| F6.3 | Final accounts: trading, P&L, balance sheet; provisions and reserves | Next |
-| F6.4 | Depreciation, goodwill, inventory valuation | Planned |
-| F6.5 | Ratio analysis and cash flow | Planned |
-| F6.6 | Bills of exchange; share capital | Planned |
-| F6.7 | Auditing concepts, scope, types, audit report | Planned |
-| F6.8 | Statistics: mean, median, mode, dispersion, standard deviation | Planned |
-| F7.1 | Insurance (compact): principles, indemnity, subrogation, types, role in social security | Planned |
+| **F6.1** | Accounting fundamentals: equation, double entry, books, trial balance, error types | **Complete v1.0** — 39 pp, 40 Q |
+| **F6.2** | Concepts, conventions, accounting standards; capital vs revenue | **Complete v1.0** — 35 pp, 40 Q |
+| **F6.3** | Final accounts; adjustments; provisions and reserves | **Complete v1.0** — 28 pp, 30 Q |
+| **F6.4** | Depreciation, goodwill, inventory valuation | **Complete v1.0** — 26 pp, 30 Q |
+| **F6.5** | Ratio analysis and cash flow | **Complete v1.0** — 22 pp, 25 Q |
+| **F6.6** | Bills of exchange; share capital | **Complete v1.0** — 24 pp, 25 Q |
+| **F6.7** | Auditing: concepts, scope, types, audit report | **Complete v1.0** — 29 pp, 30 Q |
+| **F6.8** | Statistics: central tendency, dispersion, correlation | **Complete v1.0** — 21 pp, 25 Q |
+| **F7.1** | Insurance (compact): principles, types, role in social security | **Complete v1.0** — 21 pp, 20 Q |
 
-F6.1 deliberately carries the heaviest load because everything after it depends on the equation and
-the debit/credit rules. Trial balance and error types sit in F6.1 rather than later because Blueprint
-§7.1 names them in the top high-yield list.
+**245 pages, 265 questions.** Depth was scaled to yield rather than spread evenly: F6.1 and F6.2 carry
+the heaviest load because everything after them depends on the equation and the debit/credit rules;
+F6.5 and F6.6 are deliberately leaner as ★★★☆☆ topics; F7.1 is compact because Blueprint §7.2 places
+insurance in the low-yield list at one question in 2023.
+
+F6.7 §2 (scope of audit) is the only section in the module with **direct PYQ evidence** — the 2023 paper
+tested it through a "which one is not correct" item.
 
 ---
 
@@ -149,6 +155,7 @@ Established this sitting. `src/` is now real, and the source-of-truth convention
 | `build/build.py` | Converter. **Python 3 stdlib only** — no third-party packages |
 | `build/style.css` | Typography, callout variants, A4 print rules |
 | `build/pdf.mjs` | **PDF renderer.** Drives the bundled Chrome over the DevTools Protocol. No npm packages |
+| `build/check.py` | **Quality gate.** Run before every commit — see §8.4 |
 | `build/shot.mjs` | Screenshot helper, for verifying layout and glyph rendering |
 | `docs/**/*.html` | **Generated. Never edit by hand.** |
 | `pdf/**/*.pdf` | **Generated.** A4, running header, "Page X of Y" footer |
@@ -196,7 +203,27 @@ characters**. Verified: zero unrenderable codepoints remain in `docs/`.
 There is **no serif font** on the system, so headings fall back to Noto Sans rather than the serif in
 the original PDFs. Cosmetic only, and it corrects itself on any machine with a serif font installed.
 
-### 8.3 Known limitation
+The substitution map was extended while writing F6.8: **≥ ≤ √ ∞ ∑** are also absent from Noto Sans.
+Note the odd case — Greek capital sigma **Σ** (U+03A3) *is* present while the n-ary summation **∑**
+(U+2211) is not, so the build maps one to the other. Greek σ, μ and ρ, the superscript two, ± and × are
+all fine.
+
+### 8.4 The quality gate
+
+`python3 build/check.py` runs before every commit and checks each chapter for:
+
+1. Question numbering contiguous from 1
+2. An answer row for every question
+3. **Answer key balance** across the four options — a key that never uses one letter lets a candidate
+   score by elimination and trains the wrong instinct
+4. **Section-heading numbering contiguous** — this caught a real defect immediately, F6.4 having jumped
+   from section 5 to section 7
+5. No unrenderable codepoints surviving into the built HTML
+
+All nine Module 6 and 7 chapters pass. Keys: F6.1 and F6.2 at 10/10/10/10, F6.3 8/7/8/7, F6.4 8/8/7/7,
+F6.5 6/7/6/6, F6.6 6/6/7/6, F6.7 7/8/7/8, F6.8 7/6/6/6, F7.1 5/5/5/5.
+
+### 8.5 Known limitation
 
 The table of contents has no printed page numbers — Chrome does not support CSS paged-media counters.
 The TOC entries remain **clickable internal links** inside the PDF, and every page carries

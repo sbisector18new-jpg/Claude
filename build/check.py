@@ -31,7 +31,14 @@ DOCS = ROOT / "docs"
 
 # Noto Sans is the only installed family; these have no glyph in it and are
 # substituted by build.py on the way out. Any survivor in docs/ is a bug.
-UNRENDERABLE = {0x2605, 0x2606, 0x2192, 0x2190, 0x2191, 0x2193, 0x2282, 0x2248, 0x2260}
+UNRENDERABLE = {
+    0x2605, 0x2606,          # stars
+    0x2192, 0x2190,          # arrows
+    0x2191, 0x2193,          # up/down arrows
+    0x2282, 0x2248, 0x2260,  # subset, approx, not-equal
+    0x2265, 0x2264,          # >= and <=
+    0x221A, 0x221E, 0x2211,  # radical, infinity, n-ary summation
+}
 
 Q = re.compile(r"\*\*Q(\d+)\.\*\*")
 ANS = re.compile(r"^\|\s*(\d+)\s*\|\s*([a-d])\s*\|", re.M)

@@ -19,9 +19,10 @@ coverage.
 
 ## Where the project stands
 
-- **Complete:** Modules 1, 2, 3, 5 — 44 chapters, 100 hours, 109.5 planning marks
-- **Remaining:** Modules 4, 6, 7, 8, 9, 10, 11 — 124 hours, 190.5 planning marks
-- **In progress:** Module 6 — Accounting, Auditing and Statistics (F6.1 complete)
+- **Complete:** Modules 1, 2, 3, 5, 6, 7 — 53 chapters, 130 hours, 142.5 planning marks
+- **Remaining:** Modules 4, 8, 9, 10, 11 — 94 hours, 157.5 planning marks
+- **Just finished:** Modules 6 and 7 — nine Foundation chapters, **245 pages, 265 questions**
+- **Next:** Module 9 (General Science and Computer Applications, 42.5 marks), with Module 8 running daily
 
 ## The two layers
 
