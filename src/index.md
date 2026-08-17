@@ -15,7 +15,7 @@ block. Download those directly — that is the version to read and print.
 
 The HTML is the same content for reading on screen; it reflows for phone and tablet.
 
-**In this repository: 35 chapters, 872 pages, 994 practice questions**, every answer key balanced across
+**In this repository: 37 chapters, 938 pages, 1,069 practice questions**, every answer key balanced across
 the four options and verified against its intended option text.
 :::
 
@@ -31,10 +31,19 @@ be finished before you begin. Three documents matter more than the rest:
 3. **[F11.3 — Mock Protocol and Final Revision](module-11/F11.3-mock-protocol-final-revision.html)** — how
    to spend the last four weeks, and what to do the morning of the paper
 
-**One warning before you rely on older notes.** The **four labour codes came into force on 21 November
-2025**, replacing 29 central labour laws, and the **Employees' Pension Scheme, 2026 replaced EPS-95** on
-29 June 2026. Material written before late 2025 may teach repealed law. See
-**[F10.2 §1 and §2](module-10/F10.2-schemes-institutions-dossier.html)**.
+**One warning before you rely on older notes.** **Four statutes have been replaced inside the last twelve
+months**, and material written before late 2025 will teach repealed law:
+
+| Change | From | To | Effective |
+|---|---|---|---|
+| Rural employment guarantee | MGNREGA, 2005 — **100 days** | **VB-G RAM G Act, 2025 — 125 days** | **1 July 2026** |
+| Insurance FDI | **74%** | **100%** | **5 Feb 2026** |
+| Income tax | Income-tax Act, **1961** | Income-tax Act, **2025** | **1 April 2026** |
+| Labour law | 29 central Acts | **Four labour codes** | **21 Nov 2025** |
+
+Add to those the **Employees' Pension Scheme, 2026**, which replaced EPS-95 on 29 June 2026. **This manual
+has been corrected for all five** — see **[F10.3](module-10/F10.3-dossier-governance-economy-labour.html)**
+for the record and the sources.
 :::
 
 ## Module 8 — General English, Quantitative Aptitude & Reasoning · complete
@@ -101,10 +110,24 @@ calibrating against questions that do not resemble the paper.
 |---|---|---|---|---:|
 | **F10.1** | The current affairs system — method, attributions, watchlist, verification sweep | [PDF, 26 pp](../pdf/module-10/F10.1-current-affairs-system.pdf) | [HTML](module-10/F10.1-current-affairs-system.html) | 20 |
 | **F10.2** | Schemes, institutions and the current dossier | [PDF, 26 pp](../pdf/module-10/F10.2-schemes-institutions-dossier.pdf) | [HTML](module-10/F10.2-schemes-institutions-dossier.html) | 30 |
+| **F10.3** | **Twelve-month dossier I** — governance, law, economy, labour and social security | [PDF, 33 pp](../pdf/module-10/F10.3-dossier-governance-economy-labour.pdf) | [HTML](module-10/F10.3-dossier-governance-economy-labour.html) | 40 |
+| **F10.4** | **Twelve-month dossier II** — international, reports, science, defence, awards and sport | [PDF, 29 pp](../pdf/module-10/F10.4-dossier-international-science-sport.pdf) | [HTML](module-10/F10.4-dossier-international-science-sport.html) | 35 |
 
-**52 pages, 50 questions.** The module is split between **a method that does not decay and a dossier that
-does**. F10.1 carries the collection system and the report-to-publisher table, which is permanently
-askable; F10.2 carries the perishable content, every figure dated **`[AS AT 16 AUG 2026]`** with a source.
+**114 pages, 125 questions.** The module is split between **a method that does not decay and dossiers that
+do**. F10.1 carries the collection system and the report-to-publisher table, which is permanently askable;
+F10.2 carries the current position by subject; **F10.3 and F10.4 are the exhaustive twelve-month record,
+August 2025 to a cut-off of 1 August 2026**, with every item sourced by an inline link.
+
+**Read F10.3 §1 twice.** Labour, social security and the EPFO is the longest section in the dossier and the
+part no general compilation will give you — the labour codes' rules, the EPF interest rate, EPS 2026, EPFO
+3.0, the ELI Scheme, the ESI–PM-JAY convergence, the India–UK Double Contributions Convention, and the
+notification of **Assistant Provident Fund Commissioners as Recovery Officers** under the Code on Social
+Security.
+
+**Two things this dossier does that a coaching compilation will not.** Where sources disagree it records
+**only what they agree on** — F10.3 §3.3 gives the winner of each 2026 State election but withholds the seat
+counts, and explains why. And where a figure comes from a compilation rather than the publishing body, it
+**says so and builds no question on it** — F10.4 §2.3.
 
 **Run F10.1 §4's twelve-item verification sweep in the fortnight before the paper.** Diarise it now. A stale
 figure carried confidently costs −0.8333; a blank costs nothing.
@@ -196,6 +219,8 @@ If your time collapses, these are the sections that carry the most marks:
 - **F8.1 §5** — the word list, ten a day, every day. Half the English block
 - **F10.1 §2.2** — the report-to-publisher table. Permanent answers, learnable in an evening
 - **F10.2 §1 and §2** — the labour codes and the EPFO dossier, directly on the subject of the post
+- **F10.3 §1** — the twelve-month labour and social security record, including the **DCC** and the
+  notification of **APFCs as Recovery Officers**
 - **F4.2 §2 and §3** — the RBI's corridor and the CPI/WPI comparison
 - **F6.1 §6** — trial balance and the four errors it cannot catch
 - **F6.2 §5** — capital versus revenue, and the five one-word pairs
@@ -208,9 +233,9 @@ If your time collapses, these are the sections that carry the most marks:
 The **[Master Content Register](../MASTER_CONTENT_REGISTER.md)** is the source of truth. Read it first if
 you are resuming after a break.
 
-- **Complete: all eleven modules** — 79 chapters, 224 hours, **300.0 planning marks. The syllabus is
+- **Complete: all eleven modules** — 81 chapters, 230 hours, **300.0 planning marks. The syllabus is
   closed.**
-- **In this repository:** Modules 4, 6, 7, 8, 9, 10 and 11 — **35 chapters, 872 pages, 994 questions**
+- **In this repository:** Modules 4, 6, 7, 8, 9, 10 and 11 — **37 chapters, 938 pages, 1,069 questions**
 - **Not here:** **Modules 1, 2, 3 and 5** are complete as study material but have never been supplied —
   44 chapters and **97.5 marks**. See register §9. `pyq/` is also still empty
 

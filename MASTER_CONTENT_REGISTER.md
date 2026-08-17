@@ -14,31 +14,44 @@ notification is published)
 
 | | Modules | Chapters | Hours | Planning marks |
 |---|---|---:|---:|---:|
-| **Complete** | **ALL — 1 to 11** | **79** | **224** | **300.0** |
+| **Complete** | **ALL — 1 to 11** | **81** | **230** | **300.0** |
 | Remaining | — | — | — | — |
-| Total | 11 | 79 | 224 | 300.0 |
+| Total | 11 | 81 | 230 | 300.0 |
 
 **The syllabus is complete. All 300 planning marks are covered.**
 
-The chapter total is 79 rather than the Blueprint's 74 for three recorded reasons: Modules 6 and 7 were
+**Chapters rose from 79 to 81 and hours from 224 to 230 this sitting**, both because of Module 10: an
+**exhaustive twelve-month current affairs dossier** was added as **F10.3 and F10.4**, taking the module from
+2 chapters to 4. The **6 additional hours** are the realistic cost of a first pass and two revisions of 114
+pages of dated material; the Blueprint's original 12 hours assumed the candidate collected current affairs
+himself across the whole preparation, which the dossier now front-loads. **Marks are unchanged at 20.0** —
+the dossier adds material, not syllabus.
+
+The chapter total is 81 rather than the Blueprint's 74 for four recorded reasons: Modules 6 and 7 were
 delivered as **9** chapters (F6.1–F6.8 plus F7.1) rather than 8; Module 8 as **9** (F8.0–F8.8) rather than
 8, the extra being **F8.0, the scheduler**, which is not syllabus content but the calendar that makes the
-rest of the module get done; and Module 11 as **3 numbered chapters** (F11.1–F11.3) where the plan carried
-an uncounted *"mocks"* line. Finer granularity, same syllabus.
+rest of the module get done; Module 11 as **3 numbered chapters** (F11.1–F11.3) where the plan carried an
+uncounted *"mocks"* line; and Module 10 as **4** chapters rather than 2, the extra two being the
+twelve-month dossier. Finer granularity, same syllabus.
 
-**Of those 79 chapters, 35 are in this repository** — Modules 4, 6, 7, 8, 9, 10 and 11, comprising
-**872 pages and 994 practice questions**. The remaining 44 chapters are Modules 1, 2, 3 and 5, which are
+**Of those 81 chapters, 37 are in this repository** — Modules 4, 6, 7, 8, 9, 10 and 11, comprising
+**938 pages and 1,069 practice questions**. The remaining 44 chapters are Modules 1, 2, 3 and 5, which are
 complete as study material but have never been supplied here. **That is now the only substantial gap in
 the project, and §9 has been rewritten accordingly.**
 
-::: important | IMPORTANT · WHAT CHANGED THIS SITTING
-**Modules 4, 10 and 11 were written, closing the syllabus.**
+::: important | IMPORTANT · WHAT CHANGED IN THE LAST TWO SITTINGS
+**Modules 4, 10 and 11 were written, closing the syllabus. Module 10 was then extended with an exhaustive
+twelve-month current affairs dossier.**
 
 | Module | Delivered | Marks |
 |---|---|---:|
-| **4** Indian Economy, Population, Development, Globalisation | 5 chapters, 119 pp, 104 Q | 15.0 |
-| **10** Integrated Current Affairs | 2 chapters, 52 pp, 50 Q | 20.0 |
+| **4** Indian Economy, Population, Development, Globalisation | 5 chapters, 121 pp, 104 Q | 15.0 |
+| **10** Integrated Current Affairs | **4 chapters, 114 pp, 125 Q** — the system, the standing dossier, and **F10.3/F10.4, the twelve-month record to 1 August 2026** | 20.0 |
 | **11** PYQ Analysis, Mocks, Final Revision | 3 chapters, 74 pp, 145 Q **including a full 120-question mock** | multiplier |
+
+**The dossier also forced corrections to three chapters already written** — see §10. Research undertaken for
+it established that two statutes had been replaced since those chapters were drafted, which is the clearest
+demonstration in the project of why Module 10 exists.
 
 **The project has changed character.** There is no longer any authoring on the critical path. What remains
 is **execution** — running F8.0's daily drill, sitting the mocks, and the final revision schedule in
@@ -69,7 +82,7 @@ both mean that material written before late 2025 may now teach repealed law as l
 | **8** | **General English, Quantitative Aptitude & Reasoning** | **9** | **26** | **80.0** |
 | **9** | **General Science & Computer Applications** | **7** | **22** | **42.5** |
 | **4** | **Indian Economy, Population, Development & Globalisation** | **5** | **8** | **15.0** |
-| **10** | **Integrated Current Affairs** | **2** | **12** | **20.0** |
+| **10** | **Integrated Current Affairs** | **4** | **18** | **20.0** |
 | **11** | **PYQ Analysis, Mocks & Final Revision** | **3** | **26** | **multiplier** |
 
 Also complete: **Module 0 Master Blueprint v1.0**, **Foundation F1.1 v1.0** (Constitutional
@@ -358,16 +371,18 @@ the marking scheme prices a confident wrong answer at −0.8333 and a blank at z
 
 ### 3.5 Module 10 chapter plan — COMPLETE
 
-**20.0 planning marks over 12 hours — eight questions**, and the **only module that cannot be finished**,
+**20.0 planning marks over 18 hours — eight questions**, and the **only module that cannot be finished**,
 since it acquires content every week until the paper.
 
 | Ch | Topic | Status |
 |---|---|---|
 | **F10.1** | The Current Affairs System — method, attributions, watchlist, verification protocol | **Complete v1.0** — 26 pp, 20 Q |
 | **F10.2** | Schemes, Institutions and the Current Dossier | **Complete v1.0** — 26 pp, 30 Q |
+| **F10.3** | **Twelve-Month Dossier I** — governance, law, economy, labour and social security | **Complete v1.0** — 33 pp, 40 Q |
+| **F10.4** | **Twelve-Month Dossier II** — international, reports, science, defence, awards and sport | **Complete v1.0** — 29 pp, 35 Q |
 
-**52 pages, 50 questions.** The module is deliberately split into **a method that does not decay and a
-dossier that does**, and the split is the whole design:
+**114 pages, 125 questions.** The module is deliberately split into **a method that does not decay and
+dossiers that do**, and the split is the whole design:
 
 - **F10.1** carries the **collection system** (a one-page-a-month register whose third column records which
   module an item attaches to — an item that attaches to nothing is discarded), the **report-to-publisher
@@ -386,6 +401,34 @@ on the sweep** — not twelve on chasing the news.
 **proposed, departmentally approved, Cabinet approved and notified**, and an examiner does. **Only the last
 is law.** The EPF wage ceiling is the live example — still ₹15,000, with ₹25,000 approved but unnotified —
 and Q27 of that chapter turns on it.
+
+#### 3.5.1 The twelve-month dossier — F10.3 and F10.4
+
+**Scope: August 2025 to a cut-off of 1 August 2026.** Every item carries an inline source link. Three
+conventions were fixed when it was written and should be preserved:
+
+1. **The cut-off is applied strictly and straddles are declared.** The Commonwealth Games closed on
+   **2 August 2026**, one day outside, and F10.4 §5.2 says so rather than rounding. NISAR launched on
+   **30 July 2025**, two days before the window opens, and F10.4 §3.1 marks it as a preceding anchor
+2. **Weighting follows F10.1 §1.2, not the news cycle.** F10.3 §1 — labour, social security and the EPFO —
+   is the longest section in the dossier. F10.4 is arranged in **descending order of yield**, and its §5
+   (awards, sport, persons) is compact **by decision**, with the reasoning restated in F10.4 §0. **Deaths
+   are not tabulated at all**, because obituaries attach to nothing in the static syllabus
+3. **Where sources disagree, the dossier records what they agree on.** F10.3 §3.3 gives the winner of each
+   2026 State election but **withholds the seat counts**, because reputable outlets differ on Tamil Nadu and
+   Puducherry; a note explains the omission rather than concealing it. Similarly F10.4 §2.3 flags five index
+   rankings as coming from a **coaching compilation rather than the publishing bodies**, and **no question is
+   built on them**
+
+**The single most valuable item in the dossier for this post** is F10.3 §1.3: **EPFO officers, including
+Assistant Provident Fund Commissioners, have been notified under Chapter III of the Code on Social Security,
+2020, and appointed Recovery Officers.** The APFC's statutory powers of inquiry and recovery now flow from
+the Code rather than from the 1952 Act directly, that Act having been subsumed into it. That is a better
+interview answer than reciting Section 7A, and it is recorded here so that a later sitting does not lose it.
+
+**Second most valuable:** F10.3 §1.5 on the **India–UK Double Contributions Convention**, in force 15 July
+2026 — a social security agreement the **EPFO itself administers**, with a **60-month** detachment exemption,
+coordinating **contributions and not benefits**.
 
 ### 3.6 Module 11 chapter plan — COMPLETE
 
@@ -514,7 +557,7 @@ break F9.1's existing usage.
    from section 5 to section 7
 5. No unrenderable codepoints surviving into the built HTML
 
-**All 35 chapters pass — 994 questions.** Keys as at this sitting:
+**All 37 chapters pass — 1,069 questions.** Keys as at this sitting:
 
 | Module | Keys (a/b/c/d) |
 |---|---|
@@ -522,7 +565,7 @@ break F9.1's existing usage.
 | **8** | F8.1 10/10/10/10 · F8.2 5/5/5/5 · F8.3 5/5/5/5 · F8.4 8/7/8/7 · F8.5 9/9/9/8 · F8.6 7/8/7/8 · F8.7 7/8/8/7 · F8.8 7/6/6/6 |
 | **9** | F9.1 8/8/7/7 · F9.2 7/7/8/8 · F9.3 8/7/8/7 · F9.4 7/8/7/8 · F9.5 7/8/7/8 · F9.6 6/6/7/6 · F9.7 6/7/6/6 |
 | **4** | **F4.1 5/5/5/5 · F4.2 6/5/6/5 · F4.3 5/6/5/6 · F4.4 5/5/5/5 · F4.5 5/5/5/5** |
-| **10** | **F10.1 5/5/5/5 · F10.2 8/7/8/7** |
+| **10** | F10.1 5/5/5/5 · F10.2 8/7/8/7 · **F10.3 10/10/10/10 · F10.4 9/9/9/8** |
 | **11** | **F11.1 7/6/6/6 · F11.2 30/30/30/30** (the full mock) · F11.3 no bank |
 
 **The keys are planned before the options are written, not rebalanced afterwards.** This matters: the gate
@@ -592,7 +635,7 @@ The TOC entries remain **clickable internal links** inside the PDF, and every pa
 
 **This is now the only substantial gap in the project, and it is no longer merely a formatting problem.**
 
-`src/` holds Modules 4, 6, 7, 8, 9, 10 and 11 — **35 chapters, 872 pages, 994 questions** — so all new work
+`src/` holds Modules 4, 6, 7, 8, 9, 10 and 11 — **37 chapters, 938 pages, 1,069 questions** — so all new work
 is safe and all of it builds. What remains outstanding is the **back catalogue**: **Modules 1, 2, 3 and 5**
 are complete as study material but have never been supplied here, and neither has `pyq/`.
 
@@ -632,17 +675,42 @@ and 3 should come first**, because they are the two exposed to §10's currency r
 themselves rather than from a summary, and would supply the missing 44 questions per mock.
 
 Until then the study plan is unaffected — F8.0's drill and F11.3 §4's schedule both run today — but the
-manual is **79 chapters as a project and 35 chapters as an artefact**, and the gap between those two numbers
+manual is **81 chapters as a project and 37 chapters as an artefact**, and the gap between those two numbers
 is the whole of the outstanding work.
 :::
 
 \pagebreak
 
-## 10. Currency risk in the back catalogue — recorded 16 August 2026
+## 10. Currency risk — three chapters corrected, two modules still exposed
 
-::: important | IMPORTANT · TWO CHANGES IN LAW MAY HAVE INVALIDATED PARTS OF MODULES 2 AND 3
-Research undertaken while writing Module 10 established two facts that bear directly on modules completed
-in earlier sittings. **They are recorded here separately from §9 because they are not a supply problem but a
+::: action | ACTION · WHAT THE DOSSIER RESEARCH FOUND, AND WHAT WAS DONE ABOUT IT
+Writing the twelve-month dossier turned up **four statutory replacements inside the window**, of which
+**two invalidated content already written in this repository.** Those have been corrected. Two other modules
+remain exposed and cannot be checked, because they are not here.
+
+**Corrected this sitting:**
+
+| Chapter | Was | Now | Instrument |
+|---|---|---|---|
+| **F4.4 §2.3** | MGNREGA, 2005 — **100 days** | **VB-G RAM G Act, 2025 — 125 days**, in force **1 July 2026** | Act of 2025 |
+| **F4.4 §4**, one-minute revision, wall sheet, **Q17 and its explanation** | 100 days | 125 days, with **100 days retained as the deliberate distractor** | — |
+| **F7.1 §3** and its timeline, revision sheets, **Q14 and its explanation** | Insurance FDI **74%** | **100%**, effective **5 Feb 2026**, automatic route, **LIC capped at 20%** | Sabka Bima Sabki Raksha (Amendment of Insurance Laws) Act, 2025 |
+| **F10.2 §4.2** scheme table | MGNREGA, 100 days | VB-G RAM G, 125 days | — |
+
+**Two of those questions were rewritten rather than deleted, and improved by it.** F4.4 Q17 and F7.1 Q14 now
+ask for the **current** position and offer the **superseded** figure as a distractor — which is a better
+question than either was before, and an instance of F11.1 §3.2's *superseded fact* trap turned to the
+candidate's advantage.
+
+**F7.1 is worth noting for a different reason.** It had carried a standing instruction to *verify the current
+FDI figure before the examination*, written when the chapter was drafted. **The instruction did its work.**
+That is the dated-figure convention (F4.1 §0) justifying itself, and it is an argument for applying the
+convention more widely rather than less.
+:::
+
+::: important | IMPORTANT · MODULES 2 AND 3 REMAIN EXPOSED AND CANNOT BE CHECKED FROM HERE
+Two of the four replacements bear on modules completed in earlier sittings which are **not in this
+repository**. **They are recorded here separately from §9 because they are not a supply problem but a
 correctness problem.**
 
 **1 The four labour codes came into force on 21 November 2025**, replacing **29 central labour laws** —
