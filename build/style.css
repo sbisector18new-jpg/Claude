@@ -1,0 +1,312 @@
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}

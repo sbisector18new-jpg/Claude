@@ -1,0 +1,4 @@
+# generated output is committed so the PDFs are downloadable from the repo;
+# only local scratch is ignored
+/tmp/
+*.log

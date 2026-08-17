@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Money, Banking and Inflation</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F4.2 · Money, Banking, Inflation
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · MODULE 4 · CHAPTER F4.2</p><h1 class="doc-t">Money, Banking and Inflation</h1><p class="doc-s">Chapter F4.2 — The Part of Economy With Definite Answers, So the Part Worth Preparing</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 4 — Indian Economy, Population, Development and Globalisation</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F4.2</td></tr><tr><td class="k">Topic</td><td class="v">Official syllabus head — Current Events and Developmental Issues; Indian Economy</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal high-yield"><p class="cal-h">HIGH YIELD · WHY THIS IS THE ONE MODULE 4 CHAPTER TO PREPARE PROPERLY</p><p>Blueprint §10.1 rates Module 4 the <strong>lowest-certainty</strong> module in the syllabus, and that judgement is right about most of it — questions on growth prospects or development policy have arguable answers.</p><p><strong>This chapter is the exception.</strong> The composition of M3, what the Cash Reserve Ratio is held in, how many members sit on the Monetary Policy Committee, which body publishes the Wholesale Price Index — these have <strong>definite answers</strong>, and by the same logic that puts accounting fourth in the study order (Blueprint §10.2), definite answers are what an examiner reaches for.</p><p>So although Module 4 is written lean, <strong>the lean is spent elsewhere.</strong> Give this chapter the larger share of the module's eight hours. It also carries the highest concentration of <code>[AS AT]</code> figures in the manual — the repo rate and the inflation reading — and those must be re-verified before the paper.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-money-and-the-aggregates"><span class="toc-t">1. Session 1 — Money and the Aggregates <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#11-what-money-does"><span class="toc-t">1.1 What money does</span></a><a class="toc-3" href="#12-the-aggregates"><span class="toc-t">1.2 The aggregates</span></a><a class="toc-2" href="#2-session-2-the-reserve-bank-and-its-instruments"><span class="toc-t">2. Session 2 — The Reserve Bank and Its Instruments <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#21-the-institution"><span class="toc-t">2.1 The institution</span></a><a class="toc-3" href="#22-the-monetary-policy-committee"><span class="toc-t">2.2 The Monetary Policy Committee</span></a><a class="toc-3" href="#23-the-instruments"><span class="toc-t">2.3 The instruments</span></a><a class="toc-2" href="#3-session-3-inflation-and-the-index-numbers"><span class="toc-t">3. Session 3 — Inflation and the Index Numbers <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#31-the-vocabulary-which-is-what-gets-tested"><span class="toc-t">3.1 The vocabulary, which is what gets tested</span></a><a class="toc-3" href="#32-causes"><span class="toc-t">3.2 Causes</span></a><a class="toc-3" href="#33-cpi-against-wpi-the-comparison-that-is-always-asked"><span class="toc-t">3.3 CPI against WPI — the comparison that is always asked</span></a><a class="toc-2" href="#4-session-4-banking-and-financial-inclusion"><span class="toc-t">4. Session 4 — Banking and Financial Inclusion <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#41-the-structure"><span class="toc-t">4.1 The structure</span></a><a class="toc-3" href="#42-asset-quality-and-the-resolution-machinery"><span class="toc-t">4.2 Asset quality, and the resolution machinery</span></a><a class="toc-3" href="#43-financial-inclusion"><span class="toc-t">4.3 Financial inclusion</span></a><a class="toc-2" href="#5-graded-practice-22-questions"><span class="toc-t">5. Graded Practice — 22 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#51-level-1-definitions-and-institutions"><span class="toc-t">5.1 Level 1 — Definitions and institutions</span></a><a class="toc-3" href="#52-level-2-policy-and-prices"><span class="toc-t">5.2 Level 2 — Policy and prices</span></a><a class="toc-3" href="#53-level-3-recruitment-test-standard"><span class="toc-t">5.3 Level 3 — Recruitment Test standard</span></a><a class="toc-2" href="#6-answers-and-explanations"><span class="toc-t">6. Answers and Explanations</span></a><a class="toc-3" href="#61-level-1"><span class="toc-t">6.1 Level 1</span></a><a class="toc-3" href="#62-level-2"><span class="toc-t">6.2 Level 2</span></a><a class="toc-3" href="#63-level-3"><span class="toc-t">6.3 Level 3</span></a><a class="toc-2" href="#7-one-minute-revision"><span class="toc-t">7. One-Minute Revision</span></a><a class="toc-2" href="#8-five-minute-wall-sheet"><span class="toc-t">8. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F4.2</p><ol><li><strong>Session 1</strong> — Money and the monetary aggregates (§1) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 2</strong> — The Reserve Bank and its instruments (§2) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 3</strong> — Inflation and the index numbers (§3) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 4</strong> — Banking structure and financial inclusion (§4) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li></ol><p>Then 22 graded questions in §5. Budget <strong>one long evening</strong>, and give §2 and §3 the larger part of it.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-money-and-the-aggregates">1. Session 1 — Money and the Aggregates <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="11-what-money-does">1.1 What money does</h3><p><strong>Primary functions:</strong> a <strong>medium of exchange</strong> and a <strong>measure of value</strong> (unit of account). <strong>Secondary functions:</strong> a <strong>store of value</strong>, a <strong>standard of deferred payment</strong>, and the <strong>transfer of value</strong>.</p><p>The medium-of-exchange function is the one that defines money, because it is what solves the double coincidence of wants that barter requires.</p><h3 id="12-the-aggregates">1.2 The aggregates</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · M0 TO M4, AND THE ONE THING THAT DISTINGUISHES EACH</p><div class="tw"><table><thead><tr><th style="text-align:left">Aggregate</th><th style="text-align:left">Composition</th></tr></thead><tbody><tr><td style="text-align:left"><strong>M0 — reserve money</strong></td><td style="text-align:left">Currency in circulation <strong>+ bankers' deposits with the RBI + other deposits with the RBI</strong>. Also called <strong>high-powered money</strong></td></tr><tr><td style="text-align:left"><strong>M1 — narrow money</strong></td><td style="text-align:left"><strong>Currency with the public + demand deposits with the banking system + other deposits with the RBI</strong></td></tr><tr><td style="text-align:left"><strong>M2</strong></td><td style="text-align:left"><strong>M1 + savings deposits with post office savings banks</strong></td></tr><tr><td style="text-align:left"><strong>M3 — broad money</strong></td><td style="text-align:left"><strong>M1 + time deposits with the banking system</strong></td></tr><tr><td style="text-align:left"><strong>M4</strong></td><td style="text-align:left"><strong>M3 + all post office deposits</strong> (excluding National Savings Certificates)</td></tr></tbody></table></div><p><strong>The distinguishing feature of each, which is what questions turn on:</strong></p><ul><li><strong>M1 is narrow money; M3 is broad money.</strong> These two labels are asked directly</li><li><strong>M3 − M1 = time deposits with banks.</strong> That single difference is the most examined fact in the topic</li><li><strong>M2 and M4 are the post-office aggregates</strong> — M2 adds only post office <em>savings</em> deposits, M4 adds <em>all</em></li></ul><p>of them</p><ul><li><strong>M0 is not part of the M1-to-M4 ladder.</strong> It is the RBI's own liability base, and it includes **bankers'</li></ul><p>deposits with the RBI**, which none of M1 to M4 does</p><blockquote><p><strong>Money multiplier = M3 ÷ M0.</strong> It measures how much broad money the banking system creates per unit of reserve money, and it rises as the CRR falls.</p></blockquote></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 1</p><ol><li>Give the two primary functions of money</li><li>Write out M1 and M3, and state their difference in one phrase</li><li>What does M0 include that M1 does not?</li><li>Define the money multiplier</li></ol></aside><div class="pagebreak"></div><h2 id="2-session-2-the-reserve-bank-and-its-instruments">2. Session 2 — The Reserve Bank and Its Instruments <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="21-the-institution">2.1 The institution</h3><div class="tw"><table><thead><tr><th style="text-align:left">Fact</th><th style="text-align:left"></th></tr></thead><tbody><tr><td style="text-align:left"><strong>Established</strong></td><td style="text-align:left">Under the <strong>Reserve Bank of India Act, 1934</strong>; <strong>commenced operations 1 April 1935</strong></td></tr><tr><td style="text-align:left"><strong>Nationalised</strong></td><td style="text-align:left"><strong>1949</strong></td></tr><tr><td style="text-align:left">Central office</td><td style="text-align:left"><strong>Mumbai</strong></td></tr><tr><td style="text-align:left"><strong>Governor</strong></td><td style="text-align:left"><strong>Sanjay Malhotra</strong> <code>[AS AT 16 AUG 2026]</code></td></tr><tr><td style="text-align:left">Sole right of note issue</td><td style="text-align:left">All denominations <strong>except the one-rupee coin and coins</strong>, which are the Government's</td></tr><tr><td style="text-align:left">Note issue system</td><td style="text-align:left"><strong>Minimum reserve system</strong> since 1957 — ₹200 crore of assets, of which ₹115 crore in gold</td></tr></tbody></table></div><p><strong>Note the date pair that gets confused:</strong> the <strong>Act is 1934</strong>, the <strong>Bank opened in 1935</strong>, and <strong>nationalisation was 1949</strong>. All three appear as options for one another.</p><h3 id="22-the-monetary-policy-committee">2.2 The Monetary Policy Committee</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · SIX MEMBERS, THREE AND THREE, AND THE CASTING VOTE</p><div class="tw"><table><thead><tr><th style="text-align:left">Feature</th><th style="text-align:left"></th></tr></thead><tbody><tr><td style="text-align:left"><strong>Members</strong></td><td style="text-align:left"><strong>Six</strong> — <strong>three from the RBI</strong> (the Governor, a Deputy Governor, and an officer nominated by the Board) and <strong>three external</strong> members appointed by the Central Government</td></tr><tr><td style="text-align:left"><strong>Chair</strong></td><td style="text-align:left"><strong>The Governor of the RBI</strong></td></tr><tr><td style="text-align:left"><strong>Tie</strong></td><td style="text-align:left">The <strong>Governor has a casting vote</strong></td></tr><tr><td style="text-align:left">External members' term</td><td style="text-align:left">Four years, not eligible for reappointment</td></tr><tr><td style="text-align:left">Meetings</td><td style="text-align:left">At least <strong>four times a year</strong>; decisions by majority</td></tr><tr><td style="text-align:left"><strong>Mandate</strong></td><td style="text-align:left">The <strong>CPI inflation target of 4%, within a band of plus or minus 2 percentage points</strong> — that is, <strong>2% to 6%</strong></td></tr><tr><td style="text-align:left"><strong>Statutory basis</strong></td><td style="text-align:left">The <strong>inflation-targeting framework was given statutory force by an amendment to the Reserve Bank of India Act, 1934</strong> (2016)</td></tr></tbody></table></div><p><strong>The two most examined details are the 3-and-3 composition and the casting vote.</strong> A common wrong option gives the Finance Minister or the Chief Economic Adviser a seat; neither sits on the MPC.</p><p><strong>And note where inflation targeting lives:</strong> in the <strong>RBI Act, 1934</strong>, as amended — not in the Banking Regulation Act and not in the FRBM Act, both of which are offered.</p></aside><h3 id="23-the-instruments">2.3 The instruments</h3><p><strong>Quantitative</strong> instruments act on the <strong>volume</strong> of credit; <strong>qualitative</strong> instruments act on its <strong>direction and terms</strong>.</p><div class="tw"><table><thead><tr><th style="text-align:left">Quantitative</th><th style="text-align:left">What it is</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Repo rate</strong></td><td style="text-align:left">The rate at which the RBI <strong>lends</strong> to banks against securities. <strong>The policy rate</strong></td></tr><tr><td style="text-align:left"><strong>Standing Deposit Facility (SDF)</strong></td><td style="text-align:left">The rate at which the RBI <strong>absorbs</strong> liquidity <strong>without collateral</strong>. <strong>The floor of the corridor</strong></td></tr><tr><td style="text-align:left"><strong>Marginal Standing Facility (MSF)</strong></td><td style="text-align:left">Emergency overnight borrowing against SLR securities. <strong>The ceiling of the corridor</strong></td></tr><tr><td style="text-align:left"><strong>Bank rate</strong></td><td style="text-align:left">The rate for long-term accommodation; now aligned with the MSF and used mainly for penalties</td></tr><tr><td style="text-align:left"><strong>Cash Reserve Ratio (CRR)</strong></td><td style="text-align:left">The share of <strong>net demand and time liabilities</strong> held as a <strong>cash balance with the RBI</strong>. Earns <strong>no interest</strong></td></tr><tr><td style="text-align:left"><strong>Statutory Liquidity Ratio (SLR)</strong></td><td style="text-align:left">The share of NDTL held in <strong>cash, gold or approved securities</strong> — retained by the bank itself</td></tr><tr><td style="text-align:left"><strong>Open market operations (OMO)</strong></td><td style="text-align:left">RBI <strong>buying or selling government securities</strong> to inject or absorb liquidity</td></tr><tr><td style="text-align:left"><strong>LAF</strong></td><td style="text-align:left">The repo and SDF window through which day-to-day liquidity is managed</td></tr></tbody></table></div><div class="tw"><table><thead><tr><th style="text-align:left">Qualitative</th><th style="text-align:left">What it is</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Margin requirements</strong></td><td style="text-align:left">The minimum borrower contribution against a security</td></tr><tr><td style="text-align:left"><strong>Selective credit controls</strong></td><td style="text-align:left">Restrictions on lending against specified commodities</td></tr><tr><td style="text-align:left"><strong>Moral suasion</strong></td><td style="text-align:left">Persuasion and advice rather than direction</td></tr><tr><td style="text-align:left">Credit rationing, direct action</td><td style="text-align:left">Ceilings on categories of credit; penalties</td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE CORRIDOR, AND THE DIRECTION OF EVERY INSTRUMENT</p><p><strong>The corridor, top to bottom: MSF (ceiling) » REPO (the policy rate, in the middle) » SDF (floor).</strong> Since 2022 the <strong>SDF has replaced the reverse repo as the floor</strong>, and its distinguishing feature is that it is <strong>uncollateralised</strong> — the RBI absorbs money without giving securities in exchange. An option describing the reverse repo as the current floor is testing exactly this change.</p><p><strong>And the direction, which is where marks are actually lost.</strong> To <strong>reduce</strong> liquidity and tighten:</p><ul><li><strong>RAISE</strong> the repo rate, the CRR, the SLR</li><li><strong>SELL</strong> government securities in the open market</li></ul><p>To <strong>expand</strong> liquidity, do the opposite. The one that catches people is OMO: <strong>selling securities takes money out</strong> of the system, because buyers pay the RBI. Candidates reason that selling puts something into the market and choose the wrong direction.</p></aside><aside class="cal know"><p class="cal-h">KNOW · THE POLICY RATES AS THEY STAND  <code>[AS AT 16 AUG 2026]</code> · RE-VERIFY BEFORE THE PAPER</p><p>At its <strong>62nd meeting, held 3 to 5 August 2026</strong>, the Monetary Policy Committee <strong>unanimously kept the repo rate unchanged at 5.25%</strong> and retained a <strong>neutral</strong> stance — the <strong>fourth consecutive review</strong> without a change.</p><div class="tw"><table><thead><tr><th style="text-align:left">Rate</th><th style="text-align:left">Reading</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Repo rate</strong></td><td style="text-align:left"><strong>5.25%</strong></td></tr><tr><td style="text-align:left"><strong>SDF rate</strong> (floor)</td><td style="text-align:left"><strong>5.00%</strong></td></tr><tr><td style="text-align:left"><strong>MSF rate and Bank Rate</strong> (ceiling)</td><td style="text-align:left"><strong>5.50%</strong></td></tr><tr><td style="text-align:left">Stance</td><td style="text-align:left"><strong>Neutral</strong></td></tr></tbody></table></div><p>Sources: <a href="https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=63287">RBI press release</a> · <a href="https://website.rbi.org.in/documents/d/rbi/governorsstatement_febbulletin2026">RBI Governor's statement</a> · <a href="https://economictimes.indiatimes.com/news/economy/policy/rbi-mpc-meeting-at-a-glance-your-one-stop-guide-for-all-key-decisions/articleshow/132890470.cms">Economic Times report of the August 2026 MPC</a></p><p>Note the <strong>symmetric 25 basis point corridor</strong> around the repo rate. If the repo rate has moved by the time you read this, the SDF and MSF will have moved with it, and the <em>structure</em> — floor, policy rate, ceiling — is the durable fact. <em>Content rephrased from the sources for compliance with licensing restrictions.</em></p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 2</p><ol><li>Give the year of the RBI Act, the year the Bank opened, and the year of nationalisation</li><li>State the MPC's composition, who chairs it, and who breaks a tie</li><li>Where is the inflation target given statutory force, and what is the target and band?</li><li>Distinguish CRR from SLR by what each is held in and by who holds it</li><li>Name the floor, policy rate and ceiling of the corridor</li><li>To tighten liquidity, does the RBI buy or sell securities? Why?</li></ol></aside><div class="pagebreak"></div><h2 id="3-session-3-inflation-and-the-index-numbers">3. Session 3 — Inflation and the Index Numbers <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="31-the-vocabulary-which-is-what-gets-tested">3.1 The vocabulary, which is what gets tested</h3><div class="tw"><table><thead><tr><th style="text-align:left">Term</th><th style="text-align:left">Meaning</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Inflation</strong></td><td style="text-align:left">A <strong>sustained rise in the general price level</strong></td></tr><tr><td style="text-align:left"><strong>Deflation</strong></td><td style="text-align:left">An actual <strong>fall</strong> in the price level — a negative inflation rate</td></tr><tr><td style="text-align:left"><strong>Disinflation</strong></td><td style="text-align:left">A <strong>fall in the RATE of inflation</strong>, prices still rising but more slowly</td></tr><tr><td style="text-align:left"><strong>Reflation</strong></td><td style="text-align:left">Deliberate stimulation of demand to lift prices out of deflation</td></tr><tr><td style="text-align:left"><strong>Stagflation</strong></td><td style="text-align:left"><strong>High inflation together with stagnant output and high unemployment</strong></td></tr><tr><td style="text-align:left"><strong>Skewflation</strong></td><td style="text-align:left">A price rise concentrated in a few commodities rather than general</td></tr><tr><td style="text-align:left"><strong>Headline inflation</strong></td><td style="text-align:left">The all-items rate</td></tr><tr><td style="text-align:left"><strong>Core inflation</strong></td><td style="text-align:left">Headline <strong>excluding food and fuel</strong> — the volatile items</td></tr></tbody></table></div><aside class="cal trap"><p class="cal-h">TRAP · DISINFLATION IS NOT DEFLATION</p><p><strong>Disinflation</strong> is inflation of 6% falling to 4% — prices are still rising. <strong>Deflation</strong> is prices actually falling, a negative rate.</p><p>Both are offered together, and the distinction is the single most common vocabulary question in the topic. The mnemonic that holds: <strong>disinflation is about the RATE, deflation is about the LEVEL.</strong></p></aside><h3 id="32-causes">3.2 Causes</h3><div class="tw"><table><thead><tr><th style="text-align:left">Type</th><th style="text-align:left">Cause</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Demand-pull</strong></td><td style="text-align:left">Aggregate demand exceeds supply at full capacity — "too much money chasing too few goods"</td></tr><tr><td style="text-align:left"><strong>Cost-push</strong></td><td style="text-align:left">A rise in <strong>input costs</strong> — wages, oil, raw materials — shifting supply</td></tr><tr><td style="text-align:left">Imported</td><td style="text-align:left">Higher prices of imports, often oil, or a depreciating rupee</td></tr><tr><td style="text-align:left">Structural</td><td style="text-align:left">Bottlenecks in supply and distribution</td></tr></tbody></table></div><h3 id="33-cpi-against-wpi-the-comparison-that-is-always-asked">3.3 CPI against WPI — the comparison that is always asked</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE FOUR DIFFERENCES BETWEEN CPI AND WPI</p><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left"><strong>CPI</strong></th><th style="text-align:left"><strong>WPI</strong></th></tr></thead><tbody><tr><td style="text-align:left"><strong>Measures</strong></td><td style="text-align:left">Retail prices paid by <strong>consumers</strong></td><td style="text-align:left">Wholesale, <strong>bulk transaction</strong> prices</td></tr><tr><td style="text-align:left"><strong>Published by</strong></td><td style="text-align:left"><strong>NSO, under MoSPI</strong></td><td style="text-align:left"><strong>Office of the Economic Adviser, Ministry of Commerce and Industry</strong></td></tr><tr><td style="text-align:left"><strong>Services</strong></td><td style="text-align:left"><strong>Included</strong></td><td style="text-align:left"><strong>EXCLUDED</strong> — goods only</td></tr><tr><td style="text-align:left"><strong>Food weight</strong></td><td style="text-align:left"><strong>Large — food and beverages are close to half the basket</strong></td><td style="text-align:left">Much smaller</td></tr><tr><td style="text-align:left">Base year</td><td style="text-align:left"><strong>2012</strong></td><td style="text-align:left"><strong>2011-12</strong></td></tr><tr><td style="text-align:left"><strong>Policy role</strong></td><td style="text-align:left"><strong>The RBI's target index since 2016</strong></td><td style="text-align:left">Formerly the headline measure</td></tr></tbody></table></div><p><strong>The four points that carry the marks:</strong></p><ol><li><strong>The WPI excludes services entirely.</strong> The CPI includes them. This is the cleanest distinguishing fact</li><li><strong>Different ministries.</strong> The CPI is a <strong>statistics ministry</strong> product; the WPI is a <strong>commerce ministry</strong> product. Q15 tests exactly this, and the RBI is the tempting wrong answer for both</li><li><strong>The CPI carries much the heavier food weight</strong>, which is why CPI inflation is more volatile in a bad monsoon — and why an option asserting the WPI has the larger food weight is wrong</li><li><strong>The RBI targets the CPI</strong>, not the WPI. That changed in 2016 and older material still says otherwise</li></ol><p>Four CPI series exist — rural, urban, combined, and the older CPI-IW for industrial workers. <strong>CPI-IW, published by the Labour Bureau, is the one used for dearness allowance</strong>, which makes it the series most relevant to this examination's own subject matter.</p></aside><aside class="cal know"><p class="cal-h">KNOW · THE INFLATION READING  <code>[AS AT 16 AUG 2026]</code> · RE-VERIFY BEFORE THE PAPER</p><p>CPI inflation for <strong>2025-26 as a whole is projected at about 2.1%</strong> — well below the 4% target midpoint — with the first two quarters of <strong>2026-27 projected near 4.0% and 4.2%</strong>, the rise attributed largely to base effects and higher precious metal prices. The RBI has reiterated its commitment to the <strong>medium-term target of 4%</strong>.</p><p>Sources: <a href="https://www.businessworld.in/article/rbi-minutes-signal-steady-policy-bias-before-april-review-594720">Businessworld report on the MPC minutes</a> · <a href="https://www.indiainfoline.com/news/economy/rbi-policy-repo-rate-kept-unchanged-at-5-25-inflation-outlook-rises">IIFL report of the policy</a></p><p><strong>The durable point, which survives any revision of these numbers:</strong> the target is <strong>4% with a 2% band</strong>, so an inflation reading near 2% is at the <strong>lower</strong> edge of tolerance, and one above 6% breaches the upper edge and obliges the RBI to report to Parliament. <em>Content rephrased from the sources for compliance with licensing restrictions.</em></p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 3</p><ol><li>Distinguish deflation, disinflation and reflation</li><li>Define stagflation and core inflation</li><li>Give four differences between the CPI and the WPI</li><li>Which index does the RBI target, and since when?</li><li>Which CPI series is used for dearness allowance, and who publishes it?</li></ol></aside><div class="pagebreak"></div><h2 id="4-session-4-banking-and-financial-inclusion">4. Session 4 — Banking and Financial Inclusion <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="41-the-structure">4.1 The structure</h3><div class="tw"><table><thead><tr><th style="text-align:left">Category</th><th style="text-align:left">Notes</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Scheduled banks</strong></td><td style="text-align:left">Listed in the <strong>Second Schedule</strong> of the RBI Act, 1934</td></tr><tr><td style="text-align:left">Commercial banks</td><td style="text-align:left">Public sector, private sector, foreign, <strong>Regional Rural Banks</strong></td></tr><tr><td style="text-align:left"><strong>Differentiated banks</strong></td><td style="text-align:left"><strong>Small Finance Banks</strong> and <strong>Payments Banks</strong></td></tr><tr><td style="text-align:left">Cooperative banks</td><td style="text-align:left">Urban and rural; dual regulation by the RBI and the State</td></tr><tr><td style="text-align:left"><strong>Nationalisation</strong></td><td style="text-align:left"><strong>14 major banks in 1969</strong>; <strong>6 more in 1980</strong></td></tr><tr><td style="text-align:left"><strong>Deposit insurance</strong></td><td style="text-align:left"><strong>DICGC</strong>, cover <strong>₹5 lakh</strong> per depositor per bank</td></tr><tr><td style="text-align:left"><strong>Priority sector lending</strong></td><td style="text-align:left"><strong>40% of Adjusted Net Bank Credit</strong> for domestic scheduled commercial banks</td></tr></tbody></table></div><p><strong>A payments bank may accept deposits but may not lend</strong>, which is the distinguishing restriction and the one most often examined. Small Finance Banks may lend.</p><h3 id="42-asset-quality-and-the-resolution-machinery">4.2 Asset quality, and the resolution machinery</h3><div class="tw"><table><thead><tr><th style="text-align:left">Term</th><th style="text-align:left">Meaning</th></tr></thead><tbody><tr><td style="text-align:left"><strong>NPA</strong></td><td style="text-align:left">A loan on which interest or principal is overdue <strong>beyond 90 days</strong></td></tr><tr><td style="text-align:left"><strong>SARFAESI Act, 2002</strong></td><td style="text-align:left">Lets secured creditors enforce security <strong>without court intervention</strong></td></tr><tr><td style="text-align:left"><strong>Insolvency and Bankruptcy Code, 2016</strong></td><td style="text-align:left">Time-bound resolution; adjudicated by the <strong>NCLT</strong> for companies</td></tr><tr><td style="text-align:left">Basel III</td><td style="text-align:left">International capital adequacy norms</td></tr></tbody></table></div><h3 id="43-financial-inclusion">4.3 Financial inclusion</h3><div class="tw"><table><thead><tr><th style="text-align:left">Scheme</th><th style="text-align:left">What it does</th></tr></thead><tbody><tr><td style="text-align:left"><strong>PM Jan Dhan Yojana (2014)</strong></td><td style="text-align:left">Basic no-frills accounts, with RuPay card and overdraft</td></tr><tr><td style="text-align:left">PM Mudra Yojana</td><td style="text-align:left">Collateral-free micro-enterprise loans — Shishu, Kishore, Tarun</td></tr><tr><td style="text-align:left">PM SVANidhi</td><td style="text-align:left">Working capital for street vendors</td></tr><tr><td style="text-align:left"><strong>UPI, operated by NPCI</strong></td><td style="text-align:left">Real-time retail payments — now the principal retail payment channel</td></tr><tr><td style="text-align:left"><strong>JAM trinity</strong></td><td style="text-align:left"><strong>Jan Dhan, Aadhaar, Mobile</strong> — the plumbing of direct benefit transfer</td></tr></tbody></table></div><aside class="cal know"><p class="cal-h">KNOW · WHY THE JAM TRINITY IS WORTH KNOWING FOR THIS PARTICULAR POST</p><p>Direct benefit transfer over Jan Dhan accounts authenticated by Aadhaar is the same architecture that EPFO now uses to settle claims — and <strong>EPFO 3.0's UPI-based withdrawals</strong>, covered in F10.2 §2, are the provident fund's version of exactly this shift.</p><p>An interview or a <em>"which of the following is not correct"</em> item can therefore connect Module 4's financial inclusion material to Module 3's provident fund administration. The connection is real, not decorative: the reason claim settlement times fell from weeks to days is that the payment rails changed.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 4</p><ol><li>Which schedule of which Act lists scheduled banks?</li><li>How many banks were nationalised in 1969 and in 1980?</li><li>What may a payments bank not do?</li><li>Give the NPA threshold and the two resolution statutes</li><li>What is the deposit insurance limit, and the PSL target?</li><li>Name the JAM trinity</li></ol></aside><div class="pagebreak"></div><h2 id="5-graded-practice-22-questions">5. Graded Practice — 22 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><p><strong>Target: 25 to 35 seconds each.</strong></p><h3 id="51-level-1-definitions-and-institutions">5.1 Level 1 — Definitions and institutions</h3><p><strong>Q1.</strong> Broad money (M3) consists of M1 plus (a) savings deposits with post office savings banks (b) all post office deposits (c) time deposits with the banking system (d) bankers' deposits with the Reserve Bank</p><p><strong>Q2.</strong> Narrow money (M1) is correctly described as (a) currency with the public plus demand deposits with the banking system plus other deposits with the RBI (b) currency with the public plus time deposits (c) reserve money plus savings deposits (d) M3 less all post office deposits</p><p><strong>Q3.</strong> The Reserve Bank of India commenced operations on (a) 1 April 1934 (b) 1 April 1935 (c) 1 January 1949 (d) 15 August 1947</p><p><strong>Q4.</strong> The Monetary Policy Committee consists of (a) four members (b) five members (c) eight members (d) six members</p><p><strong>Q5.</strong> India's inflation-targeting framework sets the target as (a) 4% CPI inflation within a band of plus or minus 2 percentage points (b) 5% within a band of 1 percentage point (c) 6% with no tolerance band (d) 2% within a band of 2 percentage points</p><p><strong>Q6.</strong> The Cash Reserve Ratio is that proportion of a bank's net demand and time liabilities which must be (a) invested in government securities (b) lent to the priority sector (c) held as a cash balance with the Reserve Bank (d) retained as vault cash on its own premises</p><p><strong>Q7.</strong> The Statutory Liquidity Ratio may be maintained in (a) cash with the Reserve Bank only (b) cash, gold or approved securities (c) foreign currency assets (d) fixed deposits with other scheduled banks</p><p><strong>Q8.</strong> Which one of the following is a <strong>qualitative</strong> instrument of monetary policy? (a) The repo rate (b) The Cash Reserve Ratio (c) Open market operations (d) Margin requirements</p><h3 id="52-level-2-policy-and-prices">5.2 Level 2 — Policy and prices</h3><p><strong>Q9.</strong> The floor of the Reserve Bank's liquidity adjustment facility corridor is now the (a) Standing Deposit Facility rate (b) reverse repo rate (c) bank rate (d) Marginal Standing Facility rate</p><p><strong>Q10.</strong> The ceiling of that corridor is the (a) repo rate (b) Standing Deposit Facility rate (c) Marginal Standing Facility rate (d) Cash Reserve Ratio</p><p><strong>Q11.</strong> As at the August 2026 review, the policy repo rate stood at (a) 6.50% (b) 5.25% (c) 4.00% (d) 6.00%</p><p><strong>Q12.</strong> Inflation brought about by a rise in the cost of inputs such as wages and oil is described as (a) demand-pull (b) structural (c) skewflation (d) cost-push</p><p><strong>Q13.</strong> A condition in which high inflation coexists with stagnant output and high unemployment is (a) stagflation (b) deflation (c) disinflation (d) reflation</p><p><strong>Q14.</strong> Disinflation means (a) a fall in the general price level (b) a rise in the rate of inflation (c) a fall in the rate of inflation (d) a deliberate stimulation of demand to raise prices</p><p><strong>Q15.</strong> The Wholesale Price Index in India is compiled and published by (a) the National Statistical Office (b) the Office of the Economic Adviser in the Ministry of Commerce and Industry (c) the Reserve Bank of India (d) the Department of Economic Affairs</p><p><strong>Q16.</strong> Which one of the following statements is <strong>not</strong> correct? (a) The Consumer Price Index covers services, whereas the Wholesale Price Index does not (b) The Monetary Policy Committee is chaired by the Governor of the Reserve Bank (c) The Governor has a casting vote in the event of a tie in the Committee (d) The Wholesale Price Index assigns a larger weight to food than the Consumer Price Index does</p><h3 id="53-level-3-recruitment-test-standard">5.3 Level 3 — Recruitment Test standard</h3><p><strong>Q17.</strong> The money multiplier is the ratio of (a) M1 to M3 (b) currency to deposits (c) broad money to reserve money (d) demand deposits to time deposits</p><p><strong>Q18.</strong> Fourteen major commercial banks were nationalised in India in (a) 1969 (b) 1980 (c) 1955 (d) 1949</p><p><strong>Q19.</strong> The deposit insurance cover available per depositor per bank under the DICGC is (a) ₹1 lakh (b) ₹2 lakh (c) ₹5 lakh (d) ₹10 lakh</p><p><strong>Q20.</strong> The priority sector lending target for domestic scheduled commercial banks is (a) 25% of Adjusted Net Bank Credit (b) 40% of Adjusted Net Bank Credit (c) 18% of Adjusted Net Bank Credit (d) 60% of Adjusted Net Bank Credit</p><p><strong>Q21.</strong> In order to <strong>reduce</strong> liquidity in the banking system, the Reserve Bank will (a) sell government securities in the open market (b) buy government securities in the open market (c) reduce the Cash Reserve Ratio (d) reduce the repo rate</p><p><strong>Q22.</strong> Statutory force was given to India's inflation-targeting framework by an amendment to (a) the Banking Regulation Act, 1949 (b) the FRBM Act, 2003 (c) the Companies Act, 2013 (d) the Reserve Bank of India Act, 1934</p><div class="pagebreak"></div><h2 id="6-answers-and-explanations">6. Answers and Explanations</h2><h3 id="61-level-1">6.1 Level 1</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">c</td><td style="text-align:left"><strong>M3 = M1 + time deposits with the banking system.</strong> (a) gives M2 and (b) gives M4 — the post-office aggregates, offered together on purpose. (d) belongs to M0</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">a</td><td style="text-align:left">The three components of narrow money. (b) substitutes time deposits, which would make it broad money; (d) inverts the M4 relation</td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">b</td><td style="text-align:left">The <strong>Act is 1934</strong>, operations began <strong>1 April 1935</strong>, nationalisation was <strong>1949</strong> — all three offered here as options for one another</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Six</strong> — three from the RBI and three external members appointed by the Central Government</td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">a</td><td style="text-align:left"><strong>4%, band of plus or minus 2 points</strong>, so a tolerance range of <strong>2% to 6%</strong></td></tr><tr><td style="text-align:left">6</td><td style="text-align:center">c</td><td style="text-align:left">A <strong>cash balance with the RBI</strong>, earning no interest. (d) is the trap: vault cash on the bank's own premises does not count towards CRR</td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Cash, gold or approved securities</strong>, and crucially <strong>retained by the bank itself</strong> — which is the structural difference from CRR</td></tr><tr><td style="text-align:left">8</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Margin requirements</strong> act on the <em>terms</em> of credit, not its volume. (a), (b) and (c) are all quantitative</td></tr></tbody></table></div><h3 id="62-level-2">6.2 Level 2</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">9</td><td style="text-align:center">a</td><td style="text-align:left">The <strong>Standing Deposit Facility</strong>, which replaced the reverse repo as the floor in 2022 and is <strong>uncollateralised</strong>. (b) is the answer older material gives, which is what the question is checking</td></tr><tr><td style="text-align:left">10</td><td style="text-align:center">c</td><td style="text-align:left">The <strong>MSF</strong>, the emergency overnight window, sits at the top of the corridor. The repo rate is in the middle, not at either edge</td></tr><tr><td style="text-align:left">11</td><td style="text-align:center">b</td><td style="text-align:left"><strong>5.25%</strong>, held unanimously at the 62nd MPC meeting of 3 to 5 August 2026, the fourth consecutive review without a change. A dated figure — <strong>re-verify</strong></td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Cost-push</strong>, driven from the supply side. (a) is the demand-side counterpart, and the pair is the commonest matching item in the topic</td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Stagflation</strong> — the combination that ordinary demand management cannot treat, since tightening worsens the stagnation and loosening worsens the inflation</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">c</td><td style="text-align:left">A fall in the <strong>rate</strong>, prices still rising. (a) is <strong>deflation</strong> — the level, not the rate. §3.1's trap</td></tr><tr><td style="text-align:left">15</td><td style="text-align:center">b</td><td style="text-align:left">The <strong>Office of the Economic Adviser, Ministry of Commerce and Industry.</strong> The CPI comes from the NSO under MoSPI. (c) is the tempting answer for both, and is wrong for both</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">d</td><td style="text-align:left"><strong>The "not correct" item.</strong> It is the <strong>CPI</strong> that carries the heavy food weight — food and beverages are close to half its basket — which is why CPI inflation swings with the monsoon. (a), (b) and (c) are all correct</td></tr></tbody></table></div><h3 id="63-level-3">6.3 Level 3</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">17</td><td style="text-align:center">c</td><td style="text-align:left"><strong>M3 ÷ M0</strong> — broad money to reserve money. It rises as the CRR falls, because banks can create more deposits per unit of reserves</td></tr><tr><td style="text-align:left">18</td><td style="text-align:center">a</td><td style="text-align:left"><strong>1969</strong> for fourteen banks; <strong>1980</strong> for six more. Both years are offered, and the count is the discriminator</td></tr><tr><td style="text-align:left">19</td><td style="text-align:center">c</td><td style="text-align:left"><strong>₹5 lakh</strong> per depositor per bank, raised from ₹1 lakh — so (a) is the superseded figure</td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">b</td><td style="text-align:left"><strong>40% of Adjusted Net Bank Credit.</strong> (c) 18% is the <strong>sub-target for agriculture</strong> within that 40%, which is why it is offered</td></tr><tr><td style="text-align:left">21</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Sell.</strong> Buyers pay the RBI, so money leaves the system. Selling to reduce liquidity is counter-intuitive and is the most common direction error in the topic — §2.3</td></tr><tr><td style="text-align:left">22</td><td style="text-align:center">d</td><td style="text-align:left">The <strong>RBI Act, 1934</strong>, as amended in 2016. (a) governs banking regulation and (b) fiscal targets — plausible-sounding statutes attached to the wrong function</td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · THE FOUR SHAPES IN THIS BANK</p><ol><li><strong>The superseded fact.</strong> Q9 (reverse repo » SDF), Q19 (₹1 lakh » ₹5 lakh), and the CPI displacing the WPI as the target index. <strong>Each wrong option is what a textbook printed five years ago would say</strong>, and this is the single most productive pattern in economy questions. Where two options are both plausible, prefer the more recent arrangement</li><li><strong>The adjacent number.</strong> Q20 offers 18%, the agriculture sub-target, against 40%, the whole. Q4 offers plausible committee sizes. The examiner rarely offers absurd numbers; he offers <strong>the right number for a neighbouring concept</strong></li><li><strong>The direction of an instrument.</strong> Q21. Knowing what an OMO <em>is</em> earns nothing unless you know which way it pushes. Learn every instrument as a <strong>pair — instrument and direction</strong></li><li><strong>The right function attached to the wrong body.</strong> Q15 and Q22. Economy questions test institutional attribution heavily, because attribution is definite while forecasting is not</li></ol></aside><div class="pagebreak"></div><h2 id="7-one-minute-revision">7. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F4.2</p><p><strong>MONEY</strong> primary functions: <strong>medium of exchange, measure of value</strong> · secondary: store of value, standard of deferred payment, transfer of value</p><p><strong>AGGREGATES</strong> <strong>M0 reserve money</strong> = currency in circulation + <strong>bankers' deposits with RBI</strong> + other deposits · <strong>M1 narrow</strong> = currency with public + demand deposits + other deposits with RBI · <strong>M2 = M1 + post office SAVINGS deposits</strong> · <strong>M3 broad = M1 + TIME deposits with banks</strong> · <strong>M4 = M3 + ALL post office deposits</strong> · <strong>money multiplier = M3 ÷ M0</strong></p><p><strong>RBI</strong> <strong>Act 1934 · opened 1 April 1935 · nationalised 1949</strong> · HQ <strong>Mumbai</strong> · Governor <strong>Sanjay Malhotra</strong> <code>[AS AT 16 AUG 2026]</code> · <strong>minimum reserve system since 1957</strong> — ₹200 crore, ₹115 crore in gold · coins and the one-rupee note are the <strong>Government's</strong>, not the RBI's</p><p><strong>MPC</strong> <strong>SIX members, THREE RBI + THREE external</strong> · <strong>Governor chairs and holds the casting vote</strong> · external term 4 years, no reappointment · at least 4 meetings a year · <strong>target CPI 4%, band ±2, so 2–6%</strong> · <strong>statutory basis: the RBI ACT 1934 as amended (2016)</strong> — not the Banking Regulation Act, not FRBM</p><p><strong>CORRIDOR</strong> <strong>MSF (ceiling) » REPO (policy rate) » SDF (floor)</strong> · <strong>SDF replaced the reverse repo in 2022 and is UNCOLLATERALISED</strong></p><p><strong>RATES</strong> <code>[AS AT 16 AUG 2026]</code> <strong>repo 5.25%</strong> (unchanged, 4th consecutive review, 62nd MPC, 3–5 Aug 2026) · <strong>SDF 5.00%</strong> · <strong>MSF and Bank Rate 5.50%</strong> · stance <strong>neutral</strong></p><p><strong>CRR vs SLR</strong> CRR = <strong>cash with the RBI</strong>, no interest, <strong>vault cash does NOT count</strong> · SLR = <strong>cash, gold or approved securities, held by the bank itself</strong></p><p><strong>QUANTITATIVE</strong> repo · SDF · MSF · bank rate · CRR · SLR · <strong>OMO</strong> · LAF <strong>QUALITATIVE</strong> <strong>margin requirements</strong> · selective credit control · <strong>moral suasion</strong> · credit rationing</p><p><strong>TO TIGHTEN: RAISE repo, CRR, SLR · SELL securities.</strong> Selling absorbs money — the commonest direction error</p><p><strong>INFLATION WORDS</strong> <strong>deflation = the LEVEL falls</strong> · <strong>disinflation = the RATE falls, prices still rise</strong> · reflation = deliberate stimulus out of deflation · <strong>stagflation = high inflation + stagnant output + high unemployment</strong> · skewflation = concentrated in a few goods · <strong>core = headline less food and fuel</strong></p><p><strong>CAUSES</strong> demand-pull (too much money chasing too few goods) · <strong>cost-push (input costs)</strong> · imported · structural</p><p><strong>CPI vs WPI</strong> CPI <strong>retail, includes SERVICES, NSO/MoSPI, base 2012, heavy FOOD weight (near half), RBI's target since 2016</strong> · WPI <strong>wholesale, goods only NO services, Office of the Economic Adviser / Ministry of Commerce, base 2011-12</strong> · <strong>CPI-IW from the Labour Bureau is used for dearness allowance</strong></p><p><strong>INFLATION READING</strong> <code>[AS AT 16 AUG 2026]</code> 2025-26 about <strong>2.1%</strong>, near the <strong>lower</strong> edge of the band · 2026-27 Q1 and Q2 near <strong>4.0%</strong> and <strong>4.2%</strong> · above 6% obliges a report to Parliament</p><p><strong>BANKING</strong> scheduled = <strong>Second Schedule, RBI Act 1934</strong> · <strong>14 nationalised 1969, 6 in 1980</strong> · <strong>payments banks may take deposits but NOT lend</strong> · <strong>NPA = overdue beyond 90 days</strong> · <strong>SARFAESI 2002</strong> enforces security without a court · <strong>IBC 2016</strong>, NCLT for companies · <strong>DICGC cover ₹5 lakh</strong> · <strong>PSL 40% of ANBC</strong>, agriculture sub-target 18%</p><p><strong>INCLUSION</strong> <strong>PMJDY 2014</strong> · Mudra (Shishu, Kishore, Tarun) · PM SVANidhi · <strong>UPI run by NPCI</strong> · <strong>JAM = Jan Dhan, Aadhaar, Mobile</strong></p></aside><h2 id="8-five-minute-wall-sheet">8. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F4.2</p><p><strong>M3 = M1 + TIME DEPOSITS. M2 AND M4 ARE THE POST OFFICE ONES</strong></p><p><strong>M0 INCLUDES BANKERS' DEPOSITS WITH THE RBI. M1 DOES NOT</strong></p><p><strong>RBI: ACT 1934 · OPENED 1935 · NATIONALISED 1949</strong></p><p><strong>MPC = 6 = 3 RBI + 3 EXTERNAL · GOVERNOR CHAIRS AND BREAKS TIES</strong></p><p><strong>TARGET 4% ± 2 » 2 TO 6% · IN THE RBI ACT 1934, AS AMENDED</strong></p><p><strong>MSF CEILING » REPO » SDF FLOOR. SDF IS UNCOLLATERALISED AND REPLACED THE REVERSE REPO</strong></p><p><strong>REPO 5.25% · SDF 5.00% · MSF AND BANK RATE 5.50% <code>[AS AT 16 AUG 2026]</code></strong></p><p><strong>CRR = CASH WITH RBI, NO INTEREST · SLR = CASH, GOLD, SECURITIES, KEPT BY THE BANK</strong></p><p><strong>VAULT CASH IS NOT CRR</strong></p><p><strong>MARGIN REQUIREMENTS AND MORAL SUASION ARE THE <em>QUALITATIVE</em> ONES</strong></p><p><strong>TO TIGHTEN, <em>SELL</em> SECURITIES. SELLING TAKES MONEY OUT</strong></p><p><strong>DEFLATION = LEVEL · DISINFLATION = RATE</strong></p><p><strong>STAGFLATION = INFLATION + STAGNATION TOGETHER</strong></p><p><strong>CPI HAS SERVICES AND HEAVY FOOD WEIGHT, FROM MoSPI, AND IS WHAT THE RBI TARGETS</strong></p><p><strong>WPI HAS NO SERVICES AND COMES FROM THE COMMERCE MINISTRY</strong></p><p><strong>CPI-IW » DEARNESS ALLOWANCE</strong></p><p><strong>1969 = 14 BANKS · 1980 = 6 BANKS</strong></p><p><strong>PAYMENTS BANK: DEPOSITS YES, LENDING NO</strong></p><p><strong>NPA = 90 DAYS · DICGC = ₹5 LAKH · PSL = 40%</strong></p><p><strong>WHEN TWO OPTIONS ARE BOTH PLAUSIBLE, PREFER THE MORE RECENT ARRANGEMENT</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> The 2016 shift to statutory inflation targeting changed the RBI's accountability rather than merely its technique: it fixed a numerical objective in law, made a committee rather than the Governor responsible for the rate, and required a written explanation to Parliament if inflation stays outside the 2-to-6 band for three consecutive quarters.</p></aside><aside class="cal action"><p class="cal-h">ACTION · NEXT</p><p><strong>F4.3 — Public Finance, the Budget and Taxation.</strong> It carries the deficit definitions, the FRBM framework, GST and the current Budget numbers — and, like this chapter, most of its answers are definite.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F4.2
+  &middot; v1.0</footer>
+</body>
+</html>

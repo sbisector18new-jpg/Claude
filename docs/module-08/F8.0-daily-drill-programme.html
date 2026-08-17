@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Daily Drill Programme</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Module 8 · Daily Drill Programme
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · MODULE 8 · THE DAILY DRILL PROGRAMME</p><h1 class="doc-t">The Daily Drill Programme</h1><p class="doc-s">F8.0 — How to Run the 80-Mark Block as Thirty Minutes a Day Instead of a Module You Never Reach</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 8 — English, Quantitative Aptitude &amp; Reasoning</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F8.0</td></tr><tr><td class="k">Topic</td><td class="v">Official syllabus heads A and 7 — General English; Elementary Mathematics, Statistics and General Mental Ability</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal must-master"><p class="cal-h">MUST MASTER · WHY THIS DOCUMENT EXISTS</p><p>Module 8 is <strong>80 planning marks — the largest single block in the paper</strong>, larger than Labour Laws. And Blueprint §10.2 item 9 says it must be <em>"never a block; distributed daily practice from week 1."</em></p><p>Those two facts together create the problem this programme solves. A module that is never a block is a module with no obvious moment to start, which is exactly why it gets postponed — and postponing the largest block in the paper is the most expensive mistake available to you.</p><p><strong>So this chapter is not a chapter. It is a schedule.</strong> It tells you, for each of the next 72 study days, precisely which questions to attempt in your evening thirty minutes. No planning decisions, no "what should I do today", no chapter to finish first.</p><p><strong>Start tomorrow. Week 1, Monday. The material already exists.</strong></p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-the-honest-position-on-this-programme"><span class="toc-t">0. The Honest Position on This Programme</span></a><a class="toc-2" href="#1-the-thirty-minute-template"><span class="toc-t">1. The Thirty-Minute Template</span></a><a class="toc-3" href="#11-your-per-question-time-budget"><span class="toc-t">1.1 Your per-question time budget</span></a><a class="toc-2" href="#2-what-the-2023-paper-actually-asked"><span class="toc-t">2. What the 2023 Paper Actually Asked</span></a><a class="toc-3" href="#21-english-20-questions-in-2023"><span class="toc-t">2.1 English — 20 questions in 2023</span></a><a class="toc-3" href="#22-quantitative-aptitude-15-questions-in-2023"><span class="toc-t">2.2 Quantitative Aptitude — 15 questions in 2023</span></a><a class="toc-2" href="#3-the-twelve-week-calendar"><span class="toc-t">3. The Twelve-Week Calendar</span></a><a class="toc-3" href="#31-weeks-1-to-4-first-pass-through-module-8"><span class="toc-t">3.1 Weeks 1 to 4 — first pass through Module 8</span></a><a class="toc-3" href="#32-weeks-5-to-8-interleaving-with-the-other-modules"><span class="toc-t">3.2 Weeks 5 to 8 — interleaving with the other modules</span></a><a class="toc-3" href="#33-weeks-9-to-12-error-log-drilling-and-timed-sections"><span class="toc-t">3.3 Weeks 9 to 12 — error-log drilling and timed sections</span></a><a class="toc-2" href="#4-the-speed-material"><span class="toc-t">4. The Speed Material</span></a><a class="toc-3" href="#41-numbers-you-should-never-compute"><span class="toc-t">4.1 Numbers you should never compute</span></a><a class="toc-3" href="#42-the-vocabulary-drip-ten-words-a-day"><span class="toc-t">4.2 The vocabulary drip — ten words a day</span></a><a class="toc-2" href="#5-the-error-log"><span class="toc-t">5. The Error Log</span></a><a class="toc-3" href="#51-the-weekly-review-fifteen-minutes-on-saturday"><span class="toc-t">5.1 The weekly review, fifteen minutes on Saturday</span></a><a class="toc-2" href="#6-attempt-strategy-for-the-real-paper"><span class="toc-t">6. Attempt Strategy for the Real Paper</span></a><a class="toc-3" href="#61-the-three-pass-method"><span class="toc-t">6.1 The three-pass method</span></a></nav><div class="pagebreak"></div><h2 id="0-the-honest-position-on-this-programme">0. The Honest Position on This Programme</h2><p>Two things you should know before relying on it.</p><p><strong>What this programme is.</strong> A <strong>scheduler over question banks that already exist</strong>. Across Modules 6, 7, 9 and 8 this manual now contains <strong>several hundred practice questions</strong> with worked explanations. The calendar in §3 assigns them to specific days in an order designed to interleave subjects and revisit material at spaced intervals.</p><p><strong>What it is not.</strong> It is not several hundred <em>new</em> questions written for the calendar. Authoring a fresh drill set for every one of 72 days at the standard of the chapter question banks is not something I can do honestly in one sitting, and a padded set of low-quality items would be worse than none — you would be practising against questions that do not resemble the paper.</p><aside class="cal note"><p class="cal-h">NOTE · WHAT THAT MEANS IN PRACTICE</p><p>For roughly the <strong>first six weeks</strong> the calendar draws on the chapter banks, which is more than enough material. From <strong>week 7</strong> it moves to <strong>second-pass and error-log re-drilling</strong>, which is not a weakness — spaced repetition of questions you got wrong is more valuable than fresh questions you get right.</p><p>Where you need genuinely new volume beyond that, the honest answer is <strong>previous years' papers and a commercial question bank</strong>, used as raw material. Blueprint §22 permits coaching material as <em>supplementary</em> — this is exactly the case it was written for.</p></aside><div class="pagebreak"></div><h2 id="1-the-thirty-minute-template">1. The Thirty-Minute Template</h2><p>Blueprint §11.1 divides your evening hour into 10 minutes of active recall, 20 minutes of consolidation, and 30 minutes of conversion practice. <strong>This programme owns that last 30 minutes.</strong></p><div class="tw"><table><thead><tr><th style="text-align:left">Minutes</th><th style="text-align:left">Activity</th></tr></thead><tbody><tr><td style="text-align:left"><strong>0 – 2</strong></td><td style="text-align:left">Read the day's cell in the §3 calendar. Open the named question set. Note the start time</td></tr><tr><td style="text-align:left"><strong>2 – 22</strong></td><td style="text-align:left"><strong>Attempt the questions. Timed. No looking anything up.</strong> Write answers on paper, not in your head</td></tr><tr><td style="text-align:left"><strong>22 – 28</strong></td><td style="text-align:left">Check. <strong>Read the explanation for every question, including the ones you got right</strong></td></tr><tr><td style="text-align:left"><strong>28 – 30</strong></td><td style="text-align:left"><strong>Log every error</strong> in the §5 format. This step is the one that compounds</td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE TWO RULES THAT MAKE THE THIRTY MINUTES WORK</p><p><strong>Rule 1 — the evening subject must differ from the morning subject.</strong> Blueprint §11.1 requires it, and the calendar in §3 enforces it. Interleaving different material improves retention substantially more than massing the same subject, and it also guarantees English and Quant get daily attention without ever needing a dedicated block of weeks.</p><p><strong>Rule 2 — time yourself from day one.</strong> The RT gives you <strong>120 questions in 120 minutes</strong>. An untimed correct answer is worth very little, because the constraint that decides your score is not whether you <em>can</em> solve a mensuration problem but whether you can solve it in <strong>ninety seconds</strong>. Practising untimed builds a skill you cannot use.</p></aside><h3 id="11-your-per-question-time-budget">1.1 Your per-question time budget</h3><p>The paper averages one minute per question, but the average conceals the strategy. Some formats must be done faster than average so that others can be done slower.</p><div class="tw"><table><thead><tr><th style="text-align:left">Format</th><th style="text-align:left">Target time</th><th style="text-align:left">Why</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Vocabulary in context</strong></td><td style="text-align:left"><strong>20–30 seconds</strong></td><td style="text-align:left">You either know the word or you do not. Deliberating does not help</td></tr><tr><td style="text-align:left">Grammar, error spotting</td><td style="text-align:left">30–40 seconds</td><td style="text-align:left">Pattern recognition</td></tr><tr><td style="text-align:left"><strong>Para jumbles</strong></td><td style="text-align:left"><strong>60–75 seconds</strong> for a set</td><td style="text-align:left">Find the opener, then chain</td></tr><tr><td style="text-align:left"><strong>Reading comprehension</strong></td><td style="text-align:left"><strong>5 minutes for the whole passage set</strong></td><td style="text-align:left">Read once properly, then answer all five</td></tr><tr><td style="text-align:left">Arithmetic, ratio, percentage</td><td style="text-align:left">45–60 seconds</td><td style="text-align:left">Mostly one-step once set up</td></tr><tr><td style="text-align:left"><strong>Mensuration, geometry</strong></td><td style="text-align:left"><strong>75–90 seconds</strong></td><td style="text-align:left">Formula plus arithmetic</td></tr><tr><td style="text-align:left"><strong>Data interpretation</strong></td><td style="text-align:left"><strong>3 minutes for a set of three</strong></td><td style="text-align:left">One reading of the table serves all three</td></tr><tr><td style="text-align:left">Labour law, accounting recall</td><td style="text-align:left">20–30 seconds</td><td style="text-align:left">Recall or move on</td></tr></tbody></table></div><p><strong>The arithmetic that matters:</strong> if you spend 25 seconds on each of 10 vocabulary questions instead of 60, you bank <strong>six minutes</strong> — which is four extra mensuration problems. Speed on the cheap formats is what buys time for the expensive ones.</p><div class="pagebreak"></div><h2 id="2-what-the-2023-paper-actually-asked">2. What the 2023 Paper Actually Asked</h2><p>The calendar's weighting is not arbitrary. It follows the observed shape of the block (PYQ-DERIVED, Blueprint §4.4).</p><h3 id="21-english-20-questions-in-2023">2.1 English — 20 questions in 2023</h3><div class="tw"><table><thead><tr><th style="text-align:left">Format</th><th style="text-align:right">Questions</th><th style="text-align:left">Share</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Vocabulary in context</strong></td><td style="text-align:right"><strong>10</strong></td><td style="text-align:left"><strong>half of the English block</strong></td></tr><tr><td style="text-align:left"><strong>Para jumbles</strong></td><td style="text-align:right"><strong>5</strong></td><td style="text-align:left">a quarter</td></tr><tr><td style="text-align:left"><strong>Reading comprehension</strong> — all on <strong>one</strong> passage</td><td style="text-align:right"><strong>5</strong></td><td style="text-align:left">a quarter</td></tr></tbody></table></div><h3 id="22-quantitative-aptitude-15-questions-in-2023">2.2 Quantitative Aptitude — 15 questions in 2023</h3><p>Mensuration of a hemisphere and of a melted disc · circle geometry · quadratic roots · probability · ratio and ages · mixtures · <strong>three</strong> data-interpretation questions · heights and distances · mean of weights.</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE TWO FINDINGS THAT SHOULD CHANGE YOUR STUDY PLAN</p><p><strong>Finding 1 — vocabulary is half the English block.</strong> Ten of twenty questions. No other single format in the entire paper carries that concentration. It is also the format most improved by <strong>daily drip exposure</strong> rather than by study sessions, which is the strongest argument for this programme's existence. §4 gives you the drip.</p><p><strong>Finding 2 — there was only ONE pure reasoning question.</strong> One, out of 120. Blueprint §4.4 records it explicitly.</p><p>That second finding is worth pausing on, because "General Mental Ability" appears in the official syllabus and every commercial book for this exam devotes hundreds of pages to reasoning — syllogisms, blood relations, coding-decoding, seating arrangements. On the 2023 evidence that is a <strong>very poor use of your hours</strong>. Module 8 therefore treats reasoning as <strong>one compact chapter (F8.8)</strong>, not as a third of the module. If you have a reasoning book, use it as a doorstop until the core is safe.</p></aside><div class="pagebreak"></div><h2 id="3-the-twelve-week-calendar">3. The Twelve-Week Calendar</h2><p><strong>How to use it.</strong> Find the week, find the day, do what the cell says. Each cell names a chapter section and a question range. <code>F8.1 §7 Q1–20</code> means chapter F8.1, section 7, questions 1 to 20.</p><p>Sunday is deliberately blank — use it for a full mock or leave it alone.</p><h3 id="31-weeks-1-to-4-first-pass-through-module-8">3.1 Weeks 1 to 4 — first pass through Module 8</h3><div class="tw"><table><thead><tr><th style="text-align:left">Week</th><th style="text-align:left">Mon</th><th style="text-align:left">Tue</th><th style="text-align:left">Wed</th><th style="text-align:left">Thu</th><th style="text-align:left">Fri</th><th style="text-align:left">Sat</th></tr></thead><tbody><tr><td style="text-align:left"><strong>1</strong></td><td style="text-align:left">F8.1 §7 Q1–20</td><td style="text-align:left">F8.5 §8 Q1–12</td><td style="text-align:left">F8.1 §7 Q21–40</td><td style="text-align:left">F8.5 §8 Q13–24</td><td style="text-align:left">F8.2 §6 Q1–10</td><td style="text-align:left">Speed tables §4.1, timed</td></tr><tr><td style="text-align:left"><strong>2</strong></td><td style="text-align:left">F8.4 §7 Q1–15</td><td style="text-align:left">F8.6 §7 Q1–10</td><td style="text-align:left">F8.4 §7 Q16–30</td><td style="text-align:left">F8.6 §7 Q11–20</td><td style="text-align:left">F8.2 §6 Q11–20</td><td style="text-align:left">Error log review</td></tr><tr><td style="text-align:left"><strong>3</strong></td><td style="text-align:left">F8.3 §6 Q1–10</td><td style="text-align:left">F8.7 §7 Q1–10</td><td style="text-align:left">F8.3 §6 Q11–20</td><td style="text-align:left">F8.7 §7 Q11–20</td><td style="text-align:left">F8.8 §6 Q1–12</td><td style="text-align:left">Speed tables, timed</td></tr><tr><td style="text-align:left"><strong>4</strong></td><td style="text-align:left">F8.1 §7 Q1–40, re-drill</td><td style="text-align:left">F8.5 §8 Q25–35</td><td style="text-align:left">F8.4 §7 re-drill</td><td style="text-align:left">F8.6 §7 Q21–30</td><td style="text-align:left">F8.8 §6 Q13–25</td><td style="text-align:left">Error log review</td></tr></tbody></table></div><h3 id="32-weeks-5-to-8-interleaving-with-the-other-modules">3.2 Weeks 5 to 8 — interleaving with the other modules</h3><p>By now Module 8's own banks have been seen once. These weeks interleave them with the numerical and recall material from Modules 6 and 9, which is what Blueprint §11.1's interleaving rule is for.</p><div class="tw"><table><thead><tr><th style="text-align:left">Week</th><th style="text-align:left">Mon</th><th style="text-align:left">Tue</th><th style="text-align:left">Wed</th><th style="text-align:left">Thu</th><th style="text-align:left">Fri</th><th style="text-align:left">Sat</th></tr></thead><tbody><tr><td style="text-align:left"><strong>5</strong></td><td style="text-align:left">F8.1 vocabulary, errors only</td><td style="text-align:left">F6.8 §6 Q1–12 (statistics)</td><td style="text-align:left">F8.2 §6 re-drill</td><td style="text-align:left">F9.1 §6 Q21–30 (numericals)</td><td style="text-align:left">F8.7 §7 Q21–30</td><td style="text-align:left">Timed English section</td></tr><tr><td style="text-align:left"><strong>6</strong></td><td style="text-align:left">F8.3 §6 re-drill</td><td style="text-align:left">F8.5 §8 errors only</td><td style="text-align:left">F8.4 §7 errors only</td><td style="text-align:left">F8.6 §7 errors only</td><td style="text-align:left">F9.5 §7 Q11–20 (conversions)</td><td style="text-align:left">Timed Quant section</td></tr><tr><td style="text-align:left"><strong>7</strong></td><td style="text-align:left">F8.1 vocabulary, errors only</td><td style="text-align:left">F6.8 §6 Q13–25</td><td style="text-align:left">F8.2 §6 errors only</td><td style="text-align:left">F9.2 §6 Q11–20</td><td style="text-align:left">F8.8 §6 errors only</td><td style="text-align:left">Error log review</td></tr><tr><td style="text-align:left"><strong>8</strong></td><td style="text-align:left">Mixed: 10 vocabulary + 5 quant</td><td style="text-align:left">F9.7 §7 Q10–22 (mesh, IP)</td><td style="text-align:left">Mixed: 1 passage + 5 quant</td><td style="text-align:left">F8.5 §8 errors only</td><td style="text-align:left">F8.7 §7 errors only</td><td style="text-align:left"><strong>Full mock 1</strong></td></tr></tbody></table></div><h3 id="33-weeks-9-to-12-error-log-drilling-and-timed-sections">3.3 Weeks 9 to 12 — error-log drilling and timed sections</h3><p>From here the calendar stops introducing material. <strong>Everything is either an error you have already made or a timed section.</strong> This is deliberate: in the last four weeks, retrieval beats coverage.</p><div class="tw"><table><thead><tr><th style="text-align:left">Week</th><th style="text-align:left">Mon</th><th style="text-align:left">Tue</th><th style="text-align:left">Wed</th><th style="text-align:left">Thu</th><th style="text-align:left">Fri</th><th style="text-align:left">Sat</th></tr></thead><tbody><tr><td style="text-align:left"><strong>9</strong></td><td style="text-align:left">Error log, English half</td><td style="text-align:left">Error log, Quant half</td><td style="text-align:left">F8.1 all 40, timed</td><td style="text-align:left">F8.6 all 30, timed</td><td style="text-align:left">Mixed 15, timed</td><td style="text-align:left">Timed English section</td></tr><tr><td style="text-align:left"><strong>10</strong></td><td style="text-align:left">Error log, English half</td><td style="text-align:left">Error log, Quant half</td><td style="text-align:left">F8.4 all 30, timed</td><td style="text-align:left">F8.5 all 35, timed</td><td style="text-align:left">Mixed 15, timed</td><td style="text-align:left"><strong>Full mock 2</strong></td></tr><tr><td style="text-align:left"><strong>11</strong></td><td style="text-align:left">Error log, whole</td><td style="text-align:left">F8.7 all 30, timed</td><td style="text-align:left">F8.2 + F8.3, timed</td><td style="text-align:left">F8.8 all 25, timed</td><td style="text-align:left">Mixed 15, timed</td><td style="text-align:left">Timed Quant section</td></tr><tr><td style="text-align:left"><strong>12</strong></td><td style="text-align:left">Wall sheets only</td><td style="text-align:left">Wall sheets only</td><td style="text-align:left">Error log, whole</td><td style="text-align:left">Speed tables</td><td style="text-align:left">Mixed 15, timed</td><td style="text-align:left"><strong>Full mock 3</strong></td></tr></tbody></table></div><aside class="cal action"><p class="cal-h">ACTION · WHAT TO DO IF YOU MISS A DAY</p><p><strong>Do not double up the next day, and do not try to catch up.</strong> Skip the missed cell and do the current day's cell.</p><p>The value of this programme is the <strong>daily habit</strong>, not the completion of every cell. A candidate who does 60 of the 72 days in order will score better than one who does all 72 in bursts of four, because the spacing is doing as much work as the content. Missing Tuesday and doing Wednesday's cell on Wednesday costs you almost nothing. Abandoning the programme because you fell three days behind costs you the whole 80 marks' worth of practice.</p></aside><div class="pagebreak"></div><h2 id="4-the-speed-material">4. The Speed Material</h2><p>Two kinds of thing belong in a daily drill and nowhere else: <strong>numbers you should never compute</strong>, and <strong>words you should already know</strong>.</p><h3 id="41-numbers-you-should-never-compute">4.1 Numbers you should never compute</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · SQUARES TO 30, AND THE FRACTION EQUIVALENTS</p><p>Every one of these should be instant recall. Computing them mid-question wastes the seconds you need for the actual problem.</p><p><strong>Squares 1 to 30:</strong></p><div class="tw"><table><thead><tr><th style="text-align:left">n</th><th style="text-align:left">n²</th><th style="text-align:left">n</th><th style="text-align:left">n²</th><th style="text-align:left">n</th><th style="text-align:left">n²</th></tr></thead><tbody><tr><td style="text-align:left">11</td><td style="text-align:left">121</td><td style="text-align:left">18</td><td style="text-align:left">324</td><td style="text-align:left">25</td><td style="text-align:left">625</td></tr><tr><td style="text-align:left">12</td><td style="text-align:left">144</td><td style="text-align:left">19</td><td style="text-align:left">361</td><td style="text-align:left">26</td><td style="text-align:left">676</td></tr><tr><td style="text-align:left">13</td><td style="text-align:left">169</td><td style="text-align:left">20</td><td style="text-align:left">400</td><td style="text-align:left">27</td><td style="text-align:left">729</td></tr><tr><td style="text-align:left">14</td><td style="text-align:left">196</td><td style="text-align:left">21</td><td style="text-align:left">441</td><td style="text-align:left">28</td><td style="text-align:left">784</td></tr><tr><td style="text-align:left">15</td><td style="text-align:left">225</td><td style="text-align:left">22</td><td style="text-align:left">484</td><td style="text-align:left">29</td><td style="text-align:left">841</td></tr><tr><td style="text-align:left">16</td><td style="text-align:left">256</td><td style="text-align:left">23</td><td style="text-align:left">529</td><td style="text-align:left">30</td><td style="text-align:left">900</td></tr><tr><td style="text-align:left">17</td><td style="text-align:left">289</td><td style="text-align:left">24</td><td style="text-align:left">576</td><td style="text-align:left"></td><td style="text-align:left"></td></tr></tbody></table></div><p><strong>Cubes 1 to 12:</strong> 1, 8, 27, 64, 125, 216, 343, 512, 729, 1000, 1331, 1728</p><p><strong>Fraction, decimal and percentage equivalents</strong> — the single highest-value table for arithmetic speed:</p><div class="tw"><table><thead><tr><th style="text-align:left">Fraction</th><th style="text-align:left">Percentage</th><th style="text-align:left">Fraction</th><th style="text-align:left">Percentage</th></tr></thead><tbody><tr><td style="text-align:left">1/2</td><td style="text-align:left">50%</td><td style="text-align:left">1/8</td><td style="text-align:left">12.5%</td></tr><tr><td style="text-align:left">1/3</td><td style="text-align:left">33⅓%</td><td style="text-align:left">1/9</td><td style="text-align:left">11⅑%</td></tr><tr><td style="text-align:left">1/4</td><td style="text-align:left">25%</td><td style="text-align:left">1/11</td><td style="text-align:left">9¹/₁₁%</td></tr><tr><td style="text-align:left">1/5</td><td style="text-align:left">20%</td><td style="text-align:left">1/12</td><td style="text-align:left">8⅓%</td></tr><tr><td style="text-align:left">1/6</td><td style="text-align:left">16⅔%</td><td style="text-align:left">1/16</td><td style="text-align:left">6.25%</td></tr><tr><td style="text-align:left">1/7</td><td style="text-align:left">14²/₇%</td><td style="text-align:left">1/20</td><td style="text-align:left">5%</td></tr></tbody></table></div><p><strong>Why this table matters more than it looks.</strong> A question asking for "an increase of 16⅔%" is asking you to <strong>multiply by 7/6</strong>. Recognising the fraction turns a decimal calculation into a one-step multiplication. Almost every percentage question in an aptitude paper is built on these equivalents.</p><p><strong>Powers of 2:</strong> 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024 — needed for F9.5's number systems too.</p></aside><h3 id="42-the-vocabulary-drip-ten-words-a-day">4.2 The vocabulary drip — ten words a day</h3><p>Vocabulary is <strong>half the English block</strong> and is the only topic in the paper that responds better to <strong>five minutes daily for twelve weeks</strong> than to twelve hours in one week. Words need repeated exposure at intervals; they cannot be crammed.</p><p><strong>The protocol:</strong></p><ol><li>Take <strong>ten words</strong> a day from the list in <strong>F8.1 §5</strong></li><li>For each, write the word, its meaning, and <strong>one sentence of your own using it</strong></li><li>The next day, before taking ten new words, <strong>cover the meanings and test yourself on yesterday's ten</strong></li><li>Every Saturday, test yourself on all sixty from that week</li><li>Any word you fail twice goes into the <strong>error log</strong> and is re-tested weekly</li></ol><p>Ten words a day for twelve weeks is <strong>840 exposures over 720 words</strong> — which, at the observed weight of ten vocabulary questions in the paper, is the best-returning five minutes in this entire manual.</p><div class="pagebreak"></div><h2 id="5-the-error-log">5. The Error Log</h2><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE SINGLE HIGHEST-VALUE HABIT IN THE PROGRAMME</p><p>Everything else in this document is scheduling. <strong>This section is the part that actually raises your score.</strong></p><p>A question you got wrong and understood is worth several questions you got right. But that only holds if you <strong>return to it</strong>, and you will not return to it unless it is written down somewhere you look.</p><p>Keep one page per subject, in this format:</p><div class="tw"><table><thead><tr><th style="text-align:left">Date</th><th style="text-align:left">Source</th><th style="text-align:left">What I chose</th><th style="text-align:left">Correct</th><th style="text-align:left"><strong>Why I got it wrong — in my own words</strong></th></tr></thead><tbody><tr><td style="text-align:left">18 Aug</td><td style="text-align:left">F8.5 Q14</td><td style="text-align:left">62.5%</td><td style="text-align:left">60%</td><td style="text-align:left">Used 5/8 instead of 3/5. Did not check the fraction</td></tr><tr><td style="text-align:left">18 Aug</td><td style="text-align:left">F8.1 Q7</td><td style="text-align:left"><em>reticent</em></td><td style="text-align:left"><em>recalcitrant</em></td><td style="text-align:left">Guessed from a similar-sounding word</td></tr></tbody></table></div><p><strong>The fourth column is the whole point.</strong> "Silly mistake" is not a diagnosis and teaches nothing. The diagnosis must be specific enough to be actionable — <em>"I applied the percentage before deducting"</em>, <em>"I read 'not correct' as 'correct'"</em>, <em>"I did not convert km/h to m/s"</em>.</p><p>Because when you have twenty entries you will find that <strong>four or five root causes produce most of your errors</strong>, and those four or five are what you fix. That is a far smaller and more tractable problem than "get better at Quant".</p></aside><h3 id="51-the-weekly-review-fifteen-minutes-on-saturday">5.1 The weekly review, fifteen minutes on Saturday</h3><ol><li>Re-attempt every error from the week <strong>without looking at the answer</strong></li><li>Any error you repeat gets a <strong>star</strong> — starred items are re-tested every Saturday until clean</li><li>Count your root causes and name the <strong>top three</strong> for the week</li><li>Write one line: <em>what will I do differently next week?</em></li></ol><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · THE THREE ERROR CAUSES THAT WILL DOMINATE YOUR LOG</p><p>Predicted from the trap patterns across this manual, and worth watching for from day one.</p><ol><li><strong>Missing the word "not".</strong> Blueprint §6 records that about <strong>20%</strong> of the 2023 paper used the "which one is <strong>not</strong> correct" format. Blueprint §8's remedy is a two-second habit: <strong>re-read the last six words of the stem before you fill any bubble</strong></li><li><strong>Unit and conversion failures.</strong> km/h to m/s (F9.1 §2.2), percentage before deduction (F6.3 §5.3), the wrong power of ten in pH (F9.3 §3.2). These are not knowledge failures, and they are the cheapest to eliminate</li><li><strong>Formula swaps within a matched pair.</strong> Years'-purchase versus capitalisation (F6.4), mirror versus lens (F9.2), n(n−1) versus n(n−1)/2 (F9.7). The examiner offers the other member of the pair, correctly computed</li></ol></aside><div class="pagebreak"></div><h2 id="6-attempt-strategy-for-the-real-paper">6. Attempt Strategy for the Real Paper</h2><p>Restating the two calculations from Blueprint §1.2 and §1.5, because the drill exists to serve them.</p><p><strong>The marking scheme.</strong> +2.5 for a correct answer, <strong>−0.8333</strong> for a wrong one, 0 for a blank. A blind guess among four options has an expected value of <strong>exactly zero</strong> — not negative.</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE ATTEMPT RULE</p><p><strong>If you can eliminate even one option, you must attempt the question.</strong> Eliminating one leaves an expected value of +0.28; eliminating two, +0.83.</p><p>Over-cautious candidates leave 20 to 25 such questions blank and give away <strong>six to eight marks of pure expected value</strong>.</p><p>Leave a question blank only in two situations: you have <strong>no basis whatever</strong> for elimination, or you feel actively <strong>pulled towards a familiar-looking option</strong> — which usually means you have half-recognised a trap.</p><p><strong>Your target: about 100 attempts at 80% accuracy</strong>, which gives roughly 183 of 300. Attempting more only pays if accuracy holds — 110 attempts at 70% scores <em>less</em> than 100 at 80%.</p></aside><h3 id="61-the-three-pass-method">6.1 The three-pass method</h3><p>Do not work through the paper in order. Three passes:</p><div class="tw"><table><thead><tr><th style="text-align:left">Pass</th><th style="text-align:left">What you do</th><th style="text-align:left">Time</th></tr></thead><tbody><tr><td style="text-align:left"><strong>First</strong></td><td style="text-align:left">Answer everything you <strong>know immediately</strong>. Skip anything needing calculation or deliberation</td><td style="text-align:left">about 45 min</td></tr><tr><td style="text-align:left"><strong>Second</strong></td><td style="text-align:left">Return to the <strong>calculable</strong> ones — mensuration, DI, arithmetic. You now know how much time you have per question</td><td style="text-align:left">about 55 min</td></tr><tr><td style="text-align:left"><strong>Third</strong></td><td style="text-align:left"><strong>Eliminate and guess</strong> on the rest. Fill every bubble where you can rule out one option</td><td style="text-align:left">about 20 min</td></tr></tbody></table></div><p>The reason this works: the paper mixes formats of wildly different cost, and the order is not sorted by difficulty. A 20-second vocabulary question sitting at number 95 is worth the same 2.5 marks as a 90-second mensuration problem at number 12. <strong>A single pass in order means you may never reach the cheap marks.</strong></p><aside class="cal action"><p class="cal-h">ACTION · START TOMORROW</p><p>Do not read the eight chapters first. <strong>Go to §3, week 1, Monday — F8.1 §7 Q1–20 — and do it tomorrow evening.</strong> Read the chapter sections as the calendar reaches them.</p><p>The chapters are:</p><div class="tw"><table><thead><tr><th style="text-align:left">Ch</th><th style="text-align:left">Topic</th><th style="text-align:right">Q</th></tr></thead><tbody><tr><td style="text-align:left"><strong>F8.1</strong></td><td style="text-align:left">Vocabulary in context — half the English block</td><td style="text-align:right">40</td></tr><tr><td style="text-align:left"><strong>F8.2</strong></td><td style="text-align:left">Para jumbles and sentence rearrangement</td><td style="text-align:right">20</td></tr><tr><td style="text-align:left"><strong>F8.3</strong></td><td style="text-align:left">Reading comprehension</td><td style="text-align:right">20</td></tr><tr><td style="text-align:left"><strong>F8.4</strong></td><td style="text-align:left">Grammar essentials and error spotting</td><td style="text-align:right">30</td></tr><tr><td style="text-align:left"><strong>F8.5</strong></td><td style="text-align:left">Arithmetic — ratio, percentage, average, ages, mixtures, time and work</td><td style="text-align:right">35</td></tr><tr><td style="text-align:left"><strong>F8.6</strong></td><td style="text-align:left">Mensuration and geometry</td><td style="text-align:right">30</td></tr><tr><td style="text-align:left"><strong>F8.7</strong></td><td style="text-align:left">Algebra, probability and the number system</td><td style="text-align:right">30</td></tr><tr><td style="text-align:left"><strong>F8.8</strong></td><td style="text-align:left">Data interpretation, and reasoning essentials</td><td style="text-align:right">25</td></tr></tbody></table></div></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F8.0
+  &middot; v1.0</footer>
+</body>
+</html>

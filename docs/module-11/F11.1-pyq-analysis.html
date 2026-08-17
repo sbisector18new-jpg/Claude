@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Previous Question Analysis</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F11.1 · PYQ Analysis
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · MODULE 11 · CHAPTER F11.1</p><h1 class="doc-t">Previous Question Analysis</h1><p class="doc-s">Chapter F11.1 — What the 2023 Paper Actually Asked, Mapped Module by Module</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 11 — PYQ Analysis, Mocks and Final Revision</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F11.1</td></tr><tr><td class="k">Topic</td><td class="v">Paper analysis and attempt strategy</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal important"><p class="cal-h">IMPORTANT · WHAT THIS CHAPTER IS BUILT FROM, AND WHAT IS MISSING</p><p><strong>The 2015 and 2023 question papers are not in this repository.</strong> Register §9 has recorded that gap since the first sitting, and it is still open. So this chapter cannot reproduce the papers, and does not pretend to.</p><p><strong>What it is built from is Blueprint §4.4's itemised record of the 2023 paper</strong> — a list of the specific questions asked, module by module, compiled when the paper was analysed. That record is the evidence on which this entire manual's weighting rests: it is the reason Module 9 was added, the reason reasoning was confined to part of F8.8, and the reason F8.6 carries the heaviest Quant bank.</p><p><strong>What that permits, and what it does not.</strong> It permits a reliable account of the paper's <em>shape</em> — its marking scheme, module weights, format mix and trap patterns — and it permits <strong>§5's question bank, in which every one of the 25 questions is set on an item the 2023 paper actually asked.</strong> That bank is, on the available evidence, the highest-value 25 questions in the manual.</p><p><strong>It does not permit</strong> an exact reproduction of wording or options, a count of how many questions repeated verbatim between 2015 and 2023, or any analysis of the 2015 paper beyond what the Blueprint records.</p><p><strong>To close this, supply the two papers into <code>pyq/</code>.</strong> They would make this chapter substantially stronger and would allow a genuine repeat-rate analysis, which is the one thing a candidate most wants from previous papers and the one thing that cannot be reconstructed from a summary.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-the-shape-of-the-paper"><span class="toc-t">1. Session 1 — The Shape of the Paper <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#11-the-parameters"><span class="toc-t">1.1 The parameters</span></a><a class="toc-3" href="#12-the-marking-arithmetic-which-decides-attempt-strategy"><span class="toc-t">1.2 The marking arithmetic, which decides attempt strategy</span></a><a class="toc-3" href="#13-the-three-pass-method"><span class="toc-t">1.3 The three-pass method</span></a><a class="toc-2" href="#2-session-2-the-2023-paper-module-by-module"><span class="toc-t">2. Session 2 — The 2023 Paper, Module by Module <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#21-the-distribution"><span class="toc-t">2.1 The distribution</span></a><a class="toc-3" href="#22-the-named-items-the-strongest-evidence-in-the-manual"><span class="toc-t">2.2 The named items — the strongest evidence in the manual</span></a><a class="toc-2" href="#3-session-3-the-trap-patterns"><span class="toc-t">3. Session 3 — The Trap Patterns <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#31-the-dominant-pattern"><span class="toc-t">3.1 The dominant pattern</span></a><a class="toc-3" href="#32-the-other-four-patterns-and-where-each-is-drilled"><span class="toc-t">3.2 The other four patterns, and where each is drilled</span></a><a class="toc-2" href="#4-session-4-what-the-evidence-supports"><span class="toc-t">4. Session 4 — What the Evidence Supports <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#41-the-four-conclusions-this-manual-is-built-on"><span class="toc-t">4.1 The four conclusions this manual is built on</span></a><a class="toc-3" href="#42-the-limits-stated-so-that-they-are-not-overstated"><span class="toc-t">4.2 The limits — stated so that they are not overstated</span></a><a class="toc-2" href="#5-graded-practice-25-questions"><span class="toc-t">5. Graded Practice — 25 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#51-general-science-the-ten-2023-items"><span class="toc-t">5.1 General Science — the ten 2023 items</span></a><a class="toc-3" href="#52-computer-applications-the-ten-2023-items"><span class="toc-t">5.2 Computer Applications — the ten 2023 items</span></a><a class="toc-3" href="#53-quantitative-aptitude-and-accounting-the-2023-items"><span class="toc-t">5.3 Quantitative Aptitude and Accounting — the 2023 items</span></a><a class="toc-2" href="#6-answers-and-explanations"><span class="toc-t">6. Answers and Explanations</span></a><a class="toc-3" href="#61-general-science"><span class="toc-t">6.1 General Science</span></a><a class="toc-3" href="#62-computer-applications"><span class="toc-t">6.2 Computer Applications</span></a><a class="toc-3" href="#63-quantitative-aptitude-and-accounting"><span class="toc-t">6.3 Quantitative Aptitude and Accounting</span></a><a class="toc-2" href="#7-one-minute-revision"><span class="toc-t">7. One-Minute Revision</span></a><a class="toc-2" href="#8-five-minute-wall-sheet"><span class="toc-t">8. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F11.1</p><ol><li><strong>Session 1</strong> — The paper's shape, and the marking arithmetic (§1) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 2</strong> — The 2023 paper, module by module (§2) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 3</strong> — The trap patterns, and what they imply (§3) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 4</strong> — What the evidence does and does not support (§4) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li></ol><p>Then <strong>25 questions in §5, every one of them set on an item the 2023 paper asked.</strong> Take that bank <strong>timed</strong>, as a diagnostic, before you sit Mock 1 in F11.2.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-the-shape-of-the-paper">1. Session 1 — The Shape of the Paper <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="11-the-parameters">1.1 The parameters</h3><div class="tw"><table><thead><tr><th style="text-align:left">Parameter</th><th style="text-align:left">Value</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Questions</strong></td><td style="text-align:left"><strong>120</strong></td></tr><tr><td style="text-align:left"><strong>Duration</strong></td><td style="text-align:left"><strong>120 minutes</strong> — one minute a question on average</td></tr><tr><td style="text-align:left"><strong>Total marks</strong></td><td style="text-align:left"><strong>300</strong></td></tr><tr><td style="text-align:left"><strong>Marks per correct answer</strong></td><td style="text-align:left"><strong>+2.5</strong></td></tr><tr><td style="text-align:left"><strong>Negative marking</strong></td><td style="text-align:left"><strong>−0.8333</strong> — one third of 2.5</td></tr><tr><td style="text-align:left">Marks for a blank</td><td style="text-align:left"><strong>0</strong></td></tr><tr><td style="text-align:left">Stage</td><td style="text-align:left">Recruitment Test — <strong>75% of the final weight</strong>, the interview carrying the rest</td></tr></tbody></table></div><h3 id="12-the-marking-arithmetic-which-decides-attempt-strategy">1.2 The marking arithmetic, which decides attempt strategy</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · A BLIND GUESS IS WORTH EXACTLY ZERO, SO ELIMINATION IS EVERYTHING</p><p>With four options and a penalty of one third of the reward, the expected value of a <strong>blind</strong> guess is:</p><blockquote><p>(¼ × 2.5) + (¾ × −0.8333) = 0.625 − 0.625 = <strong>exactly zero</strong></p></blockquote><p>That is not an accident; the penalty was chosen to make it so. And it has a consequence that decides how you attempt the paper:</p><div class="tw"><table><thead><tr><th style="text-align:left">If you can eliminate</th><th style="text-align:left">Chance of a correct guess</th><th style="text-align:left"><strong>Expected value</strong></th></tr></thead><tbody><tr><td style="text-align:left">Nothing</td><td style="text-align:left">1 in 4</td><td style="text-align:left"><strong>0</strong></td></tr><tr><td style="text-align:left"><strong>One option</strong></td><td style="text-align:left">1 in 3</td><td style="text-align:left"><strong>+0.28</strong></td></tr><tr><td style="text-align:left"><strong>Two options</strong></td><td style="text-align:left">1 in 2</td><td style="text-align:left"><strong>+0.83</strong></td></tr><tr><td style="text-align:left">Three options</td><td style="text-align:left">certain</td><td style="text-align:left"><strong>+2.5</strong></td></tr></tbody></table></div><p><strong>So: if you can eliminate even one option, you must attempt the question.</strong> Leaving such a question blank forfeits positive expected value.</p><p><strong>Leave a question blank in exactly two situations:</strong> you have <strong>no basis whatever</strong> for elimination, or you feel <strong>actively pulled towards a familiar-looking option</strong>, which usually means you have half-recognised a trap and are about to walk into it.</p><p><strong>The target: about 100 attempts at 80% accuracy</strong> — roughly 183 of 300. And note the asymmetry that follows: <strong>110 attempts at 70% scores less than 100 at 80%</strong>. Attempting more only pays if accuracy holds, which is why the three-pass method in §1.3 exists.</p></aside><h3 id="13-the-three-pass-method">1.3 The three-pass method</h3><div class="tw"><table><thead><tr><th style="text-align:left">Pass</th><th style="text-align:left">What you do</th><th style="text-align:left">Time</th></tr></thead><tbody><tr><td style="text-align:left"><strong>First</strong></td><td style="text-align:left">Answer everything you <strong>know immediately</strong>. Skip anything needing calculation</td><td style="text-align:left">about <strong>45 min</strong></td></tr><tr><td style="text-align:left"><strong>Second</strong></td><td style="text-align:left">Return to the <strong>calculable</strong> ones — mensuration, DI, arithmetic</td><td style="text-align:left">about <strong>55 min</strong></td></tr><tr><td style="text-align:left"><strong>Third</strong></td><td style="text-align:left"><strong>Eliminate and guess</strong> on the rest. Fill every bubble where one option can be ruled out</td><td style="text-align:left">about <strong>20 min</strong></td></tr></tbody></table></div><p><strong>Why not simply work through in order.</strong> The paper mixes formats of wildly different cost and is <strong>not sorted by difficulty</strong>. A 20-second vocabulary item may sit at question 95 and a 90-second mensuration problem at question 12, and both are worth 2.5 marks. <strong>A single pass in order risks never reaching the cheap marks.</strong></p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 1</p><ol><li>Give the marking scheme and the expected value of a blind guess</li><li>Give the expected value of a guess after eliminating one option; after two</li><li>What are the only two circumstances in which you should leave a blank?</li><li>Which scores better: 100 attempts at 80%, or 110 at 70%?</li><li>State the three passes and their time allocations</li></ol></aside><div class="pagebreak"></div><h2 id="2-session-2-the-2023-paper-module-by-module">2. Session 2 — The 2023 Paper, Module by Module <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="21-the-distribution">2.1 The distribution</h3><p>Reconciled to the register's planning-marks table, which closes to 120 questions and 300 marks.</p><div class="tw"><table><thead><tr><th style="text-align:left">Module</th><th style="text-align:left">Subject</th><th style="text-align:right">Questions</th><th style="text-align:right">Marks</th></tr></thead><tbody><tr><td style="text-align:left"><strong>8</strong></td><td style="text-align:left"><strong>English, Quant and Reasoning</strong></td><td style="text-align:right"><strong>32</strong></td><td style="text-align:right"><strong>80.0</strong></td></tr><tr><td style="text-align:left"><strong>9</strong></td><td style="text-align:left"><strong>General Science and Computer Applications</strong></td><td style="text-align:right"><strong>17</strong></td><td style="text-align:right"><strong>42.5</strong></td></tr><tr><td style="text-align:left"><strong>1</strong></td><td style="text-align:left">Indian Polity and Governance</td><td style="text-align:right">13</td><td style="text-align:right">32.5</td></tr><tr><td style="text-align:left"><strong>2</strong></td><td style="text-align:left">Labour Laws and Industrial Relations</td><td style="text-align:right">12</td><td style="text-align:right">30.0</td></tr><tr><td style="text-align:left"><strong>6</strong></td><td style="text-align:left">Accounting, Auditing and Statistics</td><td style="text-align:right">12</td><td style="text-align:right">30.0</td></tr><tr><td style="text-align:left"><strong>5</strong></td><td style="text-align:left">History and Culture</td><td style="text-align:right">10</td><td style="text-align:right">25.0</td></tr><tr><td style="text-align:left"><strong>3</strong></td><td style="text-align:left">Social Security and EPFO</td><td style="text-align:right">9</td><td style="text-align:right">22.0</td></tr><tr><td style="text-align:left"><strong>10</strong></td><td style="text-align:left">Current Affairs</td><td style="text-align:right">8</td><td style="text-align:right">20.0</td></tr><tr><td style="text-align:left"><strong>4</strong></td><td style="text-align:left">Indian Economy</td><td style="text-align:right">6</td><td style="text-align:right">15.0</td></tr><tr><td style="text-align:left"><strong>7</strong></td><td style="text-align:left">Insurance</td><td style="text-align:right">1</td><td style="text-align:right">3.0</td></tr><tr><td style="text-align:left"></td><td style="text-align:left"><strong>Total</strong></td><td style="text-align:right"><strong>120</strong></td><td style="text-align:right"><strong>300.0</strong></td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · TWO MODULES ARE FORTY PER CENT OF THE PAPER</p><p><strong>Modules 8 and 9 together are 49 questions and 122.5 marks — over 40% of the paper.</strong> Neither is a "core" subject for this post. Both are school-level material that converts faster than any of the specialist modules.</p><p><strong>Three consequences for the last four weeks:</strong></p><ol><li><strong>Do not let revision time be allocated by how important a subject feels.</strong> Labour law is the substance of the job and is 12 questions; English and Quant are 32</li><li><strong>Insurance is one question.</strong> F7.1 is 21 pages for 3 marks, and that is the correct depth. Do not revisit it</li><li><strong>The five specialist modules — 1, 2, 3, 6 and 7 — total 47 questions</strong>, fewer than 8 and 9 combined</li></ol><p>The 2023 English block itself was <strong>10 vocabulary + 5 para jumbles + 5 comprehension on one passage</strong>, and the Quant block <strong>15 questions with exactly one pure reasoning question in the whole paper</strong> — the finding that register §3.3 locks in and F8.8's opening callout restates.</p></aside><h3 id="22-the-named-items-the-strongest-evidence-in-the-manual">2.2 The named items — the strongest evidence in the manual</h3><p><strong>General Science (10 items):</strong> combined power of lenses · an inelastic collision · uniform acceleration of a train · a concave mirror with the object at infinity · effluents and permissible pH · soaps in hard water · the layers of the eyeball · an enthalpy reaction · banyan prop roots · ocean acidification.</p><p><strong>Computer Applications (10 items):</strong> octal to binary conversion · hexadecimal to decimal conversion · the program counter register · a real-time operating system · top-down languages · the C structure member operator · the hard-disk error-check command · validity of an IP address · the number of links in a mesh topology · HTML internal linking.</p><p><strong>Quantitative Aptitude (15 items):</strong> mensuration of a hemisphere · a melted disc recast · circle geometry · quadratic roots · probability · ratio and ages · mixtures · <strong>three</strong> data-interpretation questions · heights and distances · the mean of a set of weights.</p><p><strong>Accounting:</strong> the scope of audit, tested through a <em>"which one is not correct"</em> item.</p><aside class="cal know"><p class="cal-h">KNOW · WHERE EVERY ONE OF THESE NOW LIVES IN THE MANUAL</p><div class="tw"><table><thead><tr><th style="text-align:left">2023 item</th><th style="text-align:left">Chapter</th></tr></thead><tbody><tr><td style="text-align:left">Lens power, concave mirror</td><td style="text-align:left"><strong>F9.2</strong></td></tr><tr><td style="text-align:left">Inelastic collision, train acceleration</td><td style="text-align:left"><strong>F9.1</strong></td></tr><tr><td style="text-align:left">Effluent pH, soaps, enthalpy</td><td style="text-align:left"><strong>F9.3</strong></td></tr><tr><td style="text-align:left">Eyeball layers, banyan roots, ocean acidification</td><td style="text-align:left"><strong>F9.4</strong></td></tr><tr><td style="text-align:left">Octal, hexadecimal, program counter</td><td style="text-align:left"><strong>F9.5</strong></td></tr><tr><td style="text-align:left">Real-time OS, top-down languages, C operator, CHKDSK</td><td style="text-align:left"><strong>F9.6</strong></td></tr><tr><td style="text-align:left">IP validity, mesh links, HTML linking</td><td style="text-align:left"><strong>F9.7</strong></td></tr><tr><td style="text-align:left">Hemisphere, melted disc, circle geometry, heights and distances</td><td style="text-align:left"><strong>F8.6</strong></td></tr><tr><td style="text-align:left">Quadratic roots, probability</td><td style="text-align:left"><strong>F8.7</strong></td></tr><tr><td style="text-align:left">Ratio and ages, mixtures, mean of weights</td><td style="text-align:left"><strong>F8.5</strong></td></tr><tr><td style="text-align:left">Three DI questions</td><td style="text-align:left"><strong>F8.8</strong></td></tr><tr><td style="text-align:left">Vocabulary, para jumbles, comprehension</td><td style="text-align:left"><strong>F8.1, F8.2, F8.3</strong></td></tr><tr><td style="text-align:left">Scope of audit</td><td style="text-align:left"><strong>F6.7 §2</strong></td></tr></tbody></table></div><p><strong>Every named 2023 item maps to a section of this manual.</strong> That is the strongest evidence-to-content alignment available, and it is the answer to the question <em>"am I studying the right things"</em> — for these items, demonstrably yes.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 2</p><ol><li>Give the question counts for Modules 8 and 9, and their combined share</li><li>How many questions did Insurance carry? What follows for revision?</li><li>Give the 2023 English block's composition</li><li>How many pure reasoning questions were in the paper?</li><li>Name five of the ten Computer Applications items and the chapter each maps to</li></ol></aside><div class="pagebreak"></div><h2 id="3-session-3-the-trap-patterns">3. Session 3 — The Trap Patterns <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="31-the-dominant-pattern">3.1 The dominant pattern</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · ABOUT 20% OF THE PAPER USES THE "WHICH ONE IS NOT CORRECT" FORMAT</p><p>Blueprint §6 records that roughly <strong>one question in five</strong> was framed negatively — <em>which of the following is <strong>not</strong> correct</em>, <em>which is <strong>not</strong> a feature of</em>, <em>all of the following except</em>.</p><p><strong>That is about 24 questions, or 60 marks.</strong> No other structural feature of the paper comes close in weight.</p><p><strong>The remedy is a two-second habit, and it is the single most valuable procedural instruction in this manual:</strong></p><blockquote><p><strong>Re-read the last six words of the stem before you fill any bubble.</strong></p></blockquote><p>Because the failure is not knowledge. A candidate who knows the subject perfectly and reads <em>"which is correct"</em> where the paper says <em>"which is not correct"</em> loses 2.5 marks <strong>and</strong> gains 0.8333 of penalty — a 3.33-mark swing — on a question he knew. F8.0 §5 predicts this will be the leading entry in your error log, and F8.3 §4.2 drills the same habit for comprehension options.</p><p><strong>A practical device:</strong> when you meet a negative stem, <strong>underline the word "not" on the paper</strong>. The physical act is what interrupts the pattern-matching.</p></aside><h3 id="32-the-other-four-patterns-and-where-each-is-drilled">3.2 The other four patterns, and where each is drilled</h3><div class="tw"><table><thead><tr><th style="text-align:left">Pattern</th><th style="text-align:left">How it works</th><th style="text-align:left">Drilled in</th></tr></thead><tbody><tr><td style="text-align:left"><strong>The matched pair, correctly computed</strong></td><td style="text-align:left">The other member of a formula pair, worked out properly — curved against total surface area, mirror against lens, years'-purchase against capitalisation</td><td style="text-align:left"><strong>F8.6 §0, F9.2, F6.4</strong></td></tr><tr><td style="text-align:left"><strong>The superseded fact</strong></td><td style="text-align:left">What a book printed five years ago would say — four GST slabs, 42% devolution, EPS-95, the reverse repo as the corridor floor</td><td style="text-align:left"><strong>F4.3, F10.2</strong></td></tr><tr><td style="text-align:left"><strong>The intermediate value</strong></td><td style="text-align:left">A real step in the correct working, offered as the answer</td><td style="text-align:left"><strong>F8.7 §8.3</strong></td></tr><tr><td style="text-align:left"><strong>The unit or base error</strong></td><td style="text-align:left">Right arithmetic, wrong denominator or wrong unit — thousands for lakhs, percentage for percentage point</td><td style="text-align:left"><strong>F8.5 §1.4, F8.8 §4</strong></td></tr></tbody></table></div><p><strong>Note what these five patterns have in common:</strong> none of them punishes ignorance. <strong>Every one punishes a candidate who knows the material and reads carelessly.</strong> That is the paper's character, and it means accuracy work is worth more in the last month than fresh coverage.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 3</p><ol><li>What share of the paper used a negative stem, and what is that in marks?</li><li>State the two-second habit, and the mark swing it prevents</li><li>Name the four other patterns and give an example of each</li><li>What do all five patterns have in common, and what follows for the last month?</li></ol></aside><div class="pagebreak"></div><h2 id="4-session-4-what-the-evidence-supports">4. Session 4 — What the Evidence Supports <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="41-the-four-conclusions-this-manual-is-built-on">4.1 The four conclusions this manual is built on</h3><div class="tw"><table><thead><tr><th style="text-align:left">Conclusion</th><th style="text-align:left">Evidence</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Module 9 must be prepared, not skipped</strong></td><td style="text-align:left">Official syllabus head 6; in every paper analysed; <strong>50 marks in 2023</strong></td></tr><tr><td style="text-align:left"><strong>Reasoning is a poor use of hours</strong></td><td style="text-align:left"><strong>Exactly one</strong> pure reasoning question in 120</td></tr><tr><td style="text-align:left"><strong>English is half vocabulary</strong></td><td style="text-align:left">10 of 20 English questions</td></tr><tr><td style="text-align:left"><strong>Computer Applications needs real hours</strong></td><td style="text-align:left">C, HTML and OS items, not merely number conversions</td></tr></tbody></table></div><h3 id="42-the-limits-stated-so-that-they-are-not-overstated">4.2 The limits — stated so that they are not overstated</h3><aside class="cal note"><p class="cal-h">NOTE · A SINGLE PAPER IS A SAMPLE OF ONE</p><p>Every weighting in this manual rests on the 2023 paper, supplemented by the Blueprint's account of earlier ones. <strong>That is thin evidence, and it should be held with the confidence it deserves and no more.</strong></p><p><strong>What is safe to rely on:</strong> the <strong>marking scheme</strong> and the <strong>duration</strong>, which are published; the <strong>broad module weights</strong>, which are stable across papers; and the <strong>negative-stem frequency</strong>, which is a drafting habit rather than a syllabus choice.</p><p><strong>What is less safe:</strong> the <strong>exact</strong> composition of the English block (10/5/5 may vary), the number of DI questions, and above all <strong>the single reasoning question</strong>. One is a small number. If the next paper carries six reasoning questions, the F8.8 decision will look wrong.</p><p><strong>Why the decision was still correct.</strong> With one observation, the best estimate of the reasoning weight is <em>low</em>, and the cost of being wrong is asymmetric: preparing reasoning heavily costs many hours against a probable small return, while preparing it lightly costs a few marks in the unlikely event the pattern changes. Register §3.3 records this reasoning so that a future session does not reverse the decision on a hunch — <strong>but it also records the condition for reversing it: a new paper providing contrary evidence, in which case the Blueprint is to be updated first.</strong></p><p><strong>The practical instruction:</strong> if the 2026 notification or a new paper becomes available, <strong>re-run this analysis before trusting the weights.</strong> Do not assume 2023 forever.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 4</p><ol><li>Give the four conclusions and the evidence for each</li><li>Which parts of the analysis are safe to rely on, and which are not?</li><li>Why was the reasoning decision correct despite resting on one observation?</li><li>What would justify reversing it, and what must be updated first?</li></ol></aside><div class="pagebreak"></div><h2 id="5-graded-practice-25-questions">5. Graded Practice — 25 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><aside class="cal high-yield"><p class="cal-h">HIGH YIELD · EVERY QUESTION HERE IS SET ON AN ITEM THE 2023 PAPER ASKED</p><p>This is not a mixed revision bank. <strong>Each of the following 25 questions is set on one of the specific items recorded in Blueprint §4.4 as having appeared in 2023</strong> — the numbers and wording are fresh, the underlying item is not.</p><p><strong>Take it timed, in 25 minutes, before you attempt Mock 1.</strong> Then read §6's explanations in full, including for the questions you answered correctly. A wrong answer here is a direct instruction about which chapter to re-open.</p></aside><h3 id="51-general-science-the-ten-2023-items">5.1 General Science — the ten 2023 items</h3><p><strong>Q1.</strong> Two thin lenses of power +5 D and −3 D are placed in contact. The power of the combination is (a) +8 D (b) −8 D (c) +2 D (d) −2 D</p><p><strong>Q2.</strong> In a perfectly inelastic collision, which of the following is conserved? (a) Linear momentum only (b) Kinetic energy only (c) Both linear momentum and kinetic energy (d) Neither</p><p><strong>Q3.</strong> A train starting from rest attains a speed of 72 km/h in 20 seconds. Assuming uniform acceleration, its acceleration is (a) 3.6 m s⁻² (b) 2 m s⁻² (c) 0.5 m s⁻² (d) 1 m s⁻²</p><p><strong>Q4.</strong> When an object is placed at infinity before a concave mirror, the image formed is (a) at the centre of curvature, real and inverted (b) at the principal focus, real, inverted and highly diminished (c) at infinity, of the same size (d) behind the mirror, virtual and erect</p><p><strong>Q5.</strong> The permissible pH range for industrial effluent discharged into inland surface water is about (a) 5.5 to 9.0 (b) 6.5 to 7.5 (c) 4.0 to 10.0 (d) exactly 7.0</p><p><strong>Q6.</strong> Soaps are unsuitable for use in hard water because they (a) dissolve more readily than detergents (b) produce excessive lather (c) form an insoluble scum with calcium and magnesium ions (d) decompose into fatty acids on contact with water</p><p><strong>Q7.</strong> The outermost of the three layers of the human eyeball is the (a) retina (b) choroid (c) cornea (d) sclera</p><p><strong>Q8.</strong> A chemical reaction in which heat is absorbed from the surroundings has (a) a negative enthalpy change (b) a positive enthalpy change (c) zero enthalpy change (d) an enthalpy change independent of temperature</p><p><strong>Q9.</strong> The prop roots of the banyan tree serve principally to (a) provide mechanical support to the spreading branches (b) absorb moisture from the atmosphere (c) store food reserves (d) fix atmospheric nitrogen</p><p><strong>Q10.</strong> Ocean acidification results principally from (a) the discharge of industrial acids into the sea (b) a rise in sea surface temperature (c) the absorption of atmospheric carbon dioxide, which forms carbonic acid (d) the melting of polar ice</p><h3 id="52-computer-applications-the-ten-2023-items">5.2 Computer Applications — the ten 2023 items</h3><p><strong>Q11.</strong> The octal number 725 expressed in binary is (a) 111011101 (b) 110010101 (c) 111010011 (d) 111010101</p><p><strong>Q12.</strong> The hexadecimal number 2AF expressed in decimal is (a) 675 (b) 687 (c) 697 (d) 703</p><p><strong>Q13.</strong> The register which holds the address of the next instruction to be executed is the (a) program counter (b) accumulator (c) instruction register (d) memory address register</p><p><strong>Q14.</strong> A real-time operating system is characterised by (a) the largest possible throughput (b) time-sharing among many simultaneous users (c) a response within a strict and guaranteed deadline (d) processing work in batches</p><p><strong>Q15.</strong> Which one of the following languages follows the <strong>top-down</strong> approach to programming? (a) C++ (b) Java (c) Python (d) C</p><p><strong>Q16.</strong> In the C language, the operator used to access a member of a structure through a structure variable is (a) the arrow operator (b) the dot operator (c) the ampersand (d) the asterisk</p><p><strong>Q17.</strong> The command used in Windows to check a hard disk for errors is (a) CHKDSK (b) DEFRAG (c) FORMAT (d) SCANREG</p><p><strong>Q18.</strong> Which one of the following is a valid IPv4 address? (a) 256.100.25.1 (b) 192.168.1.300 (c) 172.16.254.1 (d) 10.10.10</p><p><strong>Q19.</strong> The number of links required in a mesh topology connecting 6 nodes is (a) 30 (b) 36 (c) 12 (d) 15</p><p><strong>Q20.</strong> In HTML, a link to another position within the same page is written as (a) <code>&lt;a src=&quot;#section2&quot;&gt;</code> (b) <code>&lt;a href=&quot;#section2&quot;&gt;</code> (c) <code>&lt;link ref=&quot;section2&quot;&gt;</code> (d) <code>&lt;a goto=&quot;section2&quot;&gt;</code></p><h3 id="53-quantitative-aptitude-and-accounting-the-2023-items">5.3 Quantitative Aptitude and Accounting — the 2023 items</h3><p><strong>Q21.</strong> The total surface area of a solid hemisphere of radius 3.5 cm, taking π as 22/7, is (a) 115.5 cm² (b) 77 cm² (c) 38.5 cm² (d) 154 cm²</p><p><strong>Q22.</strong> A metallic sphere of radius 3 cm is melted and recast into a circular disc of uniform thickness 1 cm. The radius of the disc is (a) 3 cm (b) 4 cm (c) 6 cm (d) 9 cm</p><p><strong>Q23.</strong> The roots of the equation 2x² − 5x + 3 = 0 are (a) 1 and 3 (b) −1 and −3/2 (c) 2 and 3/2 (d) 1 and 3/2</p><p><strong>Q24.</strong> One card is drawn at random from a well-shuffled pack of 52 cards. The probability that it is a red king is (a) 1/13 (b) 1/26 (c) 1/52 (d) 1/4</p><p><strong>Q25.</strong> Which one of the following is <strong>not</strong> correct with regard to the scope of an audit? (a) The auditor is responsible for preparing the financial statements of the enterprise (b) The scope is determined by the terms of engagement, the requirements of the statute and the applicable pronouncements (c) The auditor's opinion relates to whether the financial statements give a true and fair view (d) An audit is designed to provide reasonable, and not absolute, assurance</p><div class="pagebreak"></div><h2 id="6-answers-and-explanations">6. Answers and Explanations</h2><h3 id="61-general-science">6.1 General Science</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Powers in contact ADD algebraically:</strong> +5 + (−3) = <strong>+2 D</strong>. (a) adds the magnitudes and ignores the sign — the whole point of the 2023 item. F9.2</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Linear momentum only.</strong> Momentum is conserved in <strong>every</strong> collision; kinetic energy only in an elastic one, and a perfectly inelastic collision has the <strong>maximum</strong> energy loss. F9.1 §3.2</td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">d</td><td style="text-align:left">72 km/h × 5/18 = 20 m/s, so a = 20/20 = <strong>1 m s⁻²</strong>. (a) 3.6 is 72 ÷ 20 — the answer without converting the units, and precisely the trap. F9.1 §2.2</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">b</td><td style="text-align:left"><strong>At the principal focus, real, inverted and highly diminished.</strong> Rays from infinity are parallel and converge at the focus. (a) is the image for an object <em>at</em> the centre of curvature. F9.2</td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">a</td><td style="text-align:left"><strong>5.5 to 9.0</strong> — a band deliberately straddling neutral, since exact neutrality would be unattainable. F9.3 §3.2</td></tr><tr><td style="text-align:left">6</td><td style="text-align:center">c</td><td style="text-align:left"><strong>An insoluble scum with calcium and magnesium ions</strong> — the hardness ions. This is why detergents were developed. F9.3</td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">d</td><td style="text-align:left"><strong>The sclera.</strong> The three layers outward-in are <strong>sclera, choroid, retina</strong>; the <strong>cornea</strong> is the transparent front part of the sclera, not a separate layer — which is what (c) tests. F9.4</td></tr><tr><td style="text-align:left">8</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Positive.</strong> Heat absorbed means an <strong>endothermic</strong> reaction and ΔH &gt; 0. The sign convention is the examinable point. F9.3</td></tr><tr><td style="text-align:left">9</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Mechanical support.</strong> Banyan prop roots grow downward from branches and thicken into pillars. F9.4</td></tr><tr><td style="text-align:left">10</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Absorption of atmospheric carbon dioxide, forming carbonic acid</strong>, which releases hydrogen ions. Note the passage in F8.3 §6.3 makes the same point, and that seawater <strong>remains alkaline</strong> throughout. F9.4</td></tr></tbody></table></div><h3 id="62-computer-applications">6.2 Computer Applications</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">11</td><td style="text-align:center">d</td><td style="text-align:left">Each octal digit is <strong>exactly three bits</strong>: 7 = 111, 2 = 010, 5 = 101, giving <strong>111010101</strong>. No arithmetic is required, which is why this is among the cheapest marks in the paper. F9.5 §5</td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">b</td><td style="text-align:left">2AF = 2 × 256 + 10 × 16 + 15 = 512 + 160 + 15 = <strong>687</strong></td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">a</td><td style="text-align:left"><strong>The program counter.</strong> (c) the instruction register holds the instruction <strong>currently being executed</strong>, not the address of the next — the closest distractor and the one offered. F9.5</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">c</td><td style="text-align:left"><strong>A response within a strict and guaranteed deadline.</strong> A real-time system is defined by <strong>predictability, not speed</strong> — an option about throughput or average performance is wrong. F9.6</td></tr><tr><td style="text-align:left">15</td><td style="text-align:center">d</td><td style="text-align:left"><strong>C.</strong> Procedural and structured languages follow the <strong>top-down</strong> approach; object-oriented languages such as C++, Java and Python are <strong>bottom-up</strong>, building from objects upwards. F9.6</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">b</td><td style="text-align:left"><strong>The dot operator.</strong> The <strong>arrow</strong> operator is used to reach a member through a <strong>pointer</strong> to a structure — a matched pair, and (a) is the other member of it. F9.6</td></tr><tr><td style="text-align:left">17</td><td style="text-align:center">a</td><td style="text-align:left"><strong>CHKDSK.</strong> (b) DEFRAG reorganises fragmented files and (c) FORMAT erases — three real commands, one of which does the stated job. F9.6</td></tr><tr><td style="text-align:left">18</td><td style="text-align:center">c</td><td style="text-align:left"><strong>172.16.254.1.</strong> Each octet must be <strong>0 to 255</strong> and there must be <strong>four</strong> of them: (a) and (b) each contain an out-of-range octet, and (d) has only three. F9.7</td></tr><tr><td style="text-align:left">19</td><td style="text-align:center">d</td><td style="text-align:left"><strong>n(n − 1)/2 = 6 × 5/2 = 15.</strong> (a) 30 is n(n − 1), forgetting that each link serves both ends — the standard matched-pair trap in this topic. F9.7 §2.2</td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">b</td><td style="text-align:left"><code>&lt;a href=&quot;#section2&quot;&gt;</code>. <strong>href links, src embeds</strong>, and the <strong>#</strong> marks a fragment within the page. F9.7</td></tr></tbody></table></div><h3 id="63-quantitative-aptitude-and-accounting">6.3 Quantitative Aptitude and Accounting</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">21</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Total</strong> surface area of a solid hemisphere is <strong>3πr²</strong> = 3 × 22/7 × 12.25 = <strong>115.5 cm²</strong>. (c) 38.5 is πr², the flat face; twice that, 77, is the curved area — <strong>both members of the matched pair are offered</strong>, which is F8.6 §2.2's warning exactly</td></tr><tr><td style="text-align:left">22</td><td style="text-align:center">c</td><td style="text-align:left">Volume conserved: ⁴⁄₃π × 27 = 36π, and πr² × 1 = 36π gives r² = 36, so <strong>r = 6 cm</strong>. F8.6 §3 — the 2023 melted-disc item</td></tr><tr><td style="text-align:left">23</td><td style="text-align:center">d</td><td style="text-align:left">(2x − 3)(x − 1) = 0, so the roots are <strong>1 and 3/2</strong>. Check by the relations: sum should be 5/2 and product 3/2 — both hold. (c) offers 2 and 3/2, whose sum is 7/2. F8.7 §1</td></tr><tr><td style="text-align:left">24</td><td style="text-align:center">b</td><td style="text-align:left">There are <strong>two</strong> red kings — hearts and diamonds — so 2/52 = <strong>1/26</strong>. (a) 1/13 is the probability of <em>any</em> king, four in the pack: the question's qualifier <strong>red</strong> halves it. F8.7 §4.2</td></tr><tr><td style="text-align:left">25</td><td style="text-align:center">a</td><td style="text-align:left"><strong>The auditor does not prepare the financial statements</strong> — that is management's responsibility, and the auditor's independence requires the separation. (b), (c) and (d) are all correct statements of scope. F6.7 §2 — the only 2023 item in Module 6 with direct evidence, and it was set in exactly this negative form</td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · WHAT THIS BANK TELLS YOU ABOUT THE PAPER</p><p>Read the twenty-five explanations together and the paper's character is visible.</p><ol><li><strong>Almost nothing here is difficult.</strong> Adding two lens powers, converting octal in groups of three, knowing that momentum is always conserved. <strong>The paper is not hard; it is unforgiving of imprecision</strong></li><li><strong>Six of the twenty-five turn on a matched pair or a qualifier</strong>: curved against total surface area (Q21), dot against arrow (Q16), n(n−1) against n(n−1)/2 (Q19), <em>any</em> king against a <em>red</em> king (Q24), program counter against instruction register (Q13), sclera against cornea (Q7). <strong>In each case the wrong option is a correct fact about something adjacent</strong></li><li><strong>One is a unit conversion</strong> (Q3), and the distractor is the answer you get by skipping it</li><li><strong>One is negatively framed</strong> (Q25) — one in twenty-five, close to the 20% the paper as a whole uses</li></ol><p><strong>The instruction that follows is the same one §3.1 gives:</strong> in the last month, work on <strong>precision</strong>, not coverage. Every mark in this bank was available to a candidate with school-level knowledge and careful reading.</p></aside><div class="pagebreak"></div><h2 id="7-one-minute-revision">7. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F11.1</p><p><strong>THE PAPER</strong> <strong>120 questions · 120 minutes · 300 marks</strong> · <strong>+2.5 correct · −0.8333 wrong · 0 blank</strong> · RT is <strong>75% of the final weight</strong></p><p><strong>THE ARITHMETIC</strong> a <strong>blind guess is worth exactly ZERO</strong> · eliminate <strong>one</strong> option » <strong>+0.28</strong> · eliminate <strong>two</strong> » <strong>+0.83</strong> · <strong>so if you can eliminate one option, ATTEMPT</strong> · blank only when you have <strong>no basis at all</strong>, or feel <strong>pulled towards a familiar option</strong></p><p><strong>THE TARGET</strong> about <strong>100 attempts at 80%</strong> » about <strong>183/300</strong> · <strong>110 at 70% scores LESS than 100 at 80%</strong></p><p><strong>THREE PASSES</strong> <strong>1</strong> what you know instantly, <strong>45 min</strong> · <strong>2</strong> the calculable ones, <strong>55 min</strong> · <strong>3</strong> eliminate and guess, <strong>20 min</strong> · the paper is <strong>not sorted by difficulty</strong>, so a single pass in order may never reach the cheap marks</p><p><strong>THE 2023 DISTRIBUTION</strong> <strong>M8 32 questions / 80 marks</strong> · <strong>M9 17 / 42.5</strong> · M1 13 / 32.5 · M2 12 / 30 · M6 12 / 30 · M5 10 / 25 · M3 9 / 22 · M10 8 / 20 · M4 6 / 15 · <strong>M7 just 1 / 3</strong></p><p><strong>MODULES 8 AND 9 ARE 49 QUESTIONS AND 122.5 MARKS — OVER 40% OF THE PAPER</strong>, and neither is a specialist subject. The five specialist modules together are 47 questions</p><p><strong>ENGLISH BLOCK</strong> <strong>10 vocabulary + 5 para jumbles + 5 comprehension on ONE passage</strong> <strong>QUANT BLOCK</strong> 15 questions, <strong>exactly ONE pure reasoning question in 120</strong></p><p><strong>THE DOMINANT TRAP</strong> about <strong>20% of the paper uses a NEGATIVE stem</strong> — <em>which is not correct</em> — which is about <strong>24 questions and 60 marks</strong> · <strong>RE-READ THE LAST SIX WORDS OF THE STEM</strong> · <strong>underline the word "not"</strong> · the swing on a misread negative is <strong>3.33 marks on a question you knew</strong></p><p><strong>THE OTHER FOUR PATTERNS</strong> <strong>the matched pair, correctly computed</strong> · <strong>the superseded fact</strong> · <strong>the intermediate value</strong> · <strong>the unit or base error</strong></p><p><strong>WHAT THEY HAVE IN COMMON</strong> none punishes ignorance; <strong>every one punishes careless reading by someone who knows the material</strong> » in the last month, work on <strong>precision, not coverage</strong></p><p><strong>THE FOUR CONCLUSIONS</strong> Module 9 must be prepared (50 marks in 2023) · reasoning is a poor use of hours (one question) · English is <strong>half vocabulary</strong> · Computer Applications needs <strong>real hours</strong></p><p><strong>THE LIMIT</strong> this rests on <strong>one paper</strong>. Safe: marking scheme, duration, broad weights, negative-stem frequency. Less safe: the exact English split, the DI count, and <strong>the single reasoning question</strong>. <strong>If a new paper appears, re-run the analysis and update the Blueprint first</strong></p><p><strong>THE GAP</strong> the <strong>2015 and 2023 papers are not in <code>pyq/</code></strong> — supply them and a genuine repeat-rate analysis becomes possible</p></aside><h2 id="8-five-minute-wall-sheet">8. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F11.1</p><p><strong>120 IN 120 · +2.5 · −0.8333 · BLANK = 0</strong></p><p><strong>A BLIND GUESS IS WORTH ZERO. ELIMINATE ONE AND IT IS WORTH +0.28</strong></p><p><strong>IF YOU CAN RULE OUT ONE OPTION, ANSWER IT</strong></p><p><strong>TARGET 100 ATTEMPTS AT 80% = ABOUT 183</strong></p><p><strong>MORE ATTEMPTS ONLY PAY IF ACCURACY HOLDS</strong></p><p><strong>PASS 1 INSTANT (45) · PASS 2 CALCULATE (55) · PASS 3 ELIMINATE AND GUESS (20)</strong></p><p><strong>ENGLISH + QUANT = 32 QUESTIONS. SCIENCE + COMPUTERS = 17. TOGETHER, 40% OF THE PAPER</strong></p><p><strong>INSURANCE IS ONE QUESTION. DO NOT REVISIT IT</strong></p><p><strong>ONE IN FIVE QUESTIONS SAYS "NOT". THAT IS 60 MARKS</strong></p><p><strong>UNDERLINE THE WORD <em>NOT</em>. RE-READ THE LAST SIX WORDS</strong></p><p><strong>MISREADING A NEGATIVE STEM COSTS 3.33 MARKS ON A QUESTION YOU KNEW</strong></p><p><strong>THE WRONG OPTION IS USUALLY A CORRECT FACT ABOUT SOMETHING ADJACENT</strong></p><p><strong>CURVED vs TOTAL · DOT vs ARROW · n(n−1) vs n(n−1)/2 · ANY KING vs RED KING</strong></p><p><strong>CONVERT THE UNITS BEFORE YOU CHOOSE A FORMULA</strong></p><p><strong>IN THE LAST MONTH: PRECISION, NOT COVERAGE</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> The paper is not intellectually demanding but it is unforgiving of imprecision — roughly a fifth of it is negatively framed and most wrong options are correct statements about an adjacent concept, so the binding constraint on a prepared candidate's score is reading accuracy under time rather than depth of knowledge.</p></aside><aside class="cal action"><p class="cal-h">ACTION · NEXT</p><p><strong>F11.2 — Full Mock 1</strong>, a complete 120-question paper built to the distribution in §2.1, with a full answer key and explanations.</p><p>Before you sit it, do two things: take §5's bank <strong>timed in 25 minutes</strong>, and read <strong>F11.3 §1</strong>, which sets out the conditions under which a mock is worth taking. A mock sat casually is worth very little and consumes material you cannot reuse.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F11.1
+  &middot; v1.0</footer>
+</body>
+</html>

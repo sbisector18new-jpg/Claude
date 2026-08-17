@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ratio Analysis and Cash Flow</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F6.5 · Ratios &amp; Cash Flow
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · FOUNDATION LAYER · MODULE 6 · CHAPTER F6.5</p><h1 class="doc-t">Ratio Analysis and Cash Flow</h1><p class="doc-s">Chapter F6.5 — Reading Final Accounts Instead of Merely Preparing Them, and Following the Cash</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 6 — Accounting, Auditing &amp; Statistics</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F6.5</td></tr><tr><td class="k">Topic</td><td class="v">Official syllabus head 5 — Accounting and Auditing</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal note"><p class="cal-h">NOTE · HOW TO USE THIS DOCUMENT</p><p>F6.3 taught you to <strong>prepare</strong> final accounts. This chapter teaches you to <strong>read</strong> them.</p><p>It is deliberately shorter than F6.3 and F6.4, because its yield is lower — this is a <strong><span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span> chapter</strong> in a <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span> module. The formulas and the ideal norms are what get asked; the elaborate interpretation that fills textbook chapters does not. Learn the tables in §2 and §3, the classification rules in §5.3, and move on.</p><p>You have a real advantage here: you appraise credit for a living. Section 2 says so explicitly, and §5.3 contains the one place where being a banker changes the answer.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-why-ratios-exist"><span class="toc-t">1. Session 1 — Why Ratios Exist <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></span></a><a class="toc-3" href="#11-the-four-families"><span class="toc-t">1.1 The four families</span></a><a class="toc-2" href="#2-session-2-liquidity-and-solvency"><span class="toc-t">2. Session 2 — Liquidity and Solvency <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#21-liquidity-ratios-and-the-norms-that-get-asked"><span class="toc-t">2.1 Liquidity ratios, and the norms that get asked</span></a><a class="toc-3" href="#22-solvency-ratios"><span class="toc-t">2.2 Solvency ratios</span></a><a class="toc-2" href="#3-session-3-activity-and-profitability"><span class="toc-t">3. Session 3 — Activity and Profitability <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#31-activity-or-turnover-ratios"><span class="toc-t">3.1 Activity or turnover ratios</span></a><a class="toc-3" href="#32-profitability-ratios"><span class="toc-t">3.2 Profitability ratios</span></a><a class="toc-2" href="#4-session-4-limitations"><span class="toc-t">4. Session 4 — Limitations <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></span></a><a class="toc-2" href="#5-session-5-cash-flow-statement-under-as-3"><span class="toc-t">5. Session 5 — Cash Flow Statement under AS 3 <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#51-what-it-is-for-and-why-profit-is-not-enough"><span class="toc-t">5.1 What it is for, and why profit is not enough</span></a><a class="toc-3" href="#52-the-three-activities"><span class="toc-t">5.2 The three activities</span></a><a class="toc-3" href="#53-the-classification-rules-that-are-actually-tested"><span class="toc-t">5.3 The classification rules that are actually tested</span></a><a class="toc-3" href="#54-the-indirect-method"><span class="toc-t">5.4 The indirect method</span></a><a class="toc-2" href="#6-graded-practice-25-questions"><span class="toc-t">6. Graded Practice — 25 Questions <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#61-level-1-recognition"><span class="toc-t">6.1 Level 1 — Recognition</span></a><a class="toc-3" href="#62-level-2-understanding"><span class="toc-t">6.2 Level 2 — Understanding</span></a><a class="toc-3" href="#63-level-3-recruitment-test-standard"><span class="toc-t">6.3 Level 3 — Recruitment Test standard</span></a><a class="toc-2" href="#7-answers-and-explanations"><span class="toc-t">7. Answers and Explanations</span></a><a class="toc-3" href="#71-level-1"><span class="toc-t">7.1 Level 1</span></a><a class="toc-3" href="#72-level-2"><span class="toc-t">7.2 Level 2</span></a><a class="toc-3" href="#73-level-3"><span class="toc-t">7.3 Level 3</span></a><a class="toc-2" href="#8-one-minute-revision"><span class="toc-t">8. One-Minute Revision</span></a><a class="toc-2" href="#9-five-minute-wall-sheet"><span class="toc-t">9. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F6.5 — THE FIVE SESSIONS</p><ol><li><strong>Session 1</strong> — Why ratios exist; the four families (§1) <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></li><li><strong>Session 2</strong> — Liquidity and solvency ratios, with their norms (§2) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 3</strong> — Activity and profitability ratios (§3) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 4</strong> — Limitations of ratio analysis (§4) <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></li><li><strong>Session 5</strong> — Cash flow statement under AS 3 (§5) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li></ol><p>Then 25 graded questions in §6. About <strong>two and a half days</strong> at two hours.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-why-ratios-exist">1. Session 1 — Why Ratios Exist <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></h2><p>A profit of ₹5 lakh tells you almost nothing. Is it good? On sales of ₹20 lakh it is excellent; on sales of ₹20 crore it is close to failure. The absolute figure is meaningless until it is placed <strong>against something</strong>.</p><p>A <strong>ratio</strong> is that placing: one figure expressed in relation to another, so that scale drops out and comparison becomes possible — across years for the same firm, across firms in the same industry, or against a norm.</p><aside class="cal world"><p class="cal-h">FROM YOUR OWN WORLD · A RATIO IS A DIMENSIONLESS NUMBER</p><p>As an engineer you already trust this move completely. A Reynolds number tells you whether flow is laminar or turbulent <strong>regardless of the size of the pipe</strong>, because the dimensions cancel. That is precisely why it is useful: it lets you compare a laboratory rig with a refinery pipeline.</p><p>A financial ratio does the same thing to money. Dividing current assets by current liabilities strips out the size of the business and leaves a pure statement about its short-term position, so a ₹2 crore firm and a ₹2,000 crore firm become comparable on the same scale.</p><p>The analogy also carries the warning. A Reynolds number is only meaningful with a known critical value; on its own it is a number. A current ratio of 1.4 means nothing until you know the norm and the industry — which is exactly §4.</p></aside><h3 id="11-the-four-families">1.1 The four families</h3><div class="tw"><table><thead><tr><th style="text-align:left">Family</th><th style="text-align:left">Question it answers</th><th style="text-align:left">Also called</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Liquidity</strong></td><td style="text-align:left">Can it pay its <strong>short-term</strong> debts?</td><td style="text-align:left">Short-term solvency</td></tr><tr><td style="text-align:left"><strong>Solvency</strong></td><td style="text-align:left">Can it survive its <strong>long-term</strong> obligations?</td><td style="text-align:left">Leverage or capital structure ratios</td></tr><tr><td style="text-align:left"><strong>Activity</strong></td><td style="text-align:left">How <strong>efficiently</strong> are assets being used?</td><td style="text-align:left">Turnover or performance ratios</td></tr><tr><td style="text-align:left"><strong>Profitability</strong></td><td style="text-align:left">Is it <strong>earning</strong> adequately?</td><td style="text-align:left">—</td></tr></tbody></table><p class="cap">Almost every ratio question first requires you to place the ratio in its family</p></div><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 1</p><ol><li>Why is an absolute profit figure uninformative?</li><li>Name the four families and the question each answers</li><li>What does a ratio remove, and why does that make comparison possible?</li></ol></aside><div class="pagebreak"></div><h2 id="2-session-2-liquidity-and-solvency">2. Session 2 — Liquidity and Solvency <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="21-liquidity-ratios-and-the-norms-that-get-asked">2.1 Liquidity ratios, and the norms that get asked</h3><div class="tw"><table><thead><tr><th style="text-align:left">Ratio</th><th style="text-align:left">Formula</th><th style="text-align:left">Ideal / norm</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Current ratio</strong></td><td style="text-align:left">Current Assets ÷ Current Liabilities</td><td style="text-align:left"><strong>2 : 1</strong></td></tr><tr><td style="text-align:left"><strong>Quick ratio</strong> — also <strong>acid test</strong> or <strong>liquid ratio</strong></td><td style="text-align:left">Quick Assets ÷ Current Liabilities</td><td style="text-align:left"><strong>1 : 1</strong></td></tr><tr><td style="text-align:left"><strong>Absolute liquid ratio</strong></td><td style="text-align:left">(Cash + Bank + Marketable securities) ÷ Current Liabilities</td><td style="text-align:left"><strong>0.5 : 1</strong></td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · WHAT "QUICK ASSETS" EXCLUDES, AND THE 2:1 / 1:1 PAIR</p><p><strong>Quick Assets = Current Assets − Inventory − Prepaid expenses.</strong></p><p>Both exclusions matter and both are examined. Inventory is excluded because it must first be <strong>sold</strong> before it becomes cash. Prepaid expenses are excluded because they will <strong>never</strong> become cash at all — they will be consumed as a service.</p><p>And commit the two norms as a pair, because options routinely swap them: <strong>current ratio 2:1, quick ratio 1:1.</strong> The absolute liquid ratio is <strong>0.5:1</strong>.</p><p>One consequence worth holding, because it makes a good "not correct" option: <strong>a high current ratio is not automatically good.</strong> It may signal idle cash, excessive inventory, or debtors who are not paying. A ratio has a norm, not a direction.</p></aside><h3 id="22-solvency-ratios">2.2 Solvency ratios</h3><div class="tw"><table><thead><tr><th style="text-align:left">Ratio</th><th style="text-align:left">Formula</th><th style="text-align:left">Reading</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Debt-Equity</strong></td><td style="text-align:left">Long-term Debt ÷ Shareholders' Funds</td><td style="text-align:left"><strong>2 : 1</strong> conventionally; lower is safer</td></tr><tr><td style="text-align:left"><strong>Proprietary ratio</strong></td><td style="text-align:left">Shareholders' Funds ÷ Total Assets</td><td style="text-align:left">Higher is safer</td></tr><tr><td style="text-align:left"><strong>Total assets to debt</strong></td><td style="text-align:left">Total Assets ÷ Long-term Debt</td><td style="text-align:left">Higher is safer</td></tr><tr><td style="text-align:left"><strong>Interest coverage</strong></td><td style="text-align:left">Profit before Interest and Tax ÷ Interest</td><td style="text-align:left">Higher is safer; measures cushion</td></tr></tbody></table></div><p><strong>Capital employed</strong> appears throughout this chapter and in F6.4's goodwill formulas. Two equivalent definitions:</p><blockquote><p>Capital employed = Shareholders' funds + Long-term debt Capital employed = Total assets − Current liabilities</p></blockquote><aside class="cal world"><p class="cal-h">FROM YOUR OWN WORLD · YOU ALREADY DO THIS FOR A LIVING</p><p>When SBI appraises a working capital limit, the current ratio and the debt-equity ratio are not academic exercises — they are the decision. A borrower below the norm gets a smaller limit, tighter covenants, or a refusal.</p><p>So treat this section as vocabulary formalisation rather than new learning. The one thing to check is that you are using the <strong>exam's</strong> conventional norms rather than your bank's internal benchmarks, which will differ by product and industry. In the exam hall the answer is <strong>2:1 and 1:1</strong>.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 2</p><ol><li>Give both formulas and both norms for the current and quick ratios</li><li>What two items are excluded from quick assets, and why each?</li><li>Why is a very high current ratio not necessarily good?</li><li>Give two equivalent definitions of capital employed</li><li>What does the interest coverage ratio measure?</li></ol></aside><div class="pagebreak"></div><h2 id="3-session-3-activity-and-profitability">3. Session 3 — Activity and Profitability <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="31-activity-or-turnover-ratios">3.1 Activity or turnover ratios</h3><div class="tw"><table><thead><tr><th style="text-align:left">Ratio</th><th style="text-align:left">Formula</th><th style="text-align:left">Reading</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Inventory turnover</strong></td><td style="text-align:left">Cost of Goods Sold ÷ <strong>Average</strong> Inventory</td><td style="text-align:left">Higher = faster moving stock</td></tr><tr><td style="text-align:left"><strong>Trade receivables turnover</strong></td><td style="text-align:left">Net Credit Sales ÷ Average Trade Receivables</td><td style="text-align:left">Higher = faster collection</td></tr><tr><td style="text-align:left"><strong>Average collection period</strong></td><td style="text-align:left">365 ÷ Receivables turnover</td><td style="text-align:left">Lower is better, in days</td></tr><tr><td style="text-align:left"><strong>Trade payables turnover</strong></td><td style="text-align:left">Net Credit Purchases ÷ Average Trade Payables</td><td style="text-align:left">—</td></tr><tr><td style="text-align:left"><strong>Working capital turnover</strong></td><td style="text-align:left">Net Sales ÷ Working Capital</td><td style="text-align:left">Higher = harder-working capital</td></tr><tr><td style="text-align:left"><strong>Fixed asset turnover</strong></td><td style="text-align:left">Net Sales ÷ Net Fixed Assets</td><td style="text-align:left">Higher = better utilisation</td></tr></tbody></table></div><p>Note the word <strong>average</strong> in the first two. Average inventory = (opening + closing) ÷ 2. Using closing inventory alone is a standard wrong option.</p><h3 id="32-profitability-ratios">3.2 Profitability ratios</h3><div class="tw"><table><thead><tr><th style="text-align:left">Ratio</th><th style="text-align:left">Formula</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Gross profit ratio</strong></td><td style="text-align:left">(Gross Profit ÷ Net Sales) × 100</td></tr><tr><td style="text-align:left"><strong>Net profit ratio</strong></td><td style="text-align:left">(Net Profit ÷ Net Sales) × 100</td></tr><tr><td style="text-align:left"><strong>Operating ratio</strong></td><td style="text-align:left">((COGS + Operating Expenses) ÷ Net Sales) × 100</td></tr><tr><td style="text-align:left"><strong>Operating profit ratio</strong></td><td style="text-align:left">(Operating Profit ÷ Net Sales) × 100</td></tr><tr><td style="text-align:left"><strong>Return on Capital Employed (ROCE)</strong></td><td style="text-align:left">(Profit before Interest and Tax ÷ Capital Employed) × 100</td></tr><tr><td style="text-align:left"><strong>Earnings per share</strong></td><td style="text-align:left">(Profit after Tax − Preference Dividend) ÷ Number of Equity Shares</td></tr><tr><td style="text-align:left"><strong>Price-earnings ratio</strong></td><td style="text-align:left">Market Price per Share ÷ Earnings per Share</td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · TWO FACTS THAT ARE ASKED DIRECTLY</p><ol><li><strong>Operating ratio + Operating profit ratio = 100.</strong> They are complements by construction, since one measures the share of sales consumed by operations and the other the share left over. Given either, you have the other — and a question sometimes supplies one and asks for the other</li><li><strong>A lower operating ratio is better; a higher operating profit ratio is better.</strong> The two ratios run in opposite directions, which is exactly why the examiner pairs them. Every other profitability ratio in the table is "higher is better"</li></ol><p>Note also that <strong>ROCE uses profit BEFORE interest and tax</strong>, because capital employed includes debt — so the return must be measured before the cost of that debt is deducted. Matching the numerator to the denominator is the logic, and it makes "profit after tax ÷ capital employed" a wrong option.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 3</p><ol><li>Give the inventory turnover formula. What word must not be dropped?</li><li>What does a rising receivables turnover indicate?</li><li>State the relationship between the operating ratio and the operating profit ratio</li><li>Which direction is "good" for each of those two?</li><li>Why does ROCE use profit before interest and tax?</li></ol></aside><div class="pagebreak"></div><h2 id="4-session-4-limitations">4. Session 4 — Limitations <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></h2><p>Short, but it generates "which of the following is <strong>not</strong> a limitation" questions, which are free marks if you have read this page once.</p><ul><li>Based on <strong>historical</strong> data — it describes the past, not the future</li><li>Ignores <strong>price-level changes</strong>, so multi-year comparison is distorted by inflation</li><li>Vulnerable to <strong>window dressing</strong> — figures arranged near the year end to flatter a ratio</li><li>Ignores <strong>qualitative</strong> factors: management quality, staff morale, brand</li><li><strong>No single standard</strong> ratio holds across industries</li><li>Comparison is unsafe where firms follow <strong>different accounting policies</strong> — depreciation method,</li></ul><p>inventory formula. F6.2's consistency convention exists precisely because of this</p><ul><li>A ratio <strong>in isolation is meaningless</strong>; it needs a norm, a trend, or a peer</li></ul><aside class="cal trap"><p class="cal-h">COMMON UPSC TRAP · THE MERIT HIDDEN AMONG THE LIMITATIONS</p><p>The standard question offers three genuine limitations and one <strong>merit</strong> dressed as a limitation. The merit is almost always some form of <em>"it expresses relationships that absolute figures cannot reveal"</em> or <em>"it simplifies comparison"</em> — which is the whole purpose of ratio analysis, not a defect.</p><p>Read the option and ask: is this a <strong>complaint</strong> or a <strong>compliment</strong>?</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 4</p><ol><li>Name five limitations of ratio analysis</li><li>Which F6.2 convention exists to reduce one of these limitations?</li><li>What is window dressing?</li></ol></aside><div class="pagebreak"></div><h2 id="5-session-5-cash-flow-statement-under-as-3">5. Session 5 — Cash Flow Statement under AS 3 <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="51-what-it-is-for-and-why-profit-is-not-enough">5.1 What it is for, and why profit is not enough</h3><p>F6.1 §2.2 made the point that a business can be profitable and have no cash. The <strong>cash flow statement</strong> is the document that exposes the difference. It reports the <strong>inflows and outflows of cash and cash equivalents</strong> over a period, classified by the kind of activity that caused them.</p><p><strong>Cash and cash equivalents</strong> means cash on hand, demand deposits, and short-term highly liquid investments readily convertible into known amounts of cash with insignificant risk of change in value.</p><p>Under the <strong>Companies Act, 2013</strong>, a cash flow statement is part of the financial statements — but a <strong>One Person Company, a small company and a dormant company are exempt</strong>.</p><h3 id="52-the-three-activities">5.2 The three activities</h3><div class="tw"><table><thead><tr><th style="text-align:left">Activity</th><th style="text-align:left">What it covers</th><th style="text-align:left">Examples</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Operating</strong></td><td style="text-align:left">Principal <strong>revenue-producing</strong> activities</td><td style="text-align:left">Cash from customers, cash to suppliers and employees, tax paid</td></tr><tr><td style="text-align:left"><strong>Investing</strong></td><td style="text-align:left">Acquisition and disposal of <strong>long-term assets</strong> and investments</td><td style="text-align:left">Purchase or sale of machinery, purchase or sale of investments</td></tr><tr><td style="text-align:left"><strong>Financing</strong></td><td style="text-align:left">Changes in the size and composition of <strong>owners' capital and borrowings</strong></td><td style="text-align:left">Issue of shares, raising or repaying loans, dividend paid</td></tr></tbody></table></div><h3 id="53-the-classification-rules-that-are-actually-tested">5.3 The classification rules that are actually tested</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE FOUR ITEMS THAT DECIDE THESE QUESTIONS</p><p>For a <strong>non-financial</strong> enterprise:</p><div class="tw"><table><thead><tr><th style="text-align:left">Item</th><th style="text-align:left">Activity</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Interest paid</strong></td><td style="text-align:left"><strong>Financing</strong></td></tr><tr><td style="text-align:left"><strong>Dividend paid</strong></td><td style="text-align:left"><strong>Financing</strong></td></tr><tr><td style="text-align:left"><strong>Interest received</strong></td><td style="text-align:left"><strong>Investing</strong></td></tr><tr><td style="text-align:left"><strong>Dividend received</strong></td><td style="text-align:left"><strong>Investing</strong></td></tr></tbody></table></div><p>The logic: what you pay for <strong>capital</strong> is financing; what you earn on <strong>investments</strong> is investing.</p><p><strong>But for a financial enterprise — a bank or an NBFC — interest paid, interest received and dividend received are all OPERATING</strong>, because lending and investing <em>are</em> its principal revenue-producing activity.</p><p>This is the one place in the chapter where your own industry changes the answer, and it is a natural trap: if the stem says "a bank" or "a financial enterprise", the ordinary rules do <strong>not</strong> apply.</p></aside><p>Two further rules:</p><ul><li><strong>Income tax paid</strong> is normally an <strong>operating</strong> activity</li><li><strong>Non-cash transactions</strong> — shares issued to buy an asset, debentures converted into shares — are</li></ul><p><strong>excluded</strong> from the statement altogether and disclosed separately. No cash moved, so there is no cash flow to report</p><h3 id="54-the-indirect-method">5.4 The indirect method</h3><p>AS 3 permits both the <strong>direct</strong> and the <strong>indirect</strong> method for operating cash flows. The indirect method is what gets examined, because it starts from the profit figure you already know how to compute.</p><blockquote><p><strong>Net profit before tax and extraordinary items</strong> <strong>Add</strong> back non-cash and non-operating <strong>debits</strong>: depreciation, amortisation, <strong>loss</strong> on sale of a fixed asset, preliminary expenses written off, interest paid <strong>Deduct</strong> non-operating <strong>credits</strong>: <strong>profit</strong> on sale of a fixed asset, interest received, dividend received, rent received <strong>= Operating profit before working capital changes</strong> <strong>Adjust</strong> working capital: increase in a current asset <strong>(−)</strong>, decrease <strong>(+)</strong>; increase in a current liability <strong>(+)</strong>, decrease <strong>(−)</strong> <strong>= Cash generated from operations</strong> <strong>Less</strong> income tax paid <strong>= Net cash from operating activities</strong></p></blockquote><aside class="cal must-master"><p class="cal-h">MUST MASTER · DEPRECIATION IS NOT A SOURCE OF CASH</p><p>Depreciation is <strong>added back</strong> in the indirect method. That is not because it generates cash — it is because it was <strong>deducted in arriving at profit without any cash leaving</strong>, so it must be reversed to get back to a cash figure. F6.4 §1.1 established that it is a non-cash expense.</p><p>The statement <strong>"depreciation is a source of cash"</strong> is therefore <strong>false</strong>, and it is one of the most reliable wrong options in this area. Adding something back is not the same as it being a source.</p><p>Note also the direction pair, which is the other favourite: <strong>loss</strong> on sale of a fixed asset is <strong>added back</strong>, <strong>profit</strong> on sale is <strong>deducted</strong>. Both are reversed out of operating profit because both belong to <em>investing</em>; the sale proceeds appear there in full.</p></aside><p><strong>Cash flow versus fund flow:</strong> a cash flow statement deals with <strong>cash and cash equivalents</strong>; a fund flow statement deals with <strong>working capital</strong>. AS 3 mandates the former; fund flow is not required.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 5</p><ol><li>What are cash equivalents? Which three kinds of company are exempt from preparing the statement?</li><li>Classify, for a non-financial enterprise: interest paid, interest received, dividend paid, dividend received</li><li>How does the answer change for a bank, and why?</li><li>Is depreciation a source of cash? Why is it added back?</li><li>Loss and profit on the sale of a fixed asset — which is added and which deducted?</li><li>How are non-cash transactions treated?</li></ol></aside><div class="pagebreak"></div><h2 id="6-graded-practice-25-questions">6. Graded Practice — 25 Questions <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="61-level-1-recognition">6.1 Level 1 — Recognition</h3><p><strong>Q1.</strong> The current ratio is (a) current assets ÷ total liabilities (b) current assets ÷ current liabilities (c) quick assets ÷ current liabilities (d) current assets ÷ net sales</p><p><strong>Q2.</strong> The ideal current ratio is generally taken as (a) 1 : 1 (b) 1 : 2 (c) 3 : 1 (d) 2 : 1</p><p><strong>Q3.</strong> Quick assets are current assets less (a) inventory and prepaid expenses (b) trade receivables (c) cash and bank balances (d) current liabilities</p><p><strong>Q4.</strong> The ideal quick ratio is (a) 2 : 1 (b) 0.5 : 1 (c) 1 : 1 (d) 3 : 1</p><p><strong>Q5.</strong> Which one of the following is a solvency ratio? (a) Current ratio (b) Debt-equity ratio (c) Inventory turnover ratio (d) Gross profit ratio</p><p><strong>Q6.</strong> The inventory turnover ratio is (a) net sales ÷ closing inventory (b) cost of goods sold ÷ net sales (c) average inventory ÷ cost of goods sold (d) cost of goods sold ÷ average inventory</p><p><strong>Q7.</strong> The operating ratio plus the operating profit ratio equals (a) 50 (b) 200 (c) 100 (d) 1</p><p><strong>Q8.</strong> Under AS 3, cash flows are classified into (a) operating, investing and financing activities (b) direct and indirect flows (c) capital and revenue flows (d) internal and external flows</p><p><strong>Q9.</strong> The purchase of machinery for cash is classified as (a) an operating activity (b) an investing activity (c) a financing activity (d) a non-cash transaction</p><h3 id="62-level-2-understanding">6.2 Level 2 — Understanding</h3><p><strong>Q10.</strong> For a non-financial enterprise, interest paid is classified as (a) an operating activity (b) an investing activity (c) not shown in the statement (d) a financing activity</p><p><strong>Q11.</strong> For a non-financial enterprise, dividend received is classified as (a) an investing activity (b) a financing activity (c) an operating activity (d) not shown in the statement</p><p><strong>Q12.</strong> For a financial enterprise such as a bank, interest received is classified as (a) an investing activity (b) a financing activity (c) an operating activity (d) not shown in the statement</p><p><strong>Q13.</strong> Under the indirect method, depreciation is (a) deducted from net profit (b) added back to net profit (c) ignored entirely (d) shown as an investing outflow</p><p><strong>Q14.</strong> The issue of equity shares for cash is (a) an operating activity (b) an investing activity (c) a non-cash transaction (d) a financing activity</p><p><strong>Q15.</strong> Current assets are ₹6,00,000, including inventory ₹1,50,000 and prepaid expenses ₹50,000. Current liabilities are ₹2,00,000. The quick ratio is (a) 2 : 1 (b) 3 : 1 (c) 1 : 1 (d) 2.5 : 1</p><p><strong>Q16.</strong> Net sales are ₹8,00,000 and gross profit is ₹2,00,000. The gross profit ratio is (a) 40% (b) 20% (c) 25% (d) 33.33%</p><p><strong>Q17.</strong> Cost of goods sold is ₹6,00,000 and average inventory is ₹1,00,000. The inventory turnover ratio is (a) 5 times (b) 6 times (c) 8 times (d) 0.167 times</p><h3 id="63-level-3-recruitment-test-standard">6.3 Level 3 — Recruitment Test standard</h3><p><strong>Q18.</strong> Which one of the following statements is <strong>not</strong> correct? (a) A very high current ratio may indicate idle funds or excessive inventory (b) Quick assets exclude both inventory and prepaid expenses (c) A lower operating ratio indicates better operating efficiency (d) The current ratio is a measure of long-term solvency</p><p><strong>Q19.</strong> Consider the following statements:</p><ol><li>For a non-financial enterprise, dividend paid is classified as a financing activity.</li><li>For a non-financial enterprise, interest received is classified as an investing activity.</li><li>Non-cash transactions such as the issue of shares to acquire an asset are excluded from the cash flow statement.</li></ol><p>Which of the above statements are correct? (a) 1, 2 and 3 (b) 1 and 2 only (c) 2 and 3 only (d) 1 only</p><p><strong>Q20.</strong> Match List-I with List-II and select the correct answer using the code given below:</p><div class="tw"><table><thead><tr><th style="text-align:left">List-I (Ratio)</th><th style="text-align:left">List-II (Family)</th></tr></thead><tbody><tr><td style="text-align:left">A. Quick ratio</td><td style="text-align:left">1. Liquidity</td></tr><tr><td style="text-align:left">B. Debt-equity ratio</td><td style="text-align:left">2. Solvency</td></tr><tr><td style="text-align:left">C. Trade receivables turnover</td><td style="text-align:left">3. Activity</td></tr><tr><td style="text-align:left">D. Return on capital employed</td><td style="text-align:left">4. Profitability</td></tr></tbody></table></div><p>(a) A-2 B-1 C-3 D-4 (b) A-1 B-2 C-4 D-3 (c) A-1 B-2 C-3 D-4 (d) A-4 B-3 C-2 D-1</p><p><strong>Q21.</strong> Consider the following statements about the indirect method of computing operating cash flow:</p><ol><li>Loss on the sale of a fixed asset is added back to net profit.</li><li>Profit on the sale of a fixed asset is added to net profit.</li><li>An increase in current liabilities is added.</li></ol><p>Which of the above statements are correct? (a) 1 and 2 only (b) 1 and 3 only (c) 2 and 3 only (d) 1, 2 and 3</p><p><strong>Q22.</strong> Capital employed is ₹10,00,000 and profit before interest and tax is ₹1,50,000. The return on capital employed is (a) 10% (b) 12% (c) 20% (d) 15%</p><p><strong>Q23.</strong> Which one of the following is <strong>not</strong> a limitation of ratio analysis? (a) It expresses relationships that absolute figures alone cannot reveal (b) It is based on historical data (c) It ignores changes in the price level (d) It can be distorted by window dressing</p><p><strong>Q24.</strong> Under the Companies Act, 2013, which one of the following is <strong>not</strong> required to prepare a cash flow statement? (a) A listed company (b) A public company (c) A One Person Company (d) An unlisted company with a net worth of ₹300 crore</p><p><strong>Q25.</strong> Consider the following statements:</p><ol><li>A cash flow statement deals with cash and cash equivalents, while a fund flow statement deals with working capital.</li><li>Depreciation is a source of cash.</li><li>AS 3 permits both the direct and the indirect method of reporting operating cash flows.</li></ol><p>Which of the above statements are correct? (a) 1 and 2 only (b) 1 and 3 only (c) 2 and 3 only (d) 1, 2 and 3</p><div class="pagebreak"></div><h2 id="7-answers-and-explanations">7. Answers and Explanations</h2><h3 id="71-level-1">7.1 Level 1</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Current assets ÷ current liabilities.</strong> Option (c) is the quick ratio</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">d</td><td style="text-align:left"><strong>2 : 1.</strong> Learn it paired with the quick ratio's 1 : 1, because options swap them</td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Inventory and prepaid expenses.</strong> Inventory must be sold first; prepaid expenses will never become cash at all</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">c</td><td style="text-align:left"><strong>1 : 1.</strong> Option (b) is the absolute liquid ratio's 0.5 : 1</td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Debt-equity</strong> is a long-term or solvency ratio. Current ratio is liquidity, inventory turnover is activity, gross profit is profitability</td></tr><tr><td style="text-align:left">6</td><td style="text-align:center">d</td><td style="text-align:left"><strong>COGS ÷ average inventory.</strong> Option (a) drops the word <em>average</em>, which is the standard error</td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">c</td><td style="text-align:left"><strong>100.</strong> They are complements by construction, so given one you have the other</td></tr><tr><td style="text-align:left">8</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Operating, investing and financing.</strong> (b) names the two <em>methods</em> of presenting operating flows, not the classification</td></tr><tr><td style="text-align:left">9</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Investing</strong> — acquisition of a long-term asset</td></tr></tbody></table></div><h3 id="72-level-2">7.2 Level 2</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">10</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Financing.</strong> What you pay for capital is financing. For a <em>bank</em>, it would be operating</td></tr><tr><td style="text-align:left">11</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Investing.</strong> What you earn on investments is investing</td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Operating</strong>, because lending and investing are a bank's principal revenue-producing activity. This is the one place the entity's nature changes the answer</td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Added back</strong>, because it reduced profit without any cash leaving. Adding back is not the same as being a source of cash</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Financing</strong> — a change in the size of owners' capital</td></tr><tr><td style="text-align:left">15</td><td style="text-align:center">a</td><td style="text-align:left">Quick assets = 6,00,000 − 1,50,000 − 50,000 = ₹4,00,000. Quick ratio = 4,00,000 ÷ 2,00,000 = <strong>2 : 1</strong>. Option (d) forgets to remove prepaid expenses</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">c</td><td style="text-align:left">(2,00,000 ÷ 8,00,000) × 100 = <strong>25%</strong></td></tr><tr><td style="text-align:left">17</td><td style="text-align:center">b</td><td style="text-align:left">6,00,000 ÷ 1,00,000 = <strong>6 times</strong></td></tr></tbody></table></div><h3 id="73-level-3">7.3 Level 3</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">18</td><td style="text-align:center">d</td><td style="text-align:left">The current ratio measures <strong>short-term</strong> solvency, not long-term. The other three are all correct — including that a high current ratio can be a bad sign</td></tr><tr><td style="text-align:left">19</td><td style="text-align:center">a</td><td style="text-align:left"><strong>All three.</strong> Dividend paid is financing, interest received is investing, and non-cash transactions are excluded and disclosed separately</td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">c</td><td style="text-align:left"><strong>A-1 B-2 C-3 D-4</strong> — the four families in order. Placing the ratio in its family is the first step in most ratio questions</td></tr><tr><td style="text-align:left">21</td><td style="text-align:center">b</td><td style="text-align:left"><strong>1 and 3 only.</strong> Statement 2 is false: profit on sale of a fixed asset is <strong>deducted</strong>, not added, because it belongs to investing. Loss is added back for the same reason, in the opposite direction</td></tr><tr><td style="text-align:left">22</td><td style="text-align:center">d</td><td style="text-align:left">(1,50,000 ÷ 10,00,000) × 100 = <strong>15%</strong>. Note the numerator is profit <strong>before</strong> interest and tax, matching a denominator that includes debt</td></tr><tr><td style="text-align:left">23</td><td style="text-align:center">a</td><td style="text-align:left">That is a <strong>merit</strong> — the very purpose of ratio analysis — dressed as a limitation. The other three are genuine limitations</td></tr><tr><td style="text-align:left">24</td><td style="text-align:center">c</td><td style="text-align:left">A <strong>One Person Company</strong> is exempt, as are small companies and dormant companies</td></tr><tr><td style="text-align:left">25</td><td style="text-align:center">b</td><td style="text-align:left"><strong>1 and 3 only.</strong> Statement 2 is false — depreciation is <strong>not</strong> a source of cash; it is a non-cash charge added back to reverse its effect on profit</td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · THE THREE SHAPES IN THIS CHAPTER</p><ol><li><strong>The swapped norm.</strong> Q2 and Q4 are each other's distractors. <strong>2:1 current, 1:1 quick, 0.5:1 absolute</strong> — recite the three together or you will hesitate</li><li><strong>The entity switch.</strong> Q10 versus Q12. The moment a stem says <em>bank</em>, <em>NBFC</em> or <em>financial enterprise</em>, interest and dividend move to <strong>operating</strong>. Read the entity before the item</li><li><strong>The direction pair.</strong> Q21's statement 2, and the operating-versus-operating-profit ratio pair in §3.2. Where two items are mirror images, the examiner will state one correctly and reverse the other</li></ol></aside><div class="pagebreak"></div><h2 id="8-one-minute-revision">8. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F6.5</p><p><strong>FOUR FAMILIES</strong> liquidity (short-term) · solvency (long-term) · activity (efficiency) · profitability (earning)</p><p><strong>LIQUIDITY</strong> current ratio = CA ÷ CL, <strong>2:1</strong> · quick ratio = quick assets ÷ CL, <strong>1:1</strong> · absolute liquid = (cash + bank + marketable securities) ÷ CL, <strong>0.5:1</strong></p><p><strong>QUICK ASSETS = CA − INVENTORY − PREPAID</strong> · inventory must be sold first, prepaid never becomes cash</p><p><strong>A HIGH CURRENT RATIO IS NOT AUTOMATICALLY GOOD</strong> — idle funds, excess stock, slow debtors</p><p><strong>SOLVENCY</strong> debt-equity = long-term debt ÷ shareholders' funds, <strong>2:1</strong> · proprietary = funds ÷ total assets · interest coverage = <strong>PBIT ÷ interest</strong></p><p><strong>CAPITAL EMPLOYED</strong> = shareholders' funds + long-term debt = total assets − current liabilities</p><p><strong>ACTIVITY</strong> inventory turnover = <strong>COGS ÷ AVERAGE inventory</strong> · receivables turnover = net credit sales ÷ average receivables · collection period = <strong>365 ÷ turnover</strong> · working capital turnover = net sales ÷ working capital</p><p><strong>PROFITABILITY</strong> GP ratio · NP ratio · operating ratio = (COGS + operating expenses) ÷ net sales · <strong>operating ratio + operating profit ratio = 100</strong> · <strong>lower</strong> operating ratio is better · <strong>ROCE = PBIT ÷ capital employed</strong> · EPS = (PAT − preference dividend) ÷ number of equity shares</p><p><strong>LIMITATIONS</strong> historical data · ignores price-level change · <strong>window dressing</strong> · ignores qualitative factors · no single standard · different accounting policies · meaningless in isolation. <strong>The "merit dressed as a limitation" is the trap</strong></p><p><strong>AS 3 THREE ACTIVITIES</strong> operating (principal revenue-producing) · investing (long-term assets) · financing (owners' capital and borrowings)</p><p><strong>CLASSIFICATION, NON-FINANCIAL FIRM</strong> interest <strong>paid</strong> = financing · dividend <strong>paid</strong> = financing · interest <strong>received</strong> = investing · dividend <strong>received</strong> = investing · income tax paid = operating</p><p><strong>FOR A BANK OR NBFC</strong> interest paid, interest received and dividend received are all <strong>OPERATING</strong></p><p><strong>NON-CASH TRANSACTIONS EXCLUDED</strong> — shares issued for an asset, debentures converted — disclosed separately</p><p><strong>INDIRECT METHOD</strong> start with net profit before tax · <strong>add</strong> depreciation, <strong>loss</strong> on sale, interest paid · <strong>deduct</strong> <strong>profit</strong> on sale, interest and dividend received · adjust working capital: current asset up (−), current liability up (+) · less tax paid</p><p><strong>DEPRECIATION IS NOT A SOURCE OF CASH</strong> — it is added back to reverse a non-cash charge</p><p><strong>CASH FLOW vs FUND FLOW</strong> cash and cash equivalents versus <strong>working capital</strong></p><p><strong>EXEMPT FROM CASH FLOW STATEMENT</strong> One Person Company · small company · dormant company</p></aside><h2 id="9-five-minute-wall-sheet">9. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F6.5</p><p><strong>2 : 1 CURRENT · 1 : 1 QUICK · 0.5 : 1 ABSOLUTE</strong> — recite as one string</p><p><strong>QUICK = CA − STOCK − PREPAID</strong></p><p><strong>DEBT-EQUITY 2 : 1</strong> · <strong>INTEREST COVERAGE = PBIT ÷ INTEREST</strong></p><p><strong>INVENTORY TURNOVER = COGS ÷ AVERAGE INVENTORY</strong> — never closing alone</p><p><strong>OPERATING RATIO + OPERATING PROFIT RATIO = 100</strong> · lower operating ratio = better</p><p><strong>ROCE = PBIT ÷ CAPITAL EMPLOYED</strong> — before interest, because the denominator includes debt</p><p><strong>CAPITAL EMPLOYED = TOTAL ASSETS − CURRENT LIABILITIES</strong></p><p><strong>PAID = FINANCING · RECEIVED = INVESTING</strong> (interest and dividend, non-financial firm)</p><p><strong>BANK OR NBFC » ALL OPERATING</strong> — read the entity first</p><p><strong>DEPRECIATION ADDED BACK, BUT NOT A SOURCE OF CASH</strong></p><p><strong>LOSS ON SALE ADDED · PROFIT ON SALE DEDUCTED</strong></p><p><strong>CURRENT ASSET UP (−) · CURRENT LIABILITY UP (+)</strong></p><p><strong>NON-CASH TRANSACTIONS: EXCLUDED, DISCLOSED SEPARATELY</strong></p><p><strong>OPC · SMALL · DORMANT = EXEMPT</strong></p><p><strong>THE LIMITATION LIST CONTAINS A COMPLIMENT</strong> — that option is the answer to "not a limitation"</p><p><strong>ONE LINE FOR THE INTERVIEW</strong> A ratio is useful because it removes scale and makes two unlike businesses comparable, and a cash flow statement is useful because profit can be earned without cash ever arriving — which is why a lender reads both and trusts neither alone.</p></aside><aside class="cal action"><p class="cal-h">ACTION · NEXT IN THE FOUNDATION TRACK</p><p><strong>Chapter F6.6 — Bills of Exchange and Share Capital.</strong> Both are instruments rather than concepts, so that chapter is built around definitions and one comparison table each. It is also <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span>, so treat it the way you treated this one: learn the tables, do the questions, move on.</p><p>Before you move on, state without looking: the three liquidity norms; what quick assets exclude; the operating-ratio complement rule; the four paid-and-received classifications and how a bank changes them; and why depreciation is added back without being a source of cash.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F6.5
+  &middot; v1.0</footer>
+</body>
+</html>

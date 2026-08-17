@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Networking, the Internet and HTML</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F9.7 · Networking &amp; HTML
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · FOUNDATION LAYER · MODULE 9 · CHAPTER F9.7</p><h1 class="doc-t">Networking, the Internet and HTML</h1><p class="doc-s">Chapter F9.7 — The Last Three 2023 Items, and the End of Module 9</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 9 — General Science &amp; Computer Applications</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F9.7</td></tr><tr><td class="k">Topic</td><td class="v">Official syllabus head 6 — Basic Knowledge of Computer Applications</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal note"><p class="cal-h">NOTE · THE LAST THREE 2023 ITEMS</p><p>This chapter closes the list. The final three of the twenty 2023 computer and science items are here: <strong>IP address validity</strong> (§4.2), <strong>mesh topology links</strong> (§2.2) and <strong>HTML internal linking</strong> (§6.3).</p><p>Two of the three are <strong>deterministic</strong>: the mesh-link count is a formula, and IP validity is a range check. Like the number-system conversions in F9.5, they cannot be got wrong once the rule is known — which makes them the best-value pages in the chapter.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-network-types-and-transmission"><span class="toc-t">1. Session 1 — Network Types and Transmission <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#11-by-geographical-area"><span class="toc-t">1.1 By geographical area</span></a><a class="toc-3" href="#12-transmission-media-and-modes"><span class="toc-t">1.2 Transmission media and modes</span></a><a class="toc-2" href="#2-session-2-topologies"><span class="toc-t">2. Session 2 — Topologies <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#21-the-four-topologies"><span class="toc-t">2.1 The four topologies</span></a><a class="toc-3" href="#22-the-mesh-formula-the-2023-item"><span class="toc-t">2.2 The mesh formula — the 2023 item</span></a><a class="toc-2" href="#3-session-3-devices-and-the-osi-model"><span class="toc-t">3. Session 3 — Devices and the OSI Model <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#31-networking-devices"><span class="toc-t">3.1 Networking devices</span></a><a class="toc-3" href="#32-the-osi-model"><span class="toc-t">3.2 The OSI model</span></a><a class="toc-2" href="#4-session-4-ip-addressing"><span class="toc-t">4. Session 4 — IP Addressing <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#41-ipv4-and-ipv6"><span class="toc-t">4.1 IPv4 and IPv6</span></a><a class="toc-3" href="#42-validity-the-2023-item"><span class="toc-t">4.2 Validity — the 2023 item</span></a><a class="toc-2" href="#5-session-5-the-internet-and-its-protocols"><span class="toc-t">5. Session 5 — The Internet and Its Protocols <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#51-the-web"><span class="toc-t">5.1 The web</span></a><a class="toc-3" href="#52-the-protocols"><span class="toc-t">5.2 The protocols</span></a><a class="toc-2" href="#6-session-6-html"><span class="toc-t">6. Session 6 — HTML <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#61-what-html-is"><span class="toc-t">6.1 What HTML is</span></a><a class="toc-3" href="#62-structure-and-tags"><span class="toc-t">6.2 Structure and tags</span></a><a class="toc-3" href="#63-links-the-2023-item"><span class="toc-t">6.3 Links — the 2023 item</span></a><a class="toc-2" href="#7-graded-practice-25-questions"><span class="toc-t">7. Graded Practice — 25 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#71-level-1-recognition"><span class="toc-t">7.1 Level 1 — Recognition</span></a><a class="toc-3" href="#72-level-2-understanding"><span class="toc-t">7.2 Level 2 — Understanding</span></a><a class="toc-3" href="#73-level-3-recruitment-test-standard"><span class="toc-t">7.3 Level 3 — Recruitment Test standard</span></a><a class="toc-2" href="#8-answers-and-explanations"><span class="toc-t">8. Answers and Explanations</span></a><a class="toc-3" href="#81-level-1"><span class="toc-t">8.1 Level 1</span></a><a class="toc-3" href="#82-level-2"><span class="toc-t">8.2 Level 2</span></a><a class="toc-3" href="#83-level-3"><span class="toc-t">8.3 Level 3</span></a><a class="toc-2" href="#9-one-minute-revision"><span class="toc-t">9. One-Minute Revision</span></a><a class="toc-2" href="#10-five-minute-wall-sheet"><span class="toc-t">10. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F9.7 — SIX SESSIONS</p><ol><li><strong>Session 1</strong> — Network types and transmission (§1) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 2</strong> — Topologies, and the <strong>mesh formula</strong> (§2) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <strong>2023</strong></li><li><strong>Session 3</strong> — Devices and the OSI model (§3) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 4</strong> — <strong>IP addressing</strong> (§4) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <strong>2023</strong></li><li><strong>Session 5</strong> — The internet and its protocols (§5) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 6</strong> — <strong>HTML</strong>, including internal links (§6) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <strong>2023</strong></li></ol><p>Then 25 graded questions in §7. Budget <strong>two and a half days</strong>.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-network-types-and-transmission">1. Session 1 — Network Types and Transmission <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="11-by-geographical-area">1.1 By geographical area</h3><div class="tw"><table><thead><tr><th style="text-align:left">Network</th><th style="text-align:left">Area covered</th></tr></thead><tbody><tr><td style="text-align:left"><strong>PAN</strong> — personal area network</td><td style="text-align:left">A few metres, around one person</td></tr><tr><td style="text-align:left"><strong>LAN</strong> — local area network</td><td style="text-align:left">A <strong>room, building or campus</strong></td></tr><tr><td style="text-align:left"><strong>MAN</strong> — metropolitan area network</td><td style="text-align:left">A <strong>city</strong></td></tr><tr><td style="text-align:left"><strong>WAN</strong> — wide area network</td><td style="text-align:left">A <strong>country or the world</strong>. <strong>The internet is the largest WAN</strong></td></tr></tbody></table></div><p><strong>Client-server</strong> networks have a central server providing resources; <strong>peer-to-peer</strong> networks treat all nodes as equals.</p><h3 id="12-transmission-media-and-modes">1.2 Transmission media and modes</h3><div class="tw"><table><thead><tr><th style="text-align:left">Medium</th><th style="text-align:left">Notes</th></tr></thead><tbody><tr><td style="text-align:left">Twisted pair</td><td style="text-align:left">Cheap, common, limited bandwidth</td></tr><tr><td style="text-align:left">Coaxial cable</td><td style="text-align:left">Better shielding</td></tr><tr><td style="text-align:left"><strong>Optical fibre</strong></td><td style="text-align:left"><strong>Highest bandwidth</strong>, <strong>immune to electromagnetic interference</strong>, no crosstalk</td></tr><tr><td style="text-align:left">Unguided</td><td style="text-align:left">Radio, microwave, infrared, satellite</td></tr></tbody></table></div><div class="tw"><table><thead><tr><th style="text-align:left">Mode</th><th style="text-align:left">Direction</th><th style="text-align:left">Example</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Simplex</strong></td><td style="text-align:left"><strong>One way only</strong></td><td style="text-align:left">Keyboard to computer, radio broadcast</td></tr><tr><td style="text-align:left"><strong>Half duplex</strong></td><td style="text-align:left">Both ways, <strong>one at a time</strong></td><td style="text-align:left"><strong>Walkie-talkie</strong></td></tr><tr><td style="text-align:left"><strong>Full duplex</strong></td><td style="text-align:left"><strong>Both ways simultaneously</strong></td><td style="text-align:left"><strong>Telephone</strong></td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · OPTICAL FIBRE AND THE DUPLEX PAIR</p><p><strong>Optical fibre</strong> carries the highest bandwidth and is <strong>immune to electromagnetic interference</strong>, because it transmits light rather than electricity. Both properties are asked, sometimes together.</p><p>And the duplex distinction: <strong>half duplex allows both directions but only one at a time</strong> — the walkie-talkie, where you must stop talking to listen. <strong>Full duplex allows both at once</strong> — the telephone. Options routinely swap the two examples.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 1</p><ol><li>Order PAN, LAN, MAN and WAN by area. Which is the internet?</li><li>Which medium has the highest bandwidth, and what interference is it immune to?</li><li>Distinguish simplex, half duplex and full duplex, with an example of each</li></ol></aside><div class="pagebreak"></div><h2 id="2-session-2-topologies">2. Session 2 — Topologies <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="21-the-four-topologies">2.1 The four topologies</h3><div class="tw"><table><thead><tr><th style="text-align:left">Topology</th><th style="text-align:left">Structure</th><th style="text-align:left">Strength</th><th style="text-align:left">Weakness</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Bus</strong></td><td style="text-align:left">All nodes on a single <strong>backbone cable</strong></td><td style="text-align:left">Cheap, simple</td><td style="text-align:left"><strong>Failure of the backbone kills the network</strong></td></tr><tr><td style="text-align:left"><strong>Star</strong></td><td style="text-align:left">All nodes connect to a <strong>central hub or switch</strong></td><td style="text-align:left">Easy to add nodes; one node's failure is isolated</td><td style="text-align:left"><strong>Failure of the hub kills the network</strong></td></tr><tr><td style="text-align:left"><strong>Ring</strong></td><td style="text-align:left">Each node joined to two others in a <strong>closed loop</strong></td><td style="text-align:left">Orderly data flow</td><td style="text-align:left">A break can disable the ring</td></tr><tr><td style="text-align:left"><strong>Mesh</strong></td><td style="text-align:left"><strong>Every node connected to every other node</strong></td><td style="text-align:left"><strong>Most reliable and robust</strong></td><td style="text-align:left"><strong>Most expensive</strong>; most cabling</td></tr></tbody></table></div><h3 id="22-the-mesh-formula-the-2023-item">2.2 The mesh formula — the 2023 item</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE NUMBER OF LINKS IN A FULL MESH</p><p>For a full mesh network of <strong>n</strong> nodes:</p><blockquote><p><strong>Number of links = n(n − 1) / 2</strong> <strong>Number of input/output ports per device = n − 1</strong></p></blockquote><p>The reasoning, so you never have to recall it blindly: each of the n nodes must connect to the other <strong>n − 1</strong> nodes, giving n(n − 1) connections — but every link has been counted <strong>twice</strong>, once from each end, so divide by <strong>2</strong>.</p><p>Worked values worth having ready:</p><div class="tw"><table><thead><tr><th style="text-align:left">Nodes (n)</th><th style="text-align:left">Links</th></tr></thead><tbody><tr><td style="text-align:left">4</td><td style="text-align:left">6</td></tr><tr><td style="text-align:left"><strong>5</strong></td><td style="text-align:left"><strong>10</strong></td></tr><tr><td style="text-align:left"><strong>6</strong></td><td style="text-align:left"><strong>15</strong></td></tr><tr><td style="text-align:left">8</td><td style="text-align:left">28</td></tr><tr><td style="text-align:left"><strong>10</strong></td><td style="text-align:left"><strong>45</strong></td></tr></tbody></table></div><p>The distractor is always <strong>n(n − 1)</strong> without the division — so 30 instead of 15 for six nodes. If an option is exactly double another, the doubled one is the trap.</p></aside><aside class="cal trap"><p class="cal-h">COMMON UPSC TRAP · WHICH TOPOLOGY IS "EVERY NODE TO EVERY NODE"</p><p>That description is <strong>mesh</strong>, and it is offered against bus, star and ring in almost every topology question.</p><p>Keep the four straight by their single point of failure: <strong>bus fails at the backbone</strong>, <strong>star fails at the hub</strong>, <strong>ring fails at a break</strong>, and <strong>mesh has no single point of failure at all</strong> — which is precisely why it is both the most reliable and the most expensive.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 2</p><ol><li>Name the four topologies and the single point of failure of each</li><li>Give the formula for links in a full mesh, and derive it in one sentence</li><li>How many links for 5 nodes? For 8? For 10?</li><li>How many ports does each device need in a full mesh?</li></ol></aside><div class="pagebreak"></div><h2 id="3-session-3-devices-and-the-osi-model">3. Session 3 — Devices and the OSI Model <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="31-networking-devices">3.1 Networking devices</h3><div class="tw"><table><thead><tr><th style="text-align:left">Device</th><th style="text-align:left">Function</th><th style="text-align:left">OSI layer</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Hub</strong></td><td style="text-align:left"><strong>Broadcasts</strong> to all ports; no filtering</td><td style="text-align:left"><strong>Physical</strong></td></tr><tr><td style="text-align:left"><strong>Switch</strong></td><td style="text-align:left">Forwards using <strong>MAC addresses</strong></td><td style="text-align:left"><strong>Data link</strong></td></tr><tr><td style="text-align:left"><strong>Router</strong></td><td style="text-align:left">Connects <strong>different networks</strong> using <strong>IP addresses</strong></td><td style="text-align:left"><strong>Network</strong></td></tr><tr><td style="text-align:left"><strong>Bridge</strong></td><td style="text-align:left">Joins two LAN segments</td><td style="text-align:left">Data link</td></tr><tr><td style="text-align:left"><strong>Gateway</strong></td><td style="text-align:left">Connects <strong>dissimilar</strong> networks; converts protocols</td><td style="text-align:left">Application</td></tr><tr><td style="text-align:left"><strong>Repeater</strong></td><td style="text-align:left"><strong>Regenerates</strong> a weakened signal</td><td style="text-align:left">Physical</td></tr><tr><td style="text-align:left"><strong>Modem</strong></td><td style="text-align:left"><strong>Mod</strong>ulates and <strong>dem</strong>odulates — digital to analog and back</td><td style="text-align:left">Physical</td></tr><tr><td style="text-align:left"><strong>NIC</strong></td><td style="text-align:left">Network interface card; carries the <strong>MAC address</strong></td><td style="text-align:left">Data link</td></tr></tbody></table></div><h3 id="32-the-osi-model">3.2 The OSI model</h3><p><strong>Seven layers</strong>, from the bottom up:</p><blockquote><p><strong>Physical » Data Link » Network » Transport » Session » Presentation » Application</strong></p></blockquote><aside class="cal must-master"><p class="cal-h">MUST MASTER · SEVEN LAYERS, AND WHICH DEVICE SITS WHERE</p><p>The count itself is asked: <strong>OSI has SEVEN layers; TCP/IP has FOUR</strong> (network access, internet, transport, application).</p><p>A mnemonic from the bottom up: <strong>P</strong>lease <strong>D</strong>o <strong>N</strong>ot <strong>T</strong>hrow <strong>S</strong>ausage <strong>P</strong>izza <strong>A</strong>way.</p><p>And the device mapping, which is the more common question:</p><div class="tw"><table><thead><tr><th style="text-align:left">Device</th><th style="text-align:left">Layer</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Hub, repeater</strong></td><td style="text-align:left"><strong>Physical</strong> (layer 1)</td></tr><tr><td style="text-align:left"><strong>Switch, bridge, NIC</strong></td><td style="text-align:left"><strong>Data link</strong> (layer 2)</td></tr><tr><td style="text-align:left"><strong>Router</strong></td><td style="text-align:left"><strong>Network</strong> (layer 3)</td></tr></tbody></table></div><p><strong>A router works at the network layer using IP addresses; a switch at the data link layer using MAC addresses.</strong> That pair is the single most examinable distinction in the section.</p></aside><p><strong>TCP versus UDP:</strong></p><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left"><strong>TCP</strong></th><th style="text-align:left"><strong>UDP</strong></th></tr></thead><tbody><tr><td style="text-align:left">Connection</td><td style="text-align:left"><strong>Connection-oriented</strong></td><td style="text-align:left"><strong>Connectionless</strong></td></tr><tr><td style="text-align:left">Reliability</td><td style="text-align:left"><strong>Reliable</strong>, ordered, acknowledged</td><td style="text-align:left"><strong>Unreliable</strong>, no guarantee</td></tr><tr><td style="text-align:left">Speed</td><td style="text-align:left">Slower</td><td style="text-align:left"><strong>Faster</strong></td></tr><tr><td style="text-align:left">Used for</td><td style="text-align:left">Web pages, email, file transfer</td><td style="text-align:left">Streaming, voice, gaming</td></tr></tbody></table></div><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 3</p><ol><li>Which device broadcasts to all ports? Which forwards by MAC address? Which by IP address?</li><li>Name the seven OSI layers from the bottom up. How many layers has TCP/IP?</li><li>At which layers do a hub, a switch and a router operate?</li><li>Give four differences between TCP and UDP</li></ol></aside><div class="pagebreak"></div><h2 id="4-session-4-ip-addressing">4. Session 4 — IP Addressing <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="41-ipv4-and-ipv6">4.1 IPv4 and IPv6</h3><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left"><strong>IPv4</strong></th><th style="text-align:left"><strong>IPv6</strong></th></tr></thead><tbody><tr><td style="text-align:left">Length</td><td style="text-align:left"><strong>32 bits</strong></td><td style="text-align:left"><strong>128 bits</strong></td></tr><tr><td style="text-align:left">Notation</td><td style="text-align:left"><strong>Dotted decimal</strong> — four octets</td><td style="text-align:left"><strong>Eight groups of four hexadecimal digits</strong>, colon-separated</td></tr><tr><td style="text-align:left">Example</td><td style="text-align:left">192.168.1.10</td><td style="text-align:left">2001:0db8:…</td></tr><tr><td style="text-align:left">Address space</td><td style="text-align:left">About 4.3 billion (2³²)</td><td style="text-align:left">Vastly larger</td></tr></tbody></table></div><h3 id="42-validity-the-2023-item">4.2 Validity — the 2023 item</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · WHAT MAKES AN IPv4 ADDRESS VALID</p><p>An IPv4 address is valid only if it has <strong>exactly four parts</strong>, each part being a whole number <strong>between 0 and 255 inclusive</strong>.</p><p>Why 0 to 255? Each part is one <strong>octet</strong> — eight bits — and eight bits represent 2⁸ = <strong>256</strong> distinct values, running <strong>0 to 255</strong>. The count is 256; the <strong>maximum is 255</strong>.</p><p>So the two ways an address fails, and both appear as options:</p><div class="tw"><table><thead><tr><th style="text-align:left">Address</th><th style="text-align:left">Verdict</th><th style="text-align:left">Reason</th></tr></thead><tbody><tr><td style="text-align:left"><strong>192.168.1.10</strong></td><td style="text-align:left"><strong>Valid</strong></td><td style="text-align:left">Four parts, all within range</td></tr><tr><td style="text-align:left">256.100.50.25</td><td style="text-align:left"><strong>Invalid</strong></td><td style="text-align:left"><strong>256 exceeds the maximum of 255</strong></td></tr><tr><td style="text-align:left">300.1.1.1</td><td style="text-align:left"><strong>Invalid</strong></td><td style="text-align:left">300 far exceeds 255</td></tr><tr><td style="text-align:left">192.168.1</td><td style="text-align:left"><strong>Invalid</strong></td><td style="text-align:left">Only <strong>three</strong> parts</td></tr></tbody></table></div><p>The off-by-one is the trap: <strong>256 is not a valid octet value</strong>, even though there are 256 possible values. An option offering the range "1 to 256" is wrong at both ends — it excludes 0 and admits 256.</p></aside><p><strong>Address classes:</strong> A (first octet 1 to 126), B (128 to 191), C (192 to 223), D (224 to 239, multicast), E (240 onwards, experimental). <strong>127 is reserved for loopback</strong>, of which 127.0.0.1 is the familiar case.</p><p><strong>Private ranges</strong>, not routable on the internet: 10.x.x.x · 172.16 to 172.31.x.x · <strong>192.168.x.x</strong>.</p><p>A <strong>MAC address</strong> is different in kind: <strong>48 bits</strong>, written in hexadecimal, and <strong>burnt into the hardware</strong> rather than assigned by the network.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 4</p><ol><li>How many bits in IPv4? In IPv6? How is each written?</li><li>State the two conditions for a valid IPv4 address</li><li>Why is the maximum octet value 255 and not 256?</li><li>Which addresses are these — valid or not: 10.0.0.1, 192.168.300.1, 172.16.5, 255.255.255.0?</li><li>What is 127.0.0.1? How many bits is a MAC address?</li></ol></aside><div class="pagebreak"></div><h2 id="5-session-5-the-internet-and-its-protocols">5. Session 5 — The Internet and Its Protocols <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="51-the-web">5.1 The web</h3><p>The <strong>World Wide Web</strong> was invented by <strong>Tim Berners-Lee</strong>. The web is a service running <strong>on</strong> the internet; the internet is the underlying network — an examinable distinction.</p><p>A <strong>URL</strong> — Uniform Resource Locator — is the address of a resource. A <strong>browser</strong> renders pages; a <strong>search engine</strong> indexes them; an <strong>ISP</strong> provides connectivity.</p><h3 id="52-the-protocols">5.2 The protocols</h3><div class="tw"><table><thead><tr><th style="text-align:left">Protocol</th><th style="text-align:left">Purpose</th><th style="text-align:left">Port</th></tr></thead><tbody><tr><td style="text-align:left"><strong>HTTP</strong></td><td style="text-align:left">Transfers web pages</td><td style="text-align:left"><strong>80</strong></td></tr><tr><td style="text-align:left"><strong>HTTPS</strong></td><td style="text-align:left">HTTP <strong>secured</strong> by encryption</td><td style="text-align:left"><strong>443</strong></td></tr><tr><td style="text-align:left"><strong>FTP</strong></td><td style="text-align:left"><strong>File</strong> transfer</td><td style="text-align:left"><strong>21</strong></td></tr><tr><td style="text-align:left"><strong>SMTP</strong></td><td style="text-align:left"><strong>Sending</strong> email</td><td style="text-align:left"><strong>25</strong></td></tr><tr><td style="text-align:left"><strong>POP3 / IMAP</strong></td><td style="text-align:left"><strong>Receiving</strong> email</td><td style="text-align:left">110 / 143</td></tr><tr><td style="text-align:left"><strong>DNS</strong></td><td style="text-align:left">Translates <strong>domain names into IP addresses</strong></td><td style="text-align:left">53</td></tr><tr><td style="text-align:left"><strong>DHCP</strong></td><td style="text-align:left"><strong>Assigns IP addresses dynamically</strong></td><td style="text-align:left">—</td></tr><tr><td style="text-align:left">TELNET</td><td style="text-align:left">Remote terminal access</td><td style="text-align:left">23</td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · SEND VERSUS RECEIVE, AND NAME VERSUS NUMBER</p><p>Two pairs that carry most of the protocol questions.</p><ol><li><strong>SMTP SENDS mail. POP3 and IMAP RECEIVE it.</strong> The mnemonic is in the name: SMTP is Simple Mail <strong>Transfer</strong> Protocol — transfer outwards. An option saying SMTP is used for receiving email is wrong, and it is the commonest error in the topic</li><li><strong>DNS translates names into addresses. DHCP assigns addresses.</strong> DNS looks up; DHCP hands out. Both deal in IP addresses, which is exactly why they are confused</li></ol><p>Port numbers worth knowing: <strong>HTTP 80, HTTPS 443, FTP 21, SMTP 25, DNS 53</strong>.</p></aside><p><strong>Security:</strong> a <strong>virus</strong> attaches to a host file; a <strong>worm</strong> spreads by itself; a <strong>Trojan</strong> disguises itself as legitimate software; <strong>ransomware</strong> encrypts data for payment; <strong>phishing</strong> deceives a user into disclosing credentials. A <strong>firewall</strong> filters traffic between networks. <strong>Encryption</strong> protects content; a <strong>digital signature</strong> authenticates the sender.</p><p><strong>Cloud computing</strong> is offered as <strong>IaaS</strong>, <strong>PaaS</strong> and <strong>SaaS</strong> — infrastructure, platform and software as a service.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 5</p><ol><li>Who invented the World Wide Web? Distinguish the web from the internet</li><li>Which protocol sends email? Which two receive it?</li><li>Distinguish DNS from DHCP</li><li>Give the port numbers for HTTP, HTTPS, FTP and SMTP</li><li>Distinguish a virus, a worm and a Trojan. What does a firewall do?</li></ol></aside><div class="pagebreak"></div><h2 id="6-session-6-html">6. Session 6 — HTML <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="61-what-html-is">6.1 What HTML is</h3><p><strong>HTML — HyperText Markup Language</strong> — describes the <strong>structure</strong> of a web page.</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · HTML IS A MARKUP LANGUAGE, NOT A PROGRAMMING LANGUAGE</p><p>HTML has no variables, no loops and no conditional logic. It <strong>marks up</strong> content to describe what each part <em>is</em>. An option calling HTML a programming language is wrong.</p><p>The division of labour is worth knowing: <strong>HTML for structure, CSS for presentation, JavaScript for behaviour.</strong></p></aside><h3 id="62-structure-and-tags">6.2 Structure and tags</h3><p>``<code> &lt;html&gt; &lt;head&gt; &lt;title&gt;Page title&lt;/title&gt; &lt;/head&gt; &lt;body&gt; content &lt;/body&gt; &lt;/html&gt; </code>``</p><ul><li><strong>Paired tags</strong> have an opening and a closing form: <code>&lt;p&gt;</code> … <code>&lt;/p&gt;</code></li><li><strong>Empty tags</strong> stand alone: <code>&lt;br&gt;</code> (line break), <code>&lt;hr&gt;</code> (horizontal rule), <code>&lt;img&gt;</code></li><li><strong>Attributes</strong> appear inside the <strong>opening</strong> tag: <code>&lt;img src=&quot;photo.jpg&quot; alt=&quot;description&quot;&gt;</code></li><li>Headings run <strong><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code></strong>, with <code>&lt;h1&gt;</code> the largest</li><li>Lists: <code>&lt;ul&gt;</code> unordered, <code>&lt;ol&gt;</code> ordered, with <code>&lt;li&gt;</code> for each item</li><li>Tables: <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code> for a row, <code>&lt;th&gt;</code> for a header cell, <code>&lt;td&gt;</code> for a data cell</li></ul><h3 id="63-links-the-2023-item">6.3 Links — the 2023 item</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE ANCHOR TAG, AND THE HASH FOR INTERNAL LINKS</p><p>All links use the <strong>anchor tag <code>&lt;a&gt;</code></strong> with the <strong><code>href</code></strong> attribute. What changes is the value of <code>href</code>:</p><div class="tw"><table><thead><tr><th style="text-align:left">Kind of link</th><th style="text-align:left">Syntax</th></tr></thead><tbody><tr><td style="text-align:left">To another <strong>website</strong></td><td style="text-align:left"><code>&lt;a href=&quot;https://example.com&quot;&gt;text&lt;/a&gt;</code></td></tr><tr><td style="text-align:left">To another <strong>page</strong> in the same site</td><td style="text-align:left"><code>&lt;a href=&quot;page2.html&quot;&gt;text&lt;/a&gt;</code></td></tr><tr><td style="text-align:left"><strong>To a position WITHIN the same page</strong></td><td style="text-align:left"><strong><code>&lt;a href=&quot;#sectionid&quot;&gt;text&lt;/a&gt;</code></strong></td></tr></tbody></table></div><p><strong>The internal link is the one with the <code>#</code> (hash), and it points to the <code>id</code> of an element on the same page:</strong></p><p>``<code> &lt;a href=&quot;#salary&quot;&gt;Go to the salary section&lt;/a&gt; ... &lt;h2 id=&quot;salary&quot;&gt;Salary&lt;/h2&gt; </code>``</p><p>Three facts that make this a reliable question:</p><ol><li><strong>The attribute is <code>href</code>, never <code>src</code>.</strong> <code>src</code> is for embedding a resource — an image or a script. <code>href</code> is for linking to one. Confusing them is the standard wrong option</li><li><strong>The <code>#</code> marks an in-page target.</strong> Without it the browser looks for a file of that name</li><li>The target is identified by its <strong><code>id</code></strong> attribute</li></ol></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 6</p><ol><li>Is HTML a programming language? What do CSS and JavaScript do?</li><li>Distinguish paired from empty tags, with two examples of each</li><li>Where do attributes go?</li><li>Give the syntax for an internal link within the same page, and say what the target needs</li><li><code>href</code> or <code>src</code> — which creates a link, and which embeds a resource?</li></ol></aside><div class="pagebreak"></div><h2 id="7-graded-practice-25-questions">7. Graded Practice — 25 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="71-level-1-recognition">7.1 Level 1 — Recognition</h3><p><strong>Q1.</strong> A computer network confined to a single building is a (a) WAN (b) LAN (c) MAN (d) PAN</p><p><strong>Q2.</strong> The largest wide area network in existence is the (a) local area network (b) metropolitan area network (c) intranet (d) internet</p><p><strong>Q3.</strong> In which topology is every node connected to every other node? (a) Bus (b) Star (c) Mesh (d) Ring</p><p><strong>Q4.</strong> The number of layers in the OSI reference model is (a) seven (b) four (c) five (d) six</p><p><strong>Q5.</strong> HTML stands for (a) HighText Machine Language (b) HyperText Markup Language (c) HyperText Machine Language (d) Hyperlink Text Marking Logic</p><p><strong>Q6.</strong> An IPv4 address consists of (a) 8 bits (b) 16 bits (c) 64 bits (d) 32 bits</p><p><strong>Q7.</strong> The protocol used for transferring files over the internet is (a) SMTP (b) HTTP (c) FTP (d) DNS</p><p><strong>Q8.</strong> The World Wide Web was invented by (a) Tim Berners-Lee (b) Dennis Ritchie (c) Charles Babbage (d) Vint Cerf</p><p><strong>Q9.</strong> DNS is used to (a) assign IP addresses dynamically (b) translate domain names into IP addresses (c) transfer files between hosts (d) encrypt network traffic</p><h3 id="72-level-2-understanding">7.2 Level 2 — Understanding</h3><p><strong>Q10.</strong> In a full mesh network of n nodes, the number of links required is (a) n (b) n − 1 (c) n² (d) n(n − 1)/2</p><p><strong>Q11.</strong> A full mesh network of 6 nodes requires how many links? (a) 6 (b) 12 (c) 15 (d) 30</p><p><strong>Q12.</strong> Which one of the following is a <strong>valid</strong> IPv4 address? (a) 192.168.1.10 (b) 256.100.50.25 (c) 192.168.1 (d) 300.1.1.1</p><p><strong>Q13.</strong> Each octet of an IPv4 address may take a value from (a) 1 to 256 (b) 0 to 255 (c) 0 to 127 (d) 1 to 255</p><p><strong>Q14.</strong> A router operates at which layer of the OSI model? (a) Physical (b) Data link (c) Transport (d) Network</p><p><strong>Q15.</strong> In HTML, a link to another position within the <strong>same</strong> page is created using (a) <code>&lt;a src=&quot;page.html&quot;&gt;</code> (b) <code>&lt;link rel=&quot;internal&quot;&gt;</code> (c) <code>&lt;a href=&quot;#id&quot;&gt;</code> (d) <code>&lt;a name=&quot;page.html&quot;&gt;</code></p><p><strong>Q16.</strong> Which transmission mode permits communication in both directions <strong>simultaneously</strong>? (a) Full duplex (b) Half duplex (c) Simplex (d) Unicast</p><p><strong>Q17.</strong> Which device forwards data on the basis of MAC addresses? (a) Hub (b) Switch (c) Repeater (d) Modem</p><p><strong>Q18.</strong> TCP differs from UDP in that TCP is (a) faster but unreliable (b) connectionless (c) used only for streaming media (d) connection-oriented and reliable</p><h3 id="73-level-3-recruitment-test-standard">7.3 Level 3 — Recruitment Test standard</h3><p><strong>Q19.</strong> Which one of the following statements is <strong>not</strong> correct? (a) A mesh topology is the most reliable but the most expensive (b) In a star topology, failure of the central hub disables the whole network (c) In a bus topology, every node is connected to every other node (d) A hub operates at the physical layer</p><p><strong>Q20.</strong> Consider the following statements:</p><ol><li>An IPv4 address is written in dotted decimal notation as four octets.</li><li>Any octet with a value greater than 255 makes the address invalid.</li><li>IPv6 addresses are 64 bits long.</li></ol><p>Which of the above statements are correct? (a) 1 and 2 only (b) 2 and 3 only (c) 1 and 3 only (d) 1, 2 and 3</p><p><strong>Q21.</strong> Match List-I with List-II and select the correct answer using the code given below:</p><div class="tw"><table><thead><tr><th style="text-align:left">List-I</th><th style="text-align:left">List-II</th></tr></thead><tbody><tr><td style="text-align:left">A. Hub</td><td style="text-align:left">1. Physical layer</td></tr><tr><td style="text-align:left">B. Switch</td><td style="text-align:left">2. Data link layer</td></tr><tr><td style="text-align:left">C. Router</td><td style="text-align:left">3. Network layer</td></tr><tr><td style="text-align:left">D. Gateway</td><td style="text-align:left">4. Connects dissimilar networks</td></tr></tbody></table></div><p>(a) A-2 B-1 C-3 D-4 (b) A-1 B-2 C-3 D-4 (c) A-1 B-2 C-4 D-3 (d) A-3 B-4 C-1 D-2</p><p><strong>Q22.</strong> A full mesh network of 10 nodes requires (a) 90 links (b) 100 links (c) 10 links (d) 45 links</p><p><strong>Q23.</strong> Which one of the following statements about HTML is <strong>not</strong> correct? (a) It is a markup language rather than a programming language (b) The anchor tag uses the href attribute to create a link (c) An internal link within a page is created using the src attribute (d) <code>&lt;br&gt;</code> is an empty tag</p><p><strong>Q24.</strong> Consider the following statements:</p><ol><li>Optical fibre offers higher bandwidth and immunity to electromagnetic interference.</li><li>A firewall filters traffic passing between networks.</li><li>SMTP is used for receiving electronic mail.</li></ol><p>Which of the above statements are correct? (a) 1 and 2 only (b) 2 and 3 only (c) 1 and 3 only (d) 1, 2 and 3</p><p><strong>Q25.</strong> The default port number for HTTP is (a) 21 (b) 80 (c) 443 (d) 25</p><div class="pagebreak"></div><h2 id="8-answers-and-explanations">8. Answers and Explanations</h2><h3 id="81-level-1">8.1 Level 1</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">b</td><td style="text-align:left">A <strong>LAN</strong>. A MAN covers a city, a WAN a country or the world</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">d</td><td style="text-align:left">The <strong>internet</strong>, the largest WAN</td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Mesh.</strong> This description is offered against bus, star and ring in almost every topology question</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Seven.</strong> TCP/IP has four — the two counts are each other's distractors</td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">b</td><td style="text-align:left"><strong>HyperText Markup Language</strong></td></tr><tr><td style="text-align:left">6</td><td style="text-align:center">d</td><td style="text-align:left"><strong>32 bits</strong>, in four octets of 8 bits each. IPv6 is 128 bits</td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">c</td><td style="text-align:left"><strong>FTP</strong> — file transfer protocol</td></tr><tr><td style="text-align:left">8</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Tim Berners-Lee</strong></td></tr><tr><td style="text-align:left">9</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Translates domain names into IP addresses.</strong> Option (a) is <strong>DHCP</strong>, which assigns them</td></tr></tbody></table></div><h3 id="82-level-2">8.2 Level 2</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">10</td><td style="text-align:center">d</td><td style="text-align:left"><strong>n(n − 1)/2.</strong> Each node links to n − 1 others, and each link is counted twice, so divide by 2</td></tr><tr><td style="text-align:left">11</td><td style="text-align:center">c</td><td style="text-align:left">6 × 5 / 2 = <strong>15</strong>. Option (d), 30, is n(n − 1) without the division — the standard trap</td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">a</td><td style="text-align:left"><strong>192.168.1.10.</strong> (b) has an octet of 256, above the maximum; (c) has only three parts; (d) has 300</td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">b</td><td style="text-align:left"><strong>0 to 255.</strong> Option (a) is wrong at both ends — it excludes 0 and wrongly admits 256</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">d</td><td style="text-align:left">The <strong>network</strong> layer, using IP addresses. A switch works at the data link layer using MAC addresses</td></tr><tr><td style="text-align:left">15</td><td style="text-align:center">c</td><td style="text-align:left"><code>&lt;a href=&quot;#id&quot;&gt;</code> — the <strong>hash</strong> marks an in-page target, and the attribute is <strong>href</strong>, not src</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Full duplex</strong> — the telephone. <strong>Half duplex</strong> is both ways one at a time, the walkie-talkie</td></tr><tr><td style="text-align:left">17</td><td style="text-align:center">b</td><td style="text-align:left">A <strong>switch</strong>. A hub simply broadcasts to all ports without examining addresses</td></tr><tr><td style="text-align:left">18</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Connection-oriented and reliable.</strong> UDP is the connectionless, faster, unreliable one</td></tr></tbody></table></div><h3 id="83-level-3">8.3 Level 3</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">19</td><td style="text-align:center">c</td><td style="text-align:left">In a <strong>bus</strong> topology all nodes share a single <strong>backbone cable</strong>. It is the <strong>mesh</strong> topology in which every node connects to every other — so (c) has attached the mesh description to the bus. The other three are correct</td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">a</td><td style="text-align:left"><strong>1 and 2 only.</strong> Statement 3 is false — IPv6 is <strong>128 bits</strong>, not 64</td></tr><tr><td style="text-align:left">21</td><td style="text-align:center">b</td><td style="text-align:left"><strong>A-1 B-2 C-3 D-4</strong> — hub physical, switch data link, router network, gateway joining dissimilar networks</td></tr><tr><td style="text-align:left">22</td><td style="text-align:center">d</td><td style="text-align:left">10 × 9 / 2 = <strong>45</strong>. Option (a), 90, again omits the division by two</td></tr><tr><td style="text-align:left">23</td><td style="text-align:center">c</td><td style="text-align:left">An internal link uses <strong>href with a hash</strong>, not <strong>src</strong>. <code>src</code> embeds a resource such as an image; <code>href</code> links to one. The other three statements are correct</td></tr><tr><td style="text-align:left">24</td><td style="text-align:center">a</td><td style="text-align:left"><strong>1 and 2 only.</strong> Statement 3 is false — <strong>SMTP sends</strong> mail; <strong>POP3 and IMAP receive</strong> it</td></tr><tr><td style="text-align:left">25</td><td style="text-align:center">b</td><td style="text-align:left"><strong>80.</strong> HTTPS is 443, FTP 21, SMTP 25</td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · THE FOUR SHAPES IN THIS CHAPTER</p><ol><li><strong>The missing division.</strong> Q11 and Q22 both offer n(n − 1) alongside the correct n(n − 1)/2. <strong>If one option is exactly double another, the halved one is almost certainly right</strong></li><li><strong>The off-by-one range.</strong> Q13. Eight bits give <strong>256 values, 0 to 255</strong>. The wrong option shifts the window by one at each end</li><li><strong>The attribute swap.</strong> Q15 and Q23. <strong><code>href</code> links, <code>src</code> embeds.</strong> One word decides both questions</li><li><strong>The transferred description.</strong> Q19 takes the definition of mesh and attaches it to bus. Where a question lists several topologies, check that each description sits on the right one</li></ol></aside><div class="pagebreak"></div><h2 id="9-one-minute-revision">9. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F9.7</p><p><strong>BY AREA</strong> PAN » <strong>LAN (building)</strong> » <strong>MAN (city)</strong> » <strong>WAN (country)</strong> · <strong>the internet is the largest WAN</strong></p><p><strong>MEDIA</strong> <strong>optical fibre = highest bandwidth, immune to electromagnetic interference</strong> · simplex one way · <strong>half duplex both ways one at a time (walkie-talkie)</strong> · <strong>full duplex both at once (telephone)</strong></p><p><strong>TOPOLOGIES</strong> <strong>bus</strong> = one backbone, fails at the backbone · <strong>star</strong> = central hub, <strong>fails at the hub</strong> · <strong>ring</strong> = closed loop · <strong>mesh = every node to every node</strong>, most reliable, most expensive, <strong>no single point of failure</strong></p><p><strong>MESH FORMULA</strong> <strong>links = n(n − 1)/2</strong> · ports per device = <strong>n − 1</strong> · <strong>5 » 10 · 6 » 15 · 8 » 28 · 10 » 45</strong> · the trap is <strong>n(n − 1)</strong> without halving</p><p><strong>DEVICES</strong> <strong>hub broadcasts, physical layer</strong> · <strong>switch uses MAC, data link</strong> · <strong>router uses IP, network</strong> · gateway joins <strong>dissimilar</strong> networks · repeater regenerates · modem modulates and demodulates · NIC carries the <strong>MAC address</strong></p><p><strong>OSI = 7 LAYERS</strong> physical, data link, network, transport, session, presentation, application · <strong>TCP/IP = 4 layers</strong></p><p><strong>TCP vs UDP</strong> TCP <strong>connection-oriented, reliable</strong>, slower · UDP <strong>connectionless</strong>, faster, no guarantee</p><p><strong>IPv4</strong> <strong>32 bits</strong>, <strong>four octets</strong>, dotted decimal · <strong>each octet 0 to 255</strong> · 8 bits give <strong>256 values but a maximum of 255</strong> · invalid if any octet exceeds 255 <strong>or</strong> if there are not four parts · <strong>IPv6 = 128 bits</strong>, eight hexadecimal groups</p><p><strong>CLASSES</strong> A 1–126 · B 128–191 · C 192–223 · D multicast · <strong>127 = loopback (127.0.0.1)</strong> · private: 10.x, 172.16–31.x, <strong>192.168.x</strong> · <strong>MAC = 48 bits, hexadecimal, in hardware</strong></p><p><strong>WEB</strong> <strong>Tim Berners-Lee</strong> · the web runs <strong>on</strong> the internet · URL = address</p><p><strong>PROTOCOLS</strong> <strong>HTTP 80</strong> · <strong>HTTPS 443</strong> · <strong>FTP 21</strong> · <strong>SMTP 25 SENDS mail</strong> · <strong>POP3/IMAP RECEIVE</strong> · <strong>DNS 53 translates names to addresses</strong> · <strong>DHCP assigns addresses</strong></p><p><strong>SECURITY</strong> virus attaches · worm spreads alone · Trojan disguises · ransomware encrypts for payment · phishing deceives · <strong>firewall filters between networks</strong> · cloud: IaaS, PaaS, SaaS</p><p><strong>HTML</strong> a <strong>MARKUP</strong> language, <strong>not</strong> a programming language · <strong>HTML structure, CSS presentation, JavaScript behaviour</strong> · <code>&lt;html&gt;</code> <code>&lt;head&gt;</code> <code>&lt;title&gt;</code> <code>&lt;body&gt;</code> · paired vs <strong>empty tags</strong> (<code>&lt;br&gt;</code> <code>&lt;hr&gt;</code> <code>&lt;img&gt;</code>) · attributes go in the <strong>opening</strong> tag · headings <strong><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code></strong> · <code>&lt;ul&gt;</code> <code>&lt;ol&gt;</code> <code>&lt;li&gt;</code> · <code>&lt;table&gt;</code> <code>&lt;tr&gt;</code> <code>&lt;th&gt;</code> <code>&lt;td&gt;</code></p><p><strong>LINKS</strong> all links use <strong><code>&lt;a&gt;</code> with <code>href</code></strong> · another site: full URL · another page: filename · <strong>WITHIN the same page: <code>href=&quot;#id&quot;</code>, pointing at an element's <code>id</code></strong> · <strong><code>href</code> LINKS, <code>src</code> EMBEDS</strong></p></aside><h2 id="10-five-minute-wall-sheet">10. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F9.7</p><p><strong>MESH LINKS = n(n − 1)/2</strong> · 5»10 · 6»15 · 10»45 · <strong>if one option is double another, halve it</strong></p><p><strong>MESH = EVERY NODE TO EVERY NODE · NO SINGLE POINT OF FAILURE</strong></p><p><strong>BUS FAILS AT THE BACKBONE · STAR FAILS AT THE HUB</strong></p><p><strong>IPv4 = 32 BITS, FOUR OCTETS, EACH 0–255</strong> · 256 is INVALID · <strong>IPv6 = 128 BITS</strong></p><p><strong>HUB PHYSICAL · SWITCH MAC/DATA LINK · ROUTER IP/NETWORK</strong></p><p><strong>OSI 7 LAYERS · TCP/IP 4</strong></p><p><strong>TCP CONNECTION-ORIENTED AND RELIABLE · UDP CONNECTIONLESS AND FAST</strong></p><p><strong>SMTP SENDS · POP3 AND IMAP RECEIVE</strong></p><p><strong>DNS LOOKS UP · DHCP HANDS OUT</strong></p><p><strong>HTTP 80 · HTTPS 443 · FTP 21 · SMTP 25 · DNS 53</strong></p><p><strong>OPTICAL FIBRE: HIGHEST BANDWIDTH, IMMUNE TO EMI</strong></p><p><strong>HALF DUPLEX = WALKIE-TALKIE · FULL DUPLEX = TELEPHONE</strong></p><p><strong>HTML IS MARKUP, NOT PROGRAMMING</strong></p><p><strong>INTERNAL LINK = <code>&lt;a href=&quot;#id&quot;&gt;</code> · href LINKS, src EMBEDS</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> A mesh network needs n(n − 1)/2 links because every node must reach every other and each link serves both ends — which is exactly why mesh is unbeatable for reliability and unaffordable at scale.</p></aside><aside class="cal action"><p class="cal-h">ACTION · MODULE 9 IS COMPLETE</p><p>Seven chapters, F9.1 to F9.7, and <strong>all twenty of the 2023 General Science and Computer Applications items</strong> recorded in Blueprint §4.4 are now covered.</p><p><strong>Next: Module 8 — General English, Quantitative Aptitude and Reasoning.</strong> It is <strong>80 planning marks, the largest single block in the paper</strong>, and the Blueprint requires it to run as <strong>daily practice</strong> rather than as a block reached in sequence. The statistics in F6.8 and the mensuration and physics arithmetic in F9.1 are already part of it.</p><p>Before you leave Module 9, state without looking: the mesh link formula; the valid range of an IPv4 octet; which layer a router works at; which protocol sends mail; and how an internal HTML link is written.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F9.7
+  &middot; v1.0</footer>
+</body>
+</html>

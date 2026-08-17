@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statistics — Central Tendency, Dispersion and Correlation</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F6.8 · Statistics
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · FOUNDATION LAYER · MODULE 6 · CHAPTER F6.8</p><h1 class="doc-t">Statistics — Central Tendency, Dispersion and Correlation</h1><p class="doc-s">Chapter F6.8 — The Chapter That Pays Twice, Because It Sits in Two Syllabus Heads at Once</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 6 — Accounting, Auditing &amp; Statistics</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F6.8</td></tr><tr><td class="k">Topic</td><td class="v">Syllabus heads 5 and 7 — Statistics, and Elementary Mathematics and Statistics</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal note"><p class="cal-h">NOTE · HOW TO USE THIS DOCUMENT</p><p>The last chapter of Module 6, and the only one that appears in <strong>two</strong> official syllabus heads: head 5 alongside Accounting and Auditing, and head 7, <em>"Elementary Mathematics, Statistics and General Mental Ability"</em>.</p><p>That double placement is why it is worth more than its length suggests. Anything you learn here is used again in <strong>Module 8</strong>, where the Quant block sits — and Blueprint §4.4 records that the 2023 paper's quantitative section included a question on the <strong>mean of weights</strong>, so statistics genuinely surfaces on both sides.</p><p>For a Mechanical Engineer this is mostly <strong>recall</strong>. Read it fast, do the 25 questions carefully, and spend your saved time on §4 — dispersion is where the distinctions are least intuitive.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-what-statistics-is"><span class="toc-t">1. Session 1 — What Statistics Is <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></span></a><a class="toc-2" href="#2-session-2-central-tendency"><span class="toc-t">2. Session 2 — Central Tendency <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#21-arithmetic-mean"><span class="toc-t">2.1 Arithmetic mean</span></a><a class="toc-3" href="#22-median"><span class="toc-t">2.2 Median</span></a><a class="toc-3" href="#23-mode"><span class="toc-t">2.3 Mode</span></a><a class="toc-2" href="#3-session-3-the-other-means-and-the-relationships"><span class="toc-t">3. Session 3 — The Other Means and the Relationships <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#31-geometric-and-harmonic-means"><span class="toc-t">3.1 Geometric and harmonic means</span></a><a class="toc-2" href="#4-session-4-dispersion"><span class="toc-t">4. Session 4 — Dispersion <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#41-the-four-absolute-measures"><span class="toc-t">4.1 The four absolute measures</span></a><a class="toc-3" href="#42-two-properties-of-the-mean-deviation-and-the-standard-deviation"><span class="toc-t">4.2 Two properties of the mean deviation and the standard deviation</span></a><a class="toc-3" href="#43-the-coefficient-of-variation-the-relative-measure"><span class="toc-t">4.3 The coefficient of variation — the relative measure</span></a><a class="toc-2" href="#5-session-5-correlation-regression-and-index-numbers"><span class="toc-t">5. Session 5 — Correlation, Regression and Index Numbers <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#51-correlation"><span class="toc-t">5.1 Correlation</span></a><a class="toc-3" href="#52-regression-at-recognition-level"><span class="toc-t">5.2 Regression, at recognition level</span></a><a class="toc-3" href="#53-index-numbers-at-recognition-level"><span class="toc-t">5.3 Index numbers, at recognition level</span></a><a class="toc-2" href="#6-graded-practice-25-questions"><span class="toc-t">6. Graded Practice — 25 Questions <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#61-level-1-recognition"><span class="toc-t">6.1 Level 1 — Recognition</span></a><a class="toc-3" href="#62-level-2-understanding"><span class="toc-t">6.2 Level 2 — Understanding</span></a><a class="toc-3" href="#63-level-3-recruitment-test-standard"><span class="toc-t">6.3 Level 3 — Recruitment Test standard</span></a><a class="toc-2" href="#7-answers-and-explanations"><span class="toc-t">7. Answers and Explanations</span></a><a class="toc-3" href="#71-level-1"><span class="toc-t">7.1 Level 1</span></a><a class="toc-3" href="#72-level-2"><span class="toc-t">7.2 Level 2</span></a><a class="toc-3" href="#73-level-3"><span class="toc-t">7.3 Level 3</span></a><a class="toc-2" href="#8-one-minute-revision"><span class="toc-t">8. One-Minute Revision</span></a><a class="toc-2" href="#9-five-minute-wall-sheet"><span class="toc-t">9. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F6.8 — THE FIVE SESSIONS</p><ol><li><strong>Session 1</strong> — What statistics is; functions and limitations (§1) <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></li><li><strong>Session 2</strong> — Central tendency: mean, median, mode (§2) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 3</strong> — The other means, and the relationships between averages (§3) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 4</strong> — Dispersion, standard deviation and the coefficient of variation (§4) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 5</strong> — Correlation, regression and index numbers (§5) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li></ol><p>Then 25 graded questions in §6. About <strong>two and a half days</strong> at two hours.</p></aside><aside class="cal know"><p class="cal-h">KNOW · A NOTE ON NOTATION</p><p>Formulas here use <strong>Σ</strong> for summation, <strong>σ</strong> for the standard deviation, <strong>n</strong> for the number of observations, and the word <strong>Mean</strong> in place of the usual x-bar, purely so that every symbol renders cleanly in print.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-what-statistics-is">1. Session 1 — What Statistics Is <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></h2><p>The word carries <strong>two</strong> senses, and the exam occasionally separates them:</p><ul><li>In the <strong>plural</strong> sense — the <strong>numerical data</strong> themselves</li><li>In the <strong>singular</strong> sense — the <strong>science and method</strong> of collecting, classifying, presenting,</li></ul><p>analysing and interpreting numerical data</p><p><strong>Functions:</strong> presents facts in definite numerical form; simplifies a mass of data; facilitates comparison; helps in formulating policy; assists prediction; enables hypotheses to be tested.</p><p><strong>Limitations</strong> — these generate "which of the following is not a limitation" questions, exactly as in F6.5 §4:</p><ul><li>It deals with <strong>aggregates, not individuals</strong> — statistics says nothing about a single case</li><li>It studies only <strong>quantitative</strong> facts, unless qualities are converted to scores</li><li>Its results are true <strong>on average</strong>, not universally</li><li>It is liable to be <strong>misused</strong> by the untrained or the partisan</li><li>It requires <strong>expertise</strong> to interpret correctly</li></ul><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 1</p><ol><li>Give the two senses of the word "statistics"</li><li>Name four functions</li><li>Name four limitations. Which one concerns individuals?</li></ol></aside><div class="pagebreak"></div><h2 id="2-session-2-central-tendency">2. Session 2 — Central Tendency <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><p>An <strong>average</strong> is a single value representing a whole distribution. Three matter.</p><h3 id="21-arithmetic-mean">2.1 Arithmetic mean</h3><div class="tw"><table><thead><tr><th style="text-align:left">Case</th><th style="text-align:left">Formula</th></tr></thead><tbody><tr><td style="text-align:left">Ungrouped</td><td style="text-align:left">Mean = Σx / n</td></tr><tr><td style="text-align:left">Grouped</td><td style="text-align:left">Mean = Σfx / Σf</td></tr><tr><td style="text-align:left">Weighted</td><td style="text-align:left">Weighted mean = Σwx / Σw</td></tr><tr><td style="text-align:left">Combined, two groups</td><td style="text-align:left">Combined mean = (n₁ × Mean₁ + n₂ × Mean₂) / (n₁ + n₂)</td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE ZERO-SUM PROPERTY, AND THE EXTREME-VALUE WEAKNESS</p><p><strong>The algebraic sum of the deviations of the observations from their arithmetic mean is ZERO.</strong> Σ(x − Mean) = 0.</p><p>That is the mean's defining property and it is asked directly. It is also the reason the mean is the natural centre for the standard deviation in §4.3.</p><p>The mean's weakness is equally examinable: <strong>it is the average most affected by extreme values.</strong> One outlier drags it. It also <strong>cannot be computed for an open-end class interval</strong>, and it <strong>cannot be determined graphically</strong>.</p><p>Merits worth naming: simple, rigidly defined, <strong>based on all observations</strong>, and capable of further algebraic treatment.</p></aside><h3 id="22-median">2.2 Median</h3><p>The <strong>median</strong> is the middle value when observations are arranged in order of magnitude. It is a <strong>positional</strong> average — it depends on position, not on the size of every observation.</p><div class="tw"><table><thead><tr><th style="text-align:left">Case</th><th style="text-align:left">Method</th></tr></thead><tbody><tr><td style="text-align:left">Ungrouped, <strong>n odd</strong></td><td style="text-align:left">The ((n + 1) / 2)th item</td></tr><tr><td style="text-align:left">Ungrouped, <strong>n even</strong></td><td style="text-align:left">The mean of the (n / 2)th and the (n / 2 + 1)th items</td></tr><tr><td style="text-align:left">Grouped</td><td style="text-align:left">Median = L + [(N/2 − cf) / f] × h</td></tr></tbody></table></div><p><strong>Merits:</strong> <strong>not affected by extreme values</strong>; can be computed for <strong>open-end</strong> classes; can be determined <strong>graphically</strong> from an <strong>ogive</strong> (the cumulative frequency curve); usable for qualitative data that can be ranked.</p><h3 id="23-mode">2.3 Mode</h3><p>The <strong>mode</strong> is the value that occurs <strong>most frequently</strong>.</p><blockquote><p>Grouped: Mode = L + [(f₁ − f₀) / (2f₁ − f₀ − f₂)] × h</p></blockquote><p><strong>Features:</strong> not affected by extreme values; may be <strong>bimodal or multimodal</strong>; may <strong>not exist</strong> at all; can be determined graphically from a <strong>histogram</strong>.</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · WHICH AVERAGE IS FOUND FROM WHICH GRAPH</p><p>A small pairing that is asked directly and is easy to reverse:</p><div class="tw"><table><thead><tr><th style="text-align:left">Average</th><th style="text-align:left">Graph</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Median</strong></td><td style="text-align:left"><strong>Ogive</strong> — the cumulative frequency curve</td></tr><tr><td style="text-align:left"><strong>Mode</strong></td><td style="text-align:left"><strong>Histogram</strong></td></tr><tr><td style="text-align:left"><strong>Mean</strong></td><td style="text-align:left"><strong>Cannot</strong> be determined graphically</td></tr></tbody></table></div><p>Hold it with the logic: an ogive accumulates, so you can read off the halfway point. A histogram shows which bar is tallest, which is the mode by definition.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 2</p><ol><li>State the zero-sum property of the arithmetic mean</li><li>Which average is most affected by extreme values? Which two are not?</li><li>Which averages can be computed for an open-end class?</li><li>Median from which graph? Mode from which? And the mean?</li><li>Can a distribution have two modes? Can it have none?</li></ol></aside><div class="pagebreak"></div><h2 id="3-session-3-the-other-means-and-the-relationships">3. Session 3 — The Other Means and the Relationships <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="31-geometric-and-harmonic-means">3.1 Geometric and harmonic means</h3><div class="tw"><table><thead><tr><th style="text-align:left">Mean</th><th style="text-align:left">Definition</th><th style="text-align:left">Used for</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Geometric mean</strong></td><td style="text-align:left">The nth root of the product of n observations</td><td style="text-align:left"><strong>Rates of growth</strong>, ratios, index numbers</td></tr><tr><td style="text-align:left"><strong>Harmonic mean</strong></td><td style="text-align:left">n divided by Σ(1/x)</td><td style="text-align:left">Averaging <strong>speeds</strong> and rates where the other quantity is constant</td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · TWO RELATIONSHIPS THAT ARE ASKED AS PURE RECALL</p><p><strong>1. The order of the three means:</strong></p><blockquote><p><strong>AM &gt;= GM &gt;= HM</strong></p></blockquote><p>with equality only when every observation is identical. Note the direction — arithmetic is the largest. An option reversing the order is the standard distractor.</p><p><strong>2. The empirical relationship, for a moderately skewed distribution:</strong></p><blockquote><p><strong>Mode = 3 Median − 2 Mean</strong></p></blockquote><p>Two things to notice. It gives the <strong>mode</strong> on the left, which is where candidates go wrong — they half-remember it and solve for the wrong quantity. And it can be rearranged as Mean − Mode = 3 (Mean − Median), which is sometimes how the stem presents it.</p><p><strong>3. In a perfectly symmetrical distribution, Mean = Median = Mode.</strong> All three coincide, and any skewness pulls them apart in a fixed order.</p></aside><blockquote><p>Worked: mean 30, median 28, moderately skewed. Mode = 3(28) − 2(30) = 84 − 60 = <strong>24</strong></p></blockquote><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 3</p><ol><li>Which mean is used for rates of growth? Which for speeds?</li><li>State the order of AM, GM and HM. When are they equal?</li><li>State the empirical relationship. Which quantity does it give you?</li><li>What is true of the three averages in a symmetrical distribution?</li></ol></aside><div class="pagebreak"></div><h2 id="4-session-4-dispersion">4. Session 4 — Dispersion <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><p>An average alone is not enough. Two series can share a mean and be entirely different — one tightly clustered, one wildly scattered. <strong>Dispersion</strong> measures the scatter.</p><h3 id="41-the-four-absolute-measures">4.1 The four absolute measures</h3><div class="tw"><table><thead><tr><th style="text-align:left">Measure</th><th style="text-align:left">Formula</th><th style="text-align:left">Note</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Range</strong></td><td style="text-align:left">Largest − Smallest</td><td style="text-align:left">Simplest; <strong>based on only two values</strong></td></tr><tr><td style="text-align:left"><strong>Quartile deviation</strong></td><td style="text-align:left">(Q3 − Q1) / 2</td><td style="text-align:left">Also the semi-interquartile range. <strong>Interquartile range = Q3 − Q1</strong></td></tr><tr><td style="text-align:left"><strong>Mean deviation</strong></td><td style="text-align:left">Σ\</td><td style="text-align:left">x − Mean\</td><td style="text-align:left">/ n</td><td style="text-align:left">Signs are <strong>ignored</strong></td></tr><tr><td style="text-align:left"><strong>Standard deviation</strong></td><td style="text-align:left">σ = sqrt[ Σ(x − Mean)² / n ]</td><td style="text-align:left">The <strong>best and most used</strong> measure</td></tr></tbody></table></div><p>Also: <strong>Variance = σ²</strong>, and the standard deviation is the <strong>positive square root of the variance</strong>.</p><h3 id="42-two-properties-of-the-mean-deviation-and-the-standard-deviation">4.2 Two properties of the mean deviation and the standard deviation</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · "LEAST FROM" — TWO DIFFERENT CENTRES</p><p>Two results that look similar and are constantly confused:</p><ul><li>The <strong>mean deviation is least when measured from the MEDIAN</strong></li><li>The <strong>sum of SQUARED deviations is least when measured from the MEAN</strong> — which is precisely why the</li></ul><p>standard deviation is built around the mean</p><p>So the answer to "mean deviation is minimum when taken from…" is the <strong>median</strong>, not the mean. The distinction is that absolute deviations favour the middle position, while squared deviations favour the arithmetic centre.</p></aside><aside class="cal must-master"><p class="cal-h">MUST MASTER · ORIGIN AND SCALE</p><p><strong>The standard deviation is independent of a change of ORIGIN but not of a change of SCALE.</strong></p><ul><li>Add a constant to every observation: the mean shifts, the <strong>SD does not change</strong> — the scatter is</li></ul><p>unchanged</p><ul><li>Multiply every observation by a constant: the <strong>SD is multiplied</strong> by that constant</li></ul><p>Contrast §5.1: the <strong>correlation coefficient is independent of BOTH</strong> origin and scale. The pair makes a neat statement-based question.</p></aside><h3 id="43-the-coefficient-of-variation-the-relative-measure">4.3 The coefficient of variation — the relative measure</h3><p>All four measures in §4.1 are <strong>absolute</strong> — they carry the units of the data, so you cannot use them to compare a series measured in kilograms with one measured in rupees. The <strong>coefficient of variation</strong> solves that:</p><blockquote><p><strong>CV = (σ / Mean) × 100</strong></p></blockquote><aside class="cal must-master"><p class="cal-h">MUST MASTER · WHICH DIRECTION IS "BETTER"</p><p><strong>A higher coefficient of variation means MORE variability and therefore LESS consistency.</strong> A lower CV means greater consistency, uniformity and stability.</p><p>This is asked as a comparison: two batsmen, two machines, two branches, and which is "more consistent". The answer is always the one with the <strong>lower</strong> CV.</p><p>The CV is a <strong>relative</strong> measure and is expressed as a <strong>percentage</strong>, which is exactly what allows the comparison across different units or different means. An option calling it an absolute measure is wrong.</p></aside><p>For a symmetrical distribution the three main measures stand in a fixed ratio worth recognising:</p><blockquote><p><strong>QD : MD : SD = 10 : 12 : 15</strong>, that is QD = (2/3)σ and MD = (4/5)σ</p></blockquote><aside class="cal world"><p class="cal-h">FROM YOUR OWN WORLD · THIS IS TOLERANCE AND PROCESS CAPABILITY</p><p>You have used this whole session under other names. A machined batch has a mean diameter and a <strong>spread</strong>, and the spread is what decides whether parts fall inside tolerance. Two processes with an identical mean can have very different reject rates.</p><p>The coefficient of variation is the dimensionless version of that idea — which is why it can compare a lathe's output with a chemical yield. And the standard-deviation-versus-origin rule is just as familiar: shifting the nominal dimension does not change the scatter of the process; changing the units does change the number.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 4</p><ol><li>Name the four absolute measures. Which uses only two values?</li><li>What is the relationship between variance and standard deviation?</li><li>Mean deviation is least from which centre? Squared deviations from which?</li><li>Is the SD affected by a change of origin? By a change of scale?</li><li>Give the CV formula. Does a higher CV mean more or less consistency?</li><li>State the QD : MD : SD ratio for a symmetrical distribution</li></ol></aside><div class="pagebreak"></div><h2 id="5-session-5-correlation-regression-and-index-numbers">5. Session 5 — Correlation, Regression and Index Numbers <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="51-correlation">5.1 Correlation</h3><p><strong>Correlation</strong> measures the degree to which two variables move together.</p><p><strong>Karl Pearson's coefficient of correlation</strong>, denoted <strong>r</strong>, is the standard measure.</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE RANGE, AND THE CAUSATION WARNING</p><p><strong>The coefficient of correlation always lies between −1 and +1.</strong></p><div class="tw"><table><thead><tr><th style="text-align:left">Value</th><th style="text-align:left">Meaning</th></tr></thead><tbody><tr><td style="text-align:left"><strong>r = +1</strong></td><td style="text-align:left">Perfect <strong>positive</strong> correlation</td></tr><tr><td style="text-align:left"><strong>r = −1</strong></td><td style="text-align:left">Perfect <strong>negative</strong> correlation</td></tr><tr><td style="text-align:left"><strong>r = 0</strong></td><td style="text-align:left"><strong>No linear</strong> correlation</td></tr></tbody></table></div><p>Two riders that make good statement questions:</p><ol><li><strong>r is independent of a change of both origin and scale</strong> — unlike the standard deviation, which is independent of origin only</li><li><strong>Correlation does not imply causation.</strong> A high r establishes that two series move together, not that one causes the other. Any option claiming a high correlation "proves" causation is wrong</li></ol><p>For data that can only be <strong>ranked</strong>, use <strong>Spearman's rank correlation</strong>, R = 1 − [6Σd² / (n³ − n)].</p></aside><h3 id="52-regression-at-recognition-level">5.2 Regression, at recognition level</h3><p>Where correlation measures the <em>degree</em> of relationship, <strong>regression</strong> estimates the value of one variable from the other. There are two regression coefficients, <strong>bxy</strong> and <strong>byx</strong>, and one relationship worth carrying:</p><blockquote><p><strong>r is the geometric mean of the two regression coefficients</strong> — that is, r = sqrt(bxy × byx), taking the sign of the coefficients</p></blockquote><h3 id="53-index-numbers-at-recognition-level">5.3 Index numbers, at recognition level</h3><p>An <strong>index number</strong> measures change in a variable or group of variables over time.</p><div class="tw"><table><thead><tr><th style="text-align:left">Index</th><th style="text-align:left">Weights used</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Laspeyres</strong></td><td style="text-align:left"><strong>Base</strong>-year quantities</td></tr><tr><td style="text-align:left"><strong>Paasche</strong></td><td style="text-align:left"><strong>Current</strong>-year quantities</td></tr><tr><td style="text-align:left"><strong>Fisher's ideal</strong></td><td style="text-align:left">The <strong>geometric mean</strong> of the Laspeyres and Paasche indices</td></tr></tbody></table></div><p>Fisher's index is called <strong>ideal</strong> because it satisfies both the <strong>time reversal</strong> and the <strong>factor reversal</strong> tests. The examinable trio is: Laspeyres uses base-year quantities, Paasche current-year, and Fisher is the geometric mean of the two.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 5</p><ol><li>What is the range of r? What do +1, −1 and 0 mean?</li><li>Is r independent of origin? Of scale? How does this differ from the SD?</li><li>Does a high correlation prove causation?</li><li>Which correlation measure is used for ranked data?</li><li>Laspeyres and Paasche — which quantities does each use? What is Fisher's index, and why is it "ideal"?</li></ol></aside><div class="pagebreak"></div><h2 id="6-graded-practice-25-questions">6. Graded Practice — 25 Questions <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="61-level-1-recognition">6.1 Level 1 — Recognition</h3><p><strong>Q1.</strong> The arithmetic mean of a set of ungrouped observations is (a) Σx / n (b) the middle value when arranged in order (c) the most frequently occurring value (d) the largest value minus the smallest</p><p><strong>Q2.</strong> The median is (a) an average of all the values (b) the most frequently occurring value (c) a positional average (d) the square root of the variance</p><p><strong>Q3.</strong> The mode is (a) the middle value of the series (b) the value occurring most frequently (c) Σx / n (d) Q3 − Q1</p><p><strong>Q4.</strong> Which measure of central tendency is <strong>most</strong> affected by extreme values? (a) Median (b) Mode (c) Geometric mean (d) Arithmetic mean</p><p><strong>Q5.</strong> The algebraic sum of the deviations of the observations from their arithmetic mean is (a) zero (b) one (c) always positive (d) equal to the mean</p><p><strong>Q6.</strong> Variance is (a) the square root of the standard deviation (b) the same as the mean deviation (c) the square of the standard deviation (d) the same as the coefficient of variation</p><p><strong>Q7.</strong> The range of a series is (a) Q3 − Q1 (b) (Q3 − Q1) / 2 (c) Σ|x − Mean| / n (d) the largest value minus the smallest value</p><p><strong>Q8.</strong> The coefficient of variation is (a) σ × Mean (b) (σ / Mean) × 100 (c) (Mean / σ) × 100 (d) σ²</p><p><strong>Q9.</strong> Karl Pearson's coefficient of correlation lies between (a) −1 and +1 (b) 0 and 1 (c) minus infinity and plus infinity (d) 0 and 100</p><h3 id="62-level-2-understanding">6.2 Level 2 — Understanding</h3><p><strong>Q10.</strong> The empirical relationship between the three averages for a moderately skewed distribution is (a) Mean = 3 Median − 2 Mode (b) Median = 3 Mode − 2 Mean (c) Mode = 3 Median − 2 Mean (d) Mode = 2 Median − 3 Mean</p><p><strong>Q11.</strong> In a perfectly symmetrical distribution (a) mean is greater than median, which is greater than mode (b) mode is greater than median, which is greater than mean (c) mean equals median but the mode differs (d) mean, median and mode are all equal</p><p><strong>Q12.</strong> The relationship between the arithmetic, geometric and harmonic means is (a) HM is greater than or equal to GM, which is greater than or equal to AM (b) AM is greater than or equal to GM, which is greater than or equal to HM (c) GM is greater than or equal to AM, which is greater than or equal to HM (d) all three are always equal</p><p><strong>Q13.</strong> The mean deviation is least when measured from the (a) median (b) arithmetic mean (c) mode (d) range</p><p><strong>Q14.</strong> Which average can be determined graphically from an ogive? (a) Mode (b) Arithmetic mean (c) Median (d) Harmonic mean</p><p><strong>Q15.</strong> Which measure of dispersion is based on only two values of the series? (a) Standard deviation (b) Mean deviation (c) Quartile deviation (d) Range</p><p><strong>Q16.</strong> The standard deviation is (a) affected by a change of origin but not of scale (b) unaffected by a change of origin but affected by a change of scale (c) affected by neither a change of origin nor of scale (d) affected by both equally</p><p><strong>Q17.</strong> Two series have the same mean. The series with the <strong>higher</strong> coefficient of variation is (a) more variable and less consistent (b) less variable and more consistent (c) identical in variability (d) impossible to compare</p><h3 id="63-level-3-recruitment-test-standard">6.3 Level 3 — Recruitment Test standard</h3><p><strong>Q18.</strong> The mean of 5 observations is 20. If one observation of 30 is removed, the mean of the remaining observations is (a) 20 (b) 18 (c) 17.5 (d) 22.5</p><p><strong>Q19.</strong> One group has 20 items with a mean of 15; another has 30 items with a mean of 25. The combined mean is (a) 20 (b) 40 (c) 19 (d) 21</p><p><strong>Q20.</strong> Which one of the following statements is <strong>not</strong> correct? (a) The median is not affected by extreme values (b) The arithmetic mean can be computed for a distribution with an open-end class interval (c) The mode may not exist, or may not be unique (d) The standard deviation is the most widely used measure of dispersion</p><p><strong>Q21.</strong> Consider the following statements:</p><ol><li>The sum of the squared deviations of observations is least when taken from the arithmetic mean.</li><li>The standard deviation is the positive square root of the variance.</li><li>The coefficient of variation is an absolute measure of dispersion.</li></ol><p>Which of the above statements are correct? (a) 1 and 2 only (b) 2 and 3 only (c) 1 and 3 only (d) 1, 2 and 3</p><p><strong>Q22.</strong> For a moderately skewed distribution the mean is 30 and the median is 28. The mode is (a) 26 (b) 32 (c) 24 (d) 20</p><p><strong>Q23.</strong> Match List-I with List-II and select the correct answer using the code given below:</p><div class="tw"><table><thead><tr><th style="text-align:left">List-I</th><th style="text-align:left">List-II</th></tr></thead><tbody><tr><td style="text-align:left">A. Geometric mean</td><td style="text-align:left">1. Averaging rates of growth</td></tr><tr><td style="text-align:left">B. Harmonic mean</td><td style="text-align:left">2. Averaging speeds</td></tr><tr><td style="text-align:left">C. Ogive</td><td style="text-align:left">3. Median</td></tr><tr><td style="text-align:left">D. Histogram</td><td style="text-align:left">4. Mode</td></tr></tbody></table></div><p>(a) A-2 B-1 C-3 D-4 (b) A-1 B-2 C-4 D-3 (c) A-3 B-4 C-1 D-2 (d) A-1 B-2 C-3 D-4</p><p><strong>Q24.</strong> Consider the following statements about the coefficient of correlation:</p><ol><li>It is independent of a change of origin and of a change of scale.</li><li>A coefficient of zero indicates the absence of a linear relationship.</li><li>A high coefficient proves that one variable causes the other.</li></ol><p>Which of the above statements are correct? (a) 1 and 3 only (b) 1 and 2 only (c) 2 and 3 only (d) 1, 2 and 3</p><p><strong>Q25.</strong> Fisher's ideal index number is (a) the geometric mean of the Laspeyres and Paasche index numbers (b) the arithmetic mean of the Laspeyres and Paasche index numbers (c) identical to the Laspeyres index number (d) based only on current-year quantities</p><div class="pagebreak"></div><h2 id="7-answers-and-explanations">7. Answers and Explanations</h2><h3 id="71-level-1">7.1 Level 1</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Σx / n.</strong> Option (b) is the median, (c) the mode, (d) the range</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">c</td><td style="text-align:left">A <strong>positional</strong> average — it depends on position in the ordered series, not on the magnitude of every item, which is why extremes do not disturb it</td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">b</td><td style="text-align:left">The <strong>most frequently occurring</strong> value</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">d</td><td style="text-align:left">The <strong>arithmetic mean</strong>, because it uses every observation, so one outlier drags it. Median and mode are positional and unaffected</td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Zero</strong> — Σ(x − Mean) = 0. The mean's defining property, and the reason the SD is built around it</td></tr><tr><td style="text-align:left">6</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Variance = σ²</strong>, so the SD is the positive square root of the variance</td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Largest minus smallest.</strong> (a) is the interquartile range, (b) the quartile deviation, (c) the mean deviation</td></tr><tr><td style="text-align:left">8</td><td style="text-align:center">b</td><td style="text-align:left"><strong>(σ / Mean) × 100.</strong> Option (c) inverts it</td></tr><tr><td style="text-align:left">9</td><td style="text-align:center">a</td><td style="text-align:left"><strong>−1 to +1</strong> inclusive</td></tr></tbody></table></div><h3 id="72-level-2">7.2 Level 2</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">10</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Mode = 3 Median − 2 Mean.</strong> The relationship gives the <strong>mode</strong>; solving it for the wrong quantity is the usual error</td></tr><tr><td style="text-align:left">11</td><td style="text-align:center">d</td><td style="text-align:left"><strong>All three coincide</strong> in a perfectly symmetrical distribution. Skewness is precisely what separates them</td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">b</td><td style="text-align:left"><strong>AM &gt;= GM &gt;= HM</strong>, with equality only if all observations are identical. Option (a) reverses it</td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">a</td><td style="text-align:left">The <strong>median</strong>. Contrast the sum of <strong>squared</strong> deviations, which is least from the <strong>mean</strong> — two similar results with different centres</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">c</td><td style="text-align:left">The <strong>median</strong>, from the cumulative frequency curve. The <strong>mode</strong> comes from a <strong>histogram</strong>, and the mean cannot be found graphically</td></tr><tr><td style="text-align:left">15</td><td style="text-align:center">d</td><td style="text-align:left">The <strong>range</strong> uses only the two extreme values, which is both its simplicity and its weakness</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Unaffected by origin, affected by scale.</strong> Adding a constant shifts the mean but not the scatter; multiplying scales the scatter</td></tr><tr><td style="text-align:left">17</td><td style="text-align:center">a</td><td style="text-align:left"><strong>More variable and less consistent.</strong> Lower CV means greater consistency — the answer to every "which is more consistent" question</td></tr></tbody></table></div><h3 id="73-level-3">7.3 Level 3</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">18</td><td style="text-align:center">c</td><td style="text-align:left">Total = 5 × 20 = 100. Removing 30 leaves 70 over 4 observations = <strong>17.5</strong>. Note the mean <em>falls</em>, because the removed item was above the mean</td></tr><tr><td style="text-align:left">19</td><td style="text-align:center">d</td><td style="text-align:left">(20 × 15 + 30 × 25) / 50 = (300 + 750) / 50 = <strong>21</strong>. Option (a) is the simple average of 15 and 25, which ignores the unequal group sizes — the standard trap</td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Not correct</strong> — the arithmetic mean <strong>cannot</strong> be computed for an open-end class, because the class has no midpoint. The median and mode can be. The other three statements are true</td></tr><tr><td style="text-align:left">21</td><td style="text-align:center">a</td><td style="text-align:left"><strong>1 and 2 only.</strong> Statement 3 is false: the CV is a <strong>relative</strong> measure, expressed as a percentage, which is exactly what lets it compare series in different units</td></tr><tr><td style="text-align:left">22</td><td style="text-align:center">c</td><td style="text-align:left">Mode = 3(28) − 2(30) = 84 − 60 = <strong>24</strong></td></tr><tr><td style="text-align:left">23</td><td style="text-align:center">d</td><td style="text-align:left"><strong>A-1 B-2 C-3 D-4</strong> — geometric mean for growth rates, harmonic for speeds, ogive gives the median, histogram gives the mode</td></tr><tr><td style="text-align:left">24</td><td style="text-align:center">b</td><td style="text-align:left"><strong>1 and 2 only.</strong> Statement 3 is false — <strong>correlation does not imply causation</strong>. Statement 1 is the contrast with the SD, which is independent of origin only</td></tr><tr><td style="text-align:left">25</td><td style="text-align:center">a</td><td style="text-align:left">The <strong>geometric mean</strong> of Laspeyres and Paasche. It is called ideal because it satisfies both the time reversal and factor reversal tests</td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · THE THREE SHAPES IN THIS CHAPTER</p><ol><li><strong>The "least from" confusion.</strong> Q13 and Q21 both live here. <strong>Mean deviation from the median; squared deviations from the mean.</strong> Two sentences, learned as a pair</li><li><strong>The origin-and-scale pair.</strong> Q16 and Q24 are complementary: <strong>SD is independent of origin only; r is independent of both.</strong> Expect one of them to be misstated</li><li><strong>The weighted-average trap.</strong> Q19 offers the unweighted average of the two means. Whenever two groups have <strong>different sizes</strong>, the simple average of their means is wrong — and it is always offered</li></ol></aside><div class="pagebreak"></div><h2 id="8-one-minute-revision">8. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F6.8</p><p><strong>TWO SENSES</strong> plural = the data · singular = the <strong>science and method</strong></p><p><strong>LIMITATIONS</strong> aggregates <strong>not individuals</strong> · quantitative only · true <strong>on average</strong> · liable to misuse · needs expertise</p><p><strong>MEAN</strong> Σx/n · grouped Σfx/Σf · weighted Σwx/Σw · <strong>combined = (n₁M₁ + n₂M₂)/(n₁+n₂)</strong> · <strong>Σ(x − Mean) = 0</strong> · <strong>most affected by extremes</strong> · <strong>cannot</strong> be computed for an open-end class · <strong>cannot</strong> be found graphically · based on <strong>all</strong> observations</p><p><strong>MEDIAN</strong> a <strong>positional</strong> average · odd n: ((n+1)/2)th item · even n: mean of the two middle items · grouped: L + [(N/2 − cf)/f] × h · <strong>not affected by extremes</strong> · works with <strong>open-end</strong> classes · from an <strong>OGIVE</strong></p><p><strong>MODE</strong> most frequent · L + [(f₁ − f₀)/(2f₁ − f₀ − f₂)] × h · may be <strong>bimodal</strong> or absent · from a <strong>HISTOGRAM</strong></p><p><strong>GRAPH PAIRING</strong> median » <strong>ogive</strong> · mode » <strong>histogram</strong> · mean » <strong>neither</strong></p><p><strong>GM</strong> for <strong>rates of growth</strong> · <strong>HM</strong> for <strong>speeds</strong> · <strong>AM &gt;= GM &gt;= HM</strong>, equal only if all values identical</p><p><strong>EMPIRICAL RELATION</strong> <strong>Mode = 3 Median − 2 Mean</strong> · symmetrical: <strong>Mean = Median = Mode</strong></p><p><strong>DISPERSION</strong> range = L − S, <strong>only two values</strong> · <strong>QD = (Q3 − Q1)/2</strong> · interquartile range = Q3 − Q1 · MD = Σ|x − Mean|/n, signs ignored · <strong>σ = sqrt[Σ(x − Mean)²/n]</strong> · <strong>variance = σ²</strong></p><p><strong>TWO "LEAST FROM"</strong> mean deviation least from the <strong>MEDIAN</strong> · sum of <strong>squared</strong> deviations least from the <strong>MEAN</strong></p><p><strong>ORIGIN AND SCALE</strong> SD <strong>independent of origin, NOT of scale</strong> · correlation coefficient <strong>independent of BOTH</strong></p><p><strong>CV = (σ / Mean) × 100</strong> · a <strong>relative</strong> measure, a percentage · <strong>higher CV = more variable = less consistent</strong> · lower CV = more consistent</p><p><strong>SYMMETRICAL RATIO</strong> QD : MD : SD = <strong>10 : 12 : 15</strong> · QD = (2/3)σ · MD = (4/5)σ</p><p><strong>CORRELATION</strong> r between <strong>−1 and +1</strong> · +1 perfect positive · −1 perfect negative · 0 <strong>no linear</strong> relationship · <strong>correlation is not causation</strong> · ranked data » <strong>Spearman</strong>, R = 1 − [6Σd²/(n³ − n)]</p><p><strong>REGRESSION</strong> r is the <strong>geometric mean of the two regression coefficients</strong></p><p><strong>INDEX NUMBERS</strong> <strong>Laspeyres = base-year</strong> quantities · <strong>Paasche = current-year</strong> · <strong>Fisher = the geometric mean of the two</strong>, ideal because it satisfies the <strong>time reversal and factor reversal</strong> tests</p></aside><h2 id="9-five-minute-wall-sheet">9. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F6.8</p><p><strong>Σ(x − MEAN) = 0</strong> — the mean's defining property</p><p><strong>MEAN IS DRAGGED BY OUTLIERS · MEDIAN AND MODE ARE NOT</strong></p><p><strong>OPEN-END CLASS: MEDIAN YES, MEAN NO</strong></p><p><strong>OGIVE » MEDIAN · HISTOGRAM » MODE · MEAN » NO GRAPH</strong></p><p><strong>AM &gt;= GM &gt;= HM</strong></p><p><strong>MODE = 3 MEDIAN − 2 MEAN</strong> · symmetrical: all three equal</p><p><strong>GM FOR GROWTH · HM FOR SPEEDS</strong></p><p><strong>VARIANCE = σ² · SD = sqrt(VARIANCE)</strong></p><p><strong>MD LEAST FROM THE MEDIAN · SQUARED DEVIATIONS LEAST FROM THE MEAN</strong></p><p><strong>SD: ORIGIN NO, SCALE YES · r: BOTH NO</strong></p><p><strong>CV = (σ / MEAN) × 100 · HIGHER CV = LESS CONSISTENT</strong></p><p><strong>QD : MD : SD = 10 : 12 : 15</strong></p><p><strong>r BETWEEN −1 AND +1 · CORRELATION IS NOT CAUSATION</strong></p><p><strong>LASPEYRES = BASE · PAASCHE = CURRENT · FISHER = GEOMETRIC MEAN OF BOTH</strong></p><p><strong>WEIGHTED AVERAGE: NEVER AVERAGE THE AVERAGES WHEN GROUP SIZES DIFFER</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> An average without a measure of dispersion is close to useless, because two distributions with the same mean can behave completely differently — which is why the coefficient of variation, being dimensionless, is the figure that actually permits comparison.</p></aside><aside class="cal action"><p class="cal-h">ACTION · NEXT AND LAST IN THIS MODULE</p><p><strong>Chapter F7.1 — Insurance.</strong> That is Module 7 in a single compact chapter, because Blueprint §7.2 places insurance in the <strong>deliberately low-yield</strong> list — one question in the 2023 paper — and the register allocates it just four hours.</p><p>It is worth reading nonetheless for one reason: insurance is the bridge to <strong>Module 3</strong>, since the EDLI Scheme under the EPF Act and the ESI Act are both social insurance, and the principles in F7.1 explain how they work.</p><p>Before you move on, state without looking: the zero-sum property; which averages survive an open-end class; the two graph pairings; the AM-GM-HM order; the empirical relation; the two "least from" centres; and what a higher CV means.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F6.8
+  &middot; v1.0</footer>
+</body>
+</html>

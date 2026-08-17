@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics I — Units, Kinematics, Motion, Energy and Fluids</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F9.1 · Physics — Mechanics
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · FOUNDATION LAYER · MODULE 9 · CHAPTER F9.1</p><h1 class="doc-t">Physics I — Units, Kinematics, Motion, Energy and Fluids</h1><p class="doc-s">Chapter F9.1 — A Recall Layer, Not a Teaching Layer, Because This Is Your Undergraduate Foundation Handed Back</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 9 — General Science &amp; Computer Applications</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F9.1</td></tr><tr><td class="k">Topic</td><td class="v">Official syllabus head 6 — General Science</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal note"><p class="cal-h">NOTE · WHY THIS CHAPTER IS SHAPED DIFFERENTLY FROM MODULE 6</p><p>Every previous Foundation chapter taught from zero, because accounting and auditing were genuinely new to you. <strong>This one does not</strong>, and that is deliberate.</p><p>Blueprint §9.1 is explicit: the General Science half of this module is <strong>physics-dominated</strong>, and for a Mechanical Engineer <em>"this is not new learning — it is recall."</em> Teaching you kinematics from first principles would burn hours the Blueprint exists to save.</p><p>So F9.1 and F9.2 are <strong>recall layers</strong>: dense tables, the formulas that get asked, the traps that catch people who half-remember, and heavy practice. Read the tables, then go straight to the questions. If a question exposes a gap, come back to that one table.</p></aside><aside class="cal high-yield"><p class="cal-h">HIGH YIELD · WHY MODULE 9 EXISTS AT ALL</p><p>This module was <strong>not in your original plan</strong>. Blueprint §9.1 recommended adding it, and called it <em>"the single correction worth more marks than any other change available to you."</em></p><p>The evidence: <strong>General Science and Computer Applications is official syllabus head 6</strong>, it appeared in <strong>every</strong> paper analysed, and it has <strong>never been worth less than about 28 marks</strong>. In 2023 it was worth <strong>50 marks — as much as the entire labour law block</strong> (PYQ-DERIVED, Blueprint §9.1).</p><p>And the 2023 science questions were: <strong>combined lens power, an inelastic collision, the uniform acceleration of a train, a concave mirror with the object at infinity</strong>, plus effluents and pH, soaps, eyeball layers, an enthalpy reaction, banyan prop roots and ocean acidification.</p><p>Four of those ten are mechanics and optics you have solved hundreds of times. That is the argument for this module in one line.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-units-scalars-and-vectors"><span class="toc-t">1. Session 1 — Units, Scalars and Vectors <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#11-the-seven-si-base-units"><span class="toc-t">1.1 The seven SI base units</span></a><a class="toc-3" href="#12-derived-units-worth-knowing-by-name"><span class="toc-t">1.2 Derived units worth knowing by name</span></a><a class="toc-3" href="#13-scalars-and-vectors"><span class="toc-t">1.3 Scalars and vectors</span></a><a class="toc-2" href="#2-session-2-kinematics"><span class="toc-t">2. Session 2 — Kinematics <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#21-the-equations-of-motion"><span class="toc-t">2.1 The equations of motion</span></a><a class="toc-3" href="#22-graphs"><span class="toc-t">2.2 Graphs</span></a><a class="toc-2" href="#3-session-3-laws-of-motion-and-collisions"><span class="toc-t">3. Session 3 — Laws of Motion and Collisions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#31-newtons-three-laws"><span class="toc-t">3.1 Newton's three laws</span></a><a class="toc-3" href="#32-collisions-the-2023-pattern"><span class="toc-t">3.2 Collisions — the 2023 pattern</span></a><a class="toc-3" href="#33-circular-motion"><span class="toc-t">3.3 Circular motion</span></a><a class="toc-2" href="#4-session-4-work-energy-and-power"><span class="toc-t">4. Session 4 — Work, Energy and Power <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#41-work"><span class="toc-t">4.1 Work</span></a><a class="toc-3" href="#42-energy-and-power"><span class="toc-t">4.2 Energy and power</span></a><a class="toc-2" href="#5-session-5-gravitation-and-fluids"><span class="toc-t">5. Session 5 — Gravitation and Fluids <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-3" href="#51-gravitation"><span class="toc-t">5.1 Gravitation</span></a><a class="toc-3" href="#52-fluids-four-principles"><span class="toc-t">5.2 Fluids — four principles</span></a><a class="toc-2" href="#6-graded-practice-30-questions"><span class="toc-t">6. Graded Practice — 30 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#61-level-1-recognition"><span class="toc-t">6.1 Level 1 — Recognition</span></a><a class="toc-3" href="#62-level-2-understanding"><span class="toc-t">6.2 Level 2 — Understanding</span></a><a class="toc-3" href="#63-level-3-recruitment-test-standard"><span class="toc-t">6.3 Level 3 — Recruitment Test standard</span></a><a class="toc-2" href="#7-answers-and-explanations"><span class="toc-t">7. Answers and Explanations</span></a><a class="toc-3" href="#71-level-1"><span class="toc-t">7.1 Level 1</span></a><a class="toc-3" href="#72-level-2"><span class="toc-t">7.2 Level 2</span></a><a class="toc-3" href="#73-level-3"><span class="toc-t">7.3 Level 3</span></a><a class="toc-2" href="#8-one-minute-revision"><span class="toc-t">8. One-Minute Revision</span></a><a class="toc-2" href="#9-five-minute-wall-sheet"><span class="toc-t">9. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F9.1 — FIVE SHORT SESSIONS</p><ol><li><strong>Session 1</strong> — Units, measurement, scalars and vectors (§1) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 2</strong> — Kinematics and the equations of motion (§2) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 3</strong> — Laws of motion, momentum and <strong>collisions</strong> (§3) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 4</strong> — Work, energy and power (§4) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 5</strong> — Gravitation and fluids (§5) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li></ol><p>Then 30 graded questions in §6. Because this is recall, budget <strong>two days</strong>, not four — and spend the larger share of it on the questions rather than the text.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-units-scalars-and-vectors">1. Session 1 — Units, Scalars and Vectors <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="11-the-seven-si-base-units">1.1 The seven SI base units</h3><div class="tw"><table><thead><tr><th style="text-align:left">Quantity</th><th style="text-align:left">Unit</th><th style="text-align:left">Symbol</th></tr></thead><tbody><tr><td style="text-align:left">Length</td><td style="text-align:left">metre</td><td style="text-align:left">m</td></tr><tr><td style="text-align:left">Mass</td><td style="text-align:left">kilogram</td><td style="text-align:left">kg</td></tr><tr><td style="text-align:left">Time</td><td style="text-align:left">second</td><td style="text-align:left">s</td></tr><tr><td style="text-align:left">Electric current</td><td style="text-align:left">ampere</td><td style="text-align:left">A</td></tr><tr><td style="text-align:left">Thermodynamic temperature</td><td style="text-align:left">kelvin</td><td style="text-align:left">K</td></tr><tr><td style="text-align:left">Amount of substance</td><td style="text-align:left">mole</td><td style="text-align:left">mol</td></tr><tr><td style="text-align:left">Luminous intensity</td><td style="text-align:left">candela</td><td style="text-align:left">cd</td></tr></tbody></table><p class="cap">Seven base units — the count itself is asked</p></div><h3 id="12-derived-units-worth-knowing-by-name">1.2 Derived units worth knowing by name</h3><div class="tw"><table><thead><tr><th style="text-align:left">Unit</th><th style="text-align:left">Quantity</th><th style="text-align:left">In base units</th></tr></thead><tbody><tr><td style="text-align:left"><strong>newton</strong> (N)</td><td style="text-align:left">Force</td><td style="text-align:left">kg m s⁻²</td></tr><tr><td style="text-align:left"><strong>joule</strong> (J)</td><td style="text-align:left">Work, energy</td><td style="text-align:left">N m</td></tr><tr><td style="text-align:left"><strong>watt</strong> (W)</td><td style="text-align:left">Power</td><td style="text-align:left">J s⁻¹</td></tr><tr><td style="text-align:left"><strong>pascal</strong> (Pa)</td><td style="text-align:left">Pressure</td><td style="text-align:left">N m⁻²</td></tr><tr><td style="text-align:left"><strong>hertz</strong> (Hz)</td><td style="text-align:left">Frequency</td><td style="text-align:left">s⁻¹</td></tr><tr><td style="text-align:left"><strong>coulomb</strong> (C)</td><td style="text-align:left">Electric charge</td><td style="text-align:left">A s</td></tr><tr><td style="text-align:left"><strong>dioptre</strong> (D)</td><td style="text-align:left">Power of a lens</td><td style="text-align:left">m⁻¹</td></tr></tbody></table></div><h3 id="13-scalars-and-vectors">1.3 Scalars and vectors</h3><p><strong>Scalars</strong> have magnitude only: mass, <strong>speed</strong>, distance, <strong>work</strong>, <strong>energy</strong>, power, time, temperature, density, pressure, electric charge.</p><p><strong>Vectors</strong> have magnitude and direction: displacement, <strong>velocity</strong>, acceleration, <strong>force</strong>, <strong>momentum</strong>, <strong>weight</strong>, impulse, torque.</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE THREE PAIRS THE EXAM USES</p><ol><li><strong>Work and energy are SCALARS</strong>, even though work is defined using force, which is a vector. The dot product of two vectors is a scalar. This is the single most common wrong option in the topic</li><li><strong>Speed is scalar, velocity is vector.</strong> Likewise <strong>distance</strong> scalar, <strong>displacement</strong> vector</li><li><strong>Mass is a scalar and is constant. Weight is a vector and varies</strong> with location, because W = mg and g varies</li></ol><p>Pressure is also a scalar, which surprises people, because although force has direction, pressure at a point acts equally in all directions.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 1</p><ol><li>Name the seven SI base units and their quantities</li><li>Express the newton, joule, watt and pascal in base units</li><li>Are work and energy scalars or vectors? Why?</li><li>Which of mass and weight is constant, and why does the other vary?</li></ol></aside><div class="pagebreak"></div><h2 id="2-session-2-kinematics">2. Session 2 — Kinematics <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="21-the-equations-of-motion">2.1 The equations of motion</h3><p>For <strong>uniform (constant) acceleration</strong>:</p><div class="tw"><table><thead><tr><th style="text-align:left">Equation</th><th style="text-align:left">Does not contain</th></tr></thead><tbody><tr><td style="text-align:left"><strong>v = u + at</strong></td><td style="text-align:left">displacement s</td></tr><tr><td style="text-align:left"><strong>s = ut + ½at²</strong></td><td style="text-align:left">final velocity v</td></tr><tr><td style="text-align:left"><strong>v² = u² + 2as</strong></td><td style="text-align:left"><strong>time t</strong></td></tr><tr><td style="text-align:left"><strong>s = [(u + v)/2] × t</strong></td><td style="text-align:left">acceleration a</td></tr></tbody></table><p class="cap">Choose the equation by what the question does not give you</p></div><p>Where u is initial velocity, v final velocity, a acceleration, t time and s displacement.</p><p>For <strong>free fall</strong>, a = g about 9.8 m s⁻² downwards (take 10 where the question permits). Thrown upwards, use a = −g.</p><h3 id="22-graphs">2.2 Graphs</h3><div class="tw"><table><thead><tr><th style="text-align:left">Graph</th><th style="text-align:left">Slope gives</th><th style="text-align:left">Area under gives</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Distance–time</strong></td><td style="text-align:left">Speed</td><td style="text-align:left">—</td></tr><tr><td style="text-align:left"><strong>Velocity–time</strong></td><td style="text-align:left"><strong>Acceleration</strong></td><td style="text-align:left"><strong>Displacement</strong></td></tr><tr><td style="text-align:left">Acceleration–time</td><td style="text-align:left">—</td><td style="text-align:left">Change in velocity</td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE UNIT CONVERSION THAT DECIDES NUMERICALS</p><p><strong>To convert km/h into m/s, multiply by 5/18. To go the other way, multiply by 18/5.</strong></p><p>So <strong>72 km/h = 20 m/s</strong>, and <strong>36 km/h = 10 m/s</strong>. Nearly every kinematics numerical in this examination is set in km/h and must be solved in SI, and the 2023 paper's question on the <strong>uniform acceleration of a train</strong> is exactly this shape.</p><p>Do the conversion first, before you choose an equation. The commonest error is not the physics — it is solving correctly in the wrong units.</p></aside><blockquote><p>Worked, in the 2023 style: a train starting from rest reaches 72 km/h in 20 s under uniform acceleration. 72 km/h = 72 × 5/18 = 20 m s⁻¹. Then a = (v − u)/t = (20 − 0)/20 = <strong>1 m s⁻²</strong></p></blockquote><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 2</p><ol><li>Write the four equations of motion and say which quantity each omits</li><li>Convert 90 km/h to m/s, and 25 m/s to km/h</li><li>What does the slope of a velocity–time graph give? What does the area give?</li><li>A body is dropped from rest. How far does it fall in 3 s, taking g = 10 m s⁻²?</li></ol></aside><div class="pagebreak"></div><h2 id="3-session-3-laws-of-motion-and-collisions">3. Session 3 — Laws of Motion and Collisions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="31-newtons-three-laws">3.1 Newton's three laws</h3><div class="tw"><table><thead><tr><th style="text-align:left">Law</th><th style="text-align:left">Statement</th><th style="text-align:left">What it gives us</th></tr></thead><tbody><tr><td style="text-align:left"><strong>First</strong></td><td style="text-align:left">A body continues at rest or in uniform motion unless acted on by an external force</td><td style="text-align:left">Defines <strong>inertia</strong>, and defines force qualitatively</td></tr><tr><td style="text-align:left"><strong>Second</strong></td><td style="text-align:left">Force equals the rate of change of momentum; <strong>F = ma</strong> when mass is constant</td><td style="text-align:left">Defines force <strong>quantitatively</strong>, and gives the newton</td></tr><tr><td style="text-align:left"><strong>Third</strong></td><td style="text-align:left">To every action there is an equal and opposite reaction</td><td style="text-align:left">Pairs of forces, and conservation of momentum</td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · TWO POINTS ABOUT THE THIRD AND SECOND LAWS</p><ol><li><strong>Action and reaction act on DIFFERENT bodies</strong>, and therefore <strong>never cancel each other</strong>. A statement that they cancel, or that they act on the same body, is wrong. This is the single most examinable subtlety in the laws of motion</li><li><strong>The general form of the second law is F = dp/dt</strong>, force equals the rate of change of momentum. <strong>F = ma is the special case where mass is constant.</strong> So an option saying the second law applies only when mass is constant is wrong — it is <em>F = ma</em> that carries that restriction, not the law</li></ol><p>Three kinds of inertia are sometimes asked by name: inertia of <strong>rest</strong>, of <strong>motion</strong>, and of <strong>direction</strong>.</p></aside><p><strong>Momentum</strong> p = mv, a vector, unit kg m s⁻¹. <strong>Impulse</strong> = F × t = <strong>change in momentum</strong>, unit N s.</p><h3 id="32-collisions-the-2023-pattern">3.2 Collisions — the 2023 pattern</h3><div class="tw"><table><thead><tr><th style="text-align:left"></th><th style="text-align:left"><strong>Elastic</strong></th><th style="text-align:left"><strong>Inelastic</strong></th><th style="text-align:left"><strong>Perfectly inelastic</strong></th></tr></thead><tbody><tr><td style="text-align:left">Momentum conserved</td><td style="text-align:left"><strong>Yes</strong></td><td style="text-align:left"><strong>Yes</strong></td><td style="text-align:left"><strong>Yes</strong></td></tr><tr><td style="text-align:left">Kinetic energy conserved</td><td style="text-align:left"><strong>Yes</strong></td><td style="text-align:left"><strong>No</strong></td><td style="text-align:left"><strong>No — loss is maximum</strong></td></tr><tr><td style="text-align:left">After impact</td><td style="text-align:left">Bodies separate</td><td style="text-align:left">Bodies separate</td><td style="text-align:left">Bodies <strong>move together</strong></td></tr><tr><td style="text-align:left">Coefficient of restitution e</td><td style="text-align:left"><strong>e = 1</strong></td><td style="text-align:left">0 &lt; e &lt; 1</td><td style="text-align:left"><strong>e = 0</strong></td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · MOMENTUM IS CONSERVED IN EVERY COLLISION</p><p><strong>Linear momentum is conserved in all collisions. Kinetic energy is conserved only in an elastic collision.</strong></p><p>That one sentence answers most collision questions, and the 2023 paper's inelastic-collision item is built on it. The trap is an option asserting that momentum is not conserved in an inelastic collision — it always is, because conservation of momentum follows from Newton's third law and holds regardless of whether energy is lost to heat, sound or deformation.</p><p><strong>Coefficient of restitution</strong> e = (relative velocity of separation) / (relative velocity of approach). e = 1 perfectly elastic, e = 0 perfectly inelastic.</p></aside><blockquote><p>Worked, perfectly inelastic: 2 kg at 5 m s⁻¹ strikes a stationary 3 kg body and they move together. Momentum before = 2 × 5 = 10 kg m s⁻¹. After, (2 + 3) v = 10, so <strong>v = 2 m s⁻¹</strong>. Check the energy: before = ½ × 2 × 25 = 25 J; after = ½ × 5 × 4 = 10 J. <strong>15 J lost</strong> — which is exactly why it is inelastic.</p></blockquote><h3 id="33-circular-motion">3.3 Circular motion</h3><p><strong>Centripetal force = mv²/r</strong>, directed <strong>towards</strong> the centre — it is the real force that keeps a body on a circular path.</p><p><strong>Centrifugal force</strong> is a <strong>pseudo (fictitious) force</strong>, apparent only in a rotating frame, directed <strong>away</strong> from the centre. Calling it a real force is a standard wrong option.</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 3</p><ol><li>State the three laws. Which defines force quantitatively?</li><li>Do action and reaction cancel? Why not?</li><li>Which is the general form of the second law, and what does F = ma assume?</li><li>Which quantity is conserved in all collisions? Which only in elastic ones?</li><li>Give e for perfectly elastic and perfectly inelastic collisions</li><li>Is centrifugal force real? Which way does it point?</li></ol></aside><div class="pagebreak"></div><h2 id="4-session-4-work-energy-and-power">4. Session 4 — Work, Energy and Power <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="41-work">4.1 Work</h3><blockquote><p><strong>W = F s cos θ</strong>, where θ is the angle between force and displacement. Unit: <strong>joule</strong>. A <strong>scalar</strong>.</p></blockquote><div class="tw"><table><thead><tr><th style="text-align:left">θ</th><th style="text-align:left">cos θ</th><th style="text-align:left">Work</th></tr></thead><tbody><tr><td style="text-align:left">0°</td><td style="text-align:left">1</td><td style="text-align:left">Maximum, positive</td></tr><tr><td style="text-align:left">90°</td><td style="text-align:left">0</td><td style="text-align:left"><strong>Zero</strong></td></tr><tr><td style="text-align:left">180°</td><td style="text-align:left">−1</td><td style="text-align:left">Negative</td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · WHEN WORK IS ZERO</p><p>Work is <strong>zero when the force is perpendicular to the displacement</strong>, because cos 90° = 0.</p><p>Three standard illustrations, each of which has appeared in one form or another:</p><ul><li><strong>Carrying a bucket while walking on level ground</strong> — the force is vertical, the displacement</li></ul><p>horizontal, so the work done against gravity is <strong>zero</strong></p><ul><li>A <strong>satellite in a circular orbit</strong> — the gravitational force is towards the centre, the displacement</li></ul><p>tangential, so gravity does <strong>no work</strong></p><ul><li>A <strong>coolie carrying a load on a level platform</strong> — the same situation as the bucket</li></ul><p>Note the counter-intuitive framing: the man is certainly getting tired, but the <em>physics</em> definition of work is zero. The exam relies on you confusing effort with work.</p></aside><h3 id="42-energy-and-power">4.2 Energy and power</h3><div class="tw"><table><thead><tr><th style="text-align:left">Quantity</th><th style="text-align:left">Formula</th><th style="text-align:left">Unit</th></tr></thead><tbody><tr><td style="text-align:left">Kinetic energy</td><td style="text-align:left"><strong>½mv²</strong></td><td style="text-align:left">joule</td></tr><tr><td style="text-align:left">Potential energy</td><td style="text-align:left"><strong>mgh</strong></td><td style="text-align:left">joule</td></tr><tr><td style="text-align:left">Power</td><td style="text-align:left"><strong>W/t</strong></td><td style="text-align:left"><strong>watt</strong></td></tr></tbody></table></div><ul><li><strong>Work–energy theorem:</strong> the work done by the net force equals the <strong>change in kinetic energy</strong></li><li><strong>1 horsepower about 746 W</strong></li><li><strong>The commercial unit of electrical energy is the kilowatt-hour: 1 kWh = 3,600,000 J</strong>, that is</li></ul><p>3.6 million joules</p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 4</p><ol><li>Give the work formula. When is work zero, and give two examples</li><li>Is work a scalar or a vector?</li><li>State the work–energy theorem</li><li>How many joules in a kilowatt-hour? How many watts in a horsepower?</li></ol></aside><div class="pagebreak"></div><h2 id="5-session-5-gravitation-and-fluids">5. Session 5 — Gravitation and Fluids <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><h3 id="51-gravitation">5.1 Gravitation</h3><blockquote><p><strong>F = G m₁ m₂ / r²</strong> and <strong>g = GM/R²</strong></p></blockquote><div class="tw"><table><thead><tr><th style="text-align:left">Fact</th><th style="text-align:left">Detail</th></tr></thead><tbody><tr><td style="text-align:left"><strong>g varies</strong></td><td style="text-align:left">Decreases with <strong>altitude</strong> and with <strong>depth</strong>; zero at the centre of the Earth</td></tr><tr><td style="text-align:left"><strong>g is maximum at the poles</strong>, minimum at the equator</td><td style="text-align:left">Because the Earth bulges at the equator and rotates</td></tr><tr><td style="text-align:left"><strong>Escape velocity</strong> from Earth</td><td style="text-align:left">About <strong>11.2 km s⁻¹</strong></td></tr><tr><td style="text-align:left"><strong>Orbital velocity</strong> near the surface</td><td style="text-align:left">About <strong>7.9 km s⁻¹</strong></td></tr><tr><td style="text-align:left">Relationship</td><td style="text-align:left"><strong>Escape velocity = sqrt2 × orbital velocity</strong></td></tr></tbody></table></div><aside class="cal must-master"><p class="cal-h">MUST MASTER · WEIGHTLESSNESS IS NOT THE ABSENCE OF GRAVITY</p><p>An astronaut in an orbiting satellite feels weightless because the astronaut <strong>and</strong> the satellite are both in <strong>free fall</strong> — they accelerate towards the Earth at the same rate, so there is no contact force between them.</p><p>Gravity is very much present; indeed it is what keeps the satellite in orbit. The option "there is no gravity in space" is wrong, and it is the intuitive answer.</p><p>The state is properly called <strong>apparent weightlessness</strong>, and the same thing happens in a lift whose cable is cut.</p></aside><h3 id="52-fluids-four-principles">5.2 Fluids — four principles</h3><div class="tw"><table><thead><tr><th style="text-align:left">Principle</th><th style="text-align:left">Statement</th><th style="text-align:left">Application</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Pascal's law</strong></td><td style="text-align:left">Pressure applied to an enclosed fluid is transmitted <strong>equally in all directions</strong></td><td style="text-align:left"><strong>Hydraulic press, hydraulic brakes</strong>, hydraulic lift</td></tr><tr><td style="text-align:left"><strong>Archimedes' principle</strong></td><td style="text-align:left">The upthrust equals the <strong>weight of the fluid displaced</strong></td><td style="text-align:left">Flotation, ships, submarines, hydrometer</td></tr><tr><td style="text-align:left"><strong>Bernoulli's principle</strong></td><td style="text-align:left">Where the velocity of a fluid is <strong>high</strong>, its pressure is <strong>low</strong></td><td style="text-align:left"><strong>Aerofoil lift</strong>, atomiser, spin of a ball, Venturi meter</td></tr><tr><td style="text-align:left"><strong>Law of flotation</strong></td><td style="text-align:left">A floating body displaces its <strong>own weight</strong> of fluid</td><td style="text-align:left">Ships, icebergs</td></tr></tbody></table></div><blockquote><p>Pressure = Force / Area, unit <strong>pascal</strong>. Atmospheric pressure about 1.013 × 10⁵ Pa, measured by a barometer.</p></blockquote><aside class="cal trap"><p class="cal-h">COMMON UPSC TRAP · WHICH PRINCIPLE EXPLAINS WHICH DEVICE</p><p>The three fluid principles are constantly swapped in matching questions. Fix them by the device:</p><ul><li><strong>Hydraulic brakes and presses » Pascal</strong> — transmission of pressure</li><li><strong>Ships, submarines and hydrometers » Archimedes</strong> — upthrust</li><li><strong>Aeroplane lift, atomiser, swinging cricket ball » Bernoulli</strong> — velocity and pressure</li></ul><p>If the device <em>multiplies force</em>, it is Pascal. If it <em>floats or sinks</em>, it is Archimedes. If something <em>moves through or past a fluid</em>, it is Bernoulli.</p></aside><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSION 5</p><ol><li>Where is g maximum, and why?</li><li>Give escape and orbital velocities, and the relationship between them</li><li>Why does an astronaut feel weightless? What is the wrong explanation?</li><li>Match: hydraulic brake, ship, aerofoil — to their principles</li><li>State the law of flotation</li></ol></aside><div class="pagebreak"></div><h2 id="6-graded-practice-30-questions">6. Graded Practice — 30 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="61-level-1-recognition">6.1 Level 1 — Recognition</h3><p><strong>Q1.</strong> The number of base units in the SI system is (a) five (b) seven (c) nine (d) three</p><p><strong>Q2.</strong> Which one of the following is a <strong>vector</strong> quantity? (a) Work (b) Energy (c) Speed (d) Momentum</p><p><strong>Q3.</strong> The SI unit of force is the (a) newton (b) joule (c) watt (d) pascal</p><p><strong>Q4.</strong> Newton's first law of motion defines (a) momentum (b) power (c) inertia (d) impulse</p><p><strong>Q5.</strong> In <strong>any</strong> collision, the quantity that is always conserved is (a) kinetic energy (b) linear momentum (c) velocity (d) mechanical energy</p><p><strong>Q6.</strong> The SI unit of pressure is the (a) pascal (b) newton (c) joule (d) watt</p><p><strong>Q7.</strong> The work done is zero when the angle between the force and the displacement is (a) 0° (b) 45° (c) 180° (d) 90°</p><p><strong>Q8.</strong> Kinetic energy is given by (a) mgh (b) mv (c) ½mv² (d) Fs</p><p><strong>Q9.</strong> The escape velocity from the surface of the Earth is about (a) 7.9 km s⁻¹ (b) 11.2 km s⁻¹ (c) 3.0 km s⁻¹ (d) 30 km s⁻¹</p><p><strong>Q10.</strong> The upthrust on a body immersed in a fluid equals the weight of the fluid displaced. This is (a) Archimedes' principle (b) Pascal's law (c) Bernoulli's principle (d) Hooke's law</p><h3 id="62-level-2-understanding">6.2 Level 2 — Understanding</h3><p><strong>Q11.</strong> Which equation of motion does <strong>not</strong> involve time? (a) v = u + at (b) s = ut + ½at² (c) v² = u² + 2as (d) s = [(u + v)/2]t</p><p><strong>Q12.</strong> In a perfectly inelastic collision (a) kinetic energy is conserved (b) momentum is not conserved (c) the bodies separate with equal speeds (d) the bodies move together with a common velocity and the loss of kinetic energy is maximum</p><p><strong>Q13.</strong> The coefficient of restitution for a perfectly elastic collision is (a) 1 (b) 0 (c) between 0 and 1 (d) infinite</p><p><strong>Q14.</strong> Action and reaction (a) act on the same body and cancel each other (b) act on different bodies and therefore do not cancel (c) are unequal in magnitude (d) act in the same direction</p><p><strong>Q15.</strong> The area under a velocity–time graph gives (a) acceleration (b) speed (c) displacement (d) force</p><p><strong>Q16.</strong> An astronaut in an orbiting satellite feels weightless because (a) the astronaut and the satellite are both in free fall (b) there is no gravity in space (c) the astronaut's mass becomes zero (d) the satellite is beyond the atmosphere</p><p><strong>Q17.</strong> The value of the acceleration due to gravity is (a) the same everywhere on the Earth's surface (b) maximum at the equator (c) independent of altitude (d) maximum at the poles and minimum at the equator</p><p><strong>Q18.</strong> One kilowatt-hour is equal to (a) 3,600 J (b) 3,600,000 J (c) 1,000 J (d) 746 J</p><p><strong>Q19.</strong> Pressure applied to an enclosed fluid is transmitted equally in all directions. This is (a) Archimedes' principle (b) Bernoulli's principle (c) Pascal's law (d) Boyle's law</p><p><strong>Q20.</strong> The lift on an aeroplane wing is explained by (a) Bernoulli's principle (b) Pascal's law (c) Archimedes' principle (d) Newton's first law</p><h3 id="63-level-3-recruitment-test-standard">6.3 Level 3 — Recruitment Test standard</h3><p><strong>Q21.</strong> A train starting from rest attains a speed of 72 km/h in 20 seconds with uniform acceleration. Its acceleration is (a) 3.6 m s⁻² (b) 20 m s⁻² (c) 0.5 m s⁻² (d) 1 m s⁻²</p><p><strong>Q22.</strong> A body of mass 2 kg moving at 5 m s⁻¹ collides with a stationary body of mass 3 kg, and the two move together after impact. Their common velocity is (a) 5 m s⁻¹ (b) 2 m s⁻¹ (c) 2.5 m s⁻¹ (d) 1.5 m s⁻¹</p><p><strong>Q23.</strong> Which one of the following statements is <strong>not</strong> correct? (a) Momentum is conserved in both elastic and inelastic collisions (b) Kinetic energy is conserved only in an elastic collision (c) Work and energy are vector quantities (d) Impulse is equal to the change in momentum</p><p><strong>Q24.</strong> Consider the following statements:</p><ol><li>Mass is a scalar and remains constant, whereas weight is a vector and varies with location.</li><li>The escape velocity from the Earth is about sqrt2 times the orbital velocity near its surface.</li><li>Centrifugal force is a real force directed towards the centre.</li></ol><p>Which of the above statements are correct? (a) 1 and 2 only (b) 2 and 3 only (c) 1 and 3 only (d) 1, 2 and 3</p><p><strong>Q25.</strong> Match List-I with List-II and select the correct answer using the code given below:</p><div class="tw"><table><thead><tr><th style="text-align:left">List-I (Unit)</th><th style="text-align:left">List-II (Quantity)</th></tr></thead><tbody><tr><td style="text-align:left">A. Newton</td><td style="text-align:left">1. Pressure</td></tr><tr><td style="text-align:left">B. Pascal</td><td style="text-align:left">2. Force</td></tr><tr><td style="text-align:left">C. Joule</td><td style="text-align:left">3. Power</td></tr><tr><td style="text-align:left">D. Watt</td><td style="text-align:left">4. Energy</td></tr></tbody></table></div><p>(a) A-1 B-2 C-3 D-4 (b) A-2 B-1 C-3 D-4 (c) A-1 B-2 C-4 D-3 (d) A-2 B-1 C-4 D-3</p><p><strong>Q26.</strong> A body is thrown vertically upwards with a velocity of 20 m s⁻¹. Taking g = 10 m s⁻², the maximum height it reaches is (a) 10 m (b) 20 m (c) 40 m (d) 5 m</p><p><strong>Q27.</strong> The work done in carrying a bucket while walking horizontally along a level road is (a) equal to the weight multiplied by the distance (b) negative (c) zero (d) maximum</p><p><strong>Q28.</strong> Consider the following statements about Newton's second law of motion:</p><ol><li>It gives the SI unit of force.</li><li>In its general form it states that force equals the rate of change of momentum.</li><li>The law itself applies only when the mass of the body is constant.</li></ol><p>Which of the above statements are correct? (a) 1 and 2 only (b) 2 and 3 only (c) 1 and 3 only (d) 1, 2 and 3</p><p><strong>Q29.</strong> A hydraulic brake works on the principle of (a) Archimedes' principle (b) Bernoulli's principle (c) Newton's third law (d) Pascal's law</p><p><strong>Q30.</strong> One horsepower is approximately equal to (a) 1,000 W (b) 746 W (c) 500 W (d) 3,600 W</p><div class="pagebreak"></div><h2 id="7-answers-and-explanations">7. Answers and Explanations</h2><h3 id="71-level-1">7.1 Level 1</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Seven</strong> — metre, kilogram, second, ampere, kelvin, mole, candela</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Momentum</strong>, being mass times velocity, is a vector. Work, energy and speed are all scalars</td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">a</td><td style="text-align:left">The <strong>newton</strong>, kg m s⁻². The joule is energy, the watt power, the pascal pressure</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Inertia.</strong> The first law is often called the law of inertia; the second law defines force quantitatively</td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Linear momentum</strong> — in every collision, elastic or not. Kinetic energy is conserved only in elastic collisions</td></tr><tr><td style="text-align:left">6</td><td style="text-align:center">a</td><td style="text-align:left">The <strong>pascal</strong>, N m⁻²</td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">d</td><td style="text-align:left"><strong>90°</strong>, because cos 90° = 0</td></tr><tr><td style="text-align:left">8</td><td style="text-align:center">c</td><td style="text-align:left"><strong>½mv².</strong> (a) is potential energy, (d) is work</td></tr><tr><td style="text-align:left">9</td><td style="text-align:center">b</td><td style="text-align:left">About <strong>11.2 km s⁻¹</strong>. Option (a) is the orbital velocity — the two are each other's distractors</td></tr><tr><td style="text-align:left">10</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Archimedes' principle</strong></td></tr></tbody></table></div><h3 id="72-level-2">7.2 Level 2</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">11</td><td style="text-align:center">c</td><td style="text-align:left"><strong>v² = u² + 2as</strong> is the time-free equation — the one to reach for whenever time is neither given nor asked</td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">d</td><td style="text-align:left">The bodies <strong>move together</strong> and the loss of kinetic energy is <strong>maximum</strong>. Momentum is still conserved, which is what (b) gets wrong</td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">a</td><td style="text-align:left"><strong>e = 1</strong> for perfectly elastic; <strong>e = 0</strong> for perfectly inelastic</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">b</td><td style="text-align:left">They act on <strong>different bodies</strong> and so cannot cancel. If they acted on the same body nothing could ever accelerate</td></tr><tr><td style="text-align:left">15</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Displacement.</strong> The <em>slope</em> gives acceleration — slope and area are the standard swap</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">a</td><td style="text-align:left">Both are in <strong>free fall</strong> with the same acceleration, so there is no contact force. Gravity is present throughout — (b) is the intuitive wrong answer</td></tr><tr><td style="text-align:left">17</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Maximum at the poles</strong>, minimum at the equator, because of the equatorial bulge and the Earth's rotation</td></tr><tr><td style="text-align:left">18</td><td style="text-align:center">b</td><td style="text-align:left"><strong>3,600,000 J</strong> — that is 1,000 W × 3,600 s. Option (a) is one watt-hour</td></tr><tr><td style="text-align:left">19</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Pascal's law</strong></td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Bernoulli's principle</strong> — faster flow over the curved upper surface means lower pressure there</td></tr></tbody></table></div><h3 id="73-level-3">7.3 Level 3</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">21</td><td style="text-align:center">d</td><td style="text-align:left">Convert first: 72 km/h × 5/18 = 20 m s⁻¹. Then a = (20 − 0)/20 = <strong>1 m s⁻²</strong>. Option (a) is what you get by forgetting to convert and dividing 72 by 20</td></tr><tr><td style="text-align:left">22</td><td style="text-align:center">b</td><td style="text-align:left">Momentum before = 2 × 5 = 10 kg m s⁻¹. After: (2 + 3)v = 10, so <strong>v = 2 m s⁻¹</strong>. Note 15 J of kinetic energy is lost, which is what makes it inelastic</td></tr><tr><td style="text-align:left">23</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Work and energy are SCALARS</strong>, not vectors. The other three statements are correct</td></tr><tr><td style="text-align:left">24</td><td style="text-align:center">a</td><td style="text-align:left"><strong>1 and 2 only.</strong> Statement 3 is false twice over — centrifugal force is a <strong>pseudo</strong> force and it points <strong>away</strong> from the centre</td></tr><tr><td style="text-align:left">25</td><td style="text-align:center">d</td><td style="text-align:left"><strong>A-2 B-1 C-4 D-3</strong> — newton force, pascal pressure, joule energy, watt power</td></tr><tr><td style="text-align:left">26</td><td style="text-align:center">b</td><td style="text-align:left">v² = u² − 2gh with v = 0: 0 = 400 − 20h, so h = <strong>20 m</strong></td></tr><tr><td style="text-align:left">27</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Zero.</strong> The force is vertical and the displacement horizontal, so cos 90° = 0. Effort is not the same as work</td></tr><tr><td style="text-align:left">28</td><td style="text-align:center">a</td><td style="text-align:left"><strong>1 and 2 only.</strong> Statement 3 is false — the <strong>law</strong> is general, F = dp/dt; it is the <em>form</em> F = ma that assumes constant mass</td></tr><tr><td style="text-align:left">29</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Pascal's law</strong> — pressure transmitted equally through an enclosed fluid, which is how a small pedal force becomes a large braking force</td></tr><tr><td style="text-align:left">30</td><td style="text-align:center">b</td><td style="text-align:left">About <strong>746 W</strong></td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · THE FOUR SHAPES IN THIS CHAPTER</p><ol><li><strong>The unit-conversion trap.</strong> Q21 offers 3.6 as an option precisely because 72 ÷ 20 = 3.6. Convert km/h to m/s <strong>before</strong> you touch an equation</li><li><strong>The scalar-vector reversal.</strong> Q2 and Q23 are the same fact. Work and energy are scalars; momentum and weight are vectors</li><li><strong>The slope-versus-area swap.</strong> Q15. Slope of a velocity–time graph is acceleration; area is displacement</li><li><strong>The intuitive-but-wrong explanation.</strong> Q16 and Q27. Weightlessness is not the absence of gravity, and carrying a load is not work. Where an option matches everyday intuition, check the definition</li></ol></aside><div class="pagebreak"></div><h2 id="8-one-minute-revision">8. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F9.1</p><p><strong>SEVEN SI BASE UNITS</strong> metre · kilogram · second · ampere · kelvin · mole · candela</p><p><strong>DERIVED</strong> newton = kg m s⁻² · joule = N m · watt = J s⁻¹ · pascal = N m⁻² · hertz = s⁻¹ · dioptre = m⁻¹</p><p><strong>SCALARS</strong> mass · speed · distance · <strong>work</strong> · <strong>energy</strong> · power · time · temperature · pressure <strong>VECTORS</strong> displacement · velocity · acceleration · force · <strong>momentum</strong> · <strong>weight</strong> · impulse</p><p><strong>EQUATIONS OF MOTION</strong> v = u + at · s = ut + ½at² · <strong>v² = u² + 2as (no time)</strong> · s = [(u+v)/2]t</p><p><strong>CONVERSION</strong> km/h to m/s <strong>× 5/18</strong> · 72 km/h = <strong>20 m/s</strong> · 36 km/h = 10 m/s</p><p><strong>GRAPHS</strong> velocity–time: <strong>slope = acceleration, area = displacement</strong></p><p><strong>NEWTON'S LAWS</strong> first defines <strong>inertia</strong> · second F = <strong>dp/dt</strong> in general, F = ma when mass is constant, gives the newton · third: action and reaction act on <strong>DIFFERENT bodies</strong> and <strong>never cancel</strong></p><p><strong>MOMENTUM</strong> p = mv · <strong>impulse = F × t = change in momentum</strong></p><p><strong>COLLISIONS</strong> <strong>momentum conserved ALWAYS</strong> · KE conserved <strong>only in elastic</strong> · perfectly inelastic: bodies move together, <strong>maximum KE loss</strong>, <strong>e = 0</strong> · elastic <strong>e = 1</strong></p><p><strong>CIRCULAR</strong> centripetal = mv²/r <strong>towards</strong> the centre, real · <strong>centrifugal = pseudo force, away from centre</strong></p><p><strong>WORK</strong> W = Fs cos θ · <strong>zero at 90°</strong> — carrying a bucket on level ground, satellite in circular orbit</p><p><strong>ENERGY</strong> KE = ½mv² · PE = mgh · work–energy theorem: work = change in KE · <strong>1 kWh = 3,600,000 J</strong> · <strong>1 hp about 746 W</strong></p><p><strong>GRAVITATION</strong> F = Gm₁m₂/r² · g = GM/R² · <strong>g maximum at the POLES</strong> · decreases with altitude <strong>and</strong> depth · <strong>escape 11.2 km/s · orbital 7.9 km/s · escape = sqrt2 × orbital</strong></p><p><strong>WEIGHTLESSNESS = FREE FALL</strong>, not the absence of gravity</p><p><strong>FLUIDS</strong> <strong>Pascal</strong> — pressure transmitted equally » hydraulic brakes and press · <strong>Archimedes</strong> — upthrust = weight of fluid displaced » ships, hydrometer · <strong>Bernoulli</strong> — high velocity means low pressure » aerofoil lift, atomiser · <strong>flotation</strong> — a floating body displaces its own weight</p></aside><h2 id="9-five-minute-wall-sheet">9. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F9.1</p><p><strong>× 5/18 FIRST</strong> — km/h to m/s before any equation. 72 km/h = 20 m/s</p><p><strong>v² = u² + 2as</strong> — the time-free equation</p><p><strong>SLOPE = ACCELERATION · AREA = DISPLACEMENT</strong></p><p><strong>WORK AND ENERGY ARE SCALARS</strong></p><p><strong>MOMENTUM CONSERVED IN ALL COLLISIONS · KE ONLY IN ELASTIC</strong></p><p><strong>PERFECTLY INELASTIC: TOGETHER, MAX LOSS, e = 0 · ELASTIC: e = 1</strong></p><p><strong>ACTION AND REACTION: DIFFERENT BODIES, NEVER CANCEL</strong></p><p><strong>F = dp/dt IS GENERAL · F = ma NEEDS CONSTANT MASS</strong></p><p><strong>CENTRIFUGAL IS A PSEUDO FORCE, POINTING OUTWARD</strong></p><p><strong>WORK = ZERO AT 90°</strong> — bucket on level ground, satellite in orbit</p><p><strong>1 kWh = 3,600,000 J · 1 hp = 746 W</strong></p><p><strong>g MAX AT POLES · ESCAPE 11.2 · ORBITAL 7.9 · ESCAPE = sqrt2 × ORBITAL</strong></p><p><strong>WEIGHTLESS = FREE FALL, GRAVITY STILL THERE</strong></p><p><strong>MULTIPLIES FORCE » PASCAL · FLOATS » ARCHIMEDES · MOVES THROUGH FLUID » BERNOULLI</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> Momentum is conserved in every collision because conservation follows from Newton's third law, while kinetic energy is conserved only when no energy goes into heat, sound or permanent deformation — which is why a real-world impact is almost always inelastic.</p></aside><aside class="cal action"><p class="cal-h">ACTION · NEXT IN MODULE 9</p><p><strong>Chapter F9.2 — Physics II: Optics, Heat, Sound, Electricity and Modern Physics.</strong> It contains the other two physics items the 2023 paper actually asked: <strong>the power of a combination of lenses</strong> and <strong>a concave mirror with the object at infinity</strong>.</p><p>Before you move on, state without looking: the km/h conversion factor; the time-free equation; what is conserved in an inelastic collision; where g is maximum; and which principle explains hydraulic brakes.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F9.1
+  &middot; v1.0</footer>
+</body>
+</html>

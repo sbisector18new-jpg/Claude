@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para Jumbles and Sentence Rearrangement</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F8.2 · Para Jumbles
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · MODULE 8 · CHAPTER F8.2</p><h1 class="doc-t">Para Jumbles and Sentence Rearrangement</h1><p class="doc-s">Chapter F8.2 — A Format With Rules, Which Means It Can Be Solved Rather Than Guessed</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 8 — English, Quantitative Aptitude &amp; Reasoning</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F8.2</td></tr><tr><td class="k">Topic</td><td class="v">Official syllabus head A — General English</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">16 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal note"><p class="cal-h">NOTE · WHY THIS FORMAT IS BETTER NEWS THAN IT LOOKS</p><p>Para jumbles were <strong>5 of the 20 English questions</strong> in 2023 (PYQ-DERIVED, Blueprint §4.4) — a quarter of the English block.</p><p>Candidates dislike them, and that dislike is misplaced. Unlike vocabulary, para jumbles do <strong>not</strong> depend on what you happen to know. They are governed by <strong>mechanical rules of cohesion</strong>: a pronoun must follow its noun, "however" must follow the thing it contradicts, an abbreviation must follow its full form. Learn the rules in §2 and §3 and the format becomes closer to logic than to language.</p><p><strong>One practical note on this chapter's practice set.</strong> Every jumble in §6 is built from material in Modules 3, 6, 7 and 9 — provisions and reserves, ocean acidification, the mesh formula, AS 15. So the drill is simultaneously English practice and a revision pass. That is deliberate.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-session-1-the-format"><span class="toc-t">1. Session 1 — The Format <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></span></a><a class="toc-2" href="#2-session-2-finding-the-opener"><span class="toc-t">2. Session 2 — Finding the Opener <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#21-what-disqualifies-a-sentence-from-being-the-opener"><span class="toc-t">2.1 What disqualifies a sentence from being the opener</span></a><a class="toc-3" href="#22-what-marks-a-sentence-as-the-opener"><span class="toc-t">2.2 What marks a sentence as the opener</span></a><a class="toc-2" href="#3-session-3-chaining-the-middle"><span class="toc-t">3. Session 3 — Chaining the Middle <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#31-the-six-chaining-rules"><span class="toc-t">3.1 The six chaining rules</span></a><a class="toc-3" href="#32-mandatory-pairs-the-workhorse-of-the-method"><span class="toc-t">3.2 Mandatory pairs — the workhorse of the method</span></a><a class="toc-2" href="#4-session-4-the-closer-and-elimination"><span class="toc-t">4. Session 4 — The Closer, and Elimination <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#41-what-marks-the-concluding-sentence"><span class="toc-t">4.1 What marks the concluding sentence</span></a><a class="toc-3" href="#42-the-elimination-method-worked"><span class="toc-t">4.2 The elimination method, worked</span></a><a class="toc-2" href="#5-session-5-two-more-worked-examples"><span class="toc-t">5. Session 5 — Two More Worked Examples <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></span></a><a class="toc-2" href="#6-graded-practice-20-questions"><span class="toc-t">6. Graded Practice — 20 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></span></a><a class="toc-3" href="#61-level-1-four-sentence-sets"><span class="toc-t">6.1 Level 1 — Four-sentence sets</span></a><a class="toc-3" href="#62-level-2-cohesion-cues"><span class="toc-t">6.2 Level 2 — Cohesion cues</span></a><a class="toc-3" href="#63-level-3-recruitment-test-standard"><span class="toc-t">6.3 Level 3 — Recruitment Test standard</span></a><a class="toc-2" href="#7-answers-and-explanations"><span class="toc-t">7. Answers and Explanations</span></a><a class="toc-3" href="#71-level-1"><span class="toc-t">7.1 Level 1</span></a><a class="toc-3" href="#72-level-2"><span class="toc-t">7.2 Level 2</span></a><a class="toc-3" href="#73-level-3"><span class="toc-t">7.3 Level 3</span></a><a class="toc-2" href="#8-one-minute-revision"><span class="toc-t">8. One-Minute Revision</span></a><a class="toc-2" href="#9-five-minute-wall-sheet"><span class="toc-t">9. Five-Minute Wall Sheet</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F8.2</p><ol><li><strong>Session 1</strong> — The format and the time budget (§1) <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></li><li><strong>Session 2</strong> — Finding the opener (§2) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 3</strong> — Chaining the middle (§3) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 4</strong> — The closer, and elimination by mandatory pair (§4) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 5</strong> — Worked examples (§5)</li></ol><p>Then 20 graded questions in §6. F8.0's calendar takes Q1–10 on Friday of week 1 and Q11–20 on Friday of week 2, then re-drills in weeks 5, 7 and 11.</p></aside><div class="pagebreak"></div><h2 id="1-session-1-the-format">1. Session 1 — The Format <span class="rate" role="img" aria-label="priority 3 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i><i class="off"></i></span></h2><p>Four to six sentences, labelled <strong>P, Q, R, S</strong> (sometimes 1 to 6), presented out of order. You choose the sequence that forms a coherent paragraph. Variants ask only for the <strong>opening</strong> or the <strong>concluding</strong> sentence.</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · SIXTY TO SEVENTY-FIVE SECONDS, AND NEVER BUILD THE WHOLE ORDER</p><p>F8.0 §1.1 budgets <strong>60 to 75 seconds</strong> for a jumble. You cannot afford to construct and verify a complete sequence from scratch.</p><p><strong>So do not.</strong> The method that fits the time budget is:</p><ol><li><strong>Find the opener</strong> (§2). This alone often eliminates two options</li><li><strong>Find one mandatory pair</strong> — two sentences that must be adjacent, in a known order (§3)</li><li><strong>Eliminate every option that does not contain both</strong> the right opener and that pair</li></ol><p>Very often <strong>one option survives</strong> after step 3 and you never need to check the rest of the order. That is the entire technique, and §4.2 works it through.</p></aside><div class="pagebreak"></div><h2 id="2-session-2-finding-the-opener">2. Session 2 — Finding the Opener <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><p>An opening sentence has to stand on its own, because there is nothing before it to refer back to. That gives you a <strong>test by elimination</strong>: any sentence that <strong>depends on something earlier cannot be the opener</strong>.</p><h3 id="21-what-disqualifies-a-sentence-from-being-the-opener">2.1 What disqualifies a sentence from being the opener</h3><div class="tw"><table><thead><tr><th style="text-align:left">Disqualifier</th><th style="text-align:left">Examples</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Demonstratives</strong> pointing backwards</td><td style="text-align:left"><strong>this, that, these, those, such, the same</strong></td></tr><tr><td style="text-align:left"><strong>Pronouns</strong> with no antecedent yet</td><td style="text-align:left"><strong>it, he, she, they, them, its, their</strong></td></tr><tr><td style="text-align:left"><strong>Contrast connectives</strong></td><td style="text-align:left"><strong>however, but, yet, nevertheless, on the other hand, by contrast</strong></td></tr><tr><td style="text-align:left"><strong>Consequence connectives</strong></td><td style="text-align:left"><strong>therefore, thus, hence, consequently, so, accordingly</strong></td></tr><tr><td style="text-align:left"><strong>Addition connectives</strong></td><td style="text-align:left"><strong>moreover, furthermore, also, in addition, besides</strong></td></tr><tr><td style="text-align:left"><strong>Exemplification</strong></td><td style="text-align:left"><strong>for example, for instance, thus</strong></td></tr><tr><td style="text-align:left"><strong>Comparatives implying a prior item</strong></td><td style="text-align:left"><strong>another, the other, similarly, likewise</strong></td></tr></tbody></table></div><h3 id="22-what-marks-a-sentence-as-the-opener">2.2 What marks a sentence as the opener</h3><ul><li>It <strong>introduces the subject by its full name</strong>, not by a pronoun</li><li>It often uses the <strong>indefinite article</strong> — <em>a</em> or <em>an</em> — for a first mention</li><li>It tends to be the most <strong>general</strong> statement; the others add detail</li><li>If a <strong>full form and an abbreviation</strong> both appear in the set, the sentence with the <strong>full form</strong> comes</li></ul><p>first</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE FULL-FORM RULE, AND THE ARTICLE RULE</p><p>Two rules that settle a surprising number of sets outright.</p><p><strong>The full-form rule.</strong> "The Employees' Provident Funds and Miscellaneous Provisions Act, 1952" must precede any sentence calling it "the Act" or "it". You introduce a thing before you abbreviate it.</p><p><strong>The article rule.</strong> <strong>"A provision" precedes "the provision".</strong> <em>A</em> marks a first mention; <em>the</em> marks something already introduced. If two sentences mention the same noun and one uses <em>a</em> while the other uses <em>the</em>, the <strong>indefinite one comes first</strong>.</p><p>Both rules work in the same direction and both are mechanical — no comprehension required.</p></aside><div class="pagebreak"></div><h2 id="3-session-3-chaining-the-middle">3. Session 3 — Chaining the Middle <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><p>Once the opener is fixed, the remaining sentences link by the same cohesion devices.</p><h3 id="31-the-six-chaining-rules">3.1 The six chaining rules</h3><div class="tw"><table><thead><tr><th style="text-align:left">Rule</th><th style="text-align:left">How it works</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Pronoun rule</strong></td><td style="text-align:left">A pronoun <strong>follows</strong> its noun. If P names <em>soaps</em> and S says <em>they</em>, then <strong>P before S</strong></td></tr><tr><td style="text-align:left"><strong>Demonstrative rule</strong></td><td style="text-align:left"><em>This / that / these</em> points at the <strong>immediately preceding</strong> idea, which usually makes the pair <strong>adjacent</strong></td></tr><tr><td style="text-align:left"><strong>Connective rule</strong></td><td style="text-align:left"><em>However</em> follows what it contradicts · <em>therefore</em> follows its cause · <em>moreover</em> follows what it adds to · <em>for example</em> follows the general statement</td></tr><tr><td style="text-align:left"><strong>Chronology rule</strong></td><td style="text-align:left">Dates, and <em>first / then / next / finally</em>, run forward</td></tr><tr><td style="text-align:left"><strong>Cause before effect</strong></td><td style="text-align:left">The reason precedes the consequence</td></tr><tr><td style="text-align:left"><strong>General before specific</strong></td><td style="text-align:left">The broad statement precedes the illustration or detail</td></tr></tbody></table></div><h3 id="32-mandatory-pairs-the-workhorse-of-the-method">3.2 Mandatory pairs — the workhorse of the method</h3><aside class="cal must-master"><p class="cal-h">MUST MASTER · WHAT A MANDATORY PAIR IS, AND WHY IT SAVES THE MOST TIME</p><p>A <strong>mandatory pair</strong> is two sentences you can be certain are <strong>adjacent and in a fixed order</strong>, usually because the second contains <strong>this</strong>, <strong>that</strong>, <strong>these</strong> or <strong>therefore</strong> referring directly to the first.</p><p>Why it matters more than finding the opener: <strong>a mandatory pair eliminates options fast</strong>. If you are certain that <strong>S comes immediately after Q</strong>, then every option in which S does not directly follow Q is gone — often three of the four.</p><p><strong>The strongest signals of a mandatory pair:</strong></p><div class="tw"><table><thead><tr><th style="text-align:left">Signal in the second sentence</th><th style="text-align:left">What it points to</th></tr></thead><tbody><tr><td style="text-align:left"><strong>"This" + noun</strong> — <em>this band, this limitation, this makes</em></td><td style="text-align:left">The <strong>immediately</strong> preceding sentence</td></tr><tr><td style="text-align:left"><strong>"These are…"</strong></td><td style="text-align:left">A list just announced</td></tr><tr><td style="text-align:left"><strong>"That range", "the former", "the latter"</strong></td><td style="text-align:left">Something just named</td></tr><tr><td style="text-align:left"><strong>"therefore", "consequently"</strong></td><td style="text-align:left">The cause immediately before</td></tr><tr><td style="text-align:left"><strong>"nevertheless", "however"</strong></td><td style="text-align:left">The statement immediately contradicted</td></tr></tbody></table></div><p>Find one of these and you have converted a four-option question into a one- or two-option question in about fifteen seconds.</p></aside><div class="pagebreak"></div><h2 id="4-session-4-the-closer-and-elimination">4. Session 4 — The Closer, and Elimination <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><h3 id="41-what-marks-the-concluding-sentence">4.1 What marks the concluding sentence</h3><ul><li><strong>Conclusion connectives:</strong> <em>therefore, thus, consequently, hence, as a result, in conclusion, finally</em></li><li>A <strong>summary or evaluation</strong> rather than new information</li><li>The <strong>broadest</strong> statement, if the paragraph runs from specific to general</li><li>A statement of <strong>consequence</strong> where the rest of the paragraph explains the cause</li></ul><p>Note that <em>therefore</em> can mark either a middle sentence or the closer. What settles it is whether anything else in the set still needs to be said.</p><h3 id="42-the-elimination-method-worked">4.2 The elimination method, worked</h3><blockquote><p><strong>P.</strong> It was enacted to provide for the institution of provident funds for employees. <strong>Q.</strong> The Employees' Provident Funds and Miscellaneous Provisions Act was passed in 1952. <strong>R.</strong> Three schemes have been framed under it. <strong>S.</strong> These are the Provident Fund Scheme, the Pension Scheme and the Insurance Scheme.</p><p>Options: (a) P Q R S · (b) Q P S R · (c) Q P R S · (d) R S Q P</p></blockquote><p><strong>Step 1 — the opener.</strong> P begins "It was", a pronoun with no antecedent, so P is out. R says "under it", also dependent. S begins "These are", pointing at something already listed. <strong>Only Q can open</strong> — and it carries the full name of the Act, per §2.2's full-form rule. That eliminates <strong>(a)</strong> and <strong>(d)</strong> immediately.</p><p><strong>Step 2 — a mandatory pair.</strong> S says "<strong>These are</strong>" and lists three schemes. R is the sentence that announces three schemes. So <strong>R must come immediately before S</strong>. That eliminates <strong>(b)</strong>, which has S before R.</p><p><strong>One option survives: (c) Q P R S.</strong> We never needed to verify where P sits.</p><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · WHY THIS BEATS READING FOR SENSE</p><p>You could have solved that set by reading all four sentences and constructing the natural paragraph. It would have taken two minutes and you would have been right.</p><p>The elimination route took about twenty seconds and used <strong>two structural facts</strong>: a pronoun cannot open, and "these are" must follow its list. <strong>Neither required understanding the provident fund at all.</strong></p><p>Under a 120-questions-in-120-minutes constraint, that difference is the whole game. Read for structure first; read for sense only if structure leaves two options standing.</p></aside><div class="pagebreak"></div><h2 id="5-session-5-two-more-worked-examples">5. Session 5 — Two More Worked Examples <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></h2><p><strong>Example 1</strong></p><blockquote><p><strong>P.</strong> Momentum, however, is conserved in every collision. <strong>Q.</strong> Collisions are classified as elastic or inelastic. <strong>R.</strong> In an inelastic collision kinetic energy is not conserved. <strong>S.</strong> In an elastic collision both momentum and kinetic energy are conserved.</p></blockquote><p><strong>Opener:</strong> P has "however" — disqualified. R and S both begin with "In a…" describing a category that Q introduces. <strong>Q opens.</strong> <strong>Chain:</strong> Q announces two categories, so S (elastic) and R (inelastic) follow in the order Q named them. <strong>Closer:</strong> P's "however" contrasts with R's statement that kinetic energy is not conserved — so P must follow R. <strong>Answer: Q S R P.</strong></p><p><strong>Example 2</strong></p><blockquote><p><strong>P.</strong> This is why the Recruitment Test carries three-quarters of the final weight. <strong>Q.</strong> Selection for the post is made in two stages. <strong>R.</strong> The marks obtained in it are carried into the final merit list. <strong>S.</strong> The first is the Recruitment Test.</p></blockquote><p><strong>Opener:</strong> P begins "This is why" — disqualified. R says "in it" — dependent. S says "The first" — implies a set already mentioned. <strong>Q opens.</strong> <strong>Chain:</strong> S's "The first" points at Q's "two stages", so <strong>Q S</strong> is a mandatory pair. R's "it" refers to the Recruitment Test named in S, so <strong>S R</strong>. <strong>Closer:</strong> P concludes with "This is why". <strong>Answer: Q S R P.</strong></p><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SESSIONS 2 TO 5</p><ol><li>List seven kinds of word that disqualify a sentence from being the opener</li><li>State the full-form rule and the article rule</li><li>What is a mandatory pair, and why does it save more time than finding the opener?</li><li>Name five signals that a sentence must immediately follow another</li><li>What marks a concluding sentence?</li></ol></aside><div class="pagebreak"></div><h2 id="6-graded-practice-20-questions">6. Graded Practice — 20 Questions <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></h2><p><strong>Target: 60 to 75 seconds each.</strong> Use the elimination method — opener first, then one mandatory pair.</p><h3 id="61-level-1-four-sentence-sets">6.1 Level 1 — Four-sentence sets</h3><p><strong>Q1.</strong> P. It was enacted to provide for the institution of provident funds for employees. Q. The Employees' Provident Funds and Miscellaneous Provisions Act was passed in 1952. R. Three schemes have been framed under it. S. These are the Provident Fund Scheme, the Pension Scheme and the Insurance Scheme. (a) P Q R S (b) Q P S R (c) Q P R S (d) R S Q P</p><p><strong>Q2.</strong> P. The auditor therefore expresses an opinion rather than issuing a certificate. Q. An audit is an independent examination of financial information. R. Its purpose is to determine whether the statements give a true and fair view. S. Absolute accuracy cannot be guaranteed, because audit evidence is persuasive rather than conclusive. (a) Q R S P (b) Q S R P (c) R Q S P (d) P Q R S</p><p><strong>Q3.</strong> P. This makes them unsuitable for use in hard water. Q. Soaps are the sodium or potassium salts of long-chain fatty acids. R. Detergents were developed to overcome this limitation. S. They form an insoluble scum with calcium and magnesium ions. (a) Q P S R (b) S Q P R (c) Q R S P (d) Q S P R</p><p><strong>Q4.</strong> P. Momentum, however, is conserved in every collision. Q. Collisions are classified as elastic or inelastic. R. In an inelastic collision kinetic energy is not conserved. S. In an elastic collision both momentum and kinetic energy are conserved. (a) Q R S P (b) Q S R P (c) S R Q P (d) P Q S R</p><p><strong>Q5.</strong> P. A provision is therefore created even when the year results in a loss. Q. A provision is a charge against profit. R. A reserve, by contrast, is an appropriation of profit. S. It can be created only if there is a profit. (a) Q P R S (b) Q R P S (c) R S Q P (d) Q R S P</p><p><strong>Q6.</strong> P. The pH of seawater has fallen from about 8.2 to about 8.1. Q. The ocean absorbs a large share of the carbon dioxide emitted by human activity. R. Seawater nevertheless remains alkaline. S. Dissolved carbon dioxide forms carbonic acid, releasing hydrogen ions. (a) Q P S R (b) S Q P R (c) Q S R P (d) Q S P R</p><p><strong>Q7.</strong> P. Each of these is exactly three binary digits. Q. The octal system uses the digits 0 to 7. R. Conversion between binary and octal therefore requires no arithmetic. S. Grouping the bits in threes from the right is sufficient. (a) Q R P S (b) Q P R S (c) P Q R S (d) Q S P R</p><h3 id="62-level-2-cohesion-cues">6.2 Level 2 — Cohesion cues</h3><p><strong>Q8.</strong> P. He must issue notice, hear the employer and pass a reasoned order. Q. An Assistant Provident Fund Commissioner conducts inquiries under Section 7A. R. That function is therefore described as quasi-judicial. S. The order so passed is appealable. (a) Q R P S (b) P Q S R (c) Q P S R (d) Q S P R</p><p><strong>Q9.</strong> P. The trial balance will nevertheless agree. Q. An error of principle arises when a capital item is treated as revenue. R. Both the profit and the assets are understated. S. The entry is balanced, though wrongly classified. (a) Q R S P (b) Q S R P (c) R Q S P (d) Q P S R</p><p><strong>Q10.</strong> P. Its agreement therefore proves only arithmetical accuracy. Q. A trial balance lists the debit and credit balances of all ledger accounts. R. An entry may be perfectly balanced and yet posted to entirely the wrong account. S. It is prepared to test whether total debits equal total credits. (a) Q R S P (b) S Q R P (c) Q S P R (d) Q S R P</p><p><strong>Q11.</strong> P. This band deliberately straddles neutral. Q. Industrial effluent discharged into inland surface water must fall within a permissible pH range. R. Requiring exact neutrality would be unattainable in practice. S. That range is about 5.5 to 9.0. (a) Q P S R (b) Q S P R (c) S Q P R (d) Q R S P</p><p><strong>Q12.</strong> P. Each node must be connected to every other node. Q. A mesh topology is the most reliable of the network topologies. R. The number of links required is therefore n(n − 1)/2. S. Every link would otherwise be counted twice, once from each end. (a) Q R P S (b) P Q R S (c) Q P R S (d) Q S P R</p><p><strong>Q13.</strong> P. Detergents, by contrast, are less readily biodegradable. Q. Their branched chains resist breakdown and cause foaming in rivers. R. Soaps are biodegradable. S. Environmental regulation therefore followed the technology rather than preceding it. (a) P R Q S (b) R Q P S (c) Q R P S (d) R P Q S</p><p><strong>Q14.</strong> P. It must respond within a strict and guaranteed deadline. Q. A real-time operating system is not defined by being fast. R. Predictability, rather than average speed, is the requirement. S. Air traffic control is a typical application. (a) Q P R S (b) Q R P S (c) P Q R S (d) Q S P R</p><h3 id="63-level-3-recruitment-test-standard">6.3 Level 3 — Recruitment Test standard</h3><p><strong>Questions 15 and 16 relate to the following set.</strong> P. This is why the Recruitment Test carries three-quarters of the final weight. Q. Selection for the post is made in two stages. R. The marks obtained in it are carried into the final merit list. S. The first stage is the Recruitment Test.</p><p><strong>Q15.</strong> Which sentence should come <strong>first</strong>? (a) P (b) R (c) Q (d) S</p><p><strong>Q16.</strong> Which sentence should come <strong>last</strong>? (a) Q (b) P (c) S (d) R</p><p><strong>Q17.</strong> P. Capital reserve, on the other hand, arises from capital profits. Q. Two phrases made of the same two words mean entirely different things. R. Reserve capital is that part of uncalled share capital which is callable only on winding up. S. The distinction is a favourite of examiners. (a) Q P R S (b) R P Q S (c) Q S R P (d) Q R P S</p><p><strong>Q18.</strong> P. Only about a tenth of it passes to the next trophic level. Q. Energy enters an ecosystem through the producers. R. Food chains are consequently short. S. The remainder is lost as heat and in metabolism. (a) Q P S R (b) Q S P R (c) P Q S R (d) Q R P S</p><p><strong>Q19.</strong> P. Its agreement therefore guarantees nothing about the correctness of classification. Q. Dimensional homogeneity is a necessary but insufficient check on an equation. R. A trial balance occupies the same position in accounting. S. Both sides may come out in the same units while the physics is wrong. (a) Q R S P (b) S Q R P (c) Q S R P (d) R Q S P</p><p><strong>Q20.</strong> P. The employer's obligation ends when the contribution has been paid. Q. AS 15 distinguishes defined contribution plans from defined benefit plans. R. A defined benefit plan, such as gratuity, requires actuarial valuation. S. Provident fund is an example of the former. (a) Q P S R (b) Q S P R (c) S Q P R (d) Q R S P</p><div class="pagebreak"></div><h2 id="7-answers-and-explanations">7. Answers and Explanations</h2><h3 id="71-level-1">7.1 Level 1</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">1</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Q P R S.</strong> Q alone can open — P says "It was", R says "under it", S says "These are". Then <strong>R S</strong> is a mandatory pair: S's "These are" lists the three schemes R announces</td></tr><tr><td style="text-align:left">2</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Q R S P.</strong> Q defines; R's "Its purpose" refers to the audit; S gives the reason; P's "therefore" concludes. Two structural facts settle it — "Its" cannot open, and "therefore" cannot come before its cause</td></tr><tr><td style="text-align:left">3</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Q S P R.</strong> Q names soaps; S's "They" refers to them; P's "This" refers to the scum in S; R's "this limitation" refers to P. A chain of three back-references, each fixing one position</td></tr><tr><td style="text-align:left">4</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Q S R P.</strong> Q announces the two categories; S and R take them in the order named; P's "however" contradicts R. "However" almost never opens</td></tr><tr><td style="text-align:left">5</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Q P R S.</strong> Q states the charge; P's "therefore" follows from it; R's "by contrast" introduces the reserve; S's "It" refers to the reserve, so S must follow R</td></tr><tr><td style="text-align:left">6</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Q S P R.</strong> Q, then S's mechanism, then P's measured consequence, then R's "nevertheless" — the qualification that seawater is still alkaline must come last, because it corrects the impression P leaves</td></tr><tr><td style="text-align:left">7</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Q P R S.</strong> Q names the digits; P's "Each of these" refers to them; R's "therefore" draws the conclusion; S explains how</td></tr></tbody></table></div><h3 id="72-level-2">7.2 Level 2</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">8</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Q P S R.</strong> Q introduces the officer; P describes what he must do; S adds that the order is appealable; R's "That function is therefore" concludes from all of it</td></tr><tr><td style="text-align:left">9</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Q R S P.</strong> Q defines the error; R gives the effect; S explains why the entry balances; P's "nevertheless" states the consequence for the trial balance, which only makes sense after S</td></tr><tr><td style="text-align:left">10</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Q S R P.</strong> Q defines; S's "It is prepared" continues about the trial balance; R gives the counter-instance; P's "therefore" concludes. Note R must precede P, because P's limitation follows from R's possibility</td></tr><tr><td style="text-align:left">11</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Q S P R.</strong> Q introduces the range; S's "That range" is a mandatory pair with Q; P's "This band" refers to S; R explains why the band is wide</td></tr><tr><td style="text-align:left">12</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Q P R S.</strong> Q introduces mesh; P states the requirement; R's "therefore" gives the formula; S's "otherwise" explains the division by two, which only makes sense once the formula is on the table</td></tr><tr><td style="text-align:left">13</td><td style="text-align:center">d</td><td style="text-align:left"><strong>R P Q S.</strong> R opens — the only sentence with no back-reference. P's "by contrast" must follow R; Q's "Their" refers to the detergents in P; S's "therefore" concludes</td></tr><tr><td style="text-align:left">14</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Q P R S.</strong> Q makes the negative claim; P states what the definition actually is; R restates it as a contrast; S illustrates. <strong>General before specific</strong> puts the example last</td></tr></tbody></table></div><h3 id="73-level-3">7.3 Level 3</h3><div class="tw"><table><thead><tr><th style="text-align:left">Q</th><th style="text-align:center">Ans</th><th style="text-align:left">Explanation</th></tr></thead><tbody><tr><td style="text-align:left">15</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Q.</strong> P begins "This is why", R says "in it", S says "The first stage" — all three depend on something earlier. Only Q stands alone</td></tr><tr><td style="text-align:left">16</td><td style="text-align:center">b</td><td style="text-align:left"><strong>P.</strong> "This is why" summarises the consequence of everything preceding, and no sentence in the set follows from P. The full order is Q S R P</td></tr><tr><td style="text-align:left">17</td><td style="text-align:center">d</td><td style="text-align:left"><strong>Q R P S.</strong> Q sets up the puzzle of two similar phrases; R defines the first; P's "on the other hand" defines the second; S comments on the pair. S cannot precede the definitions it comments on</td></tr><tr><td style="text-align:left">18</td><td style="text-align:center">a</td><td style="text-align:left"><strong>Q P S R.</strong> Q introduces the energy; P's "it" refers to that energy; S accounts for "the remainder", which only exists once P has named a tenth; R's "consequently" concludes</td></tr><tr><td style="text-align:left">19</td><td style="text-align:center">c</td><td style="text-align:left"><strong>Q S R P.</strong> Q states the engineering principle; S elaborates it; R draws the analogy to accounting; P's "Its" refers to the trial balance in R. Note that R must precede P, because P's "Its" has no referent until R names the trial balance</td></tr><tr><td style="text-align:left">20</td><td style="text-align:center">b</td><td style="text-align:left"><strong>Q S P R.</strong> Q announces the two kinds; S's "the former" points back to the first, so <strong>Q S</strong> is mandatory; P explains the consequence for that kind; R turns to the second kind</td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · THE THREE SHAPES IN THIS BANK</p><ol><li><strong>The back-reference chain.</strong> Q3, Q11 and Q18 each contain three sentences that point backwards (<em>they, this, that range, the remainder</em>). Chains like this are the <strong>easiest</strong> jumbles, because each reference fixes one position absolutely. Look for them first</li><li><strong>The "former / latter" pair.</strong> Q20. <em>The former</em> and <em>the latter</em> are the strongest mandatory-pair signals in the language — they cannot appear before the pair they refer to</li><li><strong>The qualification that must come last.</strong> Q6 and Q9. Where one sentence <strong>corrects a misimpression</strong> left by another (<em>nevertheless remains alkaline</em>, <em>will nevertheless agree</em>), it must follow the sentence creating that impression — which usually puts it at the end</li></ol></aside><div class="pagebreak"></div><h2 id="8-one-minute-revision">8. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F8.2</p><p><strong>WEIGHT</strong> 5 of 20 English questions in 2023 · <strong>target 60–75 seconds</strong> · <strong>never build the whole order</strong></p><p><strong>THE METHOD</strong> <strong>1</strong> find the opener · <strong>2</strong> find one <strong>mandatory pair</strong> · <strong>3</strong> eliminate every option lacking either. Usually one option survives</p><p><strong>CANNOT OPEN</strong> <strong>this, that, these, those, such, the same</strong> · <strong>it, he, she, they, its, their</strong> · <strong>however, but, yet, nevertheless, on the other hand, by contrast</strong> · <strong>therefore, thus, hence, consequently, so</strong> · <strong>moreover, furthermore, also, besides</strong> · <strong>for example</strong> · <strong>another, the other, similarly, likewise</strong></p><p><strong>MARKS THE OPENER</strong> full name rather than a pronoun · <strong>indefinite article a / an</strong> · the most <strong>general</strong> statement · the <strong>full form</strong> of any abbreviation</p><p><strong>FULL-FORM RULE</strong> the full name precedes "the Act" or "it" <strong>ARTICLE RULE</strong> <strong>"a provision" precedes "the provision"</strong></p><p><strong>CHAINING</strong> pronoun <strong>follows</strong> its noun · <em>this / that / these</em> points at the <strong>immediately preceding</strong> sentence · <em>however</em> follows what it contradicts · <em>therefore</em> follows its cause · <em>for example</em> follows the general statement · chronology runs forward · <strong>cause before effect</strong> · <strong>general before specific</strong></p><p><strong>STRONGEST MANDATORY-PAIR SIGNALS</strong> <strong>"this" + noun</strong> · <strong>"These are…"</strong> · <strong>"that range", "the former", "the latter"</strong> · <strong>"therefore"</strong> · <strong>"nevertheless"</strong></p><p><strong>THE CLOSER</strong> <em>therefore, thus, consequently, hence, as a result, finally</em> · a <strong>summary or evaluation</strong> rather than new information · a <strong>qualification correcting</strong> an impression left earlier</p><p><strong>READ FOR STRUCTURE FIRST, FOR SENSE ONLY IF TWO OPTIONS SURVIVE</strong></p></aside><h2 id="9-five-minute-wall-sheet">9. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F8.2</p><p><strong>OPENER TEST: DOES IT DEPEND ON ANYTHING EARLIER? IF YES, IT CANNOT OPEN</strong></p><p><strong>KILLERS: this · that · these · it · they · however · therefore · moreover · for example · another</strong></p><p><strong>FULL FORM BEFORE ABBREVIATION · "A" BEFORE "THE"</strong></p><p><strong>FIND ONE MANDATORY PAIR, THEN ELIMINATE</strong> — faster than ordering all four</p><p><strong>"THESE ARE" · "THE FORMER" · "THAT RANGE" · "THIS BAND"</strong> » must follow immediately</p><p><strong>HOWEVER FOLLOWS WHAT IT CONTRADICTS · THEREFORE FOLLOWS ITS CAUSE</strong></p><p><strong>GENERAL BEFORE SPECIFIC · CAUSE BEFORE EFFECT</strong></p><p><strong>THE CORRECTING QUALIFICATION GOES LAST</strong></p><p><strong>60–75 SECONDS. STRUCTURE, NOT SENSE.</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> Para jumbles are solvable rather than guessable because paragraph cohesion follows rules — a pronoun cannot precede its noun, and a contradiction cannot precede the claim it contradicts — so the format tests attention to structure rather than knowledge.</p></aside><aside class="cal action"><p class="cal-h">ACTION · NEXT</p><p><strong>F8.3 — Reading Comprehension</strong>, the third English format, worth 5 of the 20 English questions in 2023 — and notably, all five were drawn from <strong>one</strong> passage.</p><p>But keep the drill running: F8.0's week 1 Friday cell is <strong>F8.2 §6 Q1–10</strong>, timed.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F8.2
+  &middot; v1.0</footer>
+</body>
+</html>
