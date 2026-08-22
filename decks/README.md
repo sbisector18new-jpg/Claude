@@ -1,6 +1,6 @@
 # decks — spaced repetition for the APFC manual
 
-**4,403 cards, generated from the manual's own sources.** Rebuild at any time with:
+**7,068 cards, generated from the manual's own sources — all twelve modules.** Rebuild at any time with:
 
 ```
 python3 build/decks.py
@@ -12,13 +12,13 @@ note type, destination deck and tag column are all declared inside each file.
 
 | File | Note type | Cards | What it is for |
 |---|---|---:|---|
-| `apfc-1-numbers.tsv` | Cloze | 1,144 | Every figure, date, section and threshold. Reviewed on the shortest interval, because numbers decay fastest and the paper attacks them hardest |
+| `apfc-1-numbers.tsv` | Cloze | 2,994 | Every figure, date, section and threshold. Reviewed on the shortest interval, because numbers decay fastest and the paper attacks them hardest |
 | `apfc-2-discrimination.tsv` | Basic | 131 | Neighbouring facts, with the distractor named. The most valuable deck per card |
-| `apfc-3-core-facts.tsv` | Cloze | 1,797 | The wall sheets, one fact to a card |
+| `apfc-3-core-facts.tsv` | Cloze | 2,611 | The wall sheets, one fact to a card |
 | `apfc-4-question-recall.tsv` | Basic | 967 | Practice items turned from recognition into free recall |
 | `apfc-5-definitions.tsv` | Basic | 293 | Term-to-meaning and List-I/List-II pairs |
 | `apfc-6-traps.tsv` | Basic | 30 | T-01 to T-30 of F11.4 — shape on the front, remedy on the back |
-| `apfc-7-interview.tsv` | Basic | 41 | The one-line interview answers, prompted as *speak for thirty seconds* |
+| `apfc-7-interview.tsv` | Basic | 42 | The one-line interview answers, prompted as *speak for thirty seconds* |
 
 Tags are hierarchical, so any slice can be studied on its own:
 `APFC::M09::F9_3`, `syllabus::labour-law`, `type::numbers`.
@@ -41,13 +41,17 @@ the distractor and ask you to refuse it.
 
 **4. Never fabricate a question.** Where a statement had no clozeable target and no
 natural split, it was skipped and counted rather than turned into a vague prompt.
-440 lines were dropped that way, and the count is printed on every build.
+3,268 lines were dropped that way — including 897 welded PDF lines and 393 page
+headers — and every count is printed on each build.
 
-## What is not here
+## The PDF modules
 
-Modules 1, 2, 3 and 5 — 97.5 of the 300 planning marks. Their sources are not in
-`src/`. See `incoming/README.md`; once they are uploaded, one rebuild covers all
-twelve modules.
+Modules **1, 2, 3 and 5** — 97.5 of the 300 planning marks — are read from
+`incoming/` as **PDFs**, and contribute **2,643 cards: facts and figures only.**
+They produce **no** discrimination cards and **no** question-recall cards, because
+those need the confusion tables and answer grids to survive as tables, and a PDF
+has flattened them. F11.7 §2.2 has the split. **If markdown exists for those four
+modules, supply it** — one rebuild converts them to full sources.
 
 ## Schedule
 

@@ -21,10 +21,14 @@ coverage.
 
 - **Complete:** all eleven RT modules — all **300 planning marks** covered — **plus Module 12 for the
   100-mark interview**
-- **Just added:** **`decks/` — 4,403 spaced-repetition cards** generated from the manual's own chapters,
+- **Just added:** **`decks/` — 7,068 spaced-repetition cards** generated from the manual's own chapters,
   with **F11.7** as the schedule that governs them. This is the first thing in the project that attacks
   **decay** rather than coverage, which F11.3 §1 identifies as the binding constraint now the syllabus is
-  closed
+  closed. **Start with Core — Decks 1, 2 and 6, 3,155 cards** — per F11.7 §4.3
+- **Modules 1, 2, 3 and 5 have arrived**, as **44 PDF chapters** in `incoming/`. They feed the decks with
+  2,643 cards, but as **facts and figures only** — a PDF has flattened the tables that discrimination and
+  question-recall cards are made from. **Markdown for Modules 2 and 3 is the highest-value thing you could
+  still supply**
 - **Previously added:** **Full Mock 2 (F11.5)** and **Full Mock 3 (F11.6)** — two more complete 120-question
   papers on a deliberate difficulty ramp, and **Module 12 — The Interview** (F12.1 to F12.3), the stage
   that carries 25 per cent of final merit and previously had no chapter
@@ -34,8 +38,8 @@ coverage.
 - **Read first this cycle:** **F11.4 §5.** The four labour codes came into force on **21 November 2025**
   and the provident fund, pension and insurance schemes were replaced on **29 June 2026** — so every Act
   and scheme year previously memorised is now a distractor, while most of the *numbers* did not move
-- **Still to re-supply:** Modules 1, 2, 3 and 5 into `src/`, and the 2015 and 2023 papers into `pyq/` —
-  register §9. Those four modules were written against the **repealed** Acts and must be checked
+- **Still to supply:** the 2015 and 2023 papers into `pyq/` — register §9 — and, ideally, markdown for
+  Modules 1, 2, 3 and 5. Those four were written against the **repealed** Acts and must be checked
 
 ## The two layers
 
