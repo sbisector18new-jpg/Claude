@@ -94,10 +94,19 @@ the manual, because it works on the 300 marks already covered rather than adding
 | **F11.1** | Previous question analysis — the 2023 paper, module by module | [PDF, 22 pp](../pdf/module-11/F11.1-pyq-analysis.pdf) | [HTML](module-11/F11.1-pyq-analysis.html) | 25 |
 | **F11.2** | **Full Mock 1 — 120 questions, 120 minutes, 300 marks** | [PDF, 33 pp](../pdf/module-11/F11.2-full-mock-1.pdf) | [HTML](module-11/F11.2-full-mock-1.html) | **120** |
 | **F11.3** | Mock protocol, score analysis and final revision | [PDF, 19 pp](../pdf/module-11/F11.3-mock-protocol-final-revision.pdf) | [HTML](module-11/F11.3-mock-protocol-final-revision.html) | — |
+| **F11.4** | **The trap catalogue** — 30 structural traps, the confusion-pair compendium, and the elimination ladder | [PDF, 47 pp](../pdf/module-11/F11.4-trap-catalogue.pdf) | [HTML](module-11/F11.4-trap-catalogue.html) | 30 |
 
-**74 pages, 145 questions.** F11.1's bank is **25 questions set on the specific items the 2023 paper asked**
-— on the available evidence the highest-value 25 questions here. F11.2's key is balanced at exactly
+**121 pages, 175 questions.** F11.1's bank is **25 questions set on the specific items the 2023 paper
+asked** — on the available evidence the highest-value 25 questions here. F11.2's key is balanced at exactly
 **30/30/30/30**, so there is no letter to fall back on.
+
+**F11.4 is the other half of F11.1 §1.2.** That section proves a blind guess is worth zero and that
+eliminating one option turns a question positive — but only if the elimination is **real**. F11.4
+catalogues the thirty ways UPSC manufactures an option designed to make you eliminate the *correct* one,
+and its §6 confusion-pair compendium is a **twenty-five-minute weekly revision asset** for the last weeks.
+Its §5 is the one to read first this cycle: with the codes in force from **21 November 2025** and the
+provident fund, pension and insurance schemes replaced on **29 June 2026**, **every Act and scheme year you
+memorised is now a ready-made distractor**, while most of the numbers did not move.
 
 **Mocks 2 to 5 are assembled, not written out.** F11.3 §3 gives the recipe: 76 of each 120 come from this
 manual's banks, and the other 44 from your own Modules 1, 2, 3 and 5 or from the previous papers. Four more
