@@ -40,8 +40,9 @@ rest of the module get done; Module 11 as **3 numbered chapters** (F11.1–F11.3
 uncounted *"mocks"* line; and Module 10 as **4** chapters rather than 2, the extra two being the
 twelve-month dossier. Finer granularity, same syllabus.
 
-**Of those 84 chapters, 43 are in this repository** — Modules 4, 6, 7, 8, 9, 10, 11 and 12, comprising
-**1,098 pages and 1,339 practice questions**, plus 60 interview rehearsal prompts. The remaining 44 chapters are Modules 1, 2, 3 and 5, which are
+**Of those 84 chapters, 44 are in this repository** — Modules 4, 6, 7, 8, 9, 10, 11 and 12, comprising
+**1,106 pages and 1,339 practice questions**, plus 60 interview rehearsal prompts and **4,403
+spaced-repetition cards** in `decks/`, generated from those chapters and governed by **F11.7**. The remaining 44 chapters are Modules 1, 2, 3 and 5, which are
 complete as study material but have never been supplied here. **That is now the only substantial gap in
 the project, and §9 has been rewritten accordingly.**
 
@@ -448,6 +449,7 @@ coordinating **contributions and not benefits**.
 | **F11.4** | **The trap catalogue** — distractor architecture, confusion pairs, elimination ladder | **Complete v1.0** — 47 pp, 30 Q |
 | **F11.5** | **Full Mock 2** — built out of the trap catalogue | **Complete v1.0** — 35 pp, **120 Q** |
 | **F11.6** | **Full Mock 3** — calibrated above the paper on format loading | **Complete v1.0** — 36 pp, **120 Q** |
+| **F11.7** | **The Retention Engine** — spaced repetition over the manual's own facts | **Complete v1.0** — 8 pp, 4,403 cards |
 
 **192 pages, 415 questions — now the largest module in the manual.** Six deliberate decisions are recorded
 here because each could be reversed by a later session that did not know the reasoning.

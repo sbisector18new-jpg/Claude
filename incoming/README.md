@@ -15,17 +15,20 @@ web upload caps individual files at 25 MB, which these are comfortably under.
 
 ## Markdown is much better than PDF, if you have it
 
-| You upload | What happens | Card quality |
+| You upload | What happens | Cards recovered |
 |---|---|---|
-| `.md` sources | Dropped straight into `src/module-0N/`, decks rebuild exactly as for the other eight modules | Full |
-| `.pdf` only | Text is extracted by `build/pdftext.py`, then mined | Good, not full |
+| `.md` sources | Dropped into `src/module-0N/`, decks rebuild exactly as for the other eight modules | 100% |
+| `.pdf` only | Text is extracted by `build/pdftext.py`, then mined | **73%** |
 
-The gap is not the text — extraction recovers **95.6%** of words, measured across
-all 43 PDFs already in this repo against their known sources. The gap is
-**structure**. The deck builder reads meaning from markdown that a PDF has thrown
-away: which lines are wall-sheet facts, which tables are confusion tables, where a
-question ends and its explanation begins. From a PDF those distinctions have to be
-guessed, so fewer cards are made and more are imperfect.
+Both figures are measured, not estimated. Extraction recovers **95.6%** of words,
+checked across all 43 PDFs already in this repo against their known sources. Then
+the same chapter was built both ways: markdown gave 97 cards, PDF gave 71.
+
+The gap is not the text. It is **structure**. The deck builder reads meaning from
+markdown that a PDF has thrown away — which lines are wall-sheet facts, which
+tables are confusion tables, where a question ends and its explanation begins.
+Nearly the whole of the missing quarter is the **question-recall** deck, which
+needs the `| Q | Ans | Explanation |` tables to survive as tables.
 
 So: upload `.md` if it exists anywhere. Upload the PDFs if it does not. Both work.
 

@@ -1,0 +1,298 @@
+#separator:tab
+#html:true
+#notetype:Basic
+#deck:APFC::5 Definitions and Pairs
+#tags column:3
+<b>Economic growth</b>	A rise in real national output. <b>Quantitative, single-dimensional</b>	APFC::M04::F4_1 syllabus::economy type::definition
+<b>Economic development</b>	Growth <b>plus</b> structural and welfare change — health, education, distribution. <b>Qualitative and normative</b>	APFC::M04::F4_1 syllabus::economy type::definition
+<b>Jobless growth</b>	Output rises without a commensurate rise in employment	APFC::M04::F4_1 syllabus::economy type::definition
+<b>Inclusive growth</b>	Growth whose benefits reach the bottom of the distribution	APFC::M04::F4_1 syllabus::economy type::definition
+<b>Inflation</b>	A <b>sustained rise in the general price level</b>	APFC::M04::F4_2 syllabus::economy type::definition
+<b>Deflation</b>	An actual <b>fall</b> in the price level — a negative inflation rate	APFC::M04::F4_2 syllabus::economy type::definition
+<b>Disinflation</b>	A <b>fall in the RATE of inflation</b>, prices still rising but more slowly	APFC::M04::F4_2 syllabus::economy type::definition
+<b>Reflation</b>	Deliberate stimulation of demand to lift prices out of deflation	APFC::M04::F4_2 syllabus::economy type::definition
+<b>Stagflation</b>	<b>High inflation together with stagnant output and high unemployment</b>	APFC::M04::F4_2 syllabus::economy type::definition
+<b>Skewflation</b>	A price rise concentrated in a few commodities rather than general	APFC::M04::F4_2 syllabus::economy type::definition
+<b>Headline inflation</b>	The all-items rate	APFC::M04::F4_2 syllabus::economy type::definition
+<b>Core inflation</b>	Headline <b>excluding food and fuel</b> — the volatile items	APFC::M04::F4_2 syllabus::economy type::definition
+<b>NPA</b>	A loan on which interest or principal is overdue <b>beyond 90 days</b>	APFC::M04::F4_2 syllabus::economy type::definition
+<b>SARFAESI Act, 2002</b>	Lets secured creditors enforce security <b>without court intervention</b>	APFC::M04::F4_2 syllabus::economy type::definition
+<b>Insolvency and Bankruptcy Code, 2016</b>	Time-bound resolution; adjudicated by the <b>NCLT</b> for companies	APFC::M04::F4_2 syllabus::economy type::definition
+Basel III	International capital adequacy norms	APFC::M04::F4_2 syllabus::economy type::definition
+<b>Fiscal deficit, 2026-27 (BE)</b>	<b>4.3% of GDP</b>	APFC::M04::F4_3 syllabus::economy type::definition
+Fiscal deficit, 2025-26 (RE)	<b>4.4% of GDP</b>	APFC::M04::F4_3 syllabus::economy type::definition
+<b>Total expenditure</b>	about <b>₹53.5 lakh crore</b>	APFC::M04::F4_3 syllabus::economy type::definition
+<b>Capital expenditure</b>	about <b>₹12.2 lakh crore</b>, up about 9%	APFC::M04::F4_3 syllabus::economy type::definition
+Effective capital expenditure	about <b>4.4% of GDP</b>	APFC::M04::F4_3 syllabus::economy type::definition
+Presented by	<b>Nirmala Sitharaman</b>, Union Finance Minister	APFC::M04::F4_3 syllabus::economy type::definition
+<b>Open</b>	Willing and able to work, no work available at all	APFC::M04::F4_4 syllabus::economy type::definition
+<b>Disguised</b>	<b>More people employed than are needed</b> — removing some would not reduce output. <b>Characteristic of Indian agriculture</b>	APFC::M04::F4_4 syllabus::economy type::definition
+<b>Seasonal</b>	Work available only in part of the year — again agriculture, and tourism	APFC::M04::F4_4 syllabus::economy type::definition
+<b>Structural</b>	A <b>mismatch</b> between workers' skills or location and the jobs available. Long-lasting	APFC::M04::F4_4 syllabus::economy type::definition
+<b>Cyclical</b>	Caused by a <b>downturn in aggregate demand</b>; disappears in recovery	APFC::M04::F4_4 syllabus::economy type::definition
+<b>Frictional</b>	Short-term, while moving between jobs — a search phenomenon, not a shortage	APFC::M04::F4_4 syllabus::economy type::definition
+<b>Technological</b>	Displacement by mechanisation or automation	APFC::M04::F4_4 syllabus::economy type::definition
+<b>Educated / underemployment</b>	Qualified persons in work below their qualification, or working fewer hours than they wish	APFC::M04::F4_4 syllabus::economy type::definition
+A. Carriage inwards	1. Profit and Loss Account	APFC::M06::F6_3 syllabus::accounting type::definition
+B. Carriage outwards	2. Trading Account	APFC::M06::F6_3 syllabus::accounting type::definition
+C. Closing stock	3. Credit of Trading Account and a current asset	APFC::M06::F6_3 syllabus::accounting type::definition
+D. Preliminary expenses not written off	4. Fictitious asset	APFC::M06::F6_3 syllabus::accounting type::definition
+A. Depreciation	1. Intangible assets	APFC::M06::F6_4 syllabus::accounting type::definition
+B. Amortisation	2. Tangible fixed assets	APFC::M06::F6_4 syllabus::accounting type::definition
+C. Depletion	3. Wasting assets such as mines	APFC::M06::F6_4 syllabus::accounting type::definition
+D. Obsolescence	4. Becoming outdated through technological change	APFC::M06::F6_4 syllabus::accounting type::definition
+<b>Authorised / Nominal / Registered</b>	The <b>maximum</b> the company may issue, as stated in its <b>memorandum</b>	APFC::M06::F6_6 syllabus::accounting type::definition
+<b>Issued</b>	The part actually <b>offered</b> to the public	APFC::M06::F6_6 syllabus::accounting type::definition
+<b>Subscribed</b>	The part of issued capital <b>taken up</b> by investors	APFC::M06::F6_6 syllabus::accounting type::definition
+<b>Called-up</b>	The part of subscribed capital the company has <b>demanded</b>	APFC::M06::F6_6 syllabus::accounting type::definition
+<b>Paid-up</b>	The part of called-up capital actually <b>received</b>	APFC::M06::F6_6 syllabus::accounting type::definition
+<b>Uncalled</b>	Subscribed but <b>not yet demanded</b>	APFC::M06::F6_6 syllabus::accounting type::definition
+<b>Cumulative</b>	Unpaid dividend <b>accumulates</b> as arrears. Non-cumulative dividends lapse	APFC::M06::F6_6 syllabus::accounting type::definition
+<b>Participating</b>	Shares in <b>surplus</b> profits beyond the fixed rate, as well	APFC::M06::F6_6 syllabus::accounting type::definition
+<b>Convertible</b>	Convertible into equity shares	APFC::M06::F6_6 syllabus::accounting type::definition
+<b>Redeemable</b>	Repayable within a period — and under the 2013 Act <b>all</b> preference shares must be redeemable	APFC::M06::F6_6 syllabus::accounting type::definition
+A. Authorised capital	1. The portion of subscribed capital that has been demanded	APFC::M06::F6_6 syllabus::accounting type::definition
+B. Subscribed capital	2. The maximum stated in the memorandum	APFC::M06::F6_6 syllabus::accounting type::definition
+C. Called-up capital	3. The portion of issued capital taken up by investors	APFC::M06::F6_6 syllabus::accounting type::definition
+D. Reserve capital	4. Callable only in the event of winding up	APFC::M06::F6_6 syllabus::accounting type::definition
+<b>Internal check</b>	An <b>arrangement of duties</b> such that no single person handles a transaction from beginning to end, so the work of one is automatically checked by another	APFC::M06::F6_7 syllabus::accounting type::definition
+<b>Internal audit</b>	An <b>independent appraisal</b> function operating within the organisation	APFC::M06::F6_7 syllabus::accounting type::definition
+<b>Internal control</b>	The <b>whole system</b> of controls, financial and otherwise, established by management to conduct business in an orderly manner, safeguard assets and secure the accuracy of records	APFC::M06::F6_7 syllabus::accounting type::definition
+A. Vouching	1. Transactions and their documentary evidence	APFC::M06::F6_7 syllabus::accounting type::definition
+B. Verification	2. Assets and liabilities in the balance sheet	APFC::M06::F6_7 syllabus::accounting type::definition
+C. Internal check	3. Division of duties so that no one person handles a transaction completely	APFC::M06::F6_7 syllabus::accounting type::definition
+D. Propriety audit	4. The wisdom, faithfulness and economy of expenditure	APFC::M06::F6_7 syllabus::accounting type::definition
+A. Geometric mean	1. Averaging rates of growth	APFC::M06::F6_8 syllabus::accounting type::definition
+B. Harmonic mean	2. Averaging speeds	APFC::M06::F6_8 syllabus::accounting type::definition
+C. Ogive	3. Median	APFC::M06::F6_8 syllabus::accounting type::definition
+D. Histogram	4. Mode	APFC::M06::F6_8 syllabus::accounting type::definition
+<b>Reinsurance</b>	An <b>insurer</b> insures part of the risk it has accepted with <b>another insurer</b>	APFC::M07::F7_1 syllabus::insurance type::definition
+<b>Co-insurance</b>	Two or more insurers share one risk <b>from the outset</b>	APFC::M07::F7_1 syllabus::insurance type::definition
+<b>Double insurance</b>	The <b>insured</b> covers the same risk with more than one insurer — this is where <b>contribution</b> operates	APFC::M07::F7_1 syllabus::insurance type::definition
+A. Utmost good faith	1. Disclosure of all material facts	APFC::M07::F7_1 syllabus::insurance type::definition
+B. Insurable interest	2. A financial stake in the subject matter	APFC::M07::F7_1 syllabus::insurance type::definition
+C. Subrogation	3. The insurer's right of recovery against a third party	APFC::M07::F7_1 syllabus::insurance type::definition
+D. Causa proxima	4. The nearest cause determines liability	APFC::M07::F7_1 syllabus::insurance type::definition
+<b>abate</b>	to lessen, diminish	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>abstruse</b>	difficult to understand	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>acquiesce</b>	to accept passively	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>acumen</b>	keen judgement	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>adamant</b>	unyielding	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>admonish</b>	to reprove gently	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>alacrity</b>	brisk and cheerful willingness	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>allay</b>	to relieve, calm	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>ambiguous</b>	open to more than one meaning	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>ameliorate</b>	to make better	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>amenable</b>	willing to comply	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>anomaly</b>	a deviation from the norm	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>apathy</b>	lack of interest or feeling	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>arbitrary</b>	based on whim, not reason	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>assiduous</b>	diligent and persistent	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>audacious</b>	boldly daring	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>austere</b>	severe, without comfort	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>belligerent</b>	aggressive, warlike	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>benevolent</b>	kindly, well-meaning	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>brevity</b>	shortness of expression	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>candid</b>	frank, straightforward	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>capricious</b>	given to sudden changes of mood	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>censure</b>	to criticise formally	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>circumspect</b>	cautious, considering all sides	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>circumvent</b>	to find a way around	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>cogent</b>	convincing, compelling	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>complacent</b>	smugly self-satisfied	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>conciliate</b>	to pacify, win over	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>condone</b>	to overlook an offence	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>contentious</b>	causing dispute	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>corroborate</b>	to confirm with evidence	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>credulity</b>	readiness to believe	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>culpable</b>	deserving blame	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>cursory</b>	hasty, superficial	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>deference</b>	respectful submission	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>defunct</b>	no longer operating	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>deleterious</b>	harmful	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>deprecate</b>	to express disapproval of	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>desultory</b>	lacking plan, random	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>diffident</b>	lacking self-confidence	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>dilatory</b>	causing or given to delay	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>discern</b>	to perceive clearly	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>disparate</b>	essentially different	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>draconian</b>	excessively harsh	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>ebullient</b>	overflowing with enthusiasm	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>eclectic</b>	drawing from many sources	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>efficacious</b>	producing the intended result	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>egregious</b>	outstandingly bad	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>elucidate</b>	to make clear	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>emulate</b>	to imitate in order to equal	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>ephemeral</b>	short-lived	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>equivocal</b>	deliberately ambiguous	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>erudite</b>	learned	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>exacerbate</b>	to make worse	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>exonerate</b>	to clear of blame	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>expedite</b>	to hasten	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>extraneous</b>	irrelevant, from outside	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>facilitate</b>	to make easier	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>fastidious</b>	very attentive to detail	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>feasible</b>	practicable	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>fortitude</b>	courage in adversity	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>frugal</b>	economical, sparing	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>futile</b>	pointless	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>garrulous</b>	excessively talkative	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>germane</b>	relevant to the matter	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>gregarious</b>	sociable	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>hackneyed</b>	overused, unoriginal	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>impartial</b>	unbiased	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>impeccable</b>	faultless	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>impetuous</b>	acting rashly	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>impunity</b>	freedom from punishment	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>inadvertent</b>	unintentional	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>incisive</b>	sharp, penetrating	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>incontrovertible</b>	not open to dispute	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>ineluctable</b>	unavoidable	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>innocuous</b>	harmless	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>insidious</b>	proceeding harmfully but unnoticed	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>intransigent</b>	refusing to compromise	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>inundate</b>	to flood, overwhelm	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>irrevocable</b>	not able to be undone	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>judicious</b>	showing good judgement	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>laconic</b>	using very few words	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>latent</b>	present but not visible	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>laudable</b>	deserving praise	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>lucid</b>	clear, easily understood	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>magnanimous</b>	generous in spirit	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>meticulous</b>	extremely careful	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>mitigate</b>	to make less severe	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>moot</b>	open to debate	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>nebulous</b>	vague, ill-defined	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>obfuscate</b>	to make deliberately unclear	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>obsolete</b>	out of date	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>onerous</b>	burdensome	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>ostensible</b>	apparent but not actual	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>paucity</b>	scarcity	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>peremptory</b>	admitting no refusal	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>perfunctory</b>	done without care, as a formality	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>pernicious</b>	very harmful	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>plausible</b>	seeming reasonable	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>pragmatic</b>	practical rather than theoretical	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>precarious</b>	insecure, risky	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>prescient</b>	knowing in advance	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>prevaricate</b>	to speak evasively	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>proclivity</b>	a tendency	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>prodigious</b>	remarkably large	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>profuse</b>	abundant	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>prosaic</b>	dull, commonplace	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>prudent</b>	showing careful judgement	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>punctilious</b>	strict about detail and correctness	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>quandary</b>	a state of uncertainty	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>rebuke</b>	to reprimand sharply	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>recalcitrant</b>	stubbornly resisting authority	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>reciprocal</b>	mutual, given in return	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>rectitude</b>	moral uprightness	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>redundant</b>	superfluous, no longer needed	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>refute</b>	to prove false	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>relegate</b>	to consign to a lower position	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>remiss</b>	negligent in duty	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>reprehensible</b>	deserving censure	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>rescind</b>	to cancel, revoke	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>reticent</b>	reserved, not forthcoming	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>salient</b>	most noticeable, prominent	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>sanguine</b>	optimistic	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>scrupulous</b>	conscientiously exact	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>scrutinise</b>	to examine closely	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>spurious</b>	false, not genuine	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>squander</b>	to waste	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>stringent</b>	strict, exacting	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>succinct</b>	brief and clearly expressed	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>superfluous</b>	more than is needed	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>surreptitious</b>	done secretly	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>tacit</b>	understood without being stated	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>tenable</b>	capable of being defended	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>tenuous</b>	thin, weak	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>trivial</b>	of little importance	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>ubiquitous</b>	present everywhere	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>unequivocal</b>	leaving no doubt	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>untenable</b>	not capable of being defended	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>vacillate</b>	to waver between choices	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>veracity</b>	truthfulness	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>vehement</b>	showing strong feeling	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>verbose</b>	using more words than needed	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>vigilant</b>	watchful	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>vindicate</b>	to clear of blame; to justify	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>vociferous</b>	loud and insistent	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>zealous</b>	fervently devoted	APFC::M08::F8_1 syllabus::english-quant type::definition
+<b>Proportion</b>	a : b = c : d, so <b>ad = bc</b> — the product of the extremes equals that of the means	APFC::M08::F8_5 syllabus::english-quant type::definition
+<b>Compounded ratio</b>	Combine a:b and b:c by making the common term equal: a:b:c	APFC::M08::F8_5 syllabus::english-quant type::definition
+<b>Duplicate / sub-duplicate</b>	a²:b² · and the square-root ratio	APFC::M08::F8_5 syllabus::english-quant type::definition
+<b>Dividing a sum</b>	In a : b : c, each share is <i>its part ÷ total parts</i> of the sum	APFC::M08::F8_5 syllabus::english-quant type::definition
+<b>Direct proportion</b>	More men, more work: multiply	APFC::M08::F8_5 syllabus::english-quant type::definition
+<b>Inverse proportion</b>	More men, <b>fewer days</b>: divide	APFC::M08::F8_5 syllabus::english-quant type::definition
+<b>Angle at the centre</b>	<b>Twice</b> the angle subtended by the same arc at any point on the remaining circumference	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Angle in a semicircle</b>	<b>90°</b> — the angle subtended by a <b>diameter</b> at the circumference is a right angle	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Same segment</b>	Angles in the same segment are <b>equal</b>	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Cyclic quadrilateral</b>	<b>Opposite angles are supplementary</b> — they add to 180°	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Exterior angle</b>	The exterior angle of a cyclic quadrilateral equals the <b>interior opposite</b> angle	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Alternate segment</b>	The angle between a tangent and a chord equals the angle in the alternate segment	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Perpendicular from the centre</b>	<b>Bisects the chord</b> — so radius, half-chord and distance form a right triangle	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Equal chords</b>	Are <b>equidistant</b> from the centre, and subtend equal angles at it	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Tangent and radius</b>	Meet at <b>90°</b> at the point of contact	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Two tangents from a point</b>	Are <b>equal</b> in length, and subtend equal angles at the centre	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Tangent–secant</b>	<b>PT² = PA × PB</b>	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Intersecting chords</b>	<b>AP × PB = CP × PD</b>	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Angle sum</b>	180° in a triangle · <b>exterior angle = sum of the two interior opposite angles</b>	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Midpoint theorem</b>	The segment joining the midpoints of two sides is <b>parallel to the third and half its length</b>	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Centroid</b>	Medians meet at the centroid, which divides each median <b>2 : 1</b> from the vertex	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Angle bisector</b>	Divides the opposite side in the ratio of the adjacent sides	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Inequality</b>	Any two sides together exceed the third · the largest side faces the largest angle	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Equilateral, side a</b>	Height <b>(root 3 / 2) a</b> · area <b>(root 3 / 4) a²</b>	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>30-60-90</b>	Sides in the ratio <b>1 : root 3 : 2</b>	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>45-45-90</b>	Sides in the ratio <b>1 : 1 : root 2</b>	APFC::M08::F8_6 syllabus::english-quant type::definition
+<b>Range</b>	0 <= P(E) <= 1 · impossible event 0 · certain event 1	APFC::M08::F8_7 syllabus::english-quant type::definition
+<b>Complement</b>	<b>P(not E) = 1 − P(E)</b> — often far easier than E itself	APFC::M08::F8_7 syllabus::english-quant type::definition
+<b>Addition</b>	P(A or B) = P(A) + P(B) − P(A and B) · for <b>mutually exclusive</b> events the last term is 0	APFC::M08::F8_7 syllabus::english-quant type::definition
+<b>Multiplication</b>	For <b>independent</b> events, P(A and B) = P(A) × P(B)	APFC::M08::F8_7 syllabus::english-quant type::definition
+<b>Without replacement</b>	The second draw's denominator <b>falls by one</b> — the events are not independent	APFC::M08::F8_7 syllabus::english-quant type::definition
+<b>HCF</b>	The largest number dividing all of them — take the <b>lowest</b> power of each common prime	APFC::M08::F8_7 syllabus::english-quant type::definition
+<b>LCM</b>	The smallest number divisible by all of them — take the <b>highest</b> power of every prime	APFC::M08::F8_7 syllabus::english-quant type::definition
+<b>The product rule</b>	<b>HCF × LCM = the product of the two numbers</b> (two numbers only)	APFC::M08::F8_7 syllabus::english-quant type::definition
+Fractions	HCF of fractions = HCF of numerators / LCM of denominators	APFC::M08::F8_7 syllabus::english-quant type::definition
+A. Concave mirror	1. Headlight reflector	APFC::M09::F9_2 syllabus::science type::definition
+B. Convex mirror	2. Rear-view mirror	APFC::M09::F9_2 syllabus::science type::definition
+C. Convex lens	3. Correction of hypermetropia	APFC::M09::F9_2 syllabus::science type::definition
+D. Concave lens	4. Correction of myopia	APFC::M09::F9_2 syllabus::science type::definition
+A. Prop roots	1. Banyan	APFC::M09::F9_4 syllabus::science type::definition
+B. Stilt roots	2. Sugarcane	APFC::M09::F9_4 syllabus::science type::definition
+C. Pneumatophores	3. Mangrove	APFC::M09::F9_4 syllabus::science type::definition
+D. Storage root	4. Carrot	APFC::M09::F9_4 syllabus::science type::definition
+A. Arithmetic and logic unit	1. Arithmetic and logical operations	APFC::M09::F9_5 syllabus::science type::definition
+B. Control unit	2. Directs and coordinates operations	APFC::M09::F9_5 syllabus::science type::definition
+C. Program counter	3. Address of the next instruction	APFC::M09::F9_5 syllabus::science type::definition
+D. Accumulator	4. Intermediate arithmetic results	APFC::M09::F9_5 syllabus::science type::definition
+<b>Kernel</b>	The <b>core</b> of the operating system	APFC::M09::F9_6 syllabus::science type::definition
+<b>Virtual memory</b>	Using disk space to extend apparent main memory	APFC::M09::F9_6 syllabus::science type::definition
+<b>Paging</b>	Dividing memory into fixed-size blocks	APFC::M09::F9_6 syllabus::science type::definition
+<b>Spooling</b>	Queuing jobs — most familiarly <b>print jobs</b> — so the CPU need not wait	APFC::M09::F9_6 syllabus::science type::definition
+<b>Deadlock</b>	Two or more processes each waiting for a resource the other holds	APFC::M09::F9_6 syllabus::science type::definition
+<b>Booting</b>	Starting the computer. <b>Cold boot</b> = from power off. <b>Warm boot</b> = restart while running	APFC::M09::F9_6 syllabus::science type::definition
+<b>GUI / CLI</b>	Graphical user interface versus command-line interface	APFC::M09::F9_6 syllabus::science type::definition
+A. Compiler	1. Translates the entire program at once	APFC::M09::F9_6 syllabus::science type::definition
+B. Interpreter	2. Translates and executes line by line	APFC::M09::F9_6 syllabus::science type::definition
+C. Assembler	3. Converts assembly language into machine code	APFC::M09::F9_6 syllabus::science type::definition
+D. Kernel	4. The core of the operating system	APFC::M09::F9_6 syllabus::science type::definition
+A. Hub	1. Physical layer	APFC::M09::F9_7 syllabus::science type::definition
+B. Switch	2. Data link layer	APFC::M09::F9_7 syllabus::science type::definition
+C. Router	3. Network layer	APFC::M09::F9_7 syllabus::science type::definition
+D. Gateway	4. Connects dissimilar networks	APFC::M09::F9_7 syllabus::science type::definition
+Recommended by	The <b>Central Board of Trustees</b>, at its meeting of <b>28 February 2026</b>	APFC::M10::F10_2 syllabus::current-affairs type::definition
+Ratified by	The <b>Government</b> (Finance Ministry concurrence), June 2026	APFC::M10::F10_2 syllabus::current-affairs type::definition
+Contributing members	over <b>7 crore</b>	APFC::M10::F10_2 syllabus::current-affairs type::definition
+CBT chaired by	<b>Mansukh Mandaviya</b>, Union Minister for Labour and Employment	APFC::M10::F10_2 syllabus::current-affairs type::definition
+<b>§2 to §12</b>	The paper — 120 questions in eleven parts	APFC::M11::F11_2 syllabus::exam-craft type::definition
+<b>§13</b>	The answer key, for scoring	APFC::M11::F11_2 syllabus::exam-craft type::definition
+<b>§14</b>	Explanations, part by part	APFC::M11::F11_2 syllabus::exam-craft type::definition
+<b>§15</b>	The score analysis sheet	APFC::M11::F11_2 syllabus::exam-craft type::definition
+<b>§16, §17</b>	What the mock was testing, and the attempt protocol	APFC::M11::F11_2 syllabus::exam-craft type::definition
+<b>§13</b>	The answer key	APFC::M11::F11_5 syllabus::exam-craft type::definition
+<b>§14</b>	Explanations, part by part, each tagged with its <b>trap code</b>	APFC::M11::F11_5 syllabus::exam-craft type::definition
+<b>§15</b>	Score analysis, including the trap-signature cross-check	APFC::M11::F11_5 syllabus::exam-craft type::definition
+<b>§13</b>	Answer key	APFC::M11::F11_6 syllabus::exam-craft type::definition
+<b>§15</b>	Score analysis, and the three-mock trend	APFC::M11::F11_6 syllabus::exam-craft type::definition
+<b>§16, §17</b>	What the mock was testing, and the final protocol	APFC::M11::F11_6 syllabus::exam-craft type::definition
