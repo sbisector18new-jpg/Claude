@@ -95,10 +95,13 @@ the manual, because it works on the 300 marks already covered rather than adding
 | **F11.2** | **Full Mock 1 — 120 questions, 120 minutes, 300 marks** | [PDF, 33 pp](../pdf/module-11/F11.2-full-mock-1.pdf) | [HTML](module-11/F11.2-full-mock-1.html) | **120** |
 | **F11.3** | Mock protocol, score analysis and final revision | [PDF, 19 pp](../pdf/module-11/F11.3-mock-protocol-final-revision.pdf) | [HTML](module-11/F11.3-mock-protocol-final-revision.html) | — |
 | **F11.4** | **The trap catalogue** — 30 structural traps, the confusion-pair compendium, and the elimination ladder | [PDF, 47 pp](../pdf/module-11/F11.4-trap-catalogue.pdf) | [HTML](module-11/F11.4-trap-catalogue.html) | 30 |
+| **F11.5** | **Full Mock 2** — built out of the trap catalogue | [PDF, 35 pp](../pdf/module-11/F11.5-full-mock-2.pdf) | [HTML](module-11/F11.5-full-mock-2.html) | **120** |
+| **F11.6** | **Full Mock 3** — calibrated above the paper, loaded with the formats that punish partial knowledge | [PDF, 36 pp](../pdf/module-11/F11.6-full-mock-3.pdf) | [HTML](module-11/F11.6-full-mock-3.html) | **120** |
 
-**121 pages, 175 questions.** F11.1's bank is **25 questions set on the specific items the 2023 paper
-asked** — on the available evidence the highest-value 25 questions here. F11.2's key is balanced at exactly
-**30/30/30/30**, so there is no letter to fall back on.
+**192 pages, 415 questions — the largest module in the manual.** F11.1's bank is **25 questions set on the
+specific items the 2023 paper asked**. All three mocks have keys balanced at exactly **30/30/30/30**, so
+there is no letter to fall back on, and all three share an **identical composition** so that the
+three-mock trend in F11.6 §15.2 is a valid comparison.
 
 **F11.4 is the other half of F11.1 §1.2.** That section proves a blind guess is worth zero and that
 eliminating one option turns a question positive — but only if the elimination is **real**. F11.4
@@ -108,10 +111,48 @@ Its §5 is the one to read first this cycle: with the codes in force from **21 N
 provident fund, pension and insurance schemes replaced on **29 June 2026**, **every Act and scheme year you
 memorised is now a ready-made distractor**, while most of the numbers did not move.
 
-**Mocks 2 to 5 are assembled, not written out.** F11.3 §3 gives the recipe: 76 of each 120 come from this
-manual's banks, and the other 44 from your own Modules 1, 2, 3 and 5 or from the previous papers. Four more
-fully written papers would have meant 480 padded questions, which would be worse than none — you would be
-calibrating against questions that do not resemble the paper.
+**Three written mocks, on a deliberate ramp.** F11.2 is set to the observed shape of the paper. **F11.5 is
+set to the trap catalogue** — nineteen of its items are built on a named F11.4 trap code and the superseded
+figure appears as a distractor eleven times. **F11.6 is set above the paper**, hardened not with obscurer
+facts but with the formats that convert partial knowledge into zero: **seven count items** against Mock 1's
+two, six assertion-reason items, and a pair-count item.
+
+**Sit them at weeks 8, 10 and 12.** Expect the totals to fall and the **accuracy** to hold — F11.6 §15.2
+explains why that trajectory is the good one, and which pattern instead means you are buying marks with
+volume and losing them to negatives.
+
+**Mocks 4 and 5 remain assembled rather than written.** F11.3 §3 gives the recipe, and with Modules 1, 2, 3
+and 5 supplied it now works fully. Two further hand-written papers would add little that F11.6's format
+loading does not already test.
+
+## Module 12 — The Interview · complete
+
+**100 marks, 25 per cent of final merit, and the stage this manual previously did not cover.** Because RT
+marks are **not discarded**, the interview is **added** to your written score rather than replacing it —
+which means **one interview mark is worth three RT marks** in merit terms, 100 marks being weighted to 25
+against 300 weighted to 75.
+
+| Ch | Topic | PDF | On screen | Q |
+|---|---|---|---|---:|
+| **F12.1** | The interview — what it is, the board's conduct, and mining your own bio-data | [PDF, 16 pp](../pdf/module-12/F12.1-interview-shape-and-biodata.pdf) | [HTML](module-12/F12.1-interview-shape-and-biodata.html) | — |
+| **F12.2** | **The EPFO domain dossier** — the post, the organisation, the law and the numbers, in spoken form | [PDF, 14 pp](../pdf/module-12/F12.2-epfo-domain-dossier.pdf) | [HTML](module-12/F12.2-epfo-domain-dossier.html) | — |
+| **F12.3** | Opinion frames, situational judgment, and a **60-question rehearsal bank** | [PDF, 12 pp](../pdf/module-12/F12.3-opinion-and-situational.pdf) | [HTML](module-12/F12.3-opinion-and-situational.html) | 60 |
+
+**42 pages.** The module carries **no Recruitment Test marks** — the RT ledger stays closed at 300.0 — and
+it is not scored by `check.py`'s answer-key gate, because its 60 questions are **spoken rehearsal prompts**
+rather than multiple-choice items.
+
+**Three ideas run through it.** You are scored on the **reasoning**, not the answer, and on what you do when
+you do not know — so F12.1 §6's *I don't know* protocol gains marks rather than losing them. Three frames
+cover almost every question: state-context-stop for factual, **acknowledge-analyse-position** for opinion,
+and **facts-law-options-decision-safeguard** for situational. And the advantage you already hold is
+**currency**: very few candidates at an APFC board can say accurately that the Codes commenced on 21
+November 2025, that the 1952, 1995 and 1976 schemes were each replaced on 29 June 2026, that the ceiling is
+still ₹15,000 because ₹25,000 is approved but **not notified**, and that an APFC's powers now flow from
+Chapter III of the Code. F12.2 is the structure in which to deploy that.
+
+**Write F12.1 §3's dossier now, even if the RT is months away.** It does not decay, it takes a day, and it
+is the most valuable day in the module. Run the rest in the gap after the written paper.
 
 ## Module 10 — Integrated Current Affairs · complete
 
@@ -242,9 +283,10 @@ If your time collapses, these are the sections that carry the most marks:
 The **[Master Content Register](../MASTER_CONTENT_REGISTER.md)** is the source of truth. Read it first if
 you are resuming after a break.
 
-- **Complete: all eleven modules** — 81 chapters, 230 hours, **300.0 planning marks. The syllabus is
-  closed.**
-- **In this repository:** Modules 4, 6, 7, 8, 9, 10 and 11 — **37 chapters, 938 pages, 1,069 questions**
+- **Complete: all eleven RT modules** — 84 chapters including Module 12, 230 hours, **300.0 RT planning
+  marks. The syllabus is closed** — plus **Module 12** for the 100-mark interview, which carries no RT marks
+- **In this repository:** Modules 4, 6, 7, 8, 9, 10, 11 and 12 — **43 chapters, 1,098 pages, 1,339
+  multiple-choice questions** and 60 interview rehearsal prompts
 - **Not here:** **Modules 1, 2, 3 and 5** are complete as study material but have never been supplied —
   44 chapters and **97.5 marks**. See register §9. `pyq/` is also still empty
 
@@ -257,10 +299,13 @@ you are resuming after a break.
 2. **Re-supply Modules 1, 2, 3 and 5**, Modules 2 and 3 first. They are **97.5 marks**, the coldest material
    you own, and — because the labour codes and EPS 2026 have superseded much of what they teach — possibly
    the least current. Register §10 has the three checks to run against them
-3. **Sit Mock 1** (F11.2) at week 8, under F11.3 §1.1's conditions, and complete the score analysis before
-   anything else
-4. **Diarise F10.1 §4's twelve-item verification sweep** for the fortnight before the paper
-5. **Follow F11.3 §4.2** in the last four weeks — wall sheets, the error log, and no new material
+3. **Sit the three mocks** — F11.2 at week 8, **F11.5 at week 10, F11.6 at week 12** — under F11.3 §1.1's
+   conditions, completing each score analysis before moving on. F11.6 §15.2's three-mock trend is the only
+   chart that matters
+4. **Write F12.1 §3's interview dossier now.** It does not decay, and the interview is the stage where one
+   mark is worth three
+5. **Diarise F10.1 §4's twelve-item verification sweep** for the fortnight before the paper
+6. **Follow F11.3 §4.2** in the last four weeks — wall sheets, the error log, and no new material
 
 **And supply the 2015 and 2023 papers into `pyq/`** when you can: they are needed for 44 of the 120
 questions in every assembled mock, and for a real repeat-rate analysis.

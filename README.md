@@ -19,9 +19,14 @@ coverage.
 
 ## Where the project stands
 
-- **Complete:** all eleven modules — all **300 planning marks** covered
-- **Just added:** **F11.4 — The Trap Catalogue** (Module 11) — 47 pages, 30 diagnostic questions. Thirty
-  structural distractor patterns, a confusion-pair compendium, and the elimination ladder
+- **Complete:** all eleven RT modules — all **300 planning marks** covered — **plus Module 12 for the
+  100-mark interview**
+- **Just added:** **Full Mock 2 (F11.5)** and **Full Mock 3 (F11.6)** — two more complete 120-question
+  papers on a deliberate difficulty ramp, and **Module 12 — The Interview** (F12.1 to F12.3), the stage
+  that carries 25 per cent of final merit and previously had no chapter
+- **Why the interview matters more than it looks:** RT marks are **not discarded**, so the interview is
+  *added* to your written score. 100 interview marks weighted to 25 against 300 RT marks weighted to 75
+  means **one interview mark is worth three RT marks**
 - **Read first this cycle:** **F11.4 §5.** The four labour codes came into force on **21 November 2025**
   and the provident fund, pension and insurance schemes were replaced on **29 June 2026** — so every Act
   and scheme year previously memorised is now a distractor, while most of the *numbers* did not move

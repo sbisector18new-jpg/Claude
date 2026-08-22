@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The EPFO Domain Dossier for the Interview</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F12.2 · EPFO Domain Dossier
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · MODULE 12 · CHAPTER F12.2</p><h1 class="doc-t">The EPFO Domain Dossier for the Interview</h1><p class="doc-s">Chapter F12.2 — The Post, the Organisation, the Law and the Numbers, in Spoken Form</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 12 — The Interview</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F12.2</td></tr><tr><td class="k">Topic</td><td class="v">EPFO functions, the APFC's statutory powers, scheme architecture and interview-ready domain answers</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">22 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Interview / Personality Test</td></tr></table></header>
+<aside class="cal must-master"><p class="cal-h">MUST MASTER · THE DIFFERENCE BETWEEN KNOWING THIS AND BEING ABLE TO SAY IT</p><p>You have already studied almost everything in this chapter. Modules 2 and 3 taught the law, F10.3 recorded the current position, F11.4 catalogued the traps.</p><p><strong>This chapter does something different: it converts that knowledge into spoken answers of the right length.</strong> A candidate who can recite Section 7A but cannot answer <em>what will you actually do all day</em> in forty seconds will be marked below a candidate who can do the reverse.</p><p>So every substantive item below is followed by a <strong>frame</strong> — the shape of the spoken answer, not a script. Read the frames aloud. That is the whole method.</p></aside><aside class="cal important"><p class="cal-h">IMPORTANT · CURRENCY, AND ONE RULE FOR THE ROOM</p><p><code>[AS AT 1 AUG 2026]</code> throughout, consistent with <strong>F10.3 §1</strong>. The instrument position is the one from <strong>F11.4 §5</strong>: the four Codes commenced <strong>21 November 2025</strong>, and the 1952, 1995 and 1976 schemes were each replaced by a <strong>2026</strong> successor on <strong>29 June 2026</strong>.</p><p><strong>The rule for the room:</strong> if you are not certain whether a figure is current, <strong>say the structure and decline the figure</strong>. "The ceiling has been the subject of a proposal to raise it, but as far as I am aware the notified figure remains ₹15,000" is a strong answer. A confidently wrong number is the worst outcome available to you, per F12.1 §6.</p><p><strong>Verify §4's numbers against the bare Code, the 2026 schemes and current EPFO circulars before you sit.</strong> This chapter illustrates and organises; it is not the authority.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-the-post-answer-this-one-perfectly"><span class="toc-t">1. The Post — Answer This One Perfectly</span></a><a class="toc-3" href="#11-the-follow-ups-this-invites"><span class="toc-t">1.1 The follow-ups this invites</span></a><a class="toc-2" href="#2-the-organisation"><span class="toc-t">2. The Organisation</span></a><a class="toc-3" href="#21-epfo-against-the-alternatives"><span class="toc-t">2.1 EPFO against the alternatives</span></a><a class="toc-2" href="#3-the-law-and-the-scheme-architecture"><span class="toc-t">3. The Law and the Scheme Architecture</span></a><a class="toc-3" href="#31-the-instrument-position-said-correctly"><span class="toc-t">3.1 The instrument position, said correctly</span></a><a class="toc-3" href="#32-the-three-schemes"><span class="toc-t">3.2 The three schemes</span></a><a class="toc-3" href="#33-the-apfcs-powers-and-where-they-now-come-from"><span class="toc-t">3.3 The APFC's powers, and where they now come from</span></a><a class="toc-2" href="#4-the-numbers"><span class="toc-t">4. The Numbers</span></a><a class="toc-2" href="#5-policy-where-the-marks-are"><span class="toc-t">5. Policy — Where the Marks Are</span></a><a class="toc-3" href="#51-the-central-problem-coverage"><span class="toc-t">5.1 The central problem: coverage</span></a><a class="toc-3" href="#52-the-contested-questions-with-positions"><span class="toc-t">5.2 The contested questions, with positions</span></a><a class="toc-3" href="#53-epfos-own-reform-agenda"><span class="toc-t">5.3 EPFO's own reform agenda</span></a><a class="toc-2" href="#6-one-minute-revision"><span class="toc-t">6. One-Minute Revision</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F12.2 — FIVE SESSIONS</p><ol><li><strong>Session 1</strong> — The post: what an APFC actually does (§1) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 2</strong> — The organisation and its governance (§2) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 3</strong> — The law and the scheme architecture (§3) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 4</strong> — The numbers you may be asked, and the ones to decline (§4) <span class="rate" role="img" aria-label="priority 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="off"></i></span></li><li><strong>Session 5</strong> — Policy and the contested questions (§5) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li></ol><p><strong>Roughly eight hours.</strong> Then read every frame aloud until it is forty seconds and ends cleanly.</p></aside><h2 id="1-the-post-answer-this-one-perfectly">1. The Post — Answer This One Perfectly</h2><aside class="cal must-master"><p class="cal-h">MUST MASTER · WHAT AN ASSISTANT PROVIDENT FUND COMMISSIONER ACTUALLY DOES</p><p>An APFC is a <strong>statutory officer of the Employees' Provident Fund Organisation</strong> with <strong>quasi-judicial</strong> and <strong>recovery</strong> powers. It is not a clerical or purely administrative post, and the board will want to know that you understand that distinction.</p><p>The work divides into five things.</p><div class="tw"><table><thead><tr><th style="text-align:left">Function</th><th style="text-align:left">What it means in practice</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Compliance and coverage</strong></td><td style="text-align:left">Identifying establishments liable to be covered, bringing them within the fold, and ensuring returns and contributions are filed</td></tr><tr><td style="text-align:left"><strong>Quasi-judicial inquiry</strong></td><td style="text-align:left">Determining the moneys due from an employer, on evidence, by a reasoned and appealable order. This is adjudication, and it must satisfy natural justice</td></tr><tr><td style="text-align:left"><strong>Recovery</strong></td><td style="text-align:left">Enforcing determined dues. APFCs have been notified as <strong>Recovery Officers</strong> under Chapter III of the Code on Social Security</td></tr><tr><td style="text-align:left"><strong>Benefit administration</strong></td><td style="text-align:left">Settlement of claims — provident fund withdrawals, pension, and the death-linked insurance benefit — within service standards</td></tr><tr><td style="text-align:left"><strong>Grievance redressal and outreach</strong></td><td style="text-align:left">Handling member and employer grievances, and the employer-facing work of persuading rather than only enforcing</td></tr></tbody></table></div></aside><aside class="cal know"><p class="cal-h">KNOW · THE FRAME, FORTY SECONDS</p><p><em>"It is a statutory post, sir, with two powers that define it. First it is <strong>quasi-judicial</strong> — an Assistant Provident Fund Commissioner determines what an employer owes, on evidence, by a reasoned order that is appealable, so the duty is to apply the law to facts fairly rather than to maximise recovery. Second it is a <strong>recovery</strong> function, and APFCs have been notified as Recovery Officers under Chapter III of the Code on Social Security. Around those two sit coverage and compliance work, claim settlement against service standards, and grievance redressal. The part I find most interesting is that the same officer both enforces against an employer and serves the member, and those two roles need different temperaments."</em></p><p><strong>Why that last sentence earns its place:</strong> it is a genuine observation about the job rather than a description of it, and it invites a follow-up you can answer.</p></aside><h3 id="11-the-follow-ups-this-invites">1.1 The follow-ups this invites</h3><p><strong>"What does quasi-judicial mean?"</strong> — That the officer exercises a power to decide rights between parties, must follow the principles of natural justice, must give reasons, and is subject to appeal; but is not a court and is not bound by the full rigour of the Evidence Act.</p><p><strong>"What would you do if an employer simply does not pay?"</strong> — Establish liability by a proper inquiry first; then interest and damages for the period of default; then recovery, including as an arrear of land revenue, with attachment as the last step. <strong>Frame it as a ladder, and say that persuasion and facilitation come before coercion</strong>, because most default is cash-flow rather than fraud — and because a board wants to hear proportionality.</p><p><strong>"Is your job to protect the worker or to regulate the employer?"</strong> — A genuine tension, and the honest answer is that the statutory duty runs to the <strong>member</strong>, but the practical route to it runs through a functioning employer. An establishment driven under does not pay arrears. Say both.</p><p><strong>"Would you be comfortable passing an order against a large company?"</strong> — Yes, and the reason is that the order is reasoned and appealable. That is what makes the power exercisable without either fear or arbitrariness. Do not perform toughness; describe the safeguard.</p><div class="pagebreak"></div><h2 id="2-the-organisation">2. The Organisation</h2><div class="tw"><table><thead><tr><th style="text-align:left">Item</th><th style="text-align:left">Position</th></tr></thead><tbody><tr><td style="text-align:left"><strong>EPFO</strong></td><td style="text-align:left">A <strong>statutory</strong> body under the Ministry of Labour and Employment. <strong>Not constitutional</strong> — F11.4 T-12</td></tr><tr><td style="text-align:left"><strong>Central Board of Trustees</strong></td><td style="text-align:left">The apex <strong>tripartite</strong> body: government, employers and employees</td></tr><tr><td style="text-align:left">Chairperson of the Board</td><td style="text-align:left">The <strong>Union Minister for Labour and Employment</strong></td></tr><tr><td style="text-align:left">Vice-chairperson</td><td style="text-align:left">The Minister of State for Labour and Employment</td></tr><tr><td style="text-align:left">Member-Secretary</td><td style="text-align:left">The <strong>Central Provident Fund Commissioner</strong>, ex officio</td></tr><tr><td style="text-align:left">Field structure</td><td style="text-align:left">Zonal offices under Additional Central PF Commissioners, then Regional Offices, then District Offices</td></tr><tr><td style="text-align:left">Interest rate</td><td style="text-align:left">Recommended by the Board, and requires the concurrence of the <strong>Ministry of Finance</strong> before notification</td></tr><tr><td style="text-align:left">Sister organisation</td><td style="text-align:left"><strong>ESIC</strong>, also statutory, also chaired by the Union Labour Minister, administering health insurance</td></tr></tbody></table></div><aside class="cal trap"><p class="cal-h">TRAP · THREE THINGS BOARDS PROBE HERE</p><p><strong>1 "Who declares the interest rate?"</strong> The Board <strong>recommends</strong>; the Government, through the Ministry of Finance, <strong>concurs</strong> before notification. Candidates say the Board decides. It does not, finally.</p><p><strong>2 "What does tripartite mean, and why does it matter?"</strong> Not merely that three parties sit on the Board, but <em>why</em>: contributions come from employers and members, so a body governing their money has both represented alongside government. If asked whether it works, the honest answer notes that tripartism gives legitimacy and slows decisions, and that both are real.</p><p><strong>3 "Is EPFO a regulator?"</strong> Careful. EPFO <strong>administers</strong> schemes and <strong>enforces</strong> compliance; it is not a sectoral regulator like SEBI or IRDAI, and it is <strong>not</strong> regulated by PFRDA, which governs the National Pension System. That last distinction is a favourite.</p></aside><h3 id="21-epfo-against-the-alternatives">2.1 EPFO against the alternatives</h3><p>A board may test whether you understand your organisation's place in the system.</p><div class="tw"><table><thead><tr><th style="text-align:left">Comparison</th><th style="text-align:left">The discriminating line</th></tr></thead><tbody><tr><td style="text-align:left"><strong>EPFO and ESIC</strong></td><td style="text-align:left">Both statutory, both tripartite, both under the Labour Ministry. EPFO does <strong>retirement savings, pension and death-linked insurance</strong>; ESIC does <strong>health insurance and medical care</strong>. Different contingencies, different thresholds — 20 employees against 10, ₹15,000 against ₹21,000</td></tr><tr><td style="text-align:left"><strong>EPS and the National Pension System</strong></td><td style="text-align:left">EPS is a <strong>defined-benefit</strong>, employment-linked, mandatory scheme for covered employees. NPS is <strong>defined-contribution</strong>, market-linked, individual-account, and regulated by PFRDA. The risk sits with the fund in the first and with the subscriber in the second</td></tr><tr><td style="text-align:left"><strong>EPFO and PFRDA</strong></td><td style="text-align:left">Different statutes, different schemes. PFRDA does <strong>not</strong> regulate EPFO's schemes</td></tr><tr><td style="text-align:left"><strong>Contributory and non-contributory security</strong></td><td style="text-align:left">EPFO is <strong>contributory</strong> — an earned entitlement from wages. Schemes like PM-JAY or the old-age pension components are largely <strong>non-contributory and tax-financed</strong>. The distinction matters for who can be covered</td></tr></tbody></table></div><div class="pagebreak"></div><h2 id="3-the-law-and-the-scheme-architecture">3. The Law and the Scheme Architecture</h2><h3 id="31-the-instrument-position-said-correctly">3.1 The instrument position, said correctly</h3><aside class="cal know"><p class="cal-h">KNOW · THE FRAME, THIRTY SECONDS, AND THE HIGHEST-VALUE THIRTY SECONDS IN THE INTERVIEW</p><p><em>"The governing law is now the <strong>Code on Social Security, 2020</strong>, which came into force with the other three Codes on <strong>21 November 2025</strong> and subsumed nine enactments including the 1952 Act. Under it, three schemes were notified on <strong>29 June 2026</strong> — the Employees' Provident Funds Scheme 2026, the Employees' Pension Scheme 2026, and the Employees' Deposit Linked Insurance Scheme 2026 — replacing the 1952, 1995 and 1976 schemes respectively, and the 2026 pension scheme also replaced the Family Pension Scheme of 1971. The important point is that <strong>most of the parameters were carried over</strong> — the contribution rates, the pension formula, the ₹15,000 ceiling and the ₹1,000 minimum pension are unchanged — so the change is one of instrument rather than of substance."</em></p><p><strong>That final sentence is the one that distinguishes you.</strong> It shows you know not merely <em>that</em> the law changed but <em>what</em> changed, which is the question a board actually cares about.</p></aside><h3 id="32-the-three-schemes">3.2 The three schemes</h3><div class="tw"><table><thead><tr><th style="text-align:left">Scheme</th><th style="text-align:left">Funded by</th><th style="text-align:left">Purpose</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Provident Fund</strong></td><td style="text-align:left">Employee 12%, employer 3.67%</td><td style="text-align:left">Lump-sum retirement savings with interest, and permitted advances</td></tr><tr><td style="text-align:left"><strong>Pension</strong></td><td style="text-align:left">8.33% diverted from the employer, plus <strong>1.16%</strong> from the Central Government</td><td style="text-align:left">Monthly pension on superannuation, and survivor benefits</td></tr><tr><td style="text-align:left"><strong>Deposit Linked Insurance</strong></td><td style="text-align:left"><strong>Employer alone, 0.50%</strong></td><td style="text-align:left">Lump-sum assurance on death in service, at no cost to the member</td></tr></tbody></table></div><p><strong>The point worth making aloud:</strong> the member contributes <strong>only</strong> to the provident fund. Pension is funded by diversion from the employer's share plus a government contribution, and insurance is funded wholly by the employer. <em>"The member receives three benefits and pays into one"</em> is a sentence a board will remember.</p><h3 id="33-the-apfcs-powers-and-where-they-now-come-from">3.3 The APFC's powers, and where they now come from</h3><aside class="cal important"><p class="cal-h">IMPORTANT · SAY <em>CHAPTER III OF THE CODE</em>, NOT <em>SECTION 7A</em></p><p>Under the repealed 1952 Act, determination of dues sat in <strong>Section 7A</strong>, interest in <strong>7Q</strong>, damages in <strong>14B</strong>, and recovery in <strong>8</strong> and <strong>8B to 8G</strong>. Those numbers are worth knowing, as history and because they still appear in older material.</p><p>But the operative position, per <strong>F10.3 §1.3</strong>, is that <strong>EPFO officers including APFCs have been notified under Chapter III of the Code on Social Security and appointed Recovery Officers</strong>, so present powers of inquiry and recovery flow from <strong>the Code</strong>.</p><p><strong>In the room:</strong> describe the <strong>function</strong> — determination, interest, damages, recovery — and attribute it to the <strong>Code</strong>. If pressed for the old section numbers, give them and say they belonged to the 1952 Act. That sequence demonstrates currency and depth at once, and it is the opposite of the error F11.4 §5 warns about.</p></aside><p>The functional ladder, which is the answer to <em>what happens when an employer defaults</em>:</p><ol><li><strong>Determination</strong> of the amount due, by inquiry, on evidence, by a reasoned and appealable order</li><li><strong>Interest</strong> for the period of delay — compensatory, and not discretionary</li><li><strong>Damages</strong> for default — penal, and <strong>graded by how long the default ran</strong></li><li><strong>Recovery</strong> — including as an arrear of land revenue, through the Recovery Officer, with attachment</li><li><strong>Prosecution</strong>, in the appropriate case</li></ol><p><strong>And the protections that sit around the fund</strong>, which are worth naming because they show you understand whose money it is: the accumulations are <strong>protected from attachment</strong> by the member's creditors, provident fund dues have <strong>priority</strong> over other debts of the employer, and an employer may <strong>not reduce wages</strong> to offset the liability.</p><div class="pagebreak"></div><h2 id="4-the-numbers">4. The Numbers</h2><aside class="cal know"><p class="cal-h">KNOW · THE FIGURES A BOARD MAY REASONABLY EXPECT</p><div class="tw"><table><thead><tr><th style="text-align:left">Item</th><th style="text-align:left">Value</th></tr></thead><tbody><tr><td style="text-align:left">Coverage threshold</td><td style="text-align:left"><strong>20</strong> or more persons</td></tr><tr><td style="text-align:left">Wage ceiling</td><td style="text-align:left"><strong>₹15,000</strong> — a rise to ₹25,000 is <strong>approved but not notified</strong></td></tr><tr><td style="text-align:left">Contribution</td><td style="text-align:left"><strong>12%</strong> employee and <strong>12%</strong> employer</td></tr><tr><td style="text-align:left">Employer's split</td><td style="text-align:left"><strong>8.33%</strong> pension, <strong>3.67%</strong> provident fund</td></tr><tr><td style="text-align:left">Central Government share in pension</td><td style="text-align:left"><strong>1.16%</strong> of wages</td></tr><tr><td style="text-align:left">Deposit-linked insurance</td><td style="text-align:left"><strong>0.50%</strong>, employer only; maximum assurance <strong>₹7 lakh</strong></td></tr><tr><td style="text-align:left">Minimum monthly pension</td><td style="text-align:left"><strong>₹1,000</strong></td></tr><tr><td style="text-align:left">Superannuation age</td><td style="text-align:left"><strong>58</strong>; reduced pension from <strong>50</strong></td></tr><tr><td style="text-align:left">Minimum service for pension</td><td style="text-align:left"><strong>10</strong> years of eligible service</td></tr><tr><td style="text-align:left">Interest rate, 2025-26</td><td style="text-align:left"><strong>8.25%</strong>, a third consecutive year</td></tr><tr><td style="text-align:left">Claim settlement standard</td><td style="text-align:left"><strong>20 days</strong> under the 2026 pension scheme, with <strong>12%</strong> interest where EPFO delays</td></tr><tr><td style="text-align:left">ESI, for contrast</td><td style="text-align:left"><strong>10</strong> employees, <strong>₹21,000</strong> ceiling, <strong>3.25%</strong> and <strong>0.75%</strong></td></tr></tbody></table></div></aside><aside class="cal trap"><p class="cal-h">TRAP · THE FOUR FIGURES TO HANDLE WITH CARE</p><p><strong>₹25,000.</strong> Approved, <strong>not notified</strong>. Say so explicitly — it is a chance to demonstrate the <em>proposed / approved / notified</em> discipline from F10.2 §2.2, which is exactly the discrimination a statutory officer is paid for.</p><p><strong>The insurance minimum.</strong> Figures of ₹2 lakh and ₹2.5 lakh both circulate because they belong to different notifications. <strong>Give the maximum of ₹7 lakh, which is stable, and decline the minimum</strong> unless you have verified it that week.</p><p><strong>The interest rate.</strong> Declared annually. Verify before you sit.</p><p><strong>Anything about numbers of subscribers, claims settled or corpus size.</strong> These move constantly. Give an order of magnitude if you must, flag it as approximate, or decline. <strong>Never a precise figure you have not verified.</strong></p></aside><div class="pagebreak"></div><h2 id="5-policy-where-the-marks-are">5. Policy — Where the Marks Are</h2><p>Factual questions establish competence. <strong>Policy questions distinguish candidates</strong>, because they reveal whether you understand what the organisation is <em>for</em>. Each item below gives the tension and a position. F12.3 §1 develops the frame; here is the substance.</p><h3 id="51-the-central-problem-coverage">5.1 The central problem: coverage</h3><aside class="cal know"><p class="cal-h">KNOW · THE ONE STRUCTURAL FACT THAT FRAMES EVERYTHING</p><p>The overwhelming majority of India's workforce is <strong>informal</strong>, and formal social security historically attached to the <strong>registered enterprise</strong> rather than to the worker — because the enterprise is where a contribution could be <strong>deducted and enforced</strong>.</p><p>The consequence is uncomfortable and worth stating: <strong>the schemes reached the workers who needed them least intensely and missed those who needed them most.</strong></p><p><strong>The frame:</strong> <em>"The binding constraint has never been generosity, sir, it has been collectibility. Extending an entitlement to a worker with no registered employer extends nothing until somebody can identify the worker, identify who is liable, and collect from them — and each of those is an administrative capability rather than a legal one. That is why I think worker-level registration and the aggregator obligation matter more than the entitlement language."</em></p></aside><h3 id="52-the-contested-questions-with-positions">5.2 The contested questions, with positions</h3><div class="tw"><table><thead><tr><th style="text-align:left">Question</th><th style="text-align:left">The tension, and a defensible position</th></tr></thead><tbody><tr><td style="text-align:left"><strong>Are the labour Codes good for workers?</strong></td><td style="text-align:left">They raise thresholds for standing orders and retrenchment permission from 100 to 300, which reduces protection for workers in mid-sized firms; and they extend social security to gig and platform workers, which expands it for millions previously outside. <strong>Both are true.</strong> A defensible position: the Codes trade <strong>depth of protection for a minority</strong> against <strong>breadth of coverage for a majority</strong>, and whether that was worth it depends on enforcement, which is not yet visible</td></tr><tr><td style="text-align:left"><strong>Why has India not ratified Conventions 87 and 98?</strong></td><td style="text-align:left">Freedom of association and collective bargaining. The stated difficulties concern government servants and existing restrictions. It sits at the centre of trade union objections to the IR Code. <strong>Describe the debate; do not take a partisan side</strong></td></tr><tr><td style="text-align:left"><strong>Should the wage ceiling be raised to ₹25,000?</strong></td><td style="text-align:left">For: it extends coverage and raises contributions and eventual pensions. Against: it raises employer cost, may push marginal firms towards informality, and increases EPFO's liability. Note it is <strong>approved but not notified</strong></td></tr><tr><td style="text-align:left"><strong>Is ₹1,000 an adequate minimum pension?</strong></td><td style="text-align:left">Plainly low against any cost-of-living measure. But the scheme is <strong>contributory and defined-benefit</strong>, so raising the floor without raising contributions transfers the cost to the corpus or the taxpayer. <strong>Name the trade-off rather than the grievance</strong></td></tr><tr><td style="text-align:left"><strong>Gig workers — will the aggregator model work?</strong></td><td style="text-align:left">The obligation is on the aggregator, expressed as one to two per cent of turnover subject to a cap. The design is sound because it puts liability where the payment record exists. The risk is classification disputes and platforms restructuring to avoid the definition</td></tr><tr><td style="text-align:left"><strong>Should EPFO funds be invested in equity?</strong></td><td style="text-align:left">Higher long-run returns against higher volatility, on money that is a member's retirement security and carries an assured-return expectation. A measured position: a <strong>capped</strong> equity allocation is defensible; the difficulty is that members bear the downside without having chosen the risk</td></tr><tr><td style="text-align:left"><strong>EPS or NPS — which is better?</strong></td><td style="text-align:left">Not a better-or-worse question but a <strong>risk-allocation</strong> question. Defined benefit puts investment risk on the scheme; defined contribution puts it on the subscriber. Say that, and you have answered better than a preference would</td></tr><tr><td style="text-align:left"><strong>Universal social security — is it achievable?</strong></td><td style="text-align:left">The Code's architecture points that way. The obstacles are administrative and fiscal rather than legal: identification, portability across States and employers, and who contributes for a worker with no employer</td></tr><tr><td style="text-align:left"><strong>Higher pension on actual salary</strong></td><td style="text-align:left">The litigation was resolved with a further limited window for eligible members to exercise the joint option. <strong>Give the shape and resist any clean absolute</strong> — the actual position is heavily qualified, and a board will know it</td></tr><tr><td style="text-align:left"><strong>The India-UK Double Contributions Convention</strong></td><td style="text-align:left">In force <strong>15 July 2026</strong>, a <strong>60-month</strong> detachment exemption, coordinating <strong>contributions and not benefits</strong>, and <strong>EPFO administers it</strong>. Good evidence of currency, and an opening to social security agreements generally</td></tr></tbody></table></div><h3 id="53-epfos-own-reform-agenda">5.3 EPFO's own reform agenda</h3><p>Worth having ready, because it is the answer to <em>what would you change</em>:</p><p><strong>EPFO 3.0</strong> — UPI and ATM withdrawal, auto-settlement raised to <strong>₹5 lakh</strong>, up to <strong>75%</strong> of balance by UPI, thirteen withdrawal categories reduced to <strong>three</strong>, automated transfers on changing jobs, and a stated aim of <strong>24 to 48 hour</strong> settlement.</p><aside class="cal action"><p class="cal-h">ACTION · THE ANSWER TO <em>WHAT WOULD YOU IMPROVE</em></p><p>Do not propose a change of law; you are applying for an administrative post, and boards mark down candidates who legislate.</p><p><strong>Propose something in your own gift.</strong> Three defensible answers:</p><ol><li><strong>Reduce the inquiry-to-recovery cycle time.</strong> Determination is quasi-judicial and cannot be rushed, but listing, adjournment discipline and reasoned orders written promptly are within the officer's control</li><li><strong>Employer facilitation before enforcement</strong>, especially for small establishments crossing the threshold for the first time, where non-compliance is usually ignorance rather than evasion</li><li><strong>Grievance closure quality rather than volume</strong> — the useful measure is whether the member's problem ended, not whether the ticket did</li></ol><p>Each is modest, administrative and within the post. That is why each works.</p></aside><div class="pagebreak"></div><h2 id="6-one-minute-revision">6. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F12.2</p><p><strong>THE POST</strong> statutory · <strong>quasi-judicial</strong> determination + <strong>Recovery Officer</strong> under <strong>Chapter III of the Code</strong> · plus coverage, claims, grievances</p><p><strong>THE LADDER ON DEFAULT</strong> determination &#187; interest &#187; damages &#187; recovery &#187; prosecution. <strong>Persuasion before coercion</strong></p><p><strong>THE FUND'S PROTECTIONS</strong> immune from attachment · priority over other debts · wages may not be reduced</p><p><strong>THE ORGANISATION</strong> statutory, <strong>not constitutional</strong> · tripartite <strong>Central Board of Trustees</strong> · chaired by the <strong>Union Labour Minister</strong> · CPFC is Member-Secretary · Board <strong>recommends</strong> interest, <strong>Finance Ministry concurs</strong></p><p><strong>NOT REGULATED BY PFRDA.</strong> PFRDA governs NPS</p><p><strong>THE LAW</strong> Code on Social Security, in force <strong>21 Nov 2025</strong> · three schemes replaced <strong>29 June 2026</strong> · <strong>parameters carried over</strong></p><p><strong>THE MEMBER PAYS INTO ONE SCHEME AND RECEIVES THREE</strong></p><p><strong>THE NUMBERS</strong> 20 employees · <strong>₹15,000</strong> (₹25,000 approved, <strong>not notified</strong>) · 12 and 12 · <strong>8.33 / 3.67</strong> · <strong>1.16%</strong> government · EDLI <strong>0.50%</strong> employer only, max <strong>₹7 lakh</strong> · pension min <strong>₹1,000</strong> · superannuation <strong>58</strong>, early <strong>50</strong> · <strong>10</strong> years · interest <strong>8.25%</strong> · claims <strong>20 days</strong>, <strong>12%</strong> on delay</p><p><strong>DECLINE</strong> the insurance minimum · subscriber and corpus figures · any unverified rate</p><p><strong>THE FRAMING SENTENCE</strong> <em>The constraint has never been generosity. It has been collectibility</em></p><p><strong>WHAT WOULD YOU IMPROVE</strong> cycle time · facilitation before enforcement · grievance closure quality. <strong>Never propose new legislation</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> The same officer enforces against the employer and serves the member, and holding both without becoming either a collector or a soft touch is the actual skill of the post.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F12.2
+  &middot; v1.0</footer>
+</body>
+</html>
