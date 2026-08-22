@@ -108,8 +108,38 @@ FIGURE_PATTERNS = [
 # Blocks that are instructions to the reader, not facts about the world.
 PROCEDURAL = re.compile(
     r"tonight's drill|per F\d+\.\d|timed at|this cell|week \d+ \w+ cell|"
-    r'mark it in the booklet|write it in your own words|log it|do this now',
+    r'mark it in the booklet|write it in your own words|log it|do this now'
+    # Self-referential prose. "F3.1's finding, now the subject of this chapter"
+    # is a sentence about the manual, not a fact about the world.
+    r"|this chapter|this section|the subject of this|F\d+\.\d+'s finding",
     re.I)
+
+# Running heads, footers and page furniture. Harmless in markdown, where they do
+# not exist, but a PDF puts them on every page and they mine as facts:
+# "Chapter F1.13 Page 25" became a card.
+FURNITURE = re.compile(
+    r'^\s*(?:UPSC\s+EPFO|Foundation\s+F\d|APFC\s+FOUNDATION|Table of Contents)'
+    r'|Page\s+\d+\s*$|^\s*Chapter\s+F?\d+\.\d+\s*(?:Page\s*\d+)?\s*$'
+    r'|^\s*\d+\s*$', re.I)
+
+
+def welded(ptxt):
+    """
+    True when a line is several separate facts run together.
+
+    A PDF has no paragraph structure, so wall-sheet entries that were visually
+    distinct arrive on one line. Clozing such a line produces a card holding
+    three facts, which fails for the wrong reason and teaches nothing. Two
+    signals catch it: length, and a run of several distinct capitalised labels.
+    """
+    if len(ptxt) > 150:
+        return True
+    if len(re.findall(r'\b[A-Z][A-Z&\'-]{5,}\b', ptxt)) > 2:
+        return True
+    # "Liberal 44, 45, 48, 48A, 49" - clozing one item of an enumeration.
+    if len(re.findall(r'\d+[A-Z]?\s*,', ptxt)) >= 3:
+        return True
+    return False
 FIG_RE = re.compile('|'.join('(?:%s)' % p for p in FIGURE_PATTERNS))
 
 # Figures too generic to be worth deleting on their own.
@@ -320,7 +350,7 @@ def main():
     if not sources:
         sys.exit('no sources found under %s or %s' % (SRC, INCOMING))
 
-    for path, text, modnum, ch in sources:
+    for path, text, modnum, ch, strict in sources:
         fm = front_matter(text)
         ch = ch or fm.get('chapter', '').replace('Chapter ', '').strip()
         base_tags = ['APFC::M%s::%s' % (modnum, ch.replace('.', '_')),
@@ -347,6 +377,12 @@ def main():
                 for fact in split_middot(blk):
                     ptxt = plain(fact)
                     if len(ptxt) < 12 or len(ptxt) > 320:
+                        continue
+                    if FURNITURE.search(ptxt):
+                        stats['skipped-page-furniture'] += 1
+                        continue
+                    if strict and welded(ptxt):
+                        stats['skipped-welded-pdf-line'] += 1
                         continue
                     figs = figures(ptxt)
                     if figs:
@@ -533,6 +569,52 @@ def pdf_to_markdownish(text):
     return '\n\n'.join(out)
 
 
+def select_incoming():
+    """
+    Choose one file per chapter from incoming/, and say what was dropped.
+
+    An upload arrives as people actually have it: browser duplicates ending
+    " (1)", two editions of the same module under different naming schemes, and
+    compilation volumes covering a chapter range. Taking all of them would double
+    some chapters and mis-file others, so selection is explicit and logged rather
+    than left to whichever file the glob happened to reach first.
+    """
+    cands = {}
+    dropped = []
+    for path in sorted(glob.glob(os.path.join(INCOMING, '**', '*'), recursive=True)):
+        base = os.path.basename(path)
+        if not path.lower().endswith(('.md', '.pdf')) or base.lower() == 'readme.md':
+            continue
+        if re.search(r'\s\(\d+\)\.(pdf|md)$', base, re.I):
+            dropped.append((base, 'duplicate download'))
+            continue
+        if re.search(r'\bChapters?\s+\d+\.\d+\s+to\s+\d+\.\d+', base, re.I):
+            dropped.append((base, 'compilation volume, superseded by single chapters'))
+            continue
+        m = re.search(r'\bF?(\d{1,2})\.(\d{1,2})\b', base)
+        if not m:
+            dropped.append((base, 'no chapter code in filename'))
+            continue
+        code = 'F%s.%s' % (m.group(1), m.group(2))
+        # Preference: the FOUNDATION edition, then the larger file. On this
+        # upload the FOUNDATION files are both fuller and more current - they
+        # carry the 21 November 2025 commencement, the older edition does not.
+        rank = (1 if re.search(r'FOUNDATION', base, re.I) else 0, os.path.getsize(path))
+        if code not in cands or rank > cands[code][0]:
+            if code in cands:
+                dropped.append((os.path.basename(cands[code][1]),
+                                'superseded by a better copy of %s' % code))
+            cands[code] = (rank, path)
+        else:
+            dropped.append((base, 'superseded by a better copy of %s' % code))
+
+    if dropped:
+        sys.stderr.write('incoming/: %d file(s) not used\n' % len(dropped))
+        for b, why in sorted(dropped):
+            sys.stderr.write('   %-62s %s\n' % (b[:62], why))
+    return [p for _, p in sorted(cands.values(), key=lambda t: t[1])]
+
+
 def load_sources():
     """
     Yield (path, markdown-ish text, module number, chapter code).
@@ -548,18 +630,14 @@ def load_sources():
         fm = front_matter(text)
         ch = fm.get('chapter', '').replace('Chapter ', '').strip() or \
             os.path.basename(path)
-        out.append((path, text, mod, ch))
+        out.append((path, text, mod, ch, False))
 
-    for path in sorted(glob.glob(os.path.join(INCOMING, '**', '*'), recursive=True)):
+    for path in select_incoming():
         low = path.lower()
-        if os.path.basename(path).lower() == 'readme.md':
-            continue
         m = re.search(r'\bF?(\d{1,2})\.(\d{1,2})\b', os.path.basename(path))
-        if not m:
-            continue
         mod, ch = m.group(1).zfill(2), 'F%s.%s' % (m.group(1), m.group(2))
         if low.endswith('.md'):
-            out.append((path, open(path, encoding='utf-8').read(), mod, ch))
+            out.append((path, open(path, encoding='utf-8').read(), mod, ch, False))
         elif low.endswith('.pdf'):
             try:
                 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -568,7 +646,7 @@ def load_sources():
             except Exception as e:                       # noqa: BLE001
                 sys.stderr.write('WARNING: could not read %s (%s)\n' % (path, e))
                 continue
-            out.append((path, pdf_to_markdownish(raw), mod, ch))
+            out.append((path, pdf_to_markdownish(raw), mod, ch, True))
     return out
 
 

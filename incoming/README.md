@@ -1,10 +1,30 @@
-# incoming — drop the missing-module files here
+# incoming — the Module 1, 2, 3 and 5 sources
 
-Modules 1, 2, 3 and 5 are listed in the Master Content Register but their sources
-are not in `src/`. That is 44 chapters and **97.5 of the 300 planning marks**, and
-it is why the decks in `decks/` currently cover eight modules rather than twelve.
+**Received: 44 chapters as PDFs**, covering Modules 1, 2, 3 and 5 — **97.5 of the
+300 planning marks.** These are live sources: `build/decks.py` reads them on every
+run, and they contribute **2,643 of the 7,068 cards** in `decks/`.
 
-## How to upload
+Six of the 50 uploaded files are not used, and the build prints why on every run:
+
+| Not used | Reason |
+|---|---|
+| 2 files ending ` (1).pdf` | Duplicate downloads |
+| 3 files named `APFC Module 1 - Chapter 1.x` | Superseded by the `FOUNDATION - Chapter F1.x` edition, which is fuller (13,316 words against 6,081 for chapter 1.1) and current, citing the **21 November 2025** commencement that the older edition does not mention |
+| `Chapters 1.4 to 1.13 - Completion Volume` | Compilation, superseded by the individual FOUNDATION chapters |
+
+## Markdown would still be a real upgrade
+
+These 44 chapters yield **facts and figures only** — no discrimination cards, no
+question-recall cards. Both need structure a PDF has thrown away: a confusion
+table must still be a **table**, and question recall needs the
+`| Q | Ans | Explanation |` grid. F11.7 §2.2 has the numbers.
+
+So **if the markdown sources exist anywhere, add them** and delete the matching
+PDFs. One rebuild converts these four modules from partial sources to full ones.
+Measured on one chapter built both ways: markdown 97 cards, its PDF 71.
+
+## How to upload more
+
 
 Open this link, drag **all** the files in at once, scroll down, and commit:
 

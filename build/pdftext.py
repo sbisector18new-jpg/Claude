@@ -13,7 +13,7 @@ validated against sources whose exact text is already known.
 Usage:  python3 build/pdftext.py FILE.pdf [--check FILE.md]
 """
 
-import re, sys, zlib, os
+import re, sys, zlib, os, base64
 
 
 def objects(data):
@@ -24,24 +24,69 @@ def objects(data):
     return out
 
 
+def _inflate(raw):
+    for trim in (0, 1, 2):
+        try:
+            return zlib.decompress(raw[trim:] if trim else raw)
+        except zlib.error:
+            continue
+    try:
+        return zlib.decompressobj().decompress(raw)
+    except zlib.error:
+        return None
+
+
+def _a85(raw):
+    """Adobe ASCII85. ReportLab chains this in front of Flate."""
+    s = re.sub(rb'\s', b'', raw)
+    if s.startswith(b'<~'):
+        s = s[2:]
+    i = s.find(b'~>')
+    if i != -1:
+        s = s[:i]
+    try:
+        return base64.a85decode(s)
+    except Exception:                                    # noqa: BLE001
+        return None
+
+
+def _ahx(raw):
+    s = re.sub(rb'[^0-9A-Fa-f>]', b'', raw).split(b'>')[0]
+    if len(s) % 2:
+        s += b'0'
+    try:
+        return bytes.fromhex(s.decode())
+    except ValueError:
+        return None
+
+
+DECODERS = {'FlateDecode': _inflate, 'ASCII85Decode': _a85, 'ASCIIHexDecode': _ahx}
+
+
 def stream_of(body):
-    """Decoded stream bytes of an object body, or None."""
+    """
+    Decoded stream bytes of an object body, or None.
+
+    Filters are a chain and must be applied in the order declared. ReportLab
+    writes page content as /Filter [ /ASCII85Decode /FlateDecode ], so handling
+    Flate alone silently yields nothing at all.
+    """
     m = re.search(rb'stream\r?\n?(.*?)\r?\n?endstream', body, re.S)
     if not m:
         return None
-    raw = m.group(1)
-    if b'/FlateDecode' in body:
-        for trim in (0, 1, 2):
-            try:
-                return zlib.decompress(raw[trim:] if trim else raw)
-            except zlib.error:
-                continue
-        try:
-            d = zlib.decompressobj()
-            return d.decompress(raw)
-        except zlib.error:
+    data = m.group(1)
+    fm = re.search(rb'/Filter\s*(\[[^\]]*\]|/[A-Za-z0-9]+)', body)
+    names = [n.decode() for n in re.findall(rb'/([A-Za-z0-9]+)', fm.group(1))] if fm else []
+    if not names:
+        return data
+    for name in names:
+        fn = DECODERS.get(name)
+        if fn is None:
             return None
-    return raw
+        data = fn(data)
+        if data is None:
+            return None
+    return data
 
 
 def parse_tounicode(cmap):
@@ -91,12 +136,20 @@ def font_maps(objs):
                 cm = stream_of(objs[int(m.group(1))])
                 if cm:
                     tounicode[num] = parse_tounicode(cm)
-    names = {}
+    # The /Font resource may be an inline dict or an indirect reference to one.
+    # ReportLab uses the latter, so handling only the inline form leaves every
+    # font unmapped.
+    frags = []
     for body in objs.values():
-        fm = re.search(rb'/Font\s*<<(.*?)>>', body, re.S)
-        if not fm:
-            continue
-        for name, ref in re.findall(rb'/([A-Za-z0-9+.\-]+)\s+(\d+)\s+0\s+R', fm.group(1)):
+        for fm in re.finditer(rb'/Font\s*<<(.*?)>>', body, re.S):
+            frags.append(fm.group(1))
+        for fm in re.finditer(rb'/Font\s+(\d+)\s+0\s+R', body):
+            tgt = objs.get(int(fm.group(1)))
+            if tgt:
+                frags.append(tgt)
+    names = {}
+    for frag in frags:
+        for name, ref in re.findall(rb'/([A-Za-z0-9+.\-]+)\s+(\d+)\s+0\s+R', frag):
             r = int(ref)
             if r in tounicode:
                 names.setdefault(name.decode('latin-1'), tounicode[r])
@@ -175,6 +228,7 @@ def extract(path):
         # line, and nothing at all for the many same-position adjustments.
         cur, lines = None, {}
         y = last_x = None
+        frag_lens = []
         for m in TOKEN.finditer(s):
             tok = m.group(0)
             if m.group(1):
@@ -203,10 +257,25 @@ def extract(path):
                 txt = decode_show(tok, cur)
                 if txt:
                     lines.setdefault(round(y, 1) if y is not None else 0.0,
-                                     []).append(txt)
-                    last_x = (last_x or 0) + 0.0
-        page = '\n'.join(''.join(lines[k]) for k in sorted(lines))
-        pages.append(page)
+                                     []).append((last_x or 0.0, txt))
+                    frag_lens.append(len(txt))
+
+        # How fragments are joined depends on how the producer emits them, and
+        # the two producers in play behave oppositely. Chrome positions each
+        # glyph separately, so fragments are 1-3 characters and must be joined
+        # with nothing. ReportLab emits whole runs - a table cell, a heading -
+        # so adjacent fragments are distinct pieces of text and joining them
+        # bare welds them together ("trigger41.2"). Median fragment length
+        # separates the two cases reliably.
+        med = sorted(frag_lens)[len(frag_lens) // 2] if frag_lens else 0
+        joiner = ' ' if med >= 4 else ''
+        out = []
+        for k in sorted(lines):
+            frags = lines[k]
+            if joiner:
+                frags = sorted(frags, key=lambda t: t[0])
+            out.append(joiner.join(t for _, t in frags))
+        pages.append('\n'.join(out))
     txt = '\n'.join(pages)
     txt = txt.replace('\u00a0', ' ')
     txt = re.sub(r'[ \t]+', ' ', txt)
