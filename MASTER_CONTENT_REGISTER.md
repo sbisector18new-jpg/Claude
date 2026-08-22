@@ -14,11 +14,17 @@ notification is published)
 
 | | Modules | Chapters | Hours | Planning marks |
 |---|---|---:|---:|---:|
-| **Complete** | **ALL — 1 to 11** | **81** | **230** | **300.0** |
+| **Complete** | **ALL — 1 to 11**, plus **12** | **84** | **230** | **300.0** RT |
 | Remaining | — | — | — | — |
-| Total | 11 | 81 | 230 | 300.0 |
+| Total | 12 | 84 | 230 | 300.0 RT + 100 interview |
 
-**The syllabus is complete. All 300 planning marks are covered.**
+**The syllabus is complete. All 300 RT planning marks are covered, and Module 12 now covers the 100-mark
+interview stage as well.**
+
+**Chapters rose from 81 to 84 this sitting**, the three being **Module 12** — the interview. **RT planning
+marks are unchanged at 300.0**, because Module 12 addresses a different stage and its marks belong to a
+different ledger; see §3.7 decision 1. Two further chapters, **F11.5 and F11.6**, were added inside the
+existing Module 11 count, which the §1 note below already treats as a single numbered block.
 
 **Chapters rose from 79 to 81 and hours from 224 to 230 this sitting**, both because of Module 10: an
 **exhaustive twelve-month current affairs dossier** was added as **F10.3 and F10.4**, taking the module from
@@ -34,8 +40,8 @@ rest of the module get done; Module 11 as **3 numbered chapters** (F11.1–F11.3
 uncounted *"mocks"* line; and Module 10 as **4** chapters rather than 2, the extra two being the
 twelve-month dossier. Finer granularity, same syllabus.
 
-**Of those 81 chapters, 37 are in this repository** — Modules 4, 6, 7, 8, 9, 10 and 11, comprising
-**938 pages and 1,069 practice questions**. The remaining 44 chapters are Modules 1, 2, 3 and 5, which are
+**Of those 84 chapters, 43 are in this repository** — Modules 4, 6, 7, 8, 9, 10, 11 and 12, comprising
+**1,098 pages and 1,339 practice questions**, plus 60 interview rehearsal prompts. The remaining 44 chapters are Modules 1, 2, 3 and 5, which are
 complete as study material but have never been supplied here. **That is now the only substantial gap in
 the project, and §9 has been rewritten accordingly.**
 
@@ -440,9 +446,11 @@ coordinating **contributions and not benefits**.
 | **F11.2** | **Full Mock 1** — a complete 120-question paper with key and explanations | **Complete v1.0** — 33 pp, **120 Q** |
 | **F11.3** | Mock protocol, score analysis and final revision | **Complete v1.0** — 19 pp, no bank |
 | **F11.4** | **The trap catalogue** — distractor architecture, confusion pairs, elimination ladder | **Complete v1.0** — 47 pp, 30 Q |
+| **F11.5** | **Full Mock 2** — built out of the trap catalogue | **Complete v1.0** — 35 pp, **120 Q** |
+| **F11.6** | **Full Mock 3** — calibrated above the paper on format loading | **Complete v1.0** — 36 pp, **120 Q** |
 
-**121 pages, 175 questions.** Four deliberate decisions are recorded here because each could be reversed by
-a later session that did not know the reasoning.
+**192 pages, 415 questions — now the largest module in the manual.** Six deliberate decisions are recorded
+here because each could be reversed by a later session that did not know the reasoning.
 
 **1 F11.1's bank is 25 questions on the specific items the 2023 paper asked**, as recorded in Blueprint
 §4.4 — fresh numbers and wording, the same underlying items. On the available evidence it is the
@@ -493,9 +501,102 @@ the authority for any figure** — verification is against the bare Codes and th
 sweep as F10.1 §4. **If a later sitting updates any figure in §5.2, it must also check §5.1's instrument
 column**, which is the part that dates fastest.
 
+**5 Mocks 2 and 3 were written out, reversing the earlier decision, and the reason the earlier decision was
+right at the time should be preserved.** §3.6's original note recorded that Mocks 2 to 5 were **deliberately
+not** written because 44 of every 120 questions had to come from Modules 1, 2, 3 and 5, which are not in the
+repository, and a padded paper would be worse than none. That reasoning was sound. **It was superseded by a
+fact, not by a change of mind:** the missing modules exist and are being supplied, so a self-contained
+full-length paper is now authorable without padding.
+
+**Mocks 4 and 5 remain unwritten, and deliberately so.** F11.3 §3's assembly recipe now works fully, and two
+further hand-written papers would add little that F11.6's format loading does not already test. **If a later
+sitting writes Mock 4, it should harden on format rather than on obscurity** — that is the finding recorded
+in decision 6.
+
+**6 Mock 3 is hardened on format, not on obscurity, and this is the most transferable decision in the
+module.** There are two ways to make a mock harder: ask rarer facts, or ask ordinary facts in formats that
+require **complete** rather than partial knowledge. The first produces a paper that does not resemble the
+examination and teaches nothing.
+
+So F11.6's difficulty comes from **loading**, recorded here as a table because it is the specification any
+future mock should be written against:
+
+| Format | Mock 1 | Mock 2 | Mock 3 |
+|---|---:|---:|---:|
+| Count items — *how many of the above* | 2 | 3 | **7** |
+| Assertion-Reason | 0 | 0 | **5** |
+| Pair-matching | 2 | 1 | **3** |
+| Negative stems | 3 | 6 | **5** |
+
+Three further points to preserve. **Composition is identical across all three mocks** — the eleven parts and
+their question counts — because holding it constant is what makes F11.6 §15.2's three-mock trend a valid
+comparison; a change in the Part V score means something only if the number of Part V questions did not also
+change. **All three keys are balanced 30/30/30/30.** And **F11.6's six assertion-reason items deliberately
+do not all take the same answer** — four have a reason that explains the assertion, two do not — so that a
+candidate pattern-matching rather than adjudicating is caught; F11.6 §15.3 names Q103 against Q39 as the pair
+to study.
+
+**Method note, for reproducibility.** F11.5's key was hand-planned per part. F11.6's was produced by a
+permutation script from a recorded list of natural correct-answer indices, with **fixed-order formats
+excluded** — error-spotting items whose options are sequential sentence fragments, all count items, the
+syllogism and all assertion-reason items must keep their natural option order or they stop reading as
+questions. Both papers were then verified by script three ways: keyed option text against the intended
+answer, the §13 key table against the §14 explanation tables, and both against the permutation output. **Any
+future mock must be verified the same way; a mock with a wrong key is worse than no mock.**
+
 **F11.2's answer key is balanced at exactly 30/30/30/30**, so there is no letter to fall back on — which
 matters more in a 120-question paper than in a chapter bank, because a candidate guessing under time
 pressure will otherwise drift towards a letter.
+
+\pagebreak
+
+### 3.7 Module 12 chapter plan — COMPLETE, and new to the project
+
+**42 pages, no Recruitment Test marks, and the highest marks-per-hour block in the manual.**
+
+| Ch | Topic | Status |
+|---|---|---|
+| **F12.1** | The interview — stage, board conduct, bio-data dossier, answer frames, the seven losses | **Complete v1.0** — 16 pp |
+| **F12.2** | The EPFO domain dossier — the post, organisation, law, numbers and policy, in spoken form | **Complete v1.0** — 14 pp |
+| **F12.3** | Opinion frames, situational and ethical judgment, 60-question rehearsal bank | **Complete v1.0** — 12 pp |
+
+**Why the module was created, recorded because it reverses an implicit earlier decision.** The manual had
+covered the Recruitment Test exhaustively and the interview not at all: a grep of `src/` before this sitting
+found **zero interview sections** and exactly **38 sentences** on the subject, one *ONE LINE FOR THE
+INTERVIEW* device per chapter. That was a gap in the **higher-leverage** stage, and the arithmetic is the
+justification:
+
+> Final merit is **75 : 25**. RT marks are **not discarded**, so the interview is **added** to the written
+> score. 100 interview marks weighted to 25, against 300 RT marks weighted to 75, means **one interview mark
+> is worth three RT marks in merit terms.**
+
+**Four decisions to preserve.**
+
+**1 The module carries no RT planning marks, and the RT ledger is untouched at 300.0.** Chapters rise from 81
+to 84; marks do not move. Module 12 addresses a **different stage**, and conflating the two ledgers would
+corrupt §1. The 60 items in F12.3 §4 are **spoken rehearsal prompts, not multiple-choice questions**, which
+is why `check.py` reports the chapter as having no bank and why it must not later be "fixed" by adding a key.
+
+**2 It gives frames, not scripts, and this is deliberate.** A memorised interview answer is audible within
+two sentences and is scored down harder than an honest gap, because it converts a knowledge question into a
+character question. F12.1 §5 fixes three frames — state-context-stop for factual, **acknowledge-analyse-
+position** for opinion, **facts-law-options-decision-safeguard** for situational — and F12.2 supplies
+substance to speak from. **Anyone extending this module should add substance and frames, never model
+answers.**
+
+**3 The evidence position is stated in F12.1's opening.** Marks and weighting are **OFFICIAL**. Board conduct,
+phase timings and question families are an **ANALYTICAL ESTIMATE** — UPSC publishes no interview syllabus and
+none is invented. No claim is made about what any board has asked.
+
+**4 The module's real asset is currency, and it is perishable.** F12.2 §3.1 turns F10.3 §1 and F11.4 §5 into a
+thirty-second spoken answer: Codes commenced **21 November 2025**; the 1952, 1995 and 1976 schemes each
+replaced by a **2026** successor on **29 June 2026**; ceiling **still ₹15,000** because ₹25,000 is approved
+but **not notified**; APFC powers now flowing from **Chapter III of the Code**, APFCs notified as **Recovery
+Officers**. Very few candidates can state that accurately, which is exactly why it scores — and exactly why
+**§4's figures must be re-verified before any sitting**, in the same sweep as F10.1 §4. F12.2 §4 already
+instructs the candidate to **decline** the insurance minimum and any subscriber or corpus figure rather than
+risk a confident error, per F12.1 §6's finding that an exposed bluff is the largest avoidable loss in the
+room.
 
 ## 8. Build pipeline
 
@@ -668,8 +769,8 @@ The TOC entries remain **clickable internal links** inside the PDF, and every pa
 
 **This is now the only substantial gap in the project, and it is no longer merely a formatting problem.**
 
-`src/` holds Modules 4, 6, 7, 8, 9, 10 and 11 — **37 chapters, 938 pages, 1,069 questions** — so all new work
-is safe and all of it builds. What remains outstanding is the **back catalogue**: **Modules 1, 2, 3 and 5**
+`src/` holds Modules 4, 6, 7, 8, 9, 10, 11 and 12 — **43 chapters, 1,098 pages, 1,339 questions** — so all
+new work is safe and all of it builds. What remains outstanding is the **back catalogue**: **Modules 1, 2, 3 and 5**
 are complete as study material but have never been supplied here, and neither has `pyq/`.
 
 | Module | Chapters | Marks | In `src/`? |
@@ -690,8 +791,11 @@ are complete as study material but have never been supplied here, and neither ha
    will not be clean**
 4. **They cannot be checked against the labour codes and EPS 2026** — see §10. Modules 2 and 3 may teach
    repealed statutes as live law, and this cannot be verified from inside the repository
-5. **Every assembled mock is 44 questions short.** F11.3 §3.1's recipe supplies 76 of 120 from this manual;
-   the other 44 are exactly Polity, Labour, Social Security and History
+5. **Assembled mocks are 44 questions short — but this is no longer a blocker for the written mocks.**
+   F11.3 §3.1's recipe supplies 76 of 120 from this manual and the other 44 are exactly Polity, Labour,
+   Social Security and History. **F11.2, F11.5 and F11.6 are full 120-question papers written out in full**
+   and do not depend on the recipe; the shortfall now affects only Mocks 4 and 5, which remain assembled by
+   design — see §3.6 decision 5
 
 **And `pyq/` is still empty.** F11.1 is built from the Blueprint's *summary* of the 2023 paper, which
 permits an account of the paper's shape but not a repeat-rate analysis — the one thing a candidate most

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opinion, Situational Judgment and the Sixty Questions</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F12.3 · Opinion and Situational Judgment
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · MODULE 12 · CHAPTER F12.3</p><h1 class="doc-t">Opinion, Situational Judgment and the Sixty Questions</h1><p class="doc-s">Chapter F12.3 — How to Take a Position, How to Decide, and What to Rehearse</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 12 — The Interview</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F12.3</td></tr><tr><td class="k">Topic</td><td class="v">Opinion frames, situational and ethical judgment, and a rehearsal bank</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">22 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Interview / Personality Test</td></tr></table></header>
+<aside class="cal must-master"><p class="cal-h">MUST MASTER · THE TWO QUESTION TYPES THAT DECIDE THE INTERVIEW</p><p>F12.2 gave you the substance. This chapter is about the two question types where substance alone will not save you.</p><p><strong>The opinion question</strong> — <em>should the wage ceiling be raised?</em> — has no correct answer. It has <strong>better and worse reasoning</strong>, and the board is scoring the reasoning.</p><p><strong>The situational question</strong> — <em>an employer with political backing refuses to pay</em> — has no correct answer either, but it has <strong>defensible and indefensible processes</strong>, and the board is scoring the process.</p><p>In both cases the commonest failure is the same: candidates rush to a <strong>verdict</strong> without showing the <strong>consideration</strong>. A verdict with no visible reasoning is indistinguishable from a guess, and it is marked like one.</p></aside><aside class="cal note"><p class="cal-h">NOTE · THE RULE THAT GOVERNS THIS WHOLE CHAPTER</p><p><strong>Take a position.</strong> Not a strident one, not an unqualified one, but a real one.</p><p>Candidates are told to "see both sides", and they over-learn it into permanent fence-sitting. A board listening to a candidate who will not commit concludes, reasonably, that this is a person who will not take a decision — which is disqualifying for a post whose entire function is passing orders that bind people.</p><p><strong>Acknowledge the tension, then land.</strong> The landing is the point.</p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-the-opinion-frame"><span class="toc-t">1. The Opinion Frame</span></a><a class="toc-3" href="#11-worked-examples"><span class="toc-t">1.1 Worked examples</span></a><a class="toc-2" href="#2-the-situational-frame"><span class="toc-t">2. The Situational Frame</span></a><a class="toc-3" href="#21-ten-scenarios"><span class="toc-t">2.1 Ten scenarios</span></a><a class="toc-2" href="#3-ethics-integrity-and-pressure"><span class="toc-t">3. Ethics, Integrity and Pressure</span></a><a class="toc-3" href="#31-the-pressure-questions"><span class="toc-t">3.1 The pressure questions</span></a><a class="toc-2" href="#4-the-rehearsal-bank-sixty-questions"><span class="toc-t">4. The Rehearsal Bank — Sixty Questions</span></a><a class="toc-3" href="#41-bio-data-and-motivation-12"><span class="toc-t">4.1 Bio-data and motivation — 12</span></a><a class="toc-3" href="#42-the-organisation-and-the-post-12"><span class="toc-t">4.2 The organisation and the post — 12</span></a><a class="toc-3" href="#43-the-law-and-the-schemes-12"><span class="toc-t">4.3 The law and the schemes — 12</span></a><a class="toc-3" href="#44-policy-and-opinion-12"><span class="toc-t">4.4 Policy and opinion — 12</span></a><a class="toc-3" href="#45-situational-and-ethical-12"><span class="toc-t">4.5 Situational and ethical — 12</span></a><a class="toc-2" href="#5-one-minute-revision"><span class="toc-t">5. One-Minute Revision</span></a></nav><div class="pagebreak"></div><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F12.3 — THREE SESSIONS AND THEN SPEAKING PRACTICE</p><ol><li><strong>Session 1</strong> — The opinion frame, and the eight opinion questions worked through (§1) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 2</strong> — The situational frame, and ten scenarios (§2) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><strong>Session 3</strong> — Ethics, integrity and the pressure scenarios (§3) <span class="rate" role="img" aria-label="priority 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li></ol><p>Then <strong>§4's sixty questions, aloud, against a clock</strong>. Reading this chapter is perhaps four hours. The speaking practice is where the marks are, and it is not optional.</p></aside><h2 id="1-the-opinion-frame">1. The Opinion Frame</h2><aside class="cal know"><p class="cal-h">KNOW · ACKNOWLEDGE, ANALYSE, POSITION — AND WHY THAT ORDER</p><p><strong>1 Acknowledge (one sentence).</strong> Name the competing consideration first. This signals that you have understood there is a genuine tension rather than an obvious answer, and it buys you the board's attention.</p><p><strong>2 Analyse (one or two sentences).</strong> State the trade-off in terms of <strong>who gains and who bears the cost</strong>. This is where reasoning becomes visible, and it is the scored part.</p><p><strong>3 Position (one sentence, qualified).</strong> Land. Use the qualification to make the position defensible, not to escape it. <em>"On balance I would favour X, provided Y"</em> is a position. <em>"There are arguments on both sides"</em> is not.</p><p><strong>Sixty to ninety seconds. Then stop.</strong></p></aside><h3 id="11-worked-examples">1.1 Worked examples</h3><p>Read each aloud. The point is the shape, not the wording.</p><p><strong>"Are the labour Codes good for workers?"</strong></p><blockquote><p><em>"They cut in both directions, sir, and I think you have to say which way for whom. For workers in mid-sized establishments, protection is reduced — the threshold for standing orders and for prior permission before retrenchment moved from a hundred workers to three hundred. For workers outside the formal sector, coverage is extended for the first time, because gig and platform workers are now recognised and there is an aggregator obligation. So the Codes trade <strong>depth of protection for a minority</strong> against <strong>breadth of coverage for a majority</strong>. On balance I think that is a defensible trade, but only if the breadth is actually delivered — and that depends on collection machinery rather than on the drafting, which is where I would want to see the evidence before judging it a success."</em></p></blockquote><p><strong>Why it scores:</strong> it refuses the premise that there is a single answer, it names the specific provisions, it identifies who bears the cost, and it lands with a condition that is genuinely testable.</p><p><strong>"Is a minimum pension of ₹1,000 a month adequate?"</strong></p><blockquote><p><em>"As a sum of money, plainly not, against any measure of the cost of living. But I would separate the adequacy question from the design question. This is a <strong>contributory, defined-benefit</strong> scheme, so the floor is not funded by the exchequer but by the corpus and the government's 1.16 per cent — which means raising the floor without raising contributions transfers the cost either to other members' returns or to the taxpayer. My own view is that the honest options are to raise contributions, to accept an explicit budgetary subsidy, or to keep the floor low, and that the least defensible course is to raise the promise without funding it."</em></p></blockquote><p><strong>Why it scores:</strong> it concedes the obvious immediately rather than defending the indefensible, then adds the structural point that most candidates miss, then lands on a principle rather than a number.</p><p><strong>"Should EPFO invest in equity?"</strong></p><blockquote><p><em>"The case for it is that these are very long-duration liabilities, and over that horizon equity has historically outperformed debt, so a purely debt portfolio may quietly under-serve the member. The case against is that the member has an assured-return expectation and has not chosen to take market risk. I would support a <strong>capped</strong> allocation — the risk is bounded and the returns are shared — but I would put the emphasis on disclosure, because the difficulty is less the volatility than the fact that members bear a downside they did not select."</em></p></blockquote><p><strong>"Why has India not ratified ILO Conventions 87 and 98?"</strong></p><p>Handle this as a <strong>descriptive</strong> question, not an opinion one. Explain what the Conventions cover, note the stated difficulties concerning government servants and existing statutory restrictions, and observe that these Conventions are central to trade union objections to the Industrial Relations Code. <strong>Then stop.</strong> If pressed for a view, confine it to the process point — that ratification imposes reporting obligations and governments ratify when domestic law is already compliant — rather than taking a political side.</p><aside class="cal trap"><p class="cal-h">TRAP · THE QUESTIONS DESIGNED TO PULL YOU INTO POLITICS</p><p>Some opinion questions are really invitations to reveal a partisan position: whether a particular government's labour reform was correct, whether trade unions are obstructive, whether a strike was justified.</p><p><strong>Reframe to the administrative or constitutional question underneath.</strong> On a strike: the legal position is that notice is required and there are prohibited periods, the industrial question is whether the dispute machinery was exhausted, and the administrator's interest is in whether the process was followed. That is a complete answer that takes no side.</p><p><strong>You are being assessed for a statutory post.</strong> An officer who visibly holds partisan views about the parties they regulate is a liability, and boards are alert to it.</p></aside><div class="pagebreak"></div><h2 id="2-the-situational-frame">2. The Situational Frame</h2><aside class="cal know"><p class="cal-h">KNOW · FACTS, LAW, OPTIONS, DECISION, SAFEGUARD</p><p><strong>1 Facts.</strong> What would you need to establish first? Never accept the scenario's framing uncritically — most scenarios are underdetermined on purpose.</p><p><strong>2 Law or rule.</strong> What governs? Name it.</p><p><strong>3 Options.</strong> Two or three realistic courses, including the one you will reject.</p><p><strong>4 Decision.</strong> Choose. Say what you would do.</p><p><strong>5 Safeguard.</strong> What review, record or reporting would you build in? <strong>This is the step that separates a good answer from an adequate one</strong>, because it shows you understand that a decision needs to survive scrutiny.</p></aside><h3 id="21-ten-scenarios">2.1 Ten scenarios</h3><p><strong>1. An employer has defaulted for eight months and says he cannot pay because the business is failing.</strong></p><p>Facts: is the establishment covered, is the default admitted, are the employees' shares deducted but not deposited — because that changes the character of the case entirely from cash-flow difficulty to misappropriation of the members' own money. Law: determination, then interest and damages, then recovery. Decision: complete the inquiry and determine the liability regardless; on recovery, distinguish inability from unwillingness, and use instalments where the law permits. Safeguard: record reasons for any forbearance, and monitor compliance. <strong>The line worth saying: an employer's difficulty may be a reason to schedule recovery differently; it is never a reason not to determine the dues.</strong></p><p><strong>2. A member's pension claim has been pending for three months. He comes to your office in distress.</strong></p><p>Facts: where is the file actually stuck, is it a documentary deficiency, a Aadhaar or bank mismatch, or an internal delay. Decision: deal with the person first — tell him precisely what is required and by when — then fix the cause. Safeguard: if it is systemic, look for the other cases with the same defect rather than only closing his. Note the <strong>20-day standard and the 12 per cent interest</strong> where EPFO delays: the organisation has accepted a liability for its own delay, and that is the right thing to reference.</p><p><strong>3. A senior officer instructs you orally to drop proceedings against a particular establishment.</strong></p><p>Facts: is this a lawful instruction about <strong>procedure</strong>, or a direction on the <strong>merits</strong> of a quasi-judicial matter. Law: in a quasi-judicial function the officer decides on evidence and cannot take dictation. Options: comply, refuse, or seek the instruction in writing. Decision: request written instructions and place the matter on record; decide the case on its merits. Safeguard: the reasoned, appealable order is itself the protection — an order that states its reasons cannot be quietly influenced. <strong>Frame it without theatrics: you are not defying a superior, you are observing the limits of a judicial function.</strong></p><p><strong>4. You discover a colleague has been accepting money from an employer to delay inspections.</strong></p><p>Facts: what do you actually know, as against suspect. Decision: report it through the proper channel; do not investigate privately and do not confront the colleague. Safeguard: record what you observed, when, and to whom you reported it. <strong>Do not embellish this answer with declarations of zero tolerance.</strong> State the process. The restraint is the answer.</p><p><strong>5. Your office has a large grievance backlog and you cannot clear it within the standards.</strong></p><p>Facts: what is the composition of the backlog — a few systemic causes usually account for most of it. Decision: triage by cause rather than by date, fix the top two causes, and be honest upward about what cannot be met. Safeguard: measure <strong>closure quality</strong>, not just closure. <strong>A board will notice if you propose to clear a backlog by closing tickets rather than by solving problems.</strong></p><p><strong>6. An establishment claims it is not covered because it employs nineteen people.</strong></p><p>Facts: verify the count, including contract labour and workers through a contractor, and check the period — coverage having once attached does not lapse when strength falls. Law: the threshold and the once-covered rule. Decision: determine on evidence. Safeguard: a reasoned order either way. Note that the <strong>honest answer includes the possibility that the employer is right</strong> — a candidate who assumes evasion is revealing a disposition the board will mark down.</p><p><strong>7. A large employer's dues would, if recovered immediately, force closure and cost 400 jobs.</strong></p><p>The genuine dilemma, and the answer must not dodge it. Determination is not discretionary. On recovery, however, the objective is to <strong>realise the dues</strong>, and a closed establishment realises less. So: determine fully, then use the recovery flexibility the law allows, with security where possible, monitored, and with reasons recorded. <strong>Say explicitly that this is not leniency but revenue-maximising judgment</strong>, because that is both true and the distinction a board is testing for.</p><p><strong>8. A member has been paid a benefit in excess through an office error.</strong></p><p>Facts: quantum, cause, whether the member misrepresented anything. Decision: recovery of public money is the default, but the manner matters — notice, opportunity, and instalments where hardship is genuine. Safeguard: fix the process error that caused it, which is the more important half.</p><p><strong>9. A subordinate makes a serious error in a matter you signed.</strong></p><p>Decision: own it externally, correct it immediately, and deal with the subordinate internally and proportionately. <strong>The signature is yours.</strong> Safeguard: change the check that failed. Boards are listening for whether you take responsibility upward and give credit downward.</p><p><strong>10. You are posted to a district where the dominant employment is construction labour with no payroll.</strong></p><p>This is the coverage problem in local form, and it is where F12.2 §5.1 pays off. Facts: who the principal employers are, whether workers are registered, what the local welfare board position is. Decision: the realistic levers are registration, principal-employer liability, and working with existing local machinery. Safeguard: measure workers actually registered, not meetings held. <strong>Say plainly that the constraint is collectibility, not entitlement.</strong></p><div class="pagebreak"></div><h2 id="3-ethics-integrity-and-pressure">3. Ethics, Integrity and Pressure</h2><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE FOUR PRINCIPLES, AND HOW TO SOUND LIKE A PERSON WHILE STATING THEM</p><p><strong>1 Legality before preference.</strong> Where the law is clear you apply it, whatever you would personally prefer.</p><p><strong>2 Process protects the officer.</strong> A reasoned, recorded, appealable decision is the defence against both pressure and error. Say this — it is the single most mature thing you can say in an integrity question.</p><p><strong>3 Proportionality.</strong> The response fits the wrong. An officer who reaches for the maximum penalty in every case is not rigorous, only blunt.</p><p><strong>4 Escalation over improvisation.</strong> When something exceeds your authority, refer it. Do not solve it privately.</p><aside class="cal trap"><p class="cal-h">TRAP · THE TONE THAT COSTS MARKS</p><p>Integrity questions tempt candidates into <strong>declarations</strong> — <em>I would never compromise, I have zero tolerance, I would resign.</em> These are heard as performance, and boards discount them heavily, because everybody says them and they are free.</p><p><strong>Describe what you would do, in order, and let the integrity be implicit in the procedure.</strong> "I would ask for the instruction in writing and decide the case on the record" is worth more than any amount of declared incorruptibility, because it is a thing a person actually does.</p></aside></aside><h3 id="31-the-pressure-questions">3.1 The pressure questions</h3><p><strong>"You are young. How will you pass orders against employers older and more powerful than you?"</strong></p><p>The authority is not personal, it is statutory, and it is exercised through a reasoned order that is appealable. That is precisely what makes it exercisable by a junior officer without either arrogance or fear. Add, honestly, that you would expect to be tested and that the record is the answer.</p><p><strong>"Do you think you are over-qualified for this post?"</strong> or <strong>"This is a desk job. Will you not be bored?"</strong></p><p>Do not accept the framing and do not become defensive. The post is quasi-judicial with recovery powers over establishments and consequences for members' retirement security. Say what specifically interests you — and have one concrete thing ready, because a general answer confirms the premise of the question.</p><p><strong>"What if you are not selected?"</strong></p><p>Answer it straightforwardly and without either self-pity or bravado: what you would do next, and that you would continue to want this. A board asks this to see whether you are brittle.</p><p><strong>"Give me one weakness."</strong></p><p>A real one, with what you have done about it. Not a disguised strength — <em>"I work too hard"</em> is heard as evasion, and evasion in an integrity assessment is expensive.</p><div class="pagebreak"></div><h2 id="4-the-rehearsal-bank-sixty-questions">4. The Rehearsal Bank — Sixty Questions</h2><aside class="cal action"><p class="cal-h">ACTION · HOW TO USE THIS</p><p>Not to be read. <strong>To be answered aloud, against a clock</strong>, forty seconds for factual and ninety for opinion and situational. Record yourself for the first ten.</p><p>Mark each question <strong>G</strong>, <strong>A</strong> or <strong>W</strong> — good, adequate, or weak. Re-do every W the following day. Do not move on until nothing is marked W.</p></aside><h3 id="41-bio-data-and-motivation-12">4.1 Bio-data and motivation — 12</h3><ol><li>Tell me about yourself.</li><li>Why do you want to join EPFO?</li><li>Why are you leaving your present job?</li><li>What does an Assistant Provident Fund Commissioner do?</li><li>Why did you study what you studied?</li><li>What is your greatest achievement so far?</li><li>Tell me about a failure and what it taught you.</li><li>What are the main industries in your district, and are they formal or informal employers?</li><li>Where is the EPFO office nearest your home, and what would it mostly be dealing with?</li><li>What do you do outside work?</li><li>What are your strengths, and one real weakness?</li><li>Where do you see yourself in ten years?</li></ol><h3 id="42-the-organisation-and-the-post-12">4.2 The organisation and the post — 12</h3><ol><li>Is EPFO a constitutional body, a statutory body, or neither?</li><li>Who chairs the Central Board of Trustees, and what does tripartite mean?</li><li>Who declares the rate of interest on provident fund accumulations?</li><li>What is the difference between EPFO and ESIC?</li><li>Does PFRDA regulate EPFO? Why does that distinction matter?</li><li>What makes your role quasi-judicial rather than administrative?</li><li>Where do your powers of inquiry and recovery come from?</li><li>Walk me through what happens when an employer defaults.</li><li>What is the difference between interest and damages on a default?</li><li>What protections does the law give to provident fund accumulations?</li><li>What is EPFO 3.0, and what has it changed?</li><li>What would you improve about EPFO, within your own authority?</li></ol><h3 id="43-the-law-and-the-schemes-12">4.3 The law and the schemes — 12</h3><ol><li>What law governs the provident fund today, and from when?</li><li>What happened on 29 June 2026, and what did it change?</li><li>Name the three schemes and say who funds each.</li><li>Does the employee contribute to the pension scheme? Explain.</li><li>What is the wage ceiling, and is it changing?</li><li>What is the coverage threshold, and what happens if strength falls below it?</li><li>How is the monthly pension computed?</li><li>What is the minimum pension, and is it adequate?</li><li>What does the deposit-linked insurance scheme provide, and who pays for it?</li><li>How many enactments did the four Codes replace, and how are they divided?</li><li>Which Code did the Payment of Gratuity Act go into, and why does that matter?</li><li>What is the 50 per cent rule in the definition of wages, and why does it affect you?</li></ol><h3 id="44-policy-and-opinion-12">4.4 Policy and opinion — 12</h3><ol><li>Are the labour Codes good for workers?</li><li>Why is most of India's workforce outside social security?</li><li>Will the aggregator model for gig workers work?</li><li>Should the wage ceiling be raised to ₹25,000?</li><li>Should EPFO invest in equity?</li><li>EPS or NPS — which is the better design?</li><li>Is universal social security achievable in India?</li><li>Why has India not ratified ILO Conventions 87 and 98?</li><li>What is the difference between contributory and non-contributory social security?</li><li>What is the India-UK Double Contributions Convention, and who administers it?</li><li>Should social security be tied to the enterprise or to the worker?</li><li>Is raising the retrenchment threshold from 100 to 300 workers defensible?</li></ol><h3 id="45-situational-and-ethical-12">4.5 Situational and ethical — 12</h3><ol><li>An employer says he cannot pay because his business is failing.</li><li>He has deducted the employees' share but not deposited it. Does that change anything?</li><li>A senior officer tells you orally to drop a case.</li><li>You learn a colleague is taking money from an employer.</li><li>Recovery would close a factory and cost 400 jobs.</li><li>A member's claim has been pending three months and he is in your office, upset.</li><li>An excess payment was made through your office's error.</li><li>Your subordinate erred in a matter you signed.</li><li>You have a grievance backlog you cannot clear within the standards.</li><li>An establishment says it employs nineteen people and is not covered.</li><li>You are posted where most employment is construction labour with no payroll.</li><li>You are young. How will you pass orders against powerful employers?</li></ol><div class="pagebreak"></div><h2 id="5-one-minute-revision">5. One-Minute Revision</h2><aside class="cal check"><p class="cal-h">ONE-MINUTE REVISION · CHAPTER F12.3</p><p><strong>OPINION FRAME</strong> acknowledge the tension · analyse <strong>who gains and who bears the cost</strong> · <strong>land</strong> with a qualified position. 60 to 90 seconds</p><p><strong>SITUATIONAL FRAME</strong> facts · law · options · decision · <strong>safeguard</strong>. The safeguard is the step that separates good from adequate</p><p><strong>TAKE A POSITION.</strong> Permanent fence-sitting reads as inability to decide, which is disqualifying for a post that passes binding orders</p><p><strong>THE CODES ANSWER</strong> depth of protection for a minority traded against breadth of coverage for a majority · verdict depends on <strong>enforcement</strong>, not drafting</p><p><strong>THE PENSION ANSWER</strong> concede inadequacy at once · then the <strong>defined-benefit funding</strong> point · land on a principle, not a number</p><p><strong>POLITICAL BAIT</strong> reframe to the administrative or constitutional question underneath. Take no side</p><p><strong>DETERMINATION IS NOT DISCRETIONARY.</strong> Recovery has flexibility. Hardship changes the <strong>schedule</strong>, never the <strong>determination</strong></p><p><strong>THE 400 JOBS ANSWER</strong> not leniency — <strong>revenue-maximising judgment</strong>, with security, monitoring and recorded reasons</p><p><strong>ORAL INSTRUCTION ON MERITS</strong> ask for it in writing · decide on the record · the reasoned appealable order <strong>is</strong> the safeguard</p><p><strong>COLLEAGUE'S CORRUPTION</strong> report through channel · do not investigate privately · <strong>no declarations</strong></p><p><strong>INTEGRITY TONE</strong> describe the procedure, let the integrity be implicit. <em>Zero tolerance</em> is free and is discounted</p><p><strong>WEAKNESS</strong> a real one, with what you did about it</p><p><strong>ONE LINE FOR THE INTERVIEW</strong> The reasoned, recorded, appealable order is not bureaucracy — it is what allows a junior officer to decide against a powerful party without either fear or arbitrariness.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F12.3
+  &middot; v1.0</footer>
+</body>
+</html>
