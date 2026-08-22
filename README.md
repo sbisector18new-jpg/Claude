@@ -19,10 +19,14 @@ coverage.
 
 ## Where the project stands
 
-- **Complete:** Modules 1, 2, 3, 5, 6, 7 — 53 chapters, 130 hours, 142.5 planning marks
-- **Remaining:** Modules 4, 8, 9, 10, 11 — 94 hours, 157.5 planning marks
-- **Just finished:** Modules 6 and 7 — nine Foundation chapters, **245 pages, 265 questions**
-- **Next:** Module 9 (General Science and Computer Applications, 42.5 marks), with Module 8 running daily
+- **Complete:** all eleven modules — all **300 planning marks** covered
+- **Just added:** **F11.4 — The Trap Catalogue** (Module 11) — 47 pages, 30 diagnostic questions. Thirty
+  structural distractor patterns, a confusion-pair compendium, and the elimination ladder
+- **Read first this cycle:** **F11.4 §5.** The four labour codes came into force on **21 November 2025**
+  and the provident fund, pension and insurance schemes were replaced on **29 June 2026** — so every Act
+  and scheme year previously memorised is now a distractor, while most of the *numbers* did not move
+- **Still to re-supply:** Modules 1, 2, 3 and 5 into `src/`, and the 2015 and 2023 papers into `pyq/` —
+  register §9. Those four modules were written against the **repealed** Acts and must be checked
 
 ## The two layers
 

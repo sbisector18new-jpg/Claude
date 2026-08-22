@@ -439,8 +439,9 @@ coordinating **contributions and not benefits**.
 | **F11.1** | Previous question analysis — the 2023 paper, module by module | **Complete v1.0** — 22 pp, 25 Q |
 | **F11.2** | **Full Mock 1** — a complete 120-question paper with key and explanations | **Complete v1.0** — 33 pp, **120 Q** |
 | **F11.3** | Mock protocol, score analysis and final revision | **Complete v1.0** — 19 pp, no bank |
+| **F11.4** | **The trap catalogue** — distractor architecture, confusion pairs, elimination ladder | **Complete v1.0** — 47 pp, 30 Q |
 
-**74 pages, 145 questions.** Three deliberate decisions are recorded here because each could be reversed by
+**121 pages, 175 questions.** Four deliberate decisions are recorded here because each could be reversed by
 a later session that did not know the reasoning.
 
 **1 F11.1's bank is 25 questions on the specific items the 2023 paper asked**, as recorded in Blueprint
@@ -459,6 +460,38 @@ ones, and it should not be quietly replaced with filler.
 
 **3 F11.3 has no question bank**, for the same reason F8.0 has none: it is a protocol, and its output is a
 schedule on the wall and a log in a notebook, not marks in a bank.
+
+**4 F11.4 was written as exam craft, not as content, and four choices in it should not be quietly
+reversed.**
+
+**(a) It does not restate F11.1 §1.2's marking arithmetic**, and must not be edited to. F11.4 §1.2 instead
+extends it with the **hard / soft elimination** distinction: F11.1 proves that eliminating one option turns
+a question positive, and F11.4 supplies the reason that promise fails in practice — a *soft* elimination
+misread as hard converts a zero-expectation guess into a negative one. The two sections are halves of one
+argument and cross-reference each other deliberately.
+
+**(b) The taxonomy is labelled ANALYTICAL ESTIMATE and carries no frequency claims.** Thirty trap codes are
+named (T-01 to T-30) and **no weightage or frequency figure is asserted anywhere in the chapter**, because
+trap frequency has not been counted from the papers. The codes are a **vocabulary for the error log**
+(F11.3 §4.2), not a measured distribution. Adding invented frequencies would breach §2's evidence
+standard.
+
+**(c) The question bank is written fresh and reproduces no question-paper text.** 30 items, key balanced at
+7/7/8/8. §4's source map names the paper families whose *conventions* the drills imitate — CSE Prelims,
+CAPF (AC), EO/AO, past APFC, CDS, NDA, IES/ISS — and the chapter states explicitly that no verbatim text is
+used. Note §4's finding that **EO/AO papers are now direct practice material**, not a parallel syllabus,
+because EO/AO was not notified in 2026.
+
+**(d) §5 is built around the 2025-26 instrument replacement, and this is the chapter's most perishable and
+most valuable section.** It records that the codes commenced **21 November 2025** and that the EPF, EPS and
+EDLI schemes were replaced by **2026** schemes on **29 June 2026**, then draws the consequence that governs
+the whole cycle: **the numbers largely did not move but the instruments all did**, so the paper can ask two
+different questions and a candidate who prepared only the figures will fail the second. Every previously
+memorised Act and scheme year is now a ready-made distractor. §5.1 tabulates live instrument against
+superseded instrument for exactly this reason, and §5 states twice that it **illustrates traps and is not
+the authority for any figure** — verification is against the bare Codes and the 2026 schemes, in the same
+sweep as F10.1 §4. **If a later sitting updates any figure in §5.2, it must also check §5.1's instrument
+column**, which is the part that dates fastest.
 
 **F11.2's answer key is balanced at exactly 30/30/30/30**, so there is no letter to fall back on — which
 matters more in a 120-question paper than in a chapter bank, because a candidate guessing under time
