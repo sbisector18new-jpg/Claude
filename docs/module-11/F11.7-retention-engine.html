@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Retention Engine — Spaced Repetition Over the Manual&#x27;s Own Facts</title>
+<style>
+/* APFC RT Manual - shared stylesheet.
+   Screen-readable on desktop, mobile and tablet; prints cleanly to PDF. */
+
+:root {
+  --navy: #1e3a5f;
+  --navy-lt: #2e5f9a;
+  --ink: #1f2430;
+  --mute: #5c6673;
+  --line: #d7dce4;
+  --accent: #c1590e;
+  --serif: "DejaVu Serif", Georgia, "Times New Roman", serif;
+  --sans: "DejaVu Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+main {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3.2rem 1.25rem 4rem;
+}
+
+/* ---------------------------------------------------------- running head */
+
+.running {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .5rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+.running .ver { color: var(--navy); font-weight: 700; }
+
+.foot {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .74rem;
+  color: var(--mute);
+}
+
+/* ---------------------------------------------------------- title block */
+
+.title { margin-bottom: 2.5rem; }
+
+.eyebrow {
+  background: var(--navy);
+  color: #fff;
+  margin: 0 0 1.6rem;
+  padding: .6rem .85rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.doc-t {
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  line-height: 1.16;
+  color: var(--navy);
+  text-align: center;
+  margin: .4rem 0 .6rem;
+}
+
+.doc-s {
+  text-align: center;
+  color: var(--mute);
+  font-size: 1.02rem;
+  margin: 0 0 1.4rem;
+}
+
+.rule {
+  width: 8.5rem;
+  height: 3px;
+  background: var(--accent);
+  margin: 1.4rem auto 1.8rem;
+}
+
+table.meta { width: 100%; border-collapse: collapse; font-size: .88rem; }
+table.meta td { padding: .5rem .3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.meta .k { color: var(--mute); width: 32%; }
+table.meta .v { font-weight: 700; color: var(--ink); }
+
+/* ---------------------------------------------------------- headings */
+
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--navy); line-height: 1.25; }
+
+h2 {
+  font-size: 1.65rem;
+  margin: 2.6rem 0 1rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+h3 { font-size: 1.2rem; margin: 1.9rem 0 .7rem; }
+h4 { font-size: 1.02rem; margin: 1.4rem 0 .5rem; color: var(--navy-lt); }
+
+p { margin: 0 0 .95rem; }
+
+a { color: var(--navy-lt); }
+
+strong { color: #16202e; }
+
+code {
+  font-family: "DejaVu Sans Mono", ui-monospace, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: #f1f3f7;
+  padding: .1em .32em;
+  border-radius: 3px;
+}
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 0 .2rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: #2c3542;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+li { margin-bottom: .38rem; }
+li > ul, li > ol { margin-top: .38rem; margin-bottom: .2rem; }
+
+/* ---------------------------------------------------------- toc */
+
+.toc { margin: 0 0 2.2rem; }
+.toc-h {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--navy);
+  border-bottom: 2px solid var(--navy);
+  padding-bottom: .4rem;
+  margin: 0 0 .9rem;
+}
+.toc a {
+  display: block;
+  text-decoration: none;
+  color: var(--navy);
+  padding: .2rem 0;
+  font-size: .93rem;
+  border-bottom: 1px dotted #e3e7ee;
+}
+.toc a:hover { background: #f6f8fb; }
+.toc-2 { font-weight: 700; }
+.toc-3 { padding-left: 1.1rem !important; font-weight: 400; color: #37475c; }
+
+/* ---------------------------------------------------------- star ratings */
+
+/* Drawn as clip-path shapes because the only installed font (Noto Sans) has no
+   U+2605 glyph. Renders identically on screen and in print. */
+.rate {
+  display: inline-flex;
+  gap: .1em;
+  vertical-align: -.02em;
+  margin-left: .15em;
+}
+
+.rate i {
+  width: .74em;
+  height: .74em;
+  background: #d4a017;
+  clip-path: polygon(50% 0%, 61.8% 34.5%, 98% 34.5%, 68.2% 57.3%, 79.4% 100%,
+                     50% 73.6%, 20.6% 100%, 31.8% 57.3%, 2% 34.5%, 38.2% 34.5%);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.rate i.off { background: #ccd3de; }
+
+h2 .rate i, h3 .rate i { background: #c1590e; }
+h2 .rate i.off, h3 .rate i.off { background: #dfe4ec; }
+
+/* ---------------------------------------------------------- tables */
+
+.tw { margin: 1.3rem 0 1.6rem; overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .89rem;
+}
+
+thead th {
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  padding: .55rem .6rem;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: .55rem .6rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: #f7f9fc; }
+
+.cap { font-size: .8rem; color: var(--mute); font-style: italic; margin: .45rem 0 0; }
+
+/* ---------------------------------------------------------- callouts */
+
+.cal {
+  margin: 1.4rem 0;
+  padding: .9rem 1.05rem .55rem;
+  border-left: 4px solid var(--mute);
+  background: #f4f6f9;
+  font-size: .93rem;
+}
+
+.cal-h {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin: 0 0 .55rem;
+  line-height: 1.45;
+}
+
+.cal p:last-child, .cal ul:last-child, .cal ol:last-child, .cal .tw:last-child {
+  margin-bottom: .35rem;
+}
+.cal table { font-size: .86rem; }
+
+.cal.must-master, .cal.trap, .cal.beginner, .cal.important {
+  background: #fdf1f0; border-left-color: #c0392b;
+}
+.cal.must-master > .cal-h, .cal.trap > .cal-h,
+.cal.beginner > .cal-h, .cal.important > .cal-h { color: #a93226; }
+
+.cal.high-yield, .cal.world { background: #fdf7ea; border-left-color: #d68910; }
+.cal.high-yield > .cal-h, .cal.world > .cal-h { color: #9c6207; }
+
+.cal.know { background: #fefbe9; border-left-color: #b7950b; }
+.cal.know > .cal-h { color: #8a6d08; }
+
+.cal.think, .cal.why { background: #f4f1fb; border-left-color: #6c4bb6; }
+.cal.think > .cal-h, .cal.why > .cal-h { color: #56399b; }
+
+.cal.memory, .cal.check, .cal.action { background: #edf7f0; border-left-color: #1e8449; }
+.cal.memory > .cal-h, .cal.check > .cal-h, .cal.action > .cal-h { color: #14683a; }
+
+.cal.plain { background: #eaf6f7; border-left-color: #128f8f; }
+.cal.plain > .cal-h { color: #0d7070; }
+
+.cal.session { background: #eef3fa; border-left-color: var(--navy-lt); }
+.cal.session > .cal-h { color: var(--navy); }
+
+.cal.jargon, .cal.note, .cal.optional { background: #f2f4f7; border-left-color: #8a94a6; }
+.cal.jargon > .cal-h, .cal.note > .cal-h, .cal.optional > .cal-h { color: #4a5566; }
+
+/* ---------------------------------------------------------- print */
+
+.pagebreak { break-after: page; page-break-after: always; height: 0; }
+
+@media print {
+  @page { size: A4; margin: 16mm 14mm 18mm; }
+
+  body { font-size: 10.2pt; line-height: 1.48; }
+  main { max-width: none; padding: 0; }
+
+  /* The PDF build (build/pdf.mjs) supplies a running header and a numbered
+     footer through the print pipeline, so the in-page versions are suppressed
+     to avoid printing them twice. They remain visible on screen. */
+  .running, .foot { display: none !important; }
+
+  .doc-t { font-size: 26pt; }
+  h2 { font-size: 15pt; margin-top: 16pt; }
+  h3 { font-size: 11.6pt; }
+  h4 { font-size: 10.4pt; }
+
+  .toc a:hover { background: none; }
+
+  /* keep teaching units intact across page boundaries */
+  aside.cal, .tw, table, blockquote { break-inside: avoid; page-break-inside: avoid; }
+  tr, li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; page-break-after: avoid; }
+  thead { display: table-header-group; }
+
+  a { color: var(--ink); text-decoration: none; }
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 15px; }
+  main { padding: 2.2rem .9rem 3rem; }
+  .doc-t { font-size: 1.8rem; }
+  h2 { font-size: 1.35rem; }
+  table { font-size: .84rem; }
+}
+
+</style>
+</head>
+<body>
+<div class="running">Foundation F11.7 · The Retention Engine
+  <span class="ver">v1.0</span></div>
+<main>
+<header class="title"><p class="eyebrow">UPSC EPFO · APFC RECRUITMENT TEST · MODULE 11 · CHAPTER F11.7</p><h1 class="doc-t">The Retention Engine — Spaced Repetition Over the Manual's Own Facts</h1><p class="doc-s">Chapter F11.7 — 4,403 Cards, and the Schedule That Makes Them Worth Having</p><div class="rule"></div><table class="meta"><tr><td class="k">Module</td><td class="v">Foundation Layer — Module 11 — PYQ Analysis, Mocks and Final Revision</td></tr><tr><td class="k">Chapter</td><td class="v">Chapter F11.7</td></tr><tr><td class="k">Topic</td><td class="v">Retention scheduling, card discipline and the decay problem</td></tr><tr><td class="k">Version</td><td class="v">v1.0</td></tr><tr><td class="k">Compiled</td><td class="v">22 August 2026</td></tr><tr><td class="k">Exam stage</td><td class="v">Recruitment Test (RT)</td></tr></table></header>
+<aside class="cal must-master"><p class="cal-h">MUST MASTER · THE ENEMY IS NO LONGER COVERAGE</p><p>This manual now holds around <strong>230 hours of reading</strong> and <strong>1,459 practice questions</strong>. F11.3 §1 already names the consequence, and Register §5 records it: with the syllabus covered, <strong>the binding constraint has moved from coverage to decay.</strong> The risk is not that you will fail to reach a module. It is that the module you read in September will have gone by November.</p><p>Nothing in the manual fought that. Wall sheets are the right <em>content</em> for the fight and the wrong <em>mechanism</em> — a wall sheet is re-read, and re-reading is the least efficient form of study known, because recognising a fact feels exactly like knowing it.</p><p><strong>This chapter supplies the mechanism.</strong> <code>decks/</code> holds <strong>4,403 cards</strong> generated from the manual's own sources. §2 is why they are shaped as they are, §4 is the schedule, and <strong>§5 is the part most people skip and should not: what to do when a card fails.</strong></p></aside><nav class="toc"><h2 class="toc-h">Table of Contents</h2><a class="toc-2" href="#0-how-this-chapter-works"><span class="toc-t">0. How This Chapter Works</span></a><a class="toc-2" href="#1-why-re-reading-fails-and-retrieval-does-not"><span class="toc-t">1. Why Re-reading Fails and Retrieval Does Not</span></a><a class="toc-2" href="#2-how-the-cards-were-built"><span class="toc-t">2. How the Cards Were Built</span></a><a class="toc-3" href="#21-the-seven-decks"><span class="toc-t">2.1 The seven decks</span></a><a class="toc-3" href="#22-what-the-decks-do-not-cover"><span class="toc-t">2.2 What the decks do not cover</span></a><a class="toc-2" href="#3-setting-up-once"><span class="toc-t">3. Setting Up, Once</span></a><a class="toc-2" href="#4-the-schedule"><span class="toc-t">4. The Schedule</span></a><a class="toc-3" href="#41-the-daily-habit"><span class="toc-t">4.1 The daily habit</span></a><a class="toc-3" href="#42-which-decks-when"><span class="toc-t">4.2 Which decks, when</span></a><a class="toc-3" href="#43-if-you-have-less-than-fifteen-weeks"><span class="toc-t">4.3 If you have less than fifteen weeks</span></a><a class="toc-2" href="#5-when-a-card-fails"><span class="toc-t">5. When a Card Fails</span></a><a class="toc-2" href="#6-what-this-does-not-do"><span class="toc-t">6. What This Does Not Do</span></a><a class="toc-2" href="#7-five-minute-wall-sheet"><span class="toc-t">7. Five-Minute Wall Sheet</span></a></nav><h2 id="0-how-this-chapter-works">0. How This Chapter Works</h2><aside class="cal session"><p class="cal-h">STUDY SESSION · CHAPTER F11.7</p><p><strong>One session, forty minutes, done once.</strong> This is a setup chapter, not a study chapter. You read it, you import seven files, you start a daily habit that costs twenty minutes.</p><p>Then you never read it again except §5, which you will need in week three when the first cards start failing and you are tempted to do the wrong thing about it.</p></aside><p>The decks are built by <code>build/decks.py</code> from <code>src/</code>. They are not a separate body of content to be maintained, and that is deliberate: <strong>a fact that changes in a chapter changes in the deck on the next build.</strong> Given how much of this syllabus moved in 2025–26, any deck that had to be hand-edited would be wrong within a month.</p><h2 id="1-why-re-reading-fails-and-retrieval-does-not">1. Why Re-reading Fails and Retrieval Does Not</h2><p>The finding is old, replicated and inconvenient: <strong>testing yourself on material produces far more durable memory than reviewing it</strong>, and it does so while feeling <em>worse</em> at the time. Re-reading produces fluency — the text runs smoothly, nothing snags — and fluency is mistaken for mastery. Retrieval produces effort, hesitation and the occasional blank, all of which feel like failure and are in fact the mechanism working.</p><p>Two consequences for this exam specifically.</p><p><strong>First, the wall sheets are being used wrongly by almost everyone.</strong> They are excellent — dense, atomic, already stripped to the examinable core. But reading one is recognition practice, and the paper does not test recognition. F11.4 §2 makes the point from the other direction: the whole trap taxonomy works by supplying options that <em>feel</em> familiar. <strong>A candidate trained on recognition is trained on precisely the faculty the paper exploits.</strong></p><p><strong>Second, spacing beats massing.</strong> Reviewing a fact on days 1, 3, 8 and 21 produces stronger retention than reviewing it four times on day 1, at identical total cost. This is why a daily twenty-minute habit outperforms a Sunday three-hour revision block, and why starting the habit late is expensive in a way that cannot be made up by working harder in the last fortnight.</p><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · WHY THIS PAPER PUNISHES DECAY UNUSUALLY HARD</p><p>Most exams let partial knowledge earn partial credit. This one does not. F11.1 §1.2 shows a wrong answer costs <strong>0.8333</strong> against a correct answer's <strong>2.5</strong> — so a half-remembered fact is not worth a third of a mark, it is worth <strong>less than nothing</strong> if it produces false confidence.</p><p>And F11.4 §3's T-09 shows the specific mechanism: the distractors are <em>superseded values</em> — ₹6,500 for ₹15,000, 1.61% for 1.16%. A decayed memory does not return "I don't know". <strong>It returns the neighbouring value with the same feeling of familiarity.</strong> That is why decay on this paper converts directly into negative marks, and why the numbers deck is reviewed on the shortest interval of the seven.</p></aside><h2 id="2-how-the-cards-were-built">2. How the Cards Were Built</h2><p>Four rules governed generation. They matter because they are the difference between a deck that trains the exam and a deck that trains a feeling of competence.</p><aside class="cal must-master"><p class="cal-h">MUST MASTER · THE FOUR RULES</p><p><strong>1. Recognition is not recall.</strong> An MCQ's answer is on the page. <strong>No card front reproduces options.</strong> Every card either deletes the fact from its own sentence, or asks a question whose answer is not visible.</p><p><strong>2. One fact to a card.</strong> A wall-sheet line reading <code>BRASS = Cu + Zn · BRONZE = Cu + Sn</code> becomes two cards. A card holding two facts fails for the wrong reason and hides which half you lost.</p><p><strong>3. Discrimination beats assertion.</strong> Knowing ₹15,000 is nearly worthless while ₹6,500 feels equally familiar. So the confusion tables become their own deck, and those cards <strong>name the distractor and require you to refuse it.</strong></p><p><strong>4. Never fabricate a question.</strong> Where a line had no clozeable target and no natural split it was <strong>skipped and counted</strong> — 440 of them — rather than turned into a vague prompt. The count prints on every build, so the gap stays visible instead of being papered over.</p></aside><h3 id="21-the-seven-decks">2.1 The seven decks</h3><div class="tw"><table><thead><tr><th style="text-align:left">Deck</th><th style="text-align:right">Cards</th><th style="text-align:left">Built from</th><th style="text-align:left">Why it exists</th></tr></thead><tbody><tr><td style="text-align:left">1 Numbers and Dates</td><td style="text-align:right">1,144</td><td style="text-align:left">Every figure in the wall sheets and explanations</td><td style="text-align:left">Numbers decay fastest and T-09 attacks them hardest</td></tr><tr><td style="text-align:left">2 Discrimination</td><td style="text-align:right">131</td><td style="text-align:left">The confusion and superseded-instrument tables</td><td style="text-align:left">Highest value per card in the whole set</td></tr><tr><td style="text-align:left">3 Core Facts</td><td style="text-align:right">1,797</td><td style="text-align:left">Wall sheets and one-minute revisions</td><td style="text-align:left">The examinable core, one fact at a time</td></tr><tr><td style="text-align:left">4 Question Recall</td><td style="text-align:right">967</td><td style="text-align:left">Practice items, converted to free recall</td><td style="text-align:left">Turns 1,459 recognition items into retrieval</td></tr><tr><td style="text-align:left">5 Definitions and Pairs</td><td style="text-align:right">293</td><td style="text-align:left">Term-to-meaning and List-I/List-II tables</td><td style="text-align:left">Matching items are pure paired recall</td></tr><tr><td style="text-align:left">6 Traps</td><td style="text-align:right">30</td><td style="text-align:left">T-01 to T-30 of F11.4</td><td style="text-align:left">Technique decays too, and faster than facts</td></tr><tr><td style="text-align:left">7 Interview</td><td style="text-align:right">41</td><td style="text-align:left">The one-line interview answers</td><td style="text-align:left">Spoken fluency, prompted aloud</td></tr></tbody></table></div><p>Deck 2 is small and you should not read that as unimportant. <strong>131 cards covering the exact confusions this paper is built on is the highest-yield hour in the manual.</strong></p><h3 id="22-what-the-decks-do-not-cover">2.2 What the decks do not cover</h3><p>Modules <strong>1, 2, 3 and 5</strong> — polity, labour law, social security and accounting foundations, <strong>97.5 of the 300 planning marks.</strong> Their sources are not in <code>src/</code>, so nothing was mined from them.</p><aside class="cal important"><p class="cal-h">IMPORTANT · THIS IS THE LARGEST GAP IN THE MANUAL, AND IT IS IN THE SUBJECTS THAT MATTER MOST</p><p>Labour law and social security are 52 marks and they are the substance of the post. That they are the missing modules is the worst possible distribution of a gap.</p><p><code>incoming/README.md</code> is the upload target. Markdown recovers <strong>100%</strong> of available cards; PDF recovers <strong>73%</strong>, measured by building the same chapter both ways. The missing quarter is almost entirely Deck 4, because converting a question to free recall needs the answer table to survive as a table.</p></aside><h2 id="3-setting-up-once">3. Setting Up, Once</h2><ol><li>Install <strong>Anki</strong> — desktop for import, phone for review. The phone is where the twenty minutes actually get done, in queues and between things.</li><li><strong>File &#187; Import</strong>, select each of the seven files in <code>decks/</code>, click Import. No column mapping: the note type, deck and tag column are declared inside each file.</li><li>Set new cards per day to <strong>40</strong> and reviews to <strong>unlimited</strong>. Forty a day clears 4,403 in about fifteen weeks; if you have less time than that, see §4.3.</li><li>Turn <strong>off</strong> the option that buries siblings, so both cloze deletions of one fact can appear in a day.</li></ol><aside class="cal check"><p class="cal-h">CHECK YOURSELF · SETUP</p><p>Import is correct if the deck list shows seven subdecks under <strong>APFC</strong>, the numbers and core-facts decks show as <strong>Cloze</strong>, and a card from Deck 2 shows a tick line and a cross line on its back. If instead you see one deck called <em>Default</em> with 4,403 notes, the header directives were stripped — re-import the file unmodified.</p></aside><h2 id="4-the-schedule">4. The Schedule</h2><h3 id="41-the-daily-habit">4.1 The daily habit</h3><p><strong>Twenty minutes, every day, on the phone.</strong> Not thirty on some days and none on others: the interval arithmetic assumes daily attendance, and a two-day gap does not cost two days of progress, it collapses the scheduling for every card that came due in the gap.</p><p>Order matters. Do <strong>due reviews first</strong>, always, then new cards with whatever time is left. A backlog of reviews is decay in progress; new cards are only ever an addition.</p><h3 id="42-which-decks-when">4.2 Which decks, when</h3><div class="tw"><table><thead><tr><th style="text-align:left">Phase</th><th style="text-align:left">Decks running</th><th style="text-align:right">New cards a day</th><th style="text-align:left">Emphasis</th></tr></thead><tbody><tr><td style="text-align:left">Weeks 1–2</td><td style="text-align:left">1, 2</td><td style="text-align:right">40</td><td style="text-align:left">Numbers and discriminations only. These are the cards whose absence costs marks</td></tr><tr><td style="text-align:left">Weeks 3–6</td><td style="text-align:left">1, 2, 3</td><td style="text-align:right">40</td><td style="text-align:left">Core facts join. Volume peaks here</td></tr><tr><td style="text-align:left">Weeks 7–10</td><td style="text-align:left">1–5</td><td style="text-align:right">40</td><td style="text-align:left">Question recall and definitions join, alongside Mock 2 at week 8</td></tr><tr><td style="text-align:left">Weeks 11–12</td><td style="text-align:left">1–6</td><td style="text-align:right">25</td><td style="text-align:left">Traps join, deliberately late — technique is best learnt when facts are stable. Mock 3 at week 12</td></tr><tr><td style="text-align:left">Last 2 weeks</td><td style="text-align:left">reviews only</td><td style="text-align:right"><strong>0</strong></td><td style="text-align:left">No new cards. Clearing due reviews only, which takes 25 minutes and falls</td></tr><tr><td style="text-align:left">Interview gap</td><td style="text-align:left">7</td><td style="text-align:right">41 total</td><td style="text-align:left">Deck 7 begins the day the RT ends, spoken aloud, not read</td></tr></tbody></table></div><aside class="cal trap"><p class="cal-h">TRAP · DO NOT ADD NEW CARDS IN THE LAST TWO WEEKS</p><p>New cards generate reviews on a 1-, 3-, 8-day rhythm, so a card added fourteen days out is still consuming attention on the morning of the paper, and consuming it at the worst moment — while it is still unstable.</p><p>F11.3 §4 sets the last four weeks for retrieval, timing and error correction. <strong>Adding cards inside two weeks is coverage work disguised as revision work.</strong> Stop at day 14 and let the queue drain.</p></aside><h3 id="43-if-you-have-less-than-fifteen-weeks">4.3 If you have less than fifteen weeks</h3><p>Do not raise the daily new-card count — that inflates reviews quadratically and collapses in week three. <strong>Cut scope instead, in this order:</strong></p><ol><li>Keep Decks <strong>1, 2 and 6</strong> whole. 1,305 cards, and they are the highest-yield in the set.</li><li>Filter Deck 3 by tag to your weakest four modules: <code>tag:syllabus::labour-law</code> and so on.</li><li>Drop Deck 4 entirely. Its content is reachable by sitting the mocks, which you are doing anyway.</li></ol><p>That floor is about 1,600 cards and clears in six weeks at 40 a day.</p><h2 id="5-when-a-card-fails">5. When a Card Fails</h2><p>This is the section that decides whether the engine works, and it is where the instinct is wrong.</p><p><strong>The instinct is to re-read the chapter.</strong> Do not. A single lapse is normal and is the schedule working — the algorithm found the edge of your retention, which is exactly what it is for. Press <em>Again</em> and move on.</p><p><strong>Act on the third lapse of the same card, not the first.</strong> Three failures is no longer decay, it is a defective card or a genuinely unlearned fact. Then, and only then, do one of these three things.</p><div class="tw"><table><thead><tr><th style="text-align:left">The card</th><th style="text-align:left">The diagnosis</th><th style="text-align:left">The action</th></tr></thead><tbody><tr><td style="text-align:left">Fails because two facts are tangled</td><td style="text-align:left">You have a <strong>confusion</strong>, not a gap</td><td style="text-align:left">Find its partner in Deck 2. If absent, write one card naming both, in the Deck 2 shape</td></tr><tr><td style="text-align:left">Fails because the fact is isolated</td><td style="text-align:left">No structure to hang it on</td><td style="text-align:left">Read that chapter's §, once. This is the only case that justifies going back to prose</td></tr><tr><td style="text-align:left">Fails because the card is bad</td><td style="text-align:left">Ambiguous cloze, missing context</td><td style="text-align:left">Fix or delete it. <strong>A bad card is worse than no card</strong> — it trains hesitation</td></tr></tbody></table></div><aside class="cal think"><p class="cal-h">THINK LIKE UPSC · A LAPSE IS INFORMATION, AND IT IS THE SAME INFORMATION F11.3 §4.2 WANTS</p><p>F11.4 §9.4 builds an error signature from mock answers; F11.3 §4.2 keeps a paper error log. <strong>A repeated card lapse is the same signal arriving earlier and cheaper</strong> — before it costs 0.8333 in a mock.</p><p>So read the two together. If Deck 2 keeps failing on superseded instruments and your mock errors cluster on <strong>T-09</strong>, that is not two problems. It is one, and it has a name, and F11.4 §5.1 is the fix.</p></aside><h2 id="6-what-this-does-not-do">6. What This Does Not Do</h2><p>Stated plainly, because a deck invites over-confidence.</p><p><strong>It does not teach.</strong> Every card was generated from a chapter you are expected to have read. A card is a retrieval handle on existing knowledge, and cards on an unread chapter produce memorised strings that collapse the moment the paper rephrases them.</p><p><strong>It does not replace mocks.</strong> Cards train fact retrieval; the paper additionally demands 60-second pacing, OMR discipline, and the elimination judgment of F11.1 §1.2. F11.2, F11.5 and F11.6 remain the instrument for those. <strong>A candidate with 4,403 mature cards and no mocks will still mismanage the two hours.</strong></p><p><strong>It does not cover the missing 97.5 marks.</strong> See §2.2.</p><p><strong>And it does not fix a wrong fact.</strong> The cards inherit their sources exactly. Where this manual is out of date the deck will drill the error with perfect efficiency — which is why every figure carries its instrument and vintage, and why <code>decks/</code> is regenerated rather than hand-maintained.</p><h2 id="7-five-minute-wall-sheet">7. Five-Minute Wall Sheet</h2><aside class="cal session"><p class="cal-h">FIVE-MINUTE WALL SHEET · CHAPTER F11.7</p><p><strong>THE ENEMY IS DECAY, NOT COVERAGE</strong></p><p><strong>RE-READING BUILDS FLUENCY · RETRIEVAL BUILDS MEMORY · FLUENCY FEELS LIKE MASTERY AND IS NOT</strong></p><p><strong>SPACED BEATS MASSED AT IDENTICAL TOTAL COST</strong> — days 1, 3, 8, 21</p><p><strong>DECAY HERE RETURNS THE NEIGHBOURING VALUE, NOT A BLANK</strong> — that is why it costs 0.8333</p><p><strong>4,403 CARDS · SEVEN DECKS · GENERATED FROM src/, NEVER HAND-EDITED</strong></p><p><strong>DECK 1 NUMBERS SHORTEST INTERVAL · DECK 2 DISCRIMINATION HIGHEST YIELD PER CARD</strong></p><p><strong>TWENTY MINUTES DAILY · DUE REVIEWS FIRST, ALWAYS · NEW CARDS ONLY WITH TIME LEFT</strong></p><p><strong>40 NEW A DAY CLEARS 4,403 IN FIFTEEN WEEKS</strong></p><p><strong>SHORT OF TIME » CUT SCOPE, NEVER RAISE THE DAILY COUNT</strong></p><p><strong>NO NEW CARDS INSIDE THE LAST FOURTEEN DAYS</strong></p><p><strong>TRAPS DECK JOINS LATE — TECHNIQUE STABILISES AFTER FACTS DO</strong></p><p><strong>ACT ON THE THIRD LAPSE, NOT THE FIRST</strong></p><p><strong>THREE LAPSES = CONFUSION, ISOLATION OR A BAD CARD — DIAGNOSE BEFORE RE-READING</strong></p><p><strong>A BAD CARD IS WORSE THAN NO CARD</strong></p><p><strong>DECK 7 STARTS THE DAY THE RT ENDS · SPOKEN ALOUD, NOT READ</strong></p><p><strong>MODULES 1, 2, 3, 5 ABSENT = 97.5 MARKS UNCOVERED · MARKDOWN 100%, PDF 73%</strong></p><p><strong>ONE LINE FOR THE INTERVIEW</strong> Asked how I prepared, I would say I stopped re-reading once I realised recognition was the exact faculty the paper is designed to exploit, and moved to daily retrieval over about four thousand single-fact cards — which had the useful side effect of showing me, in week three rather than in the hall, that my errors were clustered on superseded figures rather than spread across the syllabus.</p></aside>
+</main>
+<footer class="foot">UPSC EPFO APFC &mdash; Recruitment Test Manual
+  &middot; Chapter F11.7
+  &middot; v1.0</footer>
+</body>
+</html>

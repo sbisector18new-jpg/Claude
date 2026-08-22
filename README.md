@@ -21,7 +21,11 @@ coverage.
 
 - **Complete:** all eleven RT modules — all **300 planning marks** covered — **plus Module 12 for the
   100-mark interview**
-- **Just added:** **Full Mock 2 (F11.5)** and **Full Mock 3 (F11.6)** — two more complete 120-question
+- **Just added:** **`decks/` — 4,403 spaced-repetition cards** generated from the manual's own chapters,
+  with **F11.7** as the schedule that governs them. This is the first thing in the project that attacks
+  **decay** rather than coverage, which F11.3 §1 identifies as the binding constraint now the syllabus is
+  closed
+- **Previously added:** **Full Mock 2 (F11.5)** and **Full Mock 3 (F11.6)** — two more complete 120-question
   papers on a deliberate difficulty ramp, and **Module 12 — The Interview** (F12.1 to F12.3), the stage
   that carries 25 per cent of final merit and previously had no chapter
 - **Why the interview matters more than it looks:** RT marks are **not discarded**, so the interview is
